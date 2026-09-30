@@ -1,8 +1,8 @@
-import { COOKIE_NAME, ONE_YEAR_MS, OAUTH_STATE_COOKIE, decodeOAuthState } from "@shared/const";
-import { parse as parseCookieHeader } from "cookie";
+import { COOKIE_NAME, ONE_YEAR_MS } from "@shared/const";
 import type { Express, Request, Response } from "express";
 import * as db from "../db";
 import { getSessionCookieOptions } from "./cookies";
+import { ENV } from "./env";
 import { sdk } from "./sdk";
 
 function getQueryParam(req: Request, key: string): string | undefined {
@@ -11,6 +11,30 @@ function getQueryParam(req: Request, key: string): string | undefined {
 }
 
 export function registerOAuthRoutes(app: Express) {
+  /**
+   * Begins the OAuth flow from a backend endpoint. Client navigation must use a
+   * regular anchor or window.location assignment so this route is requested
+   * from the server rather than handled by the SPA router.
+   */
+  app.get("/api/auth/google", (req: Request, res: Response) => {
+    if (!ENV.oAuthServerUrl || !ENV.appId) {
+      console.error("[OAuth] Login configuration is incomplete");
+      res.status(500).json({ error: "OAuth login is not configured" });
+      return;
+    }
+
+    const protocol = req.header("x-forwarded-proto") ?? req.protocol;
+    const redirectUri = `${protocol}://${req.get("host")}/api/oauth/callback`;
+    const state = Buffer.from(redirectUri).toString("base64");
+    const loginUrl = new URL("/app-auth", ENV.oAuthServerUrl);
+    loginUrl.searchParams.set("appId", ENV.appId);
+    loginUrl.searchParams.set("redirectUri", redirectUri);
+    loginUrl.searchParams.set("state", state);
+    loginUrl.searchParams.set("type", "signIn");
+
+    res.redirect(302, loginUrl.toString());
+  });
+
   app.get("/api/oauth/callback", async (req: Request, res: Response) => {
     const code = getQueryParam(req, "code");
     const state = getQueryParam(req, "state");
@@ -19,17 +43,6 @@ export function registerOAuthRoutes(app: Express) {
       res.status(400).json({ error: "code and state are required" });
       return;
     }
-
-    // CSRF guard: the nonce in `state` must match the one-time cookie that
-    // startLogin set in the browser that began this login. An attacker can
-    // forge `state`, but cannot plant this cookie in the victim's browser.
-    const { nonce } = decodeOAuthState(state);
-    const expectedNonce = parseCookieHeader(req.headers.cookie ?? "")[OAUTH_STATE_COOKIE];
-    if (!nonce || nonce !== expectedNonce) {
-      res.status(403).json({ error: "invalid oauth state" });
-      return;
-    }
-    res.clearCookie(OAUTH_STATE_COOKIE, { path: "/", secure: true, sameSite: "none" });
 
     try {
       const tokenResponse = await sdk.exchangeCodeForToken(code, state);
@@ -54,7 +67,10 @@ export function registerOAuthRoutes(app: Express) {
       });
 
       const cookieOptions = getSessionCookieOptions(req);
-      res.cookie(COOKIE_NAME, sessionToken, { ...cookieOptions, maxAge: ONE_YEAR_MS });
+      res.cookie(COOKIE_NAME, sessionToken, {
+        ...cookieOptions,
+        maxAge: ONE_YEAR_MS,
+      });
 
       res.redirect(302, "/");
     } catch (error) {

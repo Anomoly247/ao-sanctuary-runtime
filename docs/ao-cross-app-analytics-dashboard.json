@@ -1,0 +1,250 @@
+{
+  "dashboardId": "ao-cross-app-journeys",
+  "version": "1.0.0",
+  "title": "AO Universe — Cross-App Journey & Mission Ledger",
+  "status": "configuration",
+  "purpose": "Track player movement between Homeworld, Sanctuary, Originals, games, and creative surfaces while measuring mission completion and reward-ledger continuity.",
+  "defaultTimezone": "America/New_York",
+  "privacy": {
+    "collectPii": false,
+    "identityMode": "anonymous_session_then_authenticated_user",
+    "redactQueryParams": ["email", "name", "token", "code"],
+    "allowedContextFields": ["house", "mount", "source", "mission", "event", "destination", "session_id"],
+    "neverTrack": ["raw_reward_balance", "payment_details", "child_profile_data", "freeform_contact_message"],
+    "retentionDays": 90
+  },
+  "surfaces": [
+    {
+      "id": "homeworld",
+      "name": "Homeworld",
+      "url": "https://anomartsy.xyz/",
+      "type": "static-hub",
+      "bridge": "assets/ao-bridge.js"
+    },
+    {
+      "id": "games",
+      "name": "Games Hub",
+      "url": "https://anomartsy.xyz/games/",
+      "type": "static-game-launcher",
+      "bridge": "../assets/ao-bridge.js"
+    },
+    {
+      "id": "arcade",
+      "name": "Arcade",
+      "url": "https://anomartsy.xyz/arcade/",
+      "type": "static-game-surface",
+      "bridge": "../assets/ao-bridge.js"
+    },
+    {
+      "id": "beatlab",
+      "name": "Beat Lab",
+      "url": "https://anomartsy.xyz/beatlab/",
+      "type": "kid-safe-creative-surface",
+      "bridge": "../assets/ao-bridge.js"
+    },
+    {
+      "id": "sanctuary",
+      "name": "Sanctuary",
+      "url": "https://anomoly247.github.io/anom-social-sanctuary/",
+      "type": "react-ledger-authority",
+      "bridge": "ao-bridge.js",
+      "missionRoute": "https://anomoly247.github.io/anom-social-sanctuary/missions"
+    },
+    {
+      "id": "originals",
+      "name": "Anom Originals / AO Alive",
+      "url": "https://anomoriginals.lol/",
+      "type": "react-world-directory",
+      "missionRoute": "https://anomoriginals.lol/"
+    },
+    {
+      "id": "archive",
+      "name": "Archive Games",
+      "url": "https://anomarsty.lol/games/",
+      "type": "cross-domain-game-vault"
+    }
+  ],
+  "contextContract": {
+    "requiredForHandoff": ["house", "mount", "return", "source"],
+    "optionalForMission": ["mission", "event"],
+    "eventIdIsIdempotencyKey": true,
+    "example": "?house=3&mount=aurora&return=https%3A%2F%2Fanomartsy.xyz%2F&source=homeworld&mission=make-something-kind&event=homeworld-create-001"
+  },
+  "eventSchema": [
+    {
+      "name": "ao_context_received",
+      "category": "journey",
+      "required": ["surface", "session_id", "source"],
+      "properties": ["house", "mount", "mission", "event", "source", "referrer_surface"]
+    },
+    {
+      "name": "ao_destination_viewed",
+      "category": "journey",
+      "required": ["surface", "destination", "session_id"],
+      "properties": ["house", "mount", "source", "mission"]
+    },
+    {
+      "name": "ao_handoff_started",
+      "category": "journey",
+      "required": ["surface", "destination", "session_id", "event_id"],
+      "properties": ["source", "house", "mount", "mission", "event_id"]
+    },
+    {
+      "name": "ao_handoff_landed",
+      "category": "journey",
+      "required": ["surface", "source", "session_id"],
+      "properties": ["house", "mount", "mission", "event_id", "landing_latency_ms"]
+    },
+    {
+      "name": "ao_mission_viewed",
+      "category": "mission",
+      "required": ["surface", "mission_id", "session_id"],
+      "properties": ["house", "mount", "source", "event_id"]
+    },
+    {
+      "name": "ao_mission_started",
+      "category": "mission",
+      "required": ["surface", "mission_id", "session_id", "event_id"],
+      "properties": ["house", "mount", "source"]
+    },
+    {
+      "name": "ao_mission_completed",
+      "category": "mission",
+      "required": ["surface", "mission_id", "session_id", "event_id"],
+      "properties": ["house", "mount", "source", "completion_latency_ms"]
+    },
+    {
+      "name": "ao_reward_ledger_write",
+      "category": "ledger",
+      "required": ["surface", "mission_id", "event_id", "ledger_result"],
+      "properties": ["source", "house", "mount", "ledger_result", "duplicate_event"]
+    },
+    {
+      "name": "ao_return_clicked",
+      "category": "journey",
+      "required": ["surface", "session_id"],
+      "properties": ["destination", "source", "house", "mount", "mission"]
+    }
+  ],
+  "missionCatalog": [
+    { "id": "welcome-to-ao", "label": "Welcome to AO", "rewardClass": "welcome" },
+    { "id": "play-with-purpose", "label": "Play With Purpose", "rewardClass": "play" },
+    { "id": "make-something-kind", "label": "Make Something Kind", "rewardClass": "create" }
+  ],
+  "metrics": [
+    {
+      "id": "unique_journeys",
+      "label": "Unique AO journeys",
+      "formula": "count_distinct(session_id)",
+      "dimensions": ["source", "destination", "house"]
+    },
+    {
+      "id": "handoff_completion_rate",
+      "label": "Handoff completion rate",
+      "formula": "ao_handoff_landed / ao_handoff_started",
+      "dimensions": ["source", "destination", "mission"]
+    },
+    {
+      "id": "mission_start_rate",
+      "label": "Mission start rate",
+      "formula": "ao_mission_started / ao_mission_viewed",
+      "dimensions": ["surface", "mission_id", "source"]
+    },
+    {
+      "id": "mission_completion_rate",
+      "label": "Mission completion rate",
+      "formula": "ao_mission_completed / ao_mission_started",
+      "dimensions": ["mission_id", "house", "source"]
+    },
+    {
+      "id": "ledger_write_success_rate",
+      "label": "Ledger write success rate",
+      "formula": "ledger_result=accepted / ao_reward_ledger_write",
+      "dimensions": ["mission_id", "surface", "source"]
+    },
+    {
+      "id": "duplicate_event_rate",
+      "label": "Duplicate event rate",
+      "formula": "duplicate_event=true / ao_reward_ledger_write",
+      "dimensions": ["mission_id", "event_id"]
+    },
+    {
+      "id": "return_rate",
+      "label": "Return-to-origin rate",
+      "formula": "ao_return_clicked / ao_handoff_landed",
+      "dimensions": ["surface", "source", "destination"]
+    }
+  ],
+  "funnels": [
+    {
+      "id": "homeworld-to-mission",
+      "label": "Homeworld → Sanctuary mission",
+      "steps": [
+        "ao_context_received@homeworld",
+        "ao_handoff_started@homeworld->sanctuary",
+        "ao_handoff_landed@sanctuary",
+        "ao_mission_viewed@sanctuary",
+        "ao_mission_started@sanctuary",
+        "ao_mission_completed@sanctuary",
+        "ao_reward_ledger_write@sanctuary"
+      ]
+    },
+    {
+      "id": "originals-to-mission",
+      "label": "Originals → Sanctuary mission",
+      "steps": [
+        "ao_context_received@originals",
+        "ao_handoff_started@originals->sanctuary",
+        "ao_handoff_landed@sanctuary",
+        "ao_mission_viewed@sanctuary",
+        "ao_mission_completed@sanctuary",
+        "ao_reward_ledger_write@sanctuary"
+      ]
+    },
+    {
+      "id": "creative-loop",
+      "label": "Homeworld → Beat Lab → return",
+      "steps": [
+        "ao_context_received@homeworld",
+        "ao_handoff_landed@beatlab",
+        "ao_destination_viewed@beatlab",
+        "ao_return_clicked@beatlab",
+        "ao_handoff_landed@homeworld"
+      ]
+    }
+  ],
+  "breakdowns": [
+    "date",
+    "source",
+    "destination",
+    "house",
+    "mount",
+    "mission_id",
+    "ledger_result",
+    "device_class"
+  ],
+  "dashboardViews": [
+    {
+      "id": "overview",
+      "title": "AO Journey Overview",
+      "visuals": ["kpi:unique_journeys", "line:journeys_by_day", "sankey:surface_handoffs", "table:recent_mission_events"]
+    },
+    {
+      "id": "missions",
+      "title": "Mission Completion & Ledger",
+      "visuals": ["kpi:mission_completion_rate", "bar:completion_by_mission", "bar:ledger_write_success_rate", "table:ledger_event_errors"]
+    },
+    {
+      "id": "journey-debug",
+      "title": "Journey Debugger",
+      "visuals": ["funnel:homeworld-to-mission", "funnel:originals-to-mission", "table:event_id_trace"]
+    }
+  ],
+  "implementationNotes": {
+    "clientEventAdapter": "Emit events from AOBridgeProvider and static AOBridge ready/handoff hooks.",
+    "ledgerAuthority": "Sanctuary owns authenticated mission status and atomic completion via missions.complete.",
+    "idempotency": "Use event_id as the ledger event key; never award twice for the same user + mission + event.",
+    "rollout": "Start with anonymous journey events; enable authenticated ledger events only after consent and session binding.",
+    "dataSourceStatus": "Configuration only; connect the event sink or warehouse before treating metrics as production data."
+  }
+}
