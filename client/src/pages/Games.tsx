@@ -403,6 +403,9 @@ export default function Games() {
             <p className="ao-world-kicker">PLAY WORLDS // BASIC BUILDS, BIG FUTURE</p>
             <h2>Start with a small game. Grow a living world.</h2>
             <p>These are the first playable prototypes: trivia, memory, and mood. Scores come from this session only until the shared reward ledger is connected.</p>
+            <Button className="btn-primary mt-5" onClick={() => navigate("/games/baba-yaga")}>
+              Enter Baba Yaga’s Hut
+            </Button>
           </div>
           <div className="ao-mount-identity" aria-label={`${activeMount.label} identity mount with emotion emotes`}>
             <span className="ao-mount-emote ao-mount-emote-1">{AO_ART.emotes[0]}</span>

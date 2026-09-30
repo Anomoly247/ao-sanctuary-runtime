@@ -1,9 +1,8 @@
 {
   "build_command": "pnpm run build",
   "capabilities": [
-    "server",
     "db",
-    "user"
+    "server"
   ],
   "dev_command": "pnpm run dev",
   "env_vars": {
@@ -33,7 +32,7 @@
     "VITE_ANALYTICS_ENDPOINT": "https://manus-analytics.com",
     "VITE_ANALYTICS_WEBSITE_ID": "369c43df-62c3-4b15-a663-85ae883fd04f",
     "VITE_APP_ID": "Hukq4ZPoHRWi5oG8L6Vv6c",
-    "VITE_APP_LOGO": "",
+    "VITE_APP_LOGO": "https://files.manuscdn.com/user_upload_by_module/web_dev_logo/310519663404343710/XamGiAauAsIOjVdA.png",
     "VITE_APP_TITLE": "AO Sanctuary Runtime",
     "VITE_FRONTEND_FORGE_API_KEY": "SP5biuxaeYcmuggJMiXnHa",
     "VITE_FRONTEND_FORGE_API_URL": "https://forge.manus.ai",

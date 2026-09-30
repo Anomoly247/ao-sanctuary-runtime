@@ -15,6 +15,7 @@ import LoungeDetail from "./pages/LoungeDetail";
 import KidsCorner from "./pages/KidsCorner";
 import SocialFeed from "./pages/SocialFeed";
 import Games from "./pages/Games";
+import BabaYagaGame from "./pages/BabaYagaGame";
 import Merch from "./pages/Merch";
 import Admin from "./pages/Admin";
 import PublicProfile from "./pages/PublicProfile";
@@ -54,6 +55,7 @@ const AppRoutes = () => {
       <Route path={"/characters/dot"} component={DotProfile} />
       <Route path={"/feed"} component={SocialFeed} />
       <Route path={"/games"} component={Games} />
+      <Route path={"/games/baba-yaga"} component={BabaYagaGame} />
       <Route path={"/merch"} component={Merch} />
       <Route path="/admin" component={Admin} />
       <Route path="/collaboration" component={CollaborationStation} />
