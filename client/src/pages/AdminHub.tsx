@@ -21,13 +21,13 @@ const sectionMeta: Array<{ id: HubSection; label: string; detail: string; icon: 
 
 const platformOptions: Platform[] = ["youtube", "facebook", "instagram", "linkedin", "substack", "spreadshop"];
 
-function AccessGate() {
+function AccessGate({ user, logout }: { user: { name?: string | null; email?: string | null } | null; logout: () => Promise<void> }) {
   const [, navigate] = useLocation();
-  return <div className="ao-admin-gate"><Sparkles className="h-8 w-8" /><h1>Admin access required</h1><p>The Admin Hub is reserved for the AO owner and trusted administrators.</p><Button className="btn-primary" onClick={() => navigate("/")}>Return to Sanctuary</Button></div>;
+  return <div className="ao-admin-gate"><Sparkles className="h-8 w-8" /><h1>Admin access required</h1><p>{user ? `Signed in as ${user.name || user.email || "this account"}, but this session is not marked as an administrator yet.` : "Sign in with the AO owner account to open the control room."}</p><div className="ao-admin-gate-actions">{user ? <><Button className="btn-primary" onClick={() => window.location.reload()}>Refresh owner access</Button><Button className="btn-secondary" onClick={async () => { await logout(); window.location.href = "/api/auth/google"; }}>Sign out and sign in again</Button></> : <a href="/api/auth/google"><Button className="btn-primary">Sign in as owner</Button></a>}<Button className="btn-secondary" onClick={() => navigate("/")}>Return to Sanctuary</Button></div></div>;
 }
 
 export default function AdminHub() {
-  const { user, loading } = useAuth();
+  const { user, loading, logout } = useAuth();
   const [, navigate] = useLocation();
   const [section, setSection] = useState<HubSection>("overview");
   const [config, setConfig] = useState<AOContentConfig>(() => readAOContentConfig());
@@ -40,7 +40,7 @@ export default function AdminHub() {
   const featuredOffers = useMemo(() => config.offers.filter((offer) => offer.status === "featured").length, [config.offers]);
 
   if (loading) return <div className="ao-admin-loading">Opening the Admin Hub…</div>;
-  if (user?.role !== "admin") return <AccessGate />;
+  if (user?.role !== "admin") return <AccessGate user={user} logout={logout} />;
 
   const updateEntry = (patch: Partial<ContentEntry>) => {
     if (!selectedEntry) return;

@@ -306,7 +306,9 @@ class SDKServer {
       lastSignedIn: signedInAt,
     });
 
-    return user;
+    // Re-read after upsert so owner promotion (OWNER_OPEN_ID -> admin) is
+    // visible in the same request instead of waiting for a second refresh.
+    return (await db.getUserByOpenId(user.openId)) ?? user;
   }
 }
 

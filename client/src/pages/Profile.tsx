@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { ArrowLeft, Check, Copy, Heart, Home, ImagePlus, Map, Mountain, Pencil, Share2, Sparkles, Star, WandSparkles } from "lucide-react";
+import { ArrowLeft, Check, Copy, Heart, Home, ImagePlus, LayoutDashboard, Map, Mountain, Pencil, Share2, Sparkles, Star, WandSparkles } from "lucide-react";
 import { useLocation } from "wouter";
 import { toast } from "sonner";
 import { useAuth } from "@/_core/hooks/useAuth";
@@ -145,6 +145,7 @@ export default function Profile() {
         <div className="ao-profile-world-title"><span>PERSONAL WORLD</span><strong>{user.name || "Traveler"}</strong></div>
         <div className="ao-profile-header-actions">
           <span className="ao-world-context">{bridge.houseName} · {bridge.mount}</span>
+          <Button className="ao-admin-world-button" onClick={() => navigate("/admin-hub")}><LayoutDashboard className="h-4 w-4" /> Admin Hub</Button>
           <Button className="ao-shape-button" onClick={() => setIsDecorating((current) => !current)}><WandSparkles className="h-4 w-4" /> {isDecorating ? "Done shaping" : "Shape your world"}</Button>
         </div>
       </header>
