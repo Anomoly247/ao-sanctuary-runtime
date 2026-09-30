@@ -100,7 +100,7 @@ function TriviaGame({ onClose, onComplete }: { onClose: () => void; onComplete: 
           <p className="text-[#cccccc] text-sm mb-2">
             Question {currentQuestion + 1} / {questions.length}
           </p>
-          <div className="w-full bg-[#04040a] rounded-full h-2">
+          <div className="w-full bg-[#0A0A10] rounded-full h-2">
             <div
               className="bg-[#ff00c8] h-2 rounded-full transition-all"
               style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
@@ -276,7 +276,7 @@ function MoodMatcherGame({ onClose, onComplete }: { onClose: () => void; onCompl
             <button
               key={mood.name}
               onClick={() => handleMoodClick(mood.name)}
-              className="p-4 bg-[#04040a] border border-[#2b2b42] rounded-lg hover:border-[#ff00c8] transition-colors"
+              className="p-4 bg-[#0A0A10] border border-[#08080f] rounded-lg hover:border-[#ff00c8] transition-colors"
             >
               <div className="text-4xl mb-2">{mood.emoji}</div>
               <div className="text-sm text-[#cccccc]">{mood.name}</div>
@@ -344,7 +344,7 @@ export default function Games() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-[#00eaff] text-xl">Loading Games...</div>
       </div>
     );
@@ -352,7 +352,7 @@ export default function Games() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-center">
           <p className="text-[#00eaff] text-xl mb-4">Please sign in to play games</p>
           <Button className="btn-primary" onClick={() => navigate("/")}>
@@ -366,9 +366,9 @@ export default function Games() {
   const totalRewards = Object.values(gameScores).reduce((a, b) => a + b, 0);
 
   return (
-    <div className="min-h-screen bg-[#04040a] text-[#00eaff]">
+    <div className="min-h-screen bg-[#0A0A10] text-[#00eaff]">
       {/* Navigation */}
-      <nav className="border-b border-[#2b2b42] px-6 py-4 sticky top-0 bg-[#04040a]/95 backdrop-blur z-10">
+      <nav className="border-b border-[#08080f] px-6 py-4 sticky top-0 bg-[#0A0A10]/95 backdrop-blur z-10">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-4">
             <Button variant="ghost" onClick={() => navigate("/")} className="text-[#cccccc]">
@@ -384,9 +384,9 @@ export default function Games() {
         {/* Stats Section */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           <Card
-            className="bg-[#141423] border border-[#2b2b42] p-6"
+            className="bg-[#141423] border border-[#08080f] p-6"
             style={{
-              boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
+              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
             }}
           >
             <div className="flex items-center justify-between">
@@ -399,9 +399,9 @@ export default function Games() {
           </Card>
 
           <Card
-            className="bg-[#141423] border border-[#2b2b42] p-6"
+            className="bg-[#141423] border border-[#08080f] p-6"
             style={{
-              boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
+              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
             }}
           >
             <div className="flex items-center justify-between">
@@ -414,9 +414,9 @@ export default function Games() {
           </Card>
 
           <Card
-            className="bg-[#141423] border border-[#2b2b42] p-6"
+            className="bg-[#141423] border border-[#08080f] p-6"
             style={{
-              boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
+              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
             }}
           >
             <div className="flex items-center justify-between">
@@ -436,20 +436,20 @@ export default function Games() {
             return (
               <Card
                 key={game.id}
-                className="bg-[#141423] border border-[#2b2b42] p-6 hover:border-[#ff00c8] transition-colors"
+                className="bg-[#141423] border border-[#08080f] p-6 hover:border-[#ff00c8] transition-colors"
                 style={{
-                  boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
+                  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
                 }}
               >
                 <div className="text-5xl mb-4 text-center">{game.icon}</div>
                 <h3 className="text-lg font-bold text-[#00eaff] mb-2">{game.title}</h3>
                 <p className="text-sm text-[#cccccc] mb-4">{game.description}</p>
 
-                <div className="flex items-center justify-between mb-4 pb-4 border-b border-[#2b2b42]">
-                  <span className="text-xs px-2 py-1 bg-[#04040a] rounded text-[#cccccc]">
+                <div className="flex items-center justify-between mb-4 pb-4 border-b border-[#08080f]">
+                  <span className="text-xs px-2 py-1 bg-[#0A0A10] rounded text-[#cccccc]">
                     {game.difficulty}
                   </span>
-                  <span className="text-xs px-2 py-1 bg-[#04040a] rounded text-[#ff00c8] flex items-center gap-1">
+                  <span className="text-xs px-2 py-1 bg-[#0A0A10] rounded text-[#ff00c8] flex items-center gap-1">
                     <Zap className="w-3 h-3" />
                     {gameScores[game.id] || game.reward} pts
                   </span>

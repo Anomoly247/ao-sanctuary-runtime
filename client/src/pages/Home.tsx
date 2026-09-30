@@ -20,7 +20,7 @@ export default function Home() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-[#00eaff] text-xl">Loading Anom Artsy...</div>
       </div>
     );
@@ -28,9 +28,9 @@ export default function Home() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#04040a] text-[#00eaff] flex flex-col">
+      <div className="min-h-screen bg-[#0A0A10] text-[#00eaff] flex flex-col">
         {/* Navigation */}
-        <nav className="border-b border-[#2b2b42] px-6 py-4">
+        <nav className="border-b border-[#08080f] px-6 py-4">
           <div className="max-w-7xl mx-auto flex justify-between items-center">
             <div className="text-2xl font-bold text-accent">Anom Artsy</div>
             <a href="/api/auth/google">
@@ -90,14 +90,14 @@ export default function Home() {
         </section>
 
         {/* Features Section */}
-        <section className="bg-[#141423] border-t border-[#2b2b42] px-6 py-20">
+        <section className="bg-[#141423] border-t border-[#08080f] px-6 py-20">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-16 text-accent">
               What Awaits You
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
               {/* Feature 1 */}
-              <div className="bg-[#141423] border border-[#2b2b42] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+              <div className="bg-[#141423] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
                 <Zap className="w-8 h-8 text-[#ff00c8] mb-4" />
                 <h3 className="text-xl font-bold text-[#00eaff] mb-2">Anom Coin Economy</h3>
                 <p className="text-[#cccccc]">
@@ -106,7 +106,7 @@ export default function Home() {
               </div>
 
               {/* Feature 2 */}
-              <div className="bg-[#141423] border border-[#2b2b42] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+              <div className="bg-[#141423] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
                 <Users className="w-8 h-8 text-[#00eaff] mb-4" />
                 <h3 className="text-xl font-bold text-[#ff00c8] mb-2">Private Lounges</h3>
                 <p className="text-[#cccccc]">
@@ -115,7 +115,7 @@ export default function Home() {
               </div>
 
               {/* Feature 3 */}
-              <div className="bg-[#141423] border border-[#2b2b42] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+              <div className="bg-[#141423] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
                 <Gamepad2 className="w-8 h-8 text-[#ff00c8] mb-4" />
                 <h3 className="text-xl font-bold text-[#00eaff] mb-2">Mini-Games</h3>
                 <p className="text-[#cccccc]">
@@ -124,7 +124,7 @@ export default function Home() {
               </div>
 
               {/* Feature 4 */}
-              <div className="bg-[#141423] border border-[#2b2b42] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+              <div className="bg-[#141423] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
                 <Heart className="w-8 h-8 text-[#00eaff] mb-4" />
                 <h3 className="text-xl font-bold text-[#ff00c8] mb-2">Kids Corner</h3>
                 <p className="text-[#cccccc]">
@@ -133,7 +133,7 @@ export default function Home() {
               </div>
 
               {/* Feature 5 */}
-              <div className="bg-[#141423] border border-[#2b2b42] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+              <div className="bg-[#141423] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
                 <Sparkles className="w-8 h-8 text-[#ff00c8] mb-4" />
                 <h3 className="text-xl font-bold text-[#00eaff] mb-2">Profile Customization</h3>
                 <p className="text-[#cccccc]">
@@ -142,7 +142,7 @@ export default function Home() {
               </div>
 
               {/* Feature 6 */}
-              <div className="bg-[#141423] border border-[#2b2b42] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+              <div className="bg-[#141423] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
                 <ShoppingBag className="w-8 h-8 text-[#00eaff] mb-4" />
                 <h3 className="text-xl font-bold text-[#ff00c8] mb-2">Custom Merch</h3>
                 <p className="text-[#cccccc]">
@@ -168,7 +168,7 @@ export default function Home() {
         </section>
 
         {/* Footer */}
-        <footer className="border-t border-[#2b2b42] px-6 py-8 text-center text-[#cccccc]">
+        <footer className="border-t border-[#08080f] px-6 py-8 text-center text-[#cccccc]">
           <p>&copy; 2026 Anom Artsy. Identity, Amplified.</p>
         </footer>
       </div>
@@ -205,7 +205,7 @@ export default function Home() {
   // Authenticated Dashboard
   return (
     <div 
-      className="min-h-screen bg-[#04040a] text-[#00eaff]"
+      className="min-h-screen bg-[#0A0A10] text-[#00eaff]"
       style={{
         backgroundImage: backgroundUrl.startsWith('linear-gradient') ? backgroundUrl : undefined,
         backgroundSize: 'cover',
@@ -225,7 +225,7 @@ export default function Home() {
         />
       )}
       {/* Navigation */}
-      <nav className="border-b border-[#2b2b42] px-6 py-4 sticky top-0 bg-[#04040a]/95 backdrop-blur">
+      <nav className="border-b border-[#08080f] px-6 py-4 sticky top-0 bg-[#0A0A10]/95 backdrop-blur">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="text-2xl font-bold text-accent">Anom Artsy</div>
           <div className="flex items-center gap-4">
@@ -240,27 +240,27 @@ export default function Home() {
                 Background
               </Button>
               {showBgMenu && (
-                <div className="absolute right-0 mt-2 w-48 bg-[#141423] border border-[#2b2b42] rounded-lg p-4 shadow-lg z-50">
+                <div className="absolute right-0 mt-2 w-48 bg-[#141423] border border-[#08080f] rounded-lg p-4 shadow-lg z-50">
                   <div className="space-y-2">
                     <button
                       onClick={() => handlePresetBackground('gradient1')}
-                      className="w-full text-left px-3 py-2 rounded hover:bg-[#2b2b42] text-[#00eaff] text-sm"
+                      className="w-full text-left px-3 py-2 rounded hover:bg-[#08080f] text-[#00eaff] text-sm"
                     >
                       Magenta-Cyan
                     </button>
                     <button
                       onClick={() => handlePresetBackground('gradient2')}
-                      className="w-full text-left px-3 py-2 rounded hover:bg-[#2b2b42] text-[#00eaff] text-sm"
+                      className="w-full text-left px-3 py-2 rounded hover:bg-[#08080f] text-[#00eaff] text-sm"
                     >
                       Gold-Magenta
                     </button>
                     <button
                       onClick={() => handlePresetBackground('gradient3')}
-                      className="w-full text-left px-3 py-2 rounded hover:bg-[#2b2b42] text-[#00eaff] text-sm"
+                      className="w-full text-left px-3 py-2 rounded hover:bg-[#08080f] text-[#00eaff] text-sm"
                     >
                       Cyan-Green
                     </button>
-                    <label className="w-full text-left px-3 py-2 rounded hover:bg-[#2b2b42] text-[#00eaff] text-sm cursor-pointer flex items-center">
+                    <label className="w-full text-left px-3 py-2 rounded hover:bg-[#08080f] text-[#00eaff] text-sm cursor-pointer flex items-center">
                       <Upload className="w-4 h-4 mr-2" />
                       Upload Image
                       <input
@@ -290,7 +290,7 @@ export default function Home() {
       <main className="max-w-7xl mx-auto px-6 py-12">
         <div className="grid md:grid-cols-4 gap-6 mb-12">
           {/* Coin Balance */}
-          <div className="bg-[#141423] border border-[#2b2b42] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+          <div className="bg-[#141423] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[#cccccc] text-sm">Anom Coin Balance</p>
@@ -301,7 +301,7 @@ export default function Home() {
           </div>
 
           {/* Level */}
-          <div className="bg-[#141423] border border-[#2b2b42] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+          <div className="bg-[#141423] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[#cccccc] text-sm">Your Level</p>
@@ -312,7 +312,7 @@ export default function Home() {
           </div>
 
           {/* Achievements */}
-          <div className="bg-[#141423] border border-[#2b2b42] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+          <div className="bg-[#141423] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[#cccccc] text-sm">Achievements</p>
@@ -323,7 +323,7 @@ export default function Home() {
           </div>
 
           {/* Lounges */}
-          <div className="bg-[#141423] border border-[#2b2b42] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+          <div className="bg-[#141423] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[#cccccc] text-sm">Your Lounges</p>
@@ -336,7 +336,7 @@ export default function Home() {
 
         {/* Quick Actions */}
         <div className="grid md:grid-cols-2 gap-6">
-          <div className="bg-[#141423] border border-[#2b2b42] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+          <div className="bg-[#141423] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
             <h3 className="text-xl font-bold text-[#ff00c8] mb-4">Quick Actions</h3>
             <div className="space-y-3">
               <Button className="w-full btn-primary" onClick={() => navigate("/profile")}>
@@ -366,7 +366,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="bg-[#141423] border border-[#2b2b42] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+          <div className="bg-[#141423] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
             <h3 className="text-xl font-bold text-[#00eaff] mb-4">Live from the Universe</h3>
             <p className="text-[#cccccc] text-sm">
               Check back soon for community highlights, memes, and universe updates!

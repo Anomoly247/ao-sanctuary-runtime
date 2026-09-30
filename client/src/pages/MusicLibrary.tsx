@@ -24,9 +24,9 @@ export default function MusicLibrary() {
   const playerTracks = displayTracks || [];
 
   return (
-    <div className="min-h-screen bg-[#04040a] text-[#00eaff]">
+    <div className="min-h-screen bg-[#0A0A10] text-[#00eaff]">
       {/* Navigation */}
-      <nav className="border-b border-[#2b2b42] px-6 py-4 sticky top-0 bg-[#04040a]/95 backdrop-blur z-40">
+      <nav className="border-b border-[#08080f] px-6 py-4 sticky top-0 bg-[#0A0A10]/95 backdrop-blur z-40">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Music className="w-8 h-8 text-[#ff00c8]" />
@@ -41,7 +41,7 @@ export default function MusicLibrary() {
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-6">
             {/* Search & Filters */}
-            <Card className="bg-[#141423] border border-[#2b2b42] p-6">
+            <Card className="bg-[#141423] border border-[#08080f] p-6">
               <div className="space-y-4">
                 {/* Search Bar */}
                 <div className="relative">
@@ -51,7 +51,7 @@ export default function MusicLibrary() {
                     placeholder="Search by title or artist..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 bg-[#04040a] border border-[#2b2b42] rounded-lg text-[#00eaff] placeholder-[#cccccc] focus:border-[#ff00c8] focus:outline-none"
+                    className="w-full pl-10 pr-4 py-2 bg-[#0A0A10] border border-[#08080f] rounded-lg text-[#00eaff] placeholder-[#cccccc] focus:border-[#ff00c8] focus:outline-none"
                   />
                 </div>
 
@@ -62,7 +62,7 @@ export default function MusicLibrary() {
                     <select
                       value={selectedMood}
                       onChange={(e) => setSelectedMood(e.target.value)}
-                      className="w-full px-3 py-2 bg-[#04040a] border border-[#2b2b42] rounded-lg text-[#00eaff] focus:border-[#ff00c8] focus:outline-none"
+                      className="w-full px-3 py-2 bg-[#0A0A10] border border-[#08080f] rounded-lg text-[#00eaff] focus:border-[#ff00c8] focus:outline-none"
                     >
                       <option value="">All Moods</option>
                       {moods?.map((mood) => (
@@ -78,7 +78,7 @@ export default function MusicLibrary() {
                     <select
                       value={selectedGenre}
                       onChange={(e) => setSelectedGenre(e.target.value)}
-                      className="w-full px-3 py-2 bg-[#04040a] border border-[#2b2b42] rounded-lg text-[#00eaff] focus:border-[#ff00c8] focus:outline-none"
+                      className="w-full px-3 py-2 bg-[#0A0A10] border border-[#08080f] rounded-lg text-[#00eaff] focus:border-[#ff00c8] focus:outline-none"
                     >
                       <option value="">All Genres</option>
                       {genres?.map((genre) => (
@@ -98,7 +98,7 @@ export default function MusicLibrary() {
                       setSelectedGenre("");
                     }}
                     variant="outline"
-                    className="w-full text-[#cccccc] border-[#2b2b42]"
+                    className="w-full text-[#cccccc] border-[#08080f]"
                   >
                     Clear Filters
                   </Button>
@@ -120,7 +120,7 @@ export default function MusicLibrary() {
                     className={`bg-[#141423] border-2 p-4 cursor-pointer transition-all ${
                       selectedTrack?.id === track.id
                         ? "border-[#ff00c8] bg-[#ff00c8]/10"
-                        : "border-[#2b2b42] hover:border-[#00eaff]"
+                        : "border-[#08080f] hover:border-[#00eaff]"
                     }`}
                   >
                     <div className="flex items-center justify-between">
@@ -147,7 +147,7 @@ export default function MusicLibrary() {
                   </Card>
                 ))
               ) : (
-                <Card className="bg-[#141423] border border-[#2b2b42] p-8 text-center">
+                <Card className="bg-[#141423] border border-[#08080f] p-8 text-center">
                   <p className="text-[#cccccc]">No tracks found matching your criteria</p>
                 </Card>
               )}
@@ -165,7 +165,7 @@ export default function MusicLibrary() {
                 />
 
                 {/* Usage Guide */}
-                <Card className="bg-[#141423] border border-[#2b2b42] p-6">
+                <Card className="bg-[#141423] border border-[#08080f] p-6">
                   <h3 className="font-bold text-[#00eaff] mb-4">How to Use</h3>
                   <ul className="space-y-3 text-sm text-[#cccccc]">
                     <li className="flex gap-2">
@@ -197,7 +197,7 @@ export default function MusicLibrary() {
                         type="text"
                         value={selectedTrack.url}
                         readOnly
-                        className="w-full px-2 py-1 bg-[#04040a] border border-[#2b2b42] rounded text-[#00eaff] text-xs"
+                        className="w-full px-2 py-1 bg-[#0A0A10] border border-[#08080f] rounded text-[#00eaff] text-xs"
                       />
                     </div>
                     <div>
@@ -215,7 +215,7 @@ export default function MusicLibrary() {
                 </Card>
               </>
             ) : (
-              <Card className="bg-[#141423] border border-[#2b2b42] p-6 text-center">
+              <Card className="bg-[#141423] border border-[#08080f] p-6 text-center">
                 <Music className="w-8 h-8 text-[#cccccc] mx-auto mb-4" />
                 <p className="text-[#cccccc]">Select a track to preview and get details</p>
               </Card>

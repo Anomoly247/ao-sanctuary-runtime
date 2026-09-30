@@ -25,7 +25,7 @@ export default function GlobalMissions() {
   const completed = new Set((status.data || []).map(item => `${item.missionId}:${item.eventId}`));
 
   return (
-    <main className="min-h-screen bg-[#04040a] text-white px-6 py-12">
+    <main className="min-h-screen bg-[#0A0A10] text-white px-6 py-12">
       <div className="max-w-5xl mx-auto">
         <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
           <div>
@@ -35,7 +35,7 @@ export default function GlobalMissions() {
               Complete a mission from any connected AO surface. Rewards are recorded by Sanctuary’s shared ledger and remain tied to your house, mount, and source context.
             </p>
           </div>
-          <div className="rounded-xl border border-[#2b2b42] bg-[#141927] px-4 py-3 text-sm text-[#bfdbfe]">
+          <div className="rounded-xl border border-[#08080f] bg-[#141927] px-4 py-3 text-sm text-[#bfdbfe]">
             <span className="text-[#cccccc]">Context:</span> House {bridge.house} · {bridge.mount} · {bridge.source}
           </div>
         </div>
@@ -52,7 +52,7 @@ export default function GlobalMissions() {
             const eventId = eventIdFor(mission.id, bridge);
             const isDone = completed.has(`${mission.id}:${eventId}`);
             return (
-              <Card key={mission.id} className="border-[#2b2b42] bg-[#141927] p-6">
+              <Card key={mission.id} className="border-[#08080f] bg-[#141927] p-6">
                 <div className="flex items-start justify-between gap-4">
                   <h2 className="text-xl font-bold text-[#00eaff]">{mission.name}</h2>
                   <span className="inline-flex items-center gap-1 text-[#ffd166] text-sm"><Coins className="h-4 w-4" />{mission.reward}</span>

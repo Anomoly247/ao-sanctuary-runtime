@@ -48,9 +48,9 @@ export default function MissionHub() {
   };
 
   return (
-    <div className="min-h-screen bg-[#04040a] text-[#00eaff]">
+    <div className="min-h-screen bg-[#0A0A10] text-[#00eaff]">
       {/* Navigation */}
-      <nav className="border-b border-[#2b2b42] px-6 py-4 sticky top-0 bg-[#04040a]/95 backdrop-blur z-40">
+      <nav className="border-b border-[#08080f] px-6 py-4 sticky top-0 bg-[#0A0A10]/95 backdrop-blur z-40">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <h1 className="text-2xl font-bold text-accent">Anom Mission Hub</h1>
           <div className="flex gap-4">
@@ -75,7 +75,7 @@ export default function MissionHub() {
       </nav>
 
       {/* Hero Section - Mission Statement */}
-      <section className="px-6 py-20 bg-gradient-to-b from-[#141423] to-[#04040a]">
+      <section className="px-6 py-20 bg-gradient-to-b from-[#141423] to-[#0A0A10]">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-5xl font-bold mb-6">
             <span className="text-accent">Social Good</span>
@@ -111,7 +111,7 @@ export default function MissionHub() {
       </section>
 
       {/* Impact Metrics */}
-      <section className="px-6 py-16 border-t border-[#2b2b42]">
+      <section className="px-6 py-16 border-t border-[#08080f]">
         <div className="max-w-7xl mx-auto">
           <h3 className="text-3xl font-bold text-center mb-12 text-accent">
             Our Impact in Numbers
@@ -122,7 +122,7 @@ export default function MissionHub() {
               return (
                 <Card
                   key={idx}
-                  className="bg-[#141423] border border-[#2b2b42] p-6 text-center hover:border-[#ff00c8] transition-colors"
+                  className="bg-[#141423] border border-[#08080f] p-6 text-center hover:border-[#ff00c8] transition-colors"
                 >
                   <Icon
                     className="w-8 h-8 mx-auto mb-4"
@@ -140,7 +140,7 @@ export default function MissionHub() {
       </section>
 
       {/* Mission Pillars */}
-      <section className="px-6 py-16 bg-[#141423] border-t border-[#2b2b42]">
+      <section className="px-6 py-16 bg-[#141423] border-t border-[#08080f]">
         <div className="max-w-7xl mx-auto">
           <h3 className="text-3xl font-bold text-center mb-12 text-accent">
             Our Four Pillars
@@ -151,7 +151,7 @@ export default function MissionHub() {
               return (
                 <Card
                   key={idx}
-                  className="bg-[#04040a] border border-[#2b2b42] p-8 hover:border-[#00eaff] transition-colors"
+                  className="bg-[#0A0A10] border border-[#08080f] p-8 hover:border-[#00eaff] transition-colors"
                 >
                   <Icon className="w-8 h-8 text-[#00eaff] mb-4" />
                   <h4 className="text-xl font-bold text-[#ff00c8] mb-3">{pillar.title}</h4>
@@ -164,7 +164,7 @@ export default function MissionHub() {
       </section>
 
       {/* Collaboration Station Spotlight */}
-      <section className="px-6 py-16 border-t border-[#2b2b42]">
+      <section className="px-6 py-16 border-t border-[#08080f]">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
@@ -204,7 +204,7 @@ export default function MissionHub() {
             </div>
             <Card className="bg-[#141423] border border-[#ff00c8] p-8">
               <div className="space-y-6">
-                <div className="bg-[#04040a] rounded-lg p-4 border border-[#2b2b42]">
+                <div className="bg-[#0A0A10] rounded-lg p-4 border border-[#08080f]">
                   <p className="text-[#00eaff] font-bold mb-2">Featured Project</p>
                   <h4 className="text-xl font-bold text-[#ff00c8] mb-2">
                     Ocean Cleanup Initiative
@@ -216,7 +216,7 @@ export default function MissionHub() {
                     Join Project
                   </Button>
                 </div>
-                <div className="bg-[#04040a] rounded-lg p-4 border border-[#2b2b42]">
+                <div className="bg-[#0A0A10] rounded-lg p-4 border border-[#08080f]">
                   <p className="text-[#ff00c8] font-bold mb-2">Active Creators</p>
                   <p className="text-3xl font-bold text-[#00eaff]">1,247</p>
                   <p className="text-[#cccccc] text-sm">Collaborating on social good</p>
@@ -228,27 +228,27 @@ export default function MissionHub() {
       </section>
 
       {/* How Donations Work */}
-      <section className="px-6 py-16 bg-[#141423] border-t border-[#2b2b42]">
+      <section className="px-6 py-16 bg-[#141423] border-t border-[#08080f]">
         <div className="max-w-4xl mx-auto">
           <h3 className="text-3xl font-bold text-center mb-12 text-accent">
             How Your Donation Powers the Mission
           </h3>
           <div className="grid md:grid-cols-3 gap-6">
-            <Card className="bg-[#04040a] border border-[#2b2b42] p-6">
+            <Card className="bg-[#0A0A10] border border-[#08080f] p-6">
               <div className="text-3xl font-bold text-[#ff00c8] mb-3">40%</div>
               <p className="font-bold text-[#00eaff] mb-2">Platform Development</p>
               <p className="text-[#cccccc] text-sm">
                 Building new features, improving infrastructure, and scaling the platform.
               </p>
             </Card>
-            <Card className="bg-[#04040a] border border-[#2b2b42] p-6">
+            <Card className="bg-[#0A0A10] border border-[#08080f] p-6">
               <div className="text-3xl font-bold text-[#00eaff] mb-3">40%</div>
               <p className="font-bold text-[#ff00c8] mb-2">Creator Support</p>
               <p className="text-[#cccccc] text-sm">
                 Grants, tools, and resources for artists and visionaries launching projects.
               </p>
             </Card>
-            <Card className="bg-[#04040a] border border-[#2b2b42] p-6">
+            <Card className="bg-[#0A0A10] border border-[#08080f] p-6">
               <div className="text-3xl font-bold text-[#d8ae55] mb-3">20%</div>
               <p className="font-bold text-[#ffd700] mb-2">Social Good Initiatives</p>
               <p className="text-[#cccccc] text-sm">
@@ -277,7 +277,7 @@ export default function MissionHub() {
                     className={`w-full p-3 rounded-lg border-2 transition-all font-bold ${
                       donationAmount === amount
                         ? "border-[#ff00c8] bg-[#ff00c8]/20 text-[#ff00c8]"
-                        : "border-[#2b2b42] bg-[#04040a] text-[#cccccc] hover:border-[#00eaff]"
+                        : "border-[#08080f] bg-[#0A0A10] text-[#cccccc] hover:border-[#00eaff]"
                     }`}
                   >
                     ${amount}
@@ -285,7 +285,7 @@ export default function MissionHub() {
                 ))}
               </div>
 
-              <div className="bg-[#04040a] rounded-lg p-4 mb-6 border border-[#2b2b42]">
+              <div className="bg-[#0A0A10] rounded-lg p-4 mb-6 border border-[#08080f]">
                 <p className="text-[#cccccc] text-sm mb-2">Donation Amount</p>
                 <p className="text-3xl font-bold text-[#00eaff]">${donationAmount}</p>
               </div>
@@ -300,7 +300,7 @@ export default function MissionHub() {
                 <Button
                   onClick={() => setShowDonationModal(false)}
                   variant="outline"
-                  className="flex-1 text-[#cccccc] border-[#2b2b42]"
+                  className="flex-1 text-[#cccccc] border-[#08080f]"
                 >
                   Cancel
                 </Button>

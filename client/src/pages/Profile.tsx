@@ -58,7 +58,7 @@ export default function Profile() {
 
   if (loading || profileLoading) {
     return (
-      <div className="min-h-screen bg-[#04040a] text-[#00eaff] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A10] text-[#00eaff] flex items-center justify-center">
         <div className="text-center">
           <div className="text-4xl mb-4">⏳</div>
           <p>Loading your profile...</p>
@@ -70,8 +70,8 @@ export default function Profile() {
   // Show error state if profile fails to load
   if (profileError) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[#04040a] to-[#141423] flex items-center justify-center p-4">
-        <Card className="border-2 border-[#ff00c8] bg-[#04040a]/80 p-8 max-w-md">
+      <div className="min-h-screen bg-gradient-to-br from-[#0A0A10] to-[#141423] flex items-center justify-center p-4">
+        <Card className="border-2 border-[#ff00c8] bg-[#0A0A10]/80 p-8 max-w-md">
           <div className="flex items-center gap-3 mb-4">
             <AlertCircle className="w-6 h-6 text-[#ff00c8]" />
             <h2 className="text-xl font-bold text-[#ff00c8]">Unable to Load Profile</h2>
@@ -100,8 +100,8 @@ export default function Profile() {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-[#04040a] text-[#00eaff] flex items-center justify-center">
-        <Card className="border-2 border-[#ff00c8] bg-[#04040a]/80 p-8">
+      <div className="min-h-screen bg-[#0A0A10] text-[#00eaff] flex items-center justify-center">
+        <Card className="border-2 border-[#ff00c8] bg-[#0A0A10]/80 p-8">
           <p className="text-[#ff00c8] mb-4">Please sign in to view your profile</p>
           <Button onClick={() => navigate("/")} className="bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black">
             Go to Home
@@ -169,9 +169,9 @@ export default function Profile() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#04040a] to-[#141423]">
+    <div className="min-h-screen bg-gradient-to-br from-[#0A0A10] to-[#141423]">
       {/* Header */}
-      <div className="border-b border-[#2b2b42] bg-[#04040a]/95 backdrop-blur sticky top-0 z-50">
+      <div className="border-b border-[#08080f] bg-[#0A0A10]/95 backdrop-blur sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-4">
           <div className="flex justify-between items-center">
             <h1 className="text-3xl font-bold text-[#ff00c8]">My Profile</h1>
@@ -211,7 +211,7 @@ export default function Profile() {
         {activeTab === "dashboard" && (
           <div className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
-              <Card className="bg-[#141423] border border-[#2b2b42] p-6">
+              <Card className="bg-[#141423] border border-[#08080f] p-6">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-[#cccccc] text-sm">Level</p>
@@ -221,7 +221,7 @@ export default function Profile() {
                 </div>
               </Card>
 
-              <Card className="bg-[#141423] border border-[#2b2b42] p-6">
+              <Card className="bg-[#141423] border border-[#08080f] p-6">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-[#cccccc] text-sm">Anom Coin Balance</p>
@@ -232,7 +232,7 @@ export default function Profile() {
               </Card>
             </div>
 
-            <Card className="bg-[#141423] border border-[#2b2b42] p-6">
+            <Card className="bg-[#141423] border border-[#08080f] p-6">
               <h3 className="text-xl font-bold text-[#ff00c8] mb-4">Bio</h3>
               <p className="text-[#cccccc]">{profile?.bio || "No bio yet. Add one in the Customize tab!"}</p>
             </Card>
@@ -242,7 +242,7 @@ export default function Profile() {
         {/* Customize Tab */}
         {activeTab === "customize" && (
           <div className="space-y-6">
-            <Card className="bg-[#141423] border border-[#2b2b42] p-6">
+            <Card className="bg-[#141423] border border-[#08080f] p-6">
               <h3 className="text-xl font-bold text-[#ff00c8] mb-4">Theme</h3>
               <div className="grid grid-cols-3 gap-4">
                 {THEME_OPTIONS.map((theme) => (
@@ -252,7 +252,7 @@ export default function Profile() {
                     className={`p-4 rounded-lg border-2 transition-all ${
                       selectedTheme === theme.id
                         ? "border-[#ff00c8] bg-[#ff00c8]/20"
-                        : "border-[#2b2b42] hover:border-[#ff00c8]"
+                        : "border-[#08080f] hover:border-[#ff00c8]"
                     }`}
                   >
                     <div className="text-3xl mb-2">{theme.preview}</div>
@@ -262,7 +262,7 @@ export default function Profile() {
               </div>
             </Card>
 
-            <Card className="bg-[#141423] border border-[#2b2b42] p-6">
+            <Card className="bg-[#141423] border border-[#08080f] p-6">
               <h3 className="text-xl font-bold text-[#ff00c8] mb-4">Name Color</h3>
               <div className="grid grid-cols-3 gap-4">
                 {NAME_COLORS.map((color) => (
@@ -272,7 +272,7 @@ export default function Profile() {
                     className={`p-4 rounded-lg border-2 transition-all ${
                       selectedNameColor === color.id
                         ? "border-[#ff00c8] bg-[#ff00c8]/20"
-                        : "border-[#2b2b42] hover:border-[#ff00c8]"
+                        : "border-[#08080f] hover:border-[#ff00c8]"
                     }`}
                   >
                     <div 
@@ -290,14 +290,14 @@ export default function Profile() {
         {/* Settings Tab */}
         {activeTab === "settings" && (
           <div className="space-y-6">
-            <Card className="bg-[#141423] border border-[#2b2b42] p-6">
+            <Card className="bg-[#141423] border border-[#08080f] p-6">
               <h3 className="text-xl font-bold text-[#ff00c8] mb-4">Edit Bio</h3>
               {isEditingProfile ? (
                 <div className="space-y-4">
                   <textarea
                     value={editData.bio}
                     onChange={(e) => setEditData({ ...editData, bio: e.target.value })}
-                    className="w-full bg-[#04040a] border border-[#2b2b42] rounded-lg p-3 text-[#00eaff] placeholder-[#cccccc] focus:border-[#ff00c8] focus:outline-none"
+                    className="w-full bg-[#0A0A10] border border-[#08080f] rounded-lg p-3 text-[#00eaff] placeholder-[#cccccc] focus:border-[#ff00c8] focus:outline-none"
                     placeholder="Tell us about yourself..."
                     rows={4}
                   />
@@ -322,14 +322,14 @@ export default function Profile() {
         {/* Share Tab */}
         {activeTab === "share" && (
           <div className="space-y-6">
-            <Card className="bg-[#141423] border border-[#2b2b42] p-6">
+            <Card className="bg-[#141423] border border-[#08080f] p-6">
               <h3 className="text-xl font-bold text-[#ff00c8] mb-4">Share Your Profile</h3>
               <div className="space-y-4">
                 <div className="flex gap-2">
                   <Input
                     value={profileUrl}
                     readOnly
-                    className="bg-[#04040a] border border-[#2b2b42] text-[#00eaff]"
+                    className="bg-[#0A0A10] border border-[#08080f] text-[#00eaff]"
                   />
                   <Button
                     onClick={handleCopyLink}

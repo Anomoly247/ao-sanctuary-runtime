@@ -58,7 +58,7 @@ export default function Lounges() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-[#00eaff] text-xl">Loading Lounges...</div>
       </div>
     );
@@ -66,7 +66,7 @@ export default function Lounges() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-center">
           <p className="text-[#00eaff] text-xl mb-4">Please sign in to access lounges</p>
           <Button className="btn-primary" onClick={() => navigate("/")}>
@@ -78,9 +78,9 @@ export default function Lounges() {
   }
 
   return (
-    <div className="min-h-screen bg-[#04040a] text-[#00eaff]">
+    <div className="min-h-screen bg-[#0A0A10] text-[#00eaff]">
       {/* Navigation */}
-      <nav className="border-b border-[#2b2b42] px-6 py-4 sticky top-0 bg-[#04040a]/95 backdrop-blur">
+      <nav className="border-b border-[#08080f] px-6 py-4 sticky top-0 bg-[#0A0A10]/95 backdrop-blur">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-4">
             <Button variant="ghost" onClick={() => navigate("/")} className="text-[#cccccc]">
@@ -95,7 +95,7 @@ export default function Lounges() {
                 Create Lounge
               </Button>
             </DialogTrigger>
-            <DialogContent className="bg-[#141423] border border-[#2b2b42]">
+            <DialogContent className="bg-[#141423] border border-[#08080f]">
               <DialogHeader>
                 <DialogTitle className="text-[#ff00c8]">Create a New Lounge</DialogTitle>
                 <DialogDescription className="text-[#cccccc]">
@@ -109,17 +109,17 @@ export default function Lounges() {
                     placeholder="e.g., The Family Hub"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="bg-[#04040a] border-[#2b2b42] text-[#00eaff] placeholder-[#cccccc]"
+                    className="bg-[#0A0A10] border-[#08080f] text-[#00eaff] placeholder-[#cccccc]"
                   />
                 </div>
 
                 <div>
                   <label className="text-[#00eaff] text-sm font-medium">Lounge Type</label>
                   <Select value={formData.type} onValueChange={(value: any) => setFormData({ ...formData, type: value })}>
-                    <SelectTrigger className="bg-[#04040a] border-[#2b2b42] text-[#00eaff]">
+                    <SelectTrigger className="bg-[#0A0A10] border-[#08080f] text-[#00eaff]">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent className="bg-[#141423] border-[#2b2b42]">
+                    <SelectContent className="bg-[#141423] border-[#08080f]">
                       <SelectItem value="family" className="text-[#00eaff]">
                         👨‍👩‍👧‍👦 Family
                       </SelectItem>
@@ -139,17 +139,17 @@ export default function Lounges() {
                     placeholder="What's this lounge about?"
                     value={formData.description}
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                    className="bg-[#04040a] border-[#2b2b42] text-[#00eaff] placeholder-[#cccccc]"
+                    className="bg-[#0A0A10] border-[#08080f] text-[#00eaff] placeholder-[#cccccc]"
                   />
                 </div>
 
                 <div>
                   <label className="text-[#00eaff] text-sm font-medium">Theme</label>
                   <Select value={formData.neonTheme} onValueChange={(value: any) => setFormData({ ...formData, neonTheme: value })}>
-                    <SelectTrigger className="bg-[#04040a] border-[#2b2b42] text-[#00eaff]">
+                    <SelectTrigger className="bg-[#0A0A10] border-[#08080f] text-[#00eaff]">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent className="bg-[#141423] border-[#2b2b42]">
+                    <SelectContent className="bg-[#141423] border-[#08080f]">
                       <SelectItem value="magenta" className="text-[#ff00c8]">
                         Magenta
                       </SelectItem>
@@ -193,7 +193,7 @@ export default function Lounges() {
                   Create Your First Lounge
                 </Button>
               </DialogTrigger>
-              <DialogContent className="bg-[#141423] border border-[#2b2b42]">
+              <DialogContent className="bg-[#141423] border border-[#08080f]">
                 <DialogHeader>
                   <DialogTitle className="text-[#ff00c8]">Create a New Lounge</DialogTitle>
                   <DialogDescription className="text-[#cccccc]">
@@ -207,17 +207,17 @@ export default function Lounges() {
                       placeholder="e.g., The Family Hub"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="bg-[#04040a] border-[#2b2b42] text-[#00eaff] placeholder-[#cccccc]"
+                      className="bg-[#0A0A10] border-[#08080f] text-[#00eaff] placeholder-[#cccccc]"
                     />
                   </div>
 
                   <div>
                     <label className="text-[#00eaff] text-sm font-medium">Lounge Type</label>
                     <Select value={formData.type} onValueChange={(value: any) => setFormData({ ...formData, type: value })}>
-                      <SelectTrigger className="bg-[#04040a] border-[#2b2b42] text-[#00eaff]">
+                      <SelectTrigger className="bg-[#0A0A10] border-[#08080f] text-[#00eaff]">
                         <SelectValue />
                       </SelectTrigger>
-                      <SelectContent className="bg-[#141423] border-[#2b2b42]">
+                      <SelectContent className="bg-[#141423] border-[#08080f]">
                         <SelectItem value="family" className="text-[#00eaff]">
                           👨‍👩‍👧‍👦 Family
                         </SelectItem>
@@ -237,17 +237,17 @@ export default function Lounges() {
                       placeholder="What's this lounge about?"
                       value={formData.description}
                       onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                      className="bg-[#04040a] border-[#2b2b42] text-[#00eaff] placeholder-[#cccccc]"
+                      className="bg-[#0A0A10] border-[#08080f] text-[#00eaff] placeholder-[#cccccc]"
                     />
                   </div>
 
                   <div>
                     <label className="text-[#00eaff] text-sm font-medium">Theme</label>
                     <Select value={formData.neonTheme} onValueChange={(value: any) => setFormData({ ...formData, neonTheme: value })}>
-                      <SelectTrigger className="bg-[#04040a] border-[#2b2b42] text-[#00eaff]">
+                      <SelectTrigger className="bg-[#0A0A10] border-[#08080f] text-[#00eaff]">
                         <SelectValue />
                       </SelectTrigger>
-                      <SelectContent className="bg-[#141423] border-[#2b2b42]">
+                      <SelectContent className="bg-[#141423] border-[#08080f]">
                         <SelectItem value="magenta" className="text-[#ff00c8]">
                           Magenta
                         </SelectItem>
@@ -279,7 +279,7 @@ export default function Lounges() {
               return (
                 <Card
                   key={lounge.id}
-                  className="bg-[#141423] border border-[#2b2b42] p-6 cursor-pointer hover:border-[#ff00c8] transition-colors"
+                  className="bg-[#141423] border border-[#08080f] p-6 cursor-pointer hover:border-[#ff00c8] transition-colors"
                   onClick={() => navigate(`/lounges/${lounge.id}`)}
                   style={{
                     boxShadow:

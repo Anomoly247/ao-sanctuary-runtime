@@ -47,60 +47,74 @@
   --color-secondary: #00eaff;
   --color-accent: #d8ae55;
   --primary: #ff00c8;
-  --primary-foreground: #04040a;
+  --primary-foreground: #000000;
   --sidebar-primary: #ff00c8;
-  --sidebar-primary-foreground: #04040a;
+  --sidebar-primary-foreground: #000000;
   --chart-1: #ff00c8;
   --chart-2: #00eaff;
   --chart-3: #d8ae55;
   --chart-4: #ff00c8;
   --chart-5: #00eaff;
   --radius: 0.5rem;
-  --background: #04040a;
-  --foreground: #00eaff;
+  --background: #0A0A10;
+  --ao-void: #0A0A10;
+  --ao-black: #000000;
+  --ao-panel: #141423;
+  --ao-deep: #08080f;
+  --ao-cyan: #00eaff;
+  --ao-magenta: #ff00c8;
+  --ao-gold: #d8ae55;
+  --foreground: #ffffff;
   --card: #141423;
-  --card-foreground: #00eaff;
+  --card-foreground: #ffffff;
   --popover: #141423;
-  --popover-foreground: #00eaff;
+  --popover-foreground: #ffffff;
   --secondary: #d8ae55;
-  --secondary-foreground: #ff00c8;
-  --muted: #2b2b42;
+  --secondary-foreground: #000000;
+  --muted: #08080f;
   --muted-foreground: #cccccc;
   --accent: #ff00c8;
-  --accent-foreground: #04040a;
+  --accent-foreground: #000000;
   --destructive: #ef4444;
-  --destructive-foreground: #04040a;
-  --border: #2b2b42;
+  --destructive-foreground: #ffffff;
+  --border: #08080f;
   --input: #141423;
   --ring: #00eaff;
   --sidebar: #141423;
-  --sidebar-foreground: #00eaff;
+  --sidebar-foreground: #ffffff;
   --sidebar-accent: #ff00c8;
-  --sidebar-accent-foreground: #04040a;
-  --sidebar-border: #2b2b42;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: #08080f;
   --sidebar-ring: #00eaff;
 }
 
 .dark {
   --primary: #ff00c8;
-  --primary-foreground: #04040a;
+  --primary-foreground: #000000;
   --sidebar-primary: #ff00c8;
-  --sidebar-primary-foreground: #04040a;
-  --background: #04040a;
-  --foreground: #00eaff;
+  --sidebar-primary-foreground: #000000;
+  --background: #0A0A10;
+  --ao-void: #0A0A10;
+  --ao-black: #000000;
+  --ao-panel: #141423;
+  --ao-deep: #08080f;
+  --ao-cyan: #00eaff;
+  --ao-magenta: #ff00c8;
+  --ao-gold: #d8ae55;
+  --foreground: #ffffff;
   --card: #141423;
-  --card-foreground: #00eaff;
+  --card-foreground: #ffffff;
   --popover: #141423;
-  --popover-foreground: #00eaff;
+  --popover-foreground: #ffffff;
   --secondary: #d8ae55;
-  --secondary-foreground: #ff00c8;
-  --muted: #2b2b42;
+  --secondary-foreground: #000000;
+  --muted: #08080f;
   --muted-foreground: #cccccc;
   --accent: #ff00c8;
-  --accent-foreground: #04040a;
+  --accent-foreground: #000000;
   --destructive: #ef4444;
-  --destructive-foreground: #04040a;
-  --border: #2b2b42;
+  --destructive-foreground: #ffffff;
+  --border: #08080f;
   --input: #141423;
   --ring: #00eaff;
   --chart-1: #ff00c8;
@@ -109,10 +123,10 @@
   --chart-4: #ff00c8;
   --chart-5: #00eaff;
   --sidebar: #141423;
-  --sidebar-foreground: #00eaff;
+  --sidebar-foreground: #ffffff;
   --sidebar-accent: #ff00c8;
-  --sidebar-accent-foreground: #04040a;
-  --sidebar-border: #2b2b42;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: #08080f;
   --sidebar-ring: #00eaff;
 }
 
@@ -151,15 +165,15 @@
   }
 
   .surface-shadow {
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
   }
 
   .surface-shadow {
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
   }
 
   .surface-shadow {
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
   }
 
   .text-accent {
@@ -184,30 +198,30 @@
 
   .btn-primary {
     background-color: #ff00c8;
-    color: #04040a;
+    color: #000000;
     font-weight: bold;
     padding: 0.5rem 1rem;
     border-radius: 0.375rem;
     transition: all 0.2s;
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
   }
 
   .btn-primary:hover {
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
   }
 
   .btn-secondary {
     background-color: #00eaff;
-    color: #04040a;
+    color: #000000;
     font-weight: bold;
     padding: 0.5rem 1rem;
     border-radius: 0.375rem;
     transition: all 0.2s;
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
   }
 
   .btn-secondary:hover {
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
   }
 
   .btn-outline {
@@ -221,15 +235,15 @@
 
   .btn-outline:hover {
     background-color: #ff00c8;
-    color: #04040a;
+    color: #000000;
   }
 
   .card-surface {
     background-color: #141423;
-    border: 1px solid #2b2b42;
+    border: 1px solid #08080f;
     border-radius: 0.5rem;
     padding: 1rem;
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
   }
 
   @media (min-width: 640px) {

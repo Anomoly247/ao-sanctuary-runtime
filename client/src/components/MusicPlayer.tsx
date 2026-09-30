@@ -79,7 +79,7 @@ export default function MusicPlayer({ tracks, onTrackChange, compact = false }: 
 
   if (!currentTrack) {
     return (
-      <Card className="bg-[#141423] border border-[#2b2b42] p-4">
+      <Card className="bg-[#141423] border border-[#08080f] p-4">
         <p className="text-[#cccccc] text-center">No music available</p>
       </Card>
     );
@@ -87,7 +87,7 @@ export default function MusicPlayer({ tracks, onTrackChange, compact = false }: 
 
   if (compact) {
     return (
-      <div className="bg-[#04040a] border border-[#2b2b42] rounded-lg p-3">
+      <div className="bg-[#0A0A10] border border-[#08080f] rounded-lg p-3">
         <audio ref={audioRef} src={currentTrack.url} />
         <div className="flex items-center gap-3">
           <Button
@@ -145,7 +145,7 @@ export default function MusicPlayer({ tracks, onTrackChange, compact = false }: 
           size="sm"
           variant="outline"
           onClick={handlePrevTrack}
-          className="text-[#cccccc] border-[#2b2b42]"
+          className="text-[#cccccc] border-[#08080f]"
         >
           <SkipBack className="w-4 h-4" />
         </Button>
@@ -161,7 +161,7 @@ export default function MusicPlayer({ tracks, onTrackChange, compact = false }: 
           size="sm"
           variant="outline"
           onClick={handleNextTrack}
-          className="text-[#cccccc] border-[#2b2b42]"
+          className="text-[#cccccc] border-[#08080f]"
         >
           <SkipForward className="w-4 h-4" />
         </Button>
@@ -176,9 +176,9 @@ export default function MusicPlayer({ tracks, onTrackChange, compact = false }: 
           max="100"
           value={volume}
           onChange={handleVolumeChange}
-          className="flex-1 h-2 bg-[#2b2b42] rounded-lg appearance-none cursor-pointer"
+          className="flex-1 h-2 bg-[#08080f] rounded-lg appearance-none cursor-pointer"
           style={{
-            background: `linear-gradient(to right, #ff00c8 0%, #ff00c8 ${volume}%, #2b2b42 ${volume}%, #2b2b42 100%)`,
+            background: `linear-gradient(to right, #ff00c8 0%, #ff00c8 ${volume}%, #08080f ${volume}%, #08080f 100%)`,
           }}
         />
         <span className="text-sm text-[#cccccc] w-8 text-right">{volume}%</span>
@@ -196,7 +196,7 @@ export default function MusicPlayer({ tracks, onTrackChange, compact = false }: 
       </div>
 
       {/* Track Info */}
-      <div className="bg-[#04040a] rounded-lg p-4 border border-[#2b2b42]">
+      <div className="bg-[#0A0A10] rounded-lg p-4 border border-[#08080f]">
         <div className="grid grid-cols-2 gap-4 text-sm">
           <div>
             <p className="text-[#cccccc] text-xs mb-1">Mood</p>
@@ -231,7 +231,7 @@ export default function MusicPlayer({ tracks, onTrackChange, compact = false }: 
               className={`w-full text-left p-2 rounded-lg transition-colors ${
                 idx === currentTrackIndex
                   ? "bg-[#ff00c8]/20 border border-[#ff00c8]"
-                  : "bg-[#04040a] border border-[#2b2b42] hover:border-[#00eaff]"
+                  : "bg-[#0A0A10] border border-[#08080f] hover:border-[#00eaff]"
               }`}
             >
               <p className={`text-sm font-bold ${idx === currentTrackIndex ? "text-[#ff00c8]" : "text-[#00eaff]"}`}>

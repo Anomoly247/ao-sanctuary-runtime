@@ -74,7 +74,7 @@ export default function OwnerSettings() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-[#00eaff] text-xl">Loading...</div>
       </div>
     );
@@ -82,7 +82,7 @@ export default function OwnerSettings() {
 
   if (!isAuthenticated || user?.role !== "admin") {
     return (
-      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-center">
           <p className="text-[#ff00c8] text-xl mb-4">Admin access required</p>
           <Button className="btn-primary" onClick={() => navigate("/")}>
@@ -98,9 +98,9 @@ export default function OwnerSettings() {
   };
 
   return (
-    <div className="min-h-screen bg-[#04040a] text-[#00eaff]">
+    <div className="min-h-screen bg-[#0A0A10] text-[#00eaff]">
       {/* Navigation */}
-      <nav className="border-b border-[#2b2b42] px-6 py-4 sticky top-0 bg-[#04040a]/95 backdrop-blur">
+      <nav className="border-b border-[#08080f] px-6 py-4 sticky top-0 bg-[#0A0A10]/95 backdrop-blur">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-4">
             <Button variant="ghost" onClick={() => navigate("/admin")} className="text-[#cccccc]">
@@ -117,7 +117,7 @@ export default function OwnerSettings() {
       {/* Main Content */}
       <main className="max-w-6xl mx-auto px-6 py-12">
         <Tabs defaultValue="general" className="w-full">
-          <TabsList className="bg-[#141423] border border-[#2b2b42] mb-8 grid grid-cols-5">
+          <TabsList className="bg-[#141423] border border-[#08080f] mb-8 grid grid-cols-5">
             <TabsTrigger value="general" className="text-[#00eaff]">
               <Settings className="w-4 h-4 mr-2" />
               General
@@ -142,7 +142,7 @@ export default function OwnerSettings() {
 
           {/* General Tab */}
           <TabsContent value="general" className="space-y-6">
-            <Card className="bg-[#141423] border border-[#2b2b42] p-8">
+            <Card className="bg-[#141423] border border-[#08080f] p-8">
               <h2 className="text-2xl font-bold text-[#ff00c8] mb-6">General Settings</h2>
 
               <div className="space-y-6">
@@ -151,7 +151,7 @@ export default function OwnerSettings() {
                   <Input
                     value={formData.siteName}
                     onChange={(e) => setFormData({ ...formData, siteName: e.target.value })}
-                    className="bg-[#04040a] border border-[#2b2b42] text-[#00eaff]"
+                    className="bg-[#0A0A10] border border-[#08080f] text-[#00eaff]"
                   />
                 </div>
 
@@ -160,7 +160,7 @@ export default function OwnerSettings() {
                   <Textarea
                     value={formData.siteDescription}
                     onChange={(e) => setFormData({ ...formData, siteDescription: e.target.value })}
-                    className="bg-[#04040a] border border-[#2b2b42] text-[#00eaff] min-h-24"
+                    className="bg-[#0A0A10] border border-[#08080f] text-[#00eaff] min-h-24"
                   />
                 </div>
 
@@ -177,7 +177,7 @@ export default function OwnerSettings() {
 
           {/* Branding Tab */}
           <TabsContent value="branding" className="space-y-6">
-            <Card className="bg-[#141423] border border-[#2b2b42] p-8">
+            <Card className="bg-[#141423] border border-[#08080f] p-8">
               <h2 className="text-2xl font-bold text-[#ff00c8] mb-6">Branding & Colors</h2>
 
               <div className="space-y-6">
@@ -194,7 +194,7 @@ export default function OwnerSettings() {
                       <Input
                         value={formData.primaryColor}
                         onChange={(e) => setFormData({ ...formData, primaryColor: e.target.value })}
-                        className="flex-1 bg-[#04040a] border border-[#2b2b42] text-[#00eaff]"
+                        className="flex-1 bg-[#0A0A10] border border-[#08080f] text-[#00eaff]"
                       />
                     </div>
                   </div>
@@ -211,7 +211,7 @@ export default function OwnerSettings() {
                       <Input
                         value={formData.secondaryColor}
                         onChange={(e) => setFormData({ ...formData, secondaryColor: e.target.value })}
-                        className="flex-1 bg-[#04040a] border border-[#2b2b42] text-[#00eaff]"
+                        className="flex-1 bg-[#0A0A10] border border-[#08080f] text-[#00eaff]"
                       />
                     </div>
                   </div>
@@ -228,7 +228,7 @@ export default function OwnerSettings() {
                       <Input
                         value={formData.accentColor}
                         onChange={(e) => setFormData({ ...formData, accentColor: e.target.value })}
-                        className="flex-1 bg-[#04040a] border border-[#2b2b42] text-[#00eaff]"
+                        className="flex-1 bg-[#0A0A10] border border-[#08080f] text-[#00eaff]"
                       />
                     </div>
                   </div>
@@ -247,7 +247,7 @@ export default function OwnerSettings() {
 
           {/* Economy Tab */}
           <TabsContent value="economy" className="space-y-6">
-            <Card className="bg-[#141423] border border-[#2b2b42] p-8">
+            <Card className="bg-[#141423] border border-[#08080f] p-8">
               <h2 className="text-2xl font-bold text-[#ff00c8] mb-6">Economy Settings</h2>
 
               <div className="space-y-6">
@@ -258,7 +258,7 @@ export default function OwnerSettings() {
                       type="number"
                       value={formData.coinRewardPerAction}
                       onChange={(e) => setFormData({ ...formData, coinRewardPerAction: parseInt(e.target.value) })}
-                      className="bg-[#04040a] border border-[#2b2b42] text-[#00eaff]"
+                      className="bg-[#0A0A10] border border-[#08080f] text-[#00eaff]"
                     />
                   </div>
 
@@ -268,7 +268,7 @@ export default function OwnerSettings() {
                       type="number"
                       value={formData.coinRewardPerGame}
                       onChange={(e) => setFormData({ ...formData, coinRewardPerGame: parseInt(e.target.value) })}
-                      className="bg-[#04040a] border border-[#2b2b42] text-[#00eaff]"
+                      className="bg-[#0A0A10] border border-[#08080f] text-[#00eaff]"
                     />
                   </div>
 
@@ -278,7 +278,7 @@ export default function OwnerSettings() {
                       type="number"
                       value={formData.coinRewardPerTask}
                       onChange={(e) => setFormData({ ...formData, coinRewardPerTask: parseInt(e.target.value) })}
-                      className="bg-[#04040a] border border-[#2b2b42] text-[#00eaff]"
+                      className="bg-[#0A0A10] border border-[#08080f] text-[#00eaff]"
                     />
                   </div>
 
@@ -288,7 +288,7 @@ export default function OwnerSettings() {
                       type="number"
                       value={formData.xpPerLevel}
                       onChange={(e) => setFormData({ ...formData, xpPerLevel: parseInt(e.target.value) })}
-                      className="bg-[#04040a] border border-[#2b2b42] text-[#00eaff]"
+                      className="bg-[#0A0A10] border border-[#08080f] text-[#00eaff]"
                     />
                   </div>
                 </div>
@@ -306,7 +306,7 @@ export default function OwnerSettings() {
 
           {/* Features Tab */}
           <TabsContent value="features" className="space-y-6">
-            <Card className="bg-[#141423] border border-[#2b2b42] p-8">
+            <Card className="bg-[#141423] border border-[#08080f] p-8">
               <h2 className="text-2xl font-bold text-[#ff00c8] mb-6">Feature Toggles</h2>
 
               <div className="space-y-4 mb-6">
@@ -346,7 +346,7 @@ export default function OwnerSettings() {
 
           {/* Audit Log Tab */}
           <TabsContent value="audit" className="space-y-6">
-            <Card className="bg-[#141423] border border-[#2b2b42] p-8">
+            <Card className="bg-[#141423] border border-[#08080f] p-8">
               <h2 className="text-2xl font-bold text-[#ff00c8] mb-6">Admin Audit Log</h2>
 
               <div className="space-y-3 max-h-96 overflow-y-auto">
@@ -356,7 +356,7 @@ export default function OwnerSettings() {
                   auditLog.map((entry) => (
                     <div
                       key={entry.id}
-                      className="bg-[#04040a] border border-[#2b2b42] p-4 rounded"
+                      className="bg-[#0A0A10] border border-[#08080f] p-4 rounded"
                     >
                       <div className="flex items-start justify-between mb-2">
                         <div>

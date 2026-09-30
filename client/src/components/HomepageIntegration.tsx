@@ -38,7 +38,7 @@ export default function HomepageIntegration() {
   return (
     <div className="space-y-12">
       {/* Calendar Section */}
-      <section className="bg-[#141423] border border-[#2b2b42] rounded-lg p-8" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+      <section className="bg-[#141423] border border-[#08080f] rounded-lg p-8" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
         <div className="flex items-center gap-3 mb-6">
           <Calendar className="w-6 h-6 text-[#00eaff]" />
           <h3 className="text-2xl font-bold text-[#ff00c8]">Upcoming Events</h3>
@@ -48,7 +48,7 @@ export default function HomepageIntegration() {
           {upcomingEvents.map((event, idx) => (
             <Card
               key={idx}
-              className="bg-[#04040a] border border-[#2b2b42] p-4 hover:border-[#00eaff] transition-colors"
+              className="bg-[#0A0A10] border border-[#08080f] p-4 hover:border-[#00eaff] transition-colors"
             >
               <div className="text-3xl mb-2">{event.icon}</div>
               <p className="text-[#cccccc] text-sm mb-1">{event.date}</p>
@@ -62,7 +62,7 @@ export default function HomepageIntegration() {
       </section>
 
       {/* Contacts / Community Members Section */}
-      <section className="bg-[#141423] border border-[#2b2b42] rounded-lg p-8" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+      <section className="bg-[#141423] border border-[#08080f] rounded-lg p-8" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
         <div className="flex items-center gap-3 mb-6">
           <Users className="w-6 h-6 text-[#ff00c8]" />
           <h3 className="text-2xl font-bold text-[#00eaff]">Community Highlights</h3>
@@ -72,7 +72,7 @@ export default function HomepageIntegration() {
           {communityMembers.map((member, idx) => (
             <Card
               key={idx}
-              className="bg-[#04040a] border border-[#2b2b42] p-4 hover:border-[#ff00c8] transition-colors"
+              className="bg-[#0A0A10] border border-[#08080f] p-4 hover:border-[#ff00c8] transition-colors"
             >
               <div className="flex items-center justify-between mb-3">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#ff00c8] to-[#00eaff] flex items-center justify-center text-white font-bold">
@@ -95,7 +95,7 @@ export default function HomepageIntegration() {
       </section>
 
       {/* Email Newsletter Section */}
-      <section className="bg-gradient-to-r from-[#141423] to-[#2b2b42] border border-[#2b2b42] rounded-lg p-8" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+      <section className="bg-gradient-to-r from-[#141423] to-[#08080f] border border-[#08080f] rounded-lg p-8" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
         <div className="flex items-start gap-4">
           <Mail className="w-8 h-8 text-[#d8ae55] flex-shrink-0 mt-1" />
           <div className="flex-1">
@@ -111,7 +111,7 @@ export default function HomepageIntegration() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 onKeyPress={(e) => e.key === "Enter" && handleEmailSubscribe()}
-                className="bg-[#04040a] border border-[#2b2b42] text-[#00eaff] flex-1"
+                className="bg-[#0A0A10] border border-[#08080f] text-[#00eaff] flex-1"
               />
               <Button
                 className="btn-secondary"
@@ -130,7 +130,7 @@ export default function HomepageIntegration() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="bg-[#141423] border border-[#2b2b42] rounded-lg p-8" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+      <section className="bg-[#141423] border border-[#08080f] rounded-lg p-8" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
         <h3 className="text-2xl font-bold text-[#ff00c8] mb-6">Get in Touch</h3>
 
         <div className="grid md:grid-cols-2 gap-6">
@@ -138,7 +138,7 @@ export default function HomepageIntegration() {
             <label className="block text-[#00eaff] font-bold mb-2">Your Name</label>
             <Input
               placeholder="Full name"
-              className="bg-[#04040a] border border-[#2b2b42] text-[#00eaff]"
+              className="bg-[#0A0A10] border border-[#08080f] text-[#00eaff]"
             />
           </div>
 
@@ -147,7 +147,7 @@ export default function HomepageIntegration() {
             <Input
               type="email"
               placeholder="your@email.com"
-              className="bg-[#04040a] border border-[#2b2b42] text-[#00eaff]"
+              className="bg-[#0A0A10] border border-[#08080f] text-[#00eaff]"
             />
           </div>
 
@@ -155,7 +155,7 @@ export default function HomepageIntegration() {
             <label className="block text-[#00eaff] font-bold mb-2">Message</label>
             <textarea
               placeholder="Tell us what you think..."
-              className="w-full bg-[#04040a] border border-[#2b2b42] text-[#00eaff] p-3 rounded min-h-24"
+              className="w-full bg-[#0A0A10] border border-[#08080f] text-[#00eaff] p-3 rounded min-h-24"
             />
           </div>
 
@@ -171,15 +171,15 @@ export default function HomepageIntegration() {
       <section className="text-center py-8">
         <p className="text-[#cccccc] mb-4">Follow us on social media</p>
         <div className="flex justify-center gap-4">
-          <Button variant="outline" className="text-[#00eaff] border-[#2b2b42] gap-2">
+          <Button variant="outline" className="text-[#00eaff] border-[#08080f] gap-2">
             <Heart className="w-4 h-4" />
             Twitter
           </Button>
-          <Button variant="outline" className="text-[#ff00c8] border-[#2b2b42] gap-2">
+          <Button variant="outline" className="text-[#ff00c8] border-[#08080f] gap-2">
             <Heart className="w-4 h-4" />
             Discord
           </Button>
-          <Button variant="outline" className="text-[#d8ae55] border-[#2b2b42] gap-2">
+          <Button variant="outline" className="text-[#d8ae55] border-[#08080f] gap-2">
             <Heart className="w-4 h-4" />
             Instagram
           </Button>

@@ -72,7 +72,7 @@ export default function ProfileCustomizer({
 
           {/* Tabs */}
           <Tabs defaultValue="pictures" className="w-full">
-            <TabsList className="grid w-full grid-cols-4 bg-[#04040a] border border-[#2b2b42]">
+            <TabsList className="grid w-full grid-cols-4 bg-[#0A0A10] border border-[#08080f]">
               <TabsTrigger value="pictures" className="text-xs">
                 <Camera className="w-4 h-4 mr-2" />
                 Pictures
@@ -155,7 +155,7 @@ export default function ProfileCustomizer({
                   onChange={(e) => setBio(e.target.value)}
                   placeholder="Tell us about yourself..."
                   maxLength={500}
-                  className="w-full h-24 px-3 py-2 bg-[#04040a] border border-[#2b2b42] rounded-lg text-[#00eaff] placeholder-[#cccccc] focus:border-[#ff00c8] focus:outline-none resize-none"
+                  className="w-full h-24 px-3 py-2 bg-[#0A0A10] border border-[#08080f] rounded-lg text-[#00eaff] placeholder-[#cccccc] focus:border-[#ff00c8] focus:outline-none resize-none"
                 />
                 <p className="text-xs text-[#cccccc] mt-1">
                   {bio.length}/500 characters
@@ -203,7 +203,7 @@ export default function ProfileCustomizer({
                       className={`p-3 rounded-lg border-2 transition-colors capitalize font-bold ${
                         profileLayout === layout
                           ? "border-[#ff00c8] bg-[#ff00c8]/20 text-[#ff00c8]"
-                          : "border-[#2b2b42] bg-[#04040a] text-[#cccccc] hover:border-[#00eaff]"
+                          : "border-[#08080f] bg-[#0A0A10] text-[#cccccc] hover:border-[#00eaff]"
                       }`}
                     >
                       {layout}
@@ -227,7 +227,7 @@ export default function ProfileCustomizer({
                   title="Your Decorations"
                 />
               ) : (
-                <Card className="bg-[#04040a] border border-[#2b2b42] p-4 text-center">
+                <Card className="bg-[#0A0A10] border border-[#08080f] p-4 text-center">
                   <p className="text-[#cccccc]">
                     No decorations yet. Earn them through gameplay!
                   </p>
@@ -241,7 +241,7 @@ export default function ProfileCustomizer({
             <Button
               onClick={onClose}
               variant="outline"
-              className="flex-1 text-[#cccccc] border-[#2b2b42]"
+              className="flex-1 text-[#cccccc] border-[#08080f]"
             >
               Cancel
             </Button>

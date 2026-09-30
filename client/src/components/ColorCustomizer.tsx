@@ -98,13 +98,13 @@ export default function ColorCustomizer() {
 
       {/* Customization Panel */}
       {isOpen && (
-        <Card className="absolute bottom-20 right-0 bg-[#141423] border border-[#2b2b42] p-6 w-80 shadow-2xl">
+        <Card className="absolute bottom-20 right-0 bg-[#141423] border border-[#08080f] p-6 w-80 shadow-2xl">
           <div className="space-y-4">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-bold text-[#ff00c8]">Theme Colors</h3>
               <button
                 onClick={resetColors}
-                className="p-1 hover:bg-[#2b2b42] rounded transition-colors"
+                className="p-1 hover:bg-[#08080f] rounded transition-colors"
                 title="Reset to defaults"
               >
                 <RotateCcw className="w-4 h-4 text-[#cccccc]" />
@@ -122,13 +122,13 @@ export default function ColorCustomizer() {
                     type="color"
                     value={colors.primary}
                     onChange={(e) => handleColorChange("primary", e.target.value)}
-                    className="w-12 h-10 rounded cursor-pointer border border-[#2b2b42]"
+                    className="w-12 h-10 rounded cursor-pointer border border-[#08080f]"
                   />
                   <input
                     type="text"
                     value={colors.primary}
                     onChange={(e) => handleColorChange("primary", e.target.value)}
-                    className="flex-1 bg-[#04040a] border border-[#2b2b42] text-[#00eaff] px-2 py-1 rounded text-sm font-mono"
+                    className="flex-1 bg-[#0A0A10] border border-[#08080f] text-[#00eaff] px-2 py-1 rounded text-sm font-mono"
                   />
                 </div>
               </div>
@@ -142,13 +142,13 @@ export default function ColorCustomizer() {
                     type="color"
                     value={colors.secondary}
                     onChange={(e) => handleColorChange("secondary", e.target.value)}
-                    className="w-12 h-10 rounded cursor-pointer border border-[#2b2b42]"
+                    className="w-12 h-10 rounded cursor-pointer border border-[#08080f]"
                   />
                   <input
                     type="text"
                     value={colors.secondary}
                     onChange={(e) => handleColorChange("secondary", e.target.value)}
-                    className="flex-1 bg-[#04040a] border border-[#2b2b42] text-[#00eaff] px-2 py-1 rounded text-sm font-mono"
+                    className="flex-1 bg-[#0A0A10] border border-[#08080f] text-[#00eaff] px-2 py-1 rounded text-sm font-mono"
                   />
                 </div>
               </div>
@@ -162,27 +162,27 @@ export default function ColorCustomizer() {
                     type="color"
                     value={colors.accent}
                     onChange={(e) => handleColorChange("accent", e.target.value)}
-                    className="w-12 h-10 rounded cursor-pointer border border-[#2b2b42]"
+                    className="w-12 h-10 rounded cursor-pointer border border-[#08080f]"
                   />
                   <input
                     type="text"
                     value={colors.accent}
                     onChange={(e) => handleColorChange("accent", e.target.value)}
-                    className="flex-1 bg-[#04040a] border border-[#2b2b42] text-[#00eaff] px-2 py-1 rounded text-sm font-mono"
+                    className="flex-1 bg-[#0A0A10] border border-[#08080f] text-[#00eaff] px-2 py-1 rounded text-sm font-mono"
                   />
                 </div>
               </div>
             </div>
 
             {/* Preset Schemes */}
-            <div className="border-t border-[#2b2b42] pt-4">
+            <div className="border-t border-[#08080f] pt-4">
               <p className="text-xs text-[#cccccc] font-bold mb-2">PRESET SCHEMES</p>
               <div className="grid grid-cols-2 gap-2">
                 {Object.entries(PRESET_SCHEMES).map(([name, scheme]) => (
                   <button
                     key={name}
                     onClick={() => applyPreset(scheme)}
-                    className="p-2 bg-[#04040a] border border-[#2b2b42] rounded hover:border-[#00eaff] transition-colors text-xs font-bold text-[#cccccc] hover:text-[#00eaff]"
+                    className="p-2 bg-[#0A0A10] border border-[#08080f] rounded hover:border-[#00eaff] transition-colors text-xs font-bold text-[#cccccc] hover:text-[#00eaff]"
                   >
                     <div className="flex gap-1 mb-1">
                       <div

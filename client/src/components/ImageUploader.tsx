@@ -108,7 +108,7 @@ export default function ImageUploader({
             <img
               src={preview}
               alt="Preview"
-              className="w-full h-48 object-cover rounded-lg border border-[#2b2b42]"
+              className="w-full h-48 object-cover rounded-lg border border-[#08080f]"
             />
             <button
               onClick={() => {
@@ -131,7 +131,7 @@ export default function ImageUploader({
             className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${
               isDragging
                 ? "border-[#ff00c8] bg-[#ff00c8]/10"
-                : "border-[#2b2b42] bg-[#04040a] hover:border-[#00eaff]"
+                : "border-[#08080f] bg-[#0A0A10] hover:border-[#00eaff]"
             }`}
           >
             <Upload className="w-8 h-8 text-[#cccccc] mx-auto mb-3" />
@@ -162,7 +162,7 @@ export default function ImageUploader({
 
         {/* File Info */}
         {selectedFile && (
-          <div className="bg-[#04040a] rounded-lg p-3 border border-[#2b2b42]">
+          <div className="bg-[#0A0A10] rounded-lg p-3 border border-[#08080f]">
             <p className="text-sm text-[#cccccc] mb-1">
               <span className="font-bold text-[#00eaff]">File:</span> {selectedFile.name}
             </p>
@@ -179,7 +179,7 @@ export default function ImageUploader({
             <Button
               onClick={onClose}
               variant="outline"
-              className="flex-1 text-[#cccccc] border-[#2b2b42]"
+              className="flex-1 text-[#cccccc] border-[#08080f]"
             >
               Cancel
             </Button>

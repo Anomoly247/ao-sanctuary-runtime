@@ -54,7 +54,7 @@ export default function DecorationShowcase({
 
   if (decorations.length === 0) {
     return (
-      <Card className="bg-[#141423] border border-[#2b2b42] p-6 text-center">
+      <Card className="bg-[#141423] border border-[#08080f] p-6 text-center">
         <Sparkles className="w-8 h-8 text-[#cccccc] mx-auto mb-3" />
         <p className="text-[#cccccc]">No decorations yet. Earn them through gameplay and social good actions!</p>
       </Card>
@@ -79,7 +79,7 @@ export default function DecorationShowcase({
                 style={{ borderColor: getRarityColor(decoration.rarity) }}
               />
               <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block z-10">
-                <div className="bg-[#04040a] border border-[#2b2b42] rounded-lg p-2 whitespace-nowrap text-xs">
+                <div className="bg-[#0A0A10] border border-[#08080f] rounded-lg p-2 whitespace-nowrap text-xs">
                   <p className="font-bold text-[#00eaff]">{decoration.name}</p>
                   <p className="text-[#cccccc]">{getCategoryLabel(decoration.category)}</p>
                 </div>
@@ -87,7 +87,7 @@ export default function DecorationShowcase({
             </div>
           ))}
           {decorations.length > 6 && (
-            <div className="w-8 h-8 rounded-full bg-[#2b2b42] border-2 border-[#cccccc] flex items-center justify-center text-xs font-bold text-[#cccccc]">
+            <div className="w-8 h-8 rounded-full bg-[#08080f] border-2 border-[#cccccc] flex items-center justify-center text-xs font-bold text-[#cccccc]">
               +{decorations.length - 6}
             </div>
           )}
@@ -109,7 +109,7 @@ export default function DecorationShowcase({
   );
 
   return (
-    <Card className="bg-[#141423] border border-[#2b2b42] p-6">
+    <Card className="bg-[#141423] border border-[#08080f] p-6">
       <h3 className="text-lg font-bold text-[#ff00c8] mb-6">{title}</h3>
 
       <div className="space-y-6">
@@ -118,7 +118,7 @@ export default function DecorationShowcase({
             <div className="flex items-center gap-2 mb-3">
               <div className="text-[#00eaff]">{getCategoryIcon(category)}</div>
               <p className="font-bold text-[#00eaff] capitalize">{getCategoryLabel(category)}</p>
-              <Badge className="bg-[#2b2b42] text-[#cccccc] ml-auto">
+              <Badge className="bg-[#08080f] text-[#cccccc] ml-auto">
                 {items.length}
               </Badge>
             </div>
@@ -142,7 +142,7 @@ export default function DecorationShowcase({
 
                   {/* Hover Tooltip */}
                   <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block z-10 w-48">
-                    <div className="bg-[#04040a] border border-[#2b2b42] rounded-lg p-3">
+                    <div className="bg-[#0A0A10] border border-[#08080f] rounded-lg p-3">
                       <p className="font-bold text-[#00eaff] mb-1">{decoration.name}</p>
                       <div className="flex items-center gap-2 mb-2">
                         <Badge
@@ -172,7 +172,7 @@ export default function DecorationShowcase({
                     className="absolute top-1 right-1 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold"
                     style={{
                       backgroundColor: getRarityColor(decoration.rarity),
-                      color: "#04040a",
+                      color: "#0A0A10",
                     }}
                   >
                     ★

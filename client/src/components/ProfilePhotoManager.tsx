@@ -242,7 +242,7 @@ export default function ProfilePhotoManager() {
             Export Profile as JSON
           </Button>
 
-          <div className="bg-[#04040a] p-4 rounded-lg border border-[#2b2b42]">
+          <div className="bg-[#0A0A10] p-4 rounded-lg border border-[#08080f]">
             <p className="text-sm text-[#cccccc] mb-2">
               <strong>Share your identity:</strong> Copy the link above and share it with friends or on social media to sync your profile settings across platforms.
             </p>

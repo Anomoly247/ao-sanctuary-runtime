@@ -4,7 +4,7 @@ import { Chrome, Github, Mail } from "lucide-react";
 
 export default function SignUpConnectors() {
   return (
-    <Card className="bg-[#141423] border border-[#2b2b42] p-8 max-w-md mx-auto">
+    <Card className="bg-[#141423] border border-[#08080f] p-8 max-w-md mx-auto">
       <h3 className="text-2xl font-bold text-[#ff00c8] mb-6 text-center">
         Join Anom Artsy
       </h3>
@@ -32,7 +32,7 @@ export default function SignUpConnectors() {
 
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-[#2b2b42]"></div>
+            <div className="w-full border-t border-[#08080f]"></div>
           </div>
           <div className="relative flex justify-center text-sm">
             <span className="px-2 bg-[#141423] text-[#cccccc]">or</span>

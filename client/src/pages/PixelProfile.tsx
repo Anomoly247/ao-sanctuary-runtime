@@ -14,9 +14,9 @@ export default function PixelProfile() {
   };
 
   return (
-    <div className="min-h-screen bg-[#04040a]">
+    <div className="min-h-screen bg-[#0A0A10]">
       {/* Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-b from-[#141423] to-[#04040a] py-12">
+      <div className="relative overflow-hidden bg-gradient-to-b from-[#141423] to-[#0A0A10] py-12">
         <div className="absolute inset-0 opacity-30">
           <div
             className="absolute inset-0 blur-3xl"
@@ -33,7 +33,7 @@ export default function PixelProfile() {
                 borderColor: "#ff00c8",
                 background: "linear-gradient(135deg, #ff00c840 0%, #ff00c820 100%)",
                 color: "#ff00c8",
-                boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)',
+                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)',
               }}
             >
               P
@@ -44,7 +44,7 @@ export default function PixelProfile() {
 
             <div className="flex justify-center gap-3 mb-6">
               <Badge className="bg-[#ff00c8] text-black font-bold">Anom's Corner</Badge>
-              <Badge className="bg-[#2b2b42] text-[#00eaff] font-bold">Main Character</Badge>
+              <Badge className="bg-[#08080f] text-[#00eaff] font-bold">Main Character</Badge>
             </div>
 
             <p className="text-[#cccccc] text-lg max-w-xl mx-auto mb-8">
@@ -57,7 +57,7 @@ export default function PixelProfile() {
                 className={`${
                   liked
                     ? "bg-[#ff00c8] text-black hover:bg-[#ff00c8]/80"
-                    : "bg-[#2b2b42] text-[#cccccc] hover:bg-[#3a3f4e]"
+                    : "bg-[#08080f] text-[#cccccc] hover:bg-[#3a3f4e]"
                 }`}
               >
                 <Heart className={`w-4 h-4 mr-2 ${liked ? "fill-current" : ""}`} />
@@ -65,7 +65,7 @@ export default function PixelProfile() {
               </Button>
               <Button
                 onClick={handleShare}
-                className="bg-[#2b2b42] text-[#cccccc] hover:bg-[#3a3f4e]"
+                className="bg-[#08080f] text-[#cccccc] hover:bg-[#3a3f4e]"
               >
                 <Share2 className="w-4 h-4 mr-2" />
                 Share
@@ -81,7 +81,7 @@ export default function PixelProfile() {
           {/* Main Content */}
           <div className="md:col-span-2 space-y-6">
             {/* About */}
-            <Card className="bg-[#141423] border border-[#2b2b42] p-6">
+            <Card className="bg-[#141423] border border-[#08080f] p-6">
               <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
                 <Sparkles className="w-6 h-6" style={{ color: "#ff00c8" }} />
                 About Pixel
@@ -95,7 +95,7 @@ export default function PixelProfile() {
             </Card>
 
             {/* Abilities */}
-            <Card className="bg-[#141423] border border-[#2b2b42] p-6">
+            <Card className="bg-[#141423] border border-[#08080f] p-6">
               <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
                 <Zap className="w-6 h-6" style={{ color: "#00eaff" }} />
                 Creative Powers
@@ -114,7 +114,7 @@ export default function PixelProfile() {
                       <span className="text-sm font-bold text-white">{ability.name}</span>
                       <span className="text-xs text-[#cccccc]">{ability.level}%</span>
                     </div>
-                    <div className="w-full bg-[#04040a] rounded-full h-2 border border-[#2b2b42]">
+                    <div className="w-full bg-[#0A0A10] rounded-full h-2 border border-[#08080f]">
                       <div
                         className="h-full rounded-full"
                         style={{
@@ -132,7 +132,7 @@ export default function PixelProfile() {
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Stats */}
-            <Card className="bg-[#141423] border border-[#2b2b42] p-6">
+            <Card className="bg-[#141423] border border-[#08080f] p-6">
               <h3 className="text-lg font-bold text-white mb-4">Character Stats</h3>
               <div className="space-y-3">
                 <div className="flex justify-between">
@@ -151,7 +151,7 @@ export default function PixelProfile() {
             </Card>
 
             {/* Traits */}
-            <Card className="bg-[#141423] border border-[#2b2b42] p-6">
+            <Card className="bg-[#141423] border border-[#08080f] p-6">
               <h3 className="text-lg font-bold text-white mb-4">Character Traits</h3>
               <div className="flex flex-wrap gap-2">
                 {["Creative", "Visionary", "Artistic", "Curious", "Imaginative"].map((trait) => (
@@ -166,13 +166,13 @@ export default function PixelProfile() {
             </Card>
 
             {/* Related */}
-            <Card className="bg-[#141423] border border-[#2b2b42] p-6">
+            <Card className="bg-[#141423] border border-[#08080f] p-6">
               <h3 className="text-lg font-bold text-white mb-4">Related</h3>
               <div className="space-y-2">
-                <Button className="w-full bg-[#2b2b42] text-[#cccccc] hover:bg-[#3a3f4e] justify-start">
+                <Button className="w-full bg-[#08080f] text-[#cccccc] hover:bg-[#3a3f4e] justify-start">
                   Partner: Dot
                 </Button>
-                <Button className="w-full bg-[#2b2b42] text-[#cccccc] hover:bg-[#3a3f4e] justify-start">
+                <Button className="w-full bg-[#08080f] text-[#cccccc] hover:bg-[#3a3f4e] justify-start">
                   View Episodes
                 </Button>
               </div>

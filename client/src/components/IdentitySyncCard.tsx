@@ -75,14 +75,14 @@ export default function IdentitySyncCard() {
   };
 
   return (
-    <Card className="bg-gradient-to-br from-[#141423] to-[#04040a] border-2 border-[#ff00c8] p-6">
+    <Card className="bg-gradient-to-br from-[#141423] to-[#0A0A10] border-2 border-[#ff00c8] p-6">
       <h3 className="text-xl font-bold text-[#ff00c8] mb-4 flex items-center gap-2">
         <RefreshCw className="w-5 h-5" />
         Identity Sync
       </h3>
 
       {/* Current Identity Info */}
-      <div className="bg-[#04040a] p-4 rounded-lg border border-[#2b2b42] mb-6">
+      <div className="bg-[#0A0A10] p-4 rounded-lg border border-[#08080f] mb-6">
         <p className="text-sm text-[#cccccc] mb-3">
           <strong>Your Current Identity:</strong>
         </p>
@@ -125,7 +125,7 @@ export default function IdentitySyncCard() {
         </Button>
 
         {showSyncCode && (
-          <div className="bg-[#04040a] p-4 rounded-lg border border-[#00eaff]">
+          <div className="bg-[#0A0A10] p-4 rounded-lg border border-[#00eaff]">
             <p className="text-xs text-[#cccccc] mb-2">Your Sync Code:</p>
             <div className="flex gap-2">
               <Input
@@ -154,7 +154,7 @@ export default function IdentitySyncCard() {
             placeholder="Paste sync code here..."
             value={syncCode}
             onChange={(e) => setSyncCode(e.target.value)}
-            className="bg-[#04040a] border-[#ff00c8] text-white font-mono text-xs"
+            className="bg-[#0A0A10] border-[#ff00c8] text-white font-mono text-xs"
           />
           <Button
             onClick={handleApplySyncCode}
@@ -194,7 +194,7 @@ export default function IdentitySyncCard() {
       </div>
 
       {/* Info */}
-      <div className="bg-[#04040a] p-4 rounded-lg border border-[#2b2b42]">
+      <div className="bg-[#0A0A10] p-4 rounded-lg border border-[#08080f]">
         <p className="text-xs text-[#cccccc]">
           <strong>How it works:</strong> Generate a sync code to share your Anom Artsy identity (colors, theme, photos) with friends. They can paste the code to instantly match your aesthetic. Perfect for creating a unified look across your community!
         </p>

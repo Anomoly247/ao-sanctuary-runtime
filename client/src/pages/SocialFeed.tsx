@@ -177,7 +177,7 @@ export default function SocialFeed() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-[#00eaff] text-xl">Loading Feed...</div>
       </div>
     );
@@ -185,7 +185,7 @@ export default function SocialFeed() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-center">
           <p className="text-[#00eaff] text-xl mb-4">Please sign in to view the social feed</p>
           <Button className="btn-primary" onClick={() => navigate("/")}>
@@ -197,9 +197,9 @@ export default function SocialFeed() {
   }
 
   return (
-    <div className="min-h-screen bg-[#04040a] text-[#00eaff]">
+    <div className="min-h-screen bg-[#0A0A10] text-[#00eaff]">
       {/* Navigation */}
-      <nav className="border-b border-[#2b2b42] px-6 py-4 sticky top-0 bg-[#04040a]/95 backdrop-blur z-10">
+      <nav className="border-b border-[#08080f] px-6 py-4 sticky top-0 bg-[#0A0A10]/95 backdrop-blur z-10">
         <div className="max-w-4xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-4">
             <Button variant="ghost" onClick={() => navigate("/")} className="text-[#cccccc] flex items-center gap-2">
@@ -223,14 +223,14 @@ export default function SocialFeed() {
             {reels.map((reel) => (
               <Card
                 key={reel.id}
-                className="bg-[#141423] border border-[#2b2b42] overflow-hidden hover:border-[#ff00c8] transition-all cursor-pointer group"
+                className="bg-[#141423] border border-[#08080f] overflow-hidden hover:border-[#ff00c8] transition-all cursor-pointer group"
                 style={{
-                  boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
+                  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
                 }}
                 onClick={() => handlePlayReel(reel.id)}
               >
                 {/* Reel Thumbnail */}
-                <div className="relative bg-gradient-to-br from-[#141423] to-[#04040a] aspect-video flex items-center justify-center overflow-hidden">
+                <div className="relative bg-gradient-to-br from-[#141423] to-[#0A0A10] aspect-video flex items-center justify-center overflow-hidden">
                   <div className="text-8xl group-hover:scale-110 transition-transform">{reel.thumbnail}</div>
                   <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors flex items-center justify-center">
                     <Play className="w-16 h-16 text-[#ff00c8] opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -266,13 +266,13 @@ export default function SocialFeed() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-[#2b2b42] my-12"></div>
+        <div className="border-t border-[#08080f] my-12"></div>
 
         {/* Create Post Section */}
         <Card
-          className="bg-[#141423] border border-[#2b2b42] p-6 mb-8"
+          className="bg-[#141423] border border-[#08080f] p-6 mb-8"
           style={{
-            boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
+            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
           }}
         >
           <div className="flex gap-4">
@@ -281,11 +281,11 @@ export default function SocialFeed() {
               <input
                 type="text"
                 placeholder="What's happening in your Anom Universe?"
-                className="w-full bg-[#04040a] border border-[#2b2b42] rounded px-4 py-3 text-[#00eaff] placeholder-[#cccccc] focus:outline-none focus:border-[#ff00c8]"
+                className="w-full bg-[#0A0A10] border border-[#08080f] rounded px-4 py-3 text-[#00eaff] placeholder-[#cccccc] focus:outline-none focus:border-[#ff00c8]"
                 onClick={() => toast.info("Post creation coming soon!")}
               />
               <div className="flex justify-end gap-2 mt-4">
-                <Button variant="outline" className="text-[#cccccc] border-[#2b2b42]">
+                <Button variant="outline" className="text-[#cccccc] border-[#08080f]">
                   Add Image
                 </Button>
                 <Button className="btn-secondary">Post</Button>
@@ -300,9 +300,9 @@ export default function SocialFeed() {
           {posts.map((post) => (
             <Card
               key={post.id}
-              className="bg-[#141423] border border-[#2b2b42] p-6 hover:border-[#ff00c8] transition-colors"
+              className="bg-[#141423] border border-[#08080f] p-6 hover:border-[#ff00c8] transition-colors"
               style={{
-                boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
+                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
               }}
             >
               {/* Post Header */}
@@ -319,13 +319,13 @@ export default function SocialFeed() {
 
               {/* Post Image */}
               {post.image && (
-                <div className="mb-4 p-4 bg-[#04040a] rounded border border-[#2b2b42] text-center text-3xl">
+                <div className="mb-4 p-4 bg-[#0A0A10] rounded border border-[#08080f] text-center text-3xl">
                   {post.image}
                 </div>
               )}
 
               {/* Post Stats */}
-              <div className="flex gap-6 text-sm text-[#cccccc] mb-4 pb-4 border-b border-[#2b2b42]">
+              <div className="flex gap-6 text-sm text-[#cccccc] mb-4 pb-4 border-b border-[#08080f]">
                 <span>{post.likes} likes</span>
                 <span>{post.comments} comments</span>
               </div>
@@ -367,7 +367,7 @@ export default function SocialFeed() {
         <div className="text-center mt-12">
           <Button
             variant="outline"
-            className="text-[#00eaff] border-[#2b2b42] gap-2"
+            className="text-[#00eaff] border-[#08080f] gap-2"
             onClick={() => toast.info("More posts loading...")}
           >
             <Zap className="w-4 h-4" />

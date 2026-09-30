@@ -140,7 +140,7 @@ export default function ChatWidget() {
 
       {/* Chat Panel */}
       {isOpen && (
-        <Card className="fixed bottom-6 right-6 w-96 h-[600px] bg-[#141423] border border-[#2b2b42] rounded-lg shadow-2xl z-50 flex flex-col overflow-hidden" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+        <Card className="fixed bottom-6 right-6 w-96 h-[600px] bg-[#141423] border border-[#08080f] rounded-lg shadow-2xl z-50 flex flex-col overflow-hidden" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
           {/* Header */}
           <div className="bg-gradient-to-r from-[#ff00c8] to-[#00eaff] p-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -158,7 +158,7 @@ export default function ChatWidget() {
           </div>
 
           {/* Tabs */}
-          <div className="flex border-b border-[#2b2b42]">
+          <div className="flex border-b border-[#08080f]">
             <button
               onClick={() => setActiveTab("channels")}
               className={`flex-1 py-2 px-4 text-sm font-bold flex items-center justify-center gap-2 ${
@@ -185,7 +185,7 @@ export default function ChatWidget() {
 
           {/* Channel/DM List */}
           {activeTab === "channels" && (
-            <div className="flex-1 overflow-y-auto border-b border-[#2b2b42]">
+            <div className="flex-1 overflow-y-auto border-b border-[#08080f]">
               <div className="p-3 space-y-2">
                 {channels.map((channel) => (
                   <button
@@ -193,8 +193,8 @@ export default function ChatWidget() {
                     onClick={() => setSelectedChannel(channel.id)}
                     className={`w-full text-left p-3 rounded-lg transition-colors ${
                       selectedChannel === channel.id
-                        ? "bg-[#2b2b42] border border-[#00eaff]"
-                        : "hover:bg-[#04040a]"
+                        ? "bg-[#08080f] border border-[#00eaff]"
+                        : "hover:bg-[#0A0A10]"
                     }`}
                   >
                     <div className="flex items-center justify-between">
@@ -222,7 +222,7 @@ export default function ChatWidget() {
           )}
 
           {/* Messages Area */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-[#04040a]">
+          <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-[#0A0A10]">
             {messages.map((msg) => (
               <div key={msg.id} className={`flex gap-2 ${msg.isOwn ? "justify-end" : "justify-start"}`}>
                 {!msg.isOwn && (
@@ -236,7 +236,7 @@ export default function ChatWidget() {
                     className={`px-3 py-2 rounded-lg text-sm ${
                       msg.isOwn
                         ? "bg-gradient-to-r from-[#ff00c8] to-[#d8ae55] text-white"
-                        : "bg-[#141423] text-[#00eaff] border border-[#2b2b42]"
+                        : "bg-[#141423] text-[#00eaff] border border-[#08080f]"
                     }`}
                   >
                     {msg.content}
@@ -259,26 +259,26 @@ export default function ChatWidget() {
           </div>
 
           {/* Input Area */}
-          <div className="p-4 border-t border-[#2b2b42] space-y-2">
+          <div className="p-4 border-t border-[#08080f] space-y-2">
             <div className="flex gap-2">
               <Input
                 value={messageInput}
                 onChange={(e) => setMessageInput(e.target.value)}
                 onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
                 placeholder="Type a message..."
-                className="bg-[#04040a] border border-[#2b2b42] text-[#00eaff] flex-1"
+                className="bg-[#0A0A10] border border-[#08080f] text-[#00eaff] flex-1"
               />
               <div className="relative">
                 <Button
                   size="sm"
                   variant="outline"
-                  className="text-[#00eaff] border-[#2b2b42]"
+                  className="text-[#00eaff] border-[#08080f]"
                   onClick={() => setShowEmojiPicker(!showEmojiPicker)}
                 >
                   <Smile className="w-4 h-4" />
                 </Button>
                 {showEmojiPicker && (
-                  <div className="absolute bottom-12 right-0 bg-[#141423] border border-[#2b2b42] rounded-lg p-2 grid grid-cols-4 gap-1 w-40">
+                  <div className="absolute bottom-12 right-0 bg-[#141423] border border-[#08080f] rounded-lg p-2 grid grid-cols-4 gap-1 w-40">
                     {["👍", "❤️", "🎉", "🚀", "😂", "🔥", "✨", "🌟"].map((emoji) => (
                       <button
                         key={emoji}

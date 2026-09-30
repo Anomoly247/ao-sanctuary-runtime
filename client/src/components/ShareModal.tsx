@@ -108,7 +108,7 @@ export default function ShareModal({
           </div>
 
           {/* Title & Description */}
-          <div className="mb-6 p-4 bg-[#04040a] rounded-lg border border-[#2b2b42]">
+          <div className="mb-6 p-4 bg-[#0A0A10] rounded-lg border border-[#08080f]">
             <p className="text-sm text-[#cccccc] mb-2">Share this:</p>
             <h3 className="text-lg font-bold text-[#00eaff] mb-2">{title}</h3>
             {description && (
@@ -124,7 +124,7 @@ export default function ShareModal({
                 type="text"
                 value={shareUrl}
                 readOnly
-                className="flex-1 px-3 py-2 bg-[#04040a] border border-[#2b2b42] rounded-lg text-[#00eaff] text-sm"
+                className="flex-1 px-3 py-2 bg-[#0A0A10] border border-[#08080f] rounded-lg text-[#00eaff] text-sm"
               />
               <Button
                 onClick={handleCopyLink}
@@ -153,7 +153,7 @@ export default function ShareModal({
                   <button
                     key={platform.id}
                     onClick={() => handleShare(platform.url, platform.name)}
-                    className="flex items-center gap-2 p-3 bg-[#04040a] border border-[#2b2b42] rounded-lg hover:border-[#00eaff] transition-colors group"
+                    className="flex items-center gap-2 p-3 bg-[#0A0A10] border border-[#08080f] rounded-lg hover:border-[#00eaff] transition-colors group"
                   >
                     <Icon
                       className="w-5 h-5 group-hover:text-[#00eaff]"
@@ -171,7 +171,7 @@ export default function ShareModal({
           {/* Close Button */}
           <Button
             onClick={onClose}
-            className="w-full bg-[#2b2b42] hover:bg-[#3a3f4e] text-[#cccccc] font-bold"
+            className="w-full bg-[#08080f] hover:bg-[#3a3f4e] text-[#cccccc] font-bold"
           >
             Close
           </Button>

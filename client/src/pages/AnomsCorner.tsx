@@ -53,9 +53,9 @@ export default function AnomsCorner() {
   };
 
   return (
-    <div className="min-h-screen bg-[#04040a]">
+    <div className="min-h-screen bg-[#0A0A10]">
       {/* Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-b from-[#141423] to-[#04040a] py-12">
+      <div className="relative overflow-hidden bg-gradient-to-b from-[#141423] to-[#0A0A10] py-12">
         <div className="absolute inset-0 opacity-20">
           <div
             className="absolute top-0 left-1/4 w-96 h-96 rounded-full blur-3xl"
@@ -122,10 +122,10 @@ export default function AnomsCorner() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Video Player */}
           <div className="lg:col-span-2">
-            <Card className="bg-[#141423] border border-[#2b2b42] overflow-hidden p-6">
+            <Card className="bg-[#141423] border border-[#08080f] overflow-hidden p-6">
               {/* Featured Video Player */}
               <div className="mb-6">
-                <div className="relative w-full bg-black rounded-lg overflow-hidden border border-[#2b2b42]">
+                <div className="relative w-full bg-black rounded-lg overflow-hidden border border-[#08080f]">
                   {selectedEpisode.storageUrl ? (
                     <video
                       className="w-full h-auto"
@@ -187,7 +187,7 @@ export default function AnomsCorner() {
 
           {/* Sidebar - Episode List */}
           <div>
-            <Card className="bg-[#141423] border border-[#2b2b42] p-6">
+            <Card className="bg-[#141423] border border-[#08080f] p-6">
               <h3 className="text-xl font-bold text-white mb-4">Episodes</h3>
               <div className="space-y-3">
                 {episodes.map((episode) => (
@@ -197,7 +197,7 @@ export default function AnomsCorner() {
                     className={`w-full text-left p-3 rounded-lg border transition-all ${
                       selectedEpisode.id === episode.id
                         ? "border-[#ff00c8] bg-[#ff00c8]/10"
-                        : "border-[#2b2b42] bg-[#04040a] hover:border-[#ff00c8]"
+                        : "border-[#08080f] bg-[#0A0A10] hover:border-[#ff00c8]"
                     }`}
                   >
                     <p className="font-semibold text-white text-sm mb-1">{episode.title}</p>
@@ -208,7 +208,7 @@ export default function AnomsCorner() {
             </Card>
 
             {/* Series Stats */}
-            <Card className="bg-[#141423] border border-[#2b2b42] p-6 mt-6">
+            <Card className="bg-[#141423] border border-[#08080f] p-6 mt-6">
               <h3 className="text-lg font-bold text-white mb-4">Series Stats</h3>
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
@@ -227,7 +227,7 @@ export default function AnomsCorner() {
             </Card>
 
             {/* Character Links */}
-            <Card className="bg-[#141423] border border-[#2b2b42] p-6 mt-6">
+            <Card className="bg-[#141423] border border-[#08080f] p-6 mt-6">
               <h3 className="text-lg font-bold text-white mb-4">Meet the Characters</h3>
               <div className="space-y-2">
                 <Button

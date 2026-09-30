@@ -14,7 +14,7 @@ export default function Achievements() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#04040a] text-white flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A10] text-white flex items-center justify-center">
         <div className="text-center">
           <p className="text-[#cccccc] mb-4">Sign in to view your achievements</p>
         </div>
@@ -30,7 +30,7 @@ export default function Achievements() {
   const unlockedIds = new Set(userAchievements?.map((a) => a.achievementId) || []);
 
   return (
-    <div className="min-h-screen bg-[#04040a] text-white p-6">
+    <div className="min-h-screen bg-[#0A0A10] text-white p-6">
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -77,7 +77,7 @@ export default function Achievements() {
             <div
               className="rounded-lg border-2 border-[#cccccc] p-8 text-center"
               style={{
-                boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
+                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
               }}
             >
               <p className="text-[#cccccc]">No achievements available yet</p>
@@ -91,8 +91,8 @@ export default function Achievements() {
                     key={achievement.id}
                     className={`rounded-lg border-2 p-6 transition-all ${
                       isUnlocked
-                        ? "border-[#ff00c8] bg-[#1a0a1a]"
-                        : "border-[#cccccc] bg-[#04040a] opacity-60"
+                        ? "border-[#ff00c8] bg-[#141423]"
+                        : "border-[#cccccc] bg-[#0A0A10] opacity-60"
                     }`}
                     style={{
                       boxShadow: isUnlocked
@@ -124,17 +124,17 @@ export default function Achievements() {
 
         {/* Achievement Categories */}
         <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="rounded-lg border-2 border-[#d8ae55] p-6" style={{ boxShadow: "0 6px 18px rgba(15, 23, 42, 0.22)" }}>
+          <div className="rounded-lg border-2 border-[#d8ae55] p-6" style={{ boxShadow: "0 6px 18px rgba(0, 0, 0, 0.45)" }}>
             <Heart className="w-8 h-8 text-[#d8ae55] mb-3" />
             <h3 className="font-bold text-white mb-2">Social Good</h3>
             <p className="text-[#cccccc] text-sm">Earn by helping others and spreading positivity</p>
           </div>
-          <div className="rounded-lg border-2 border-[#00eaff] p-6" style={{ boxShadow: "0 6px 18px rgba(15, 23, 42, 0.22)" }}>
+          <div className="rounded-lg border-2 border-[#00eaff] p-6" style={{ boxShadow: "0 6px 18px rgba(0, 0, 0, 0.45)" }}>
             <Trophy className="w-8 h-8 text-[#00eaff] mb-3" />
             <h3 className="font-bold text-white mb-2">Games</h3>
             <p className="text-[#cccccc] text-sm">Unlock badges by winning mini-games</p>
           </div>
-          <div className="rounded-lg border-2 border-[#ff00c8] p-6" style={{ boxShadow: "0 6px 18px rgba(15, 23, 42, 0.22)" }}>
+          <div className="rounded-lg border-2 border-[#ff00c8] p-6" style={{ boxShadow: "0 6px 18px rgba(0, 0, 0, 0.45)" }}>
             <Star className="w-8 h-8 text-[#ff00c8] mb-3" />
             <h3 className="font-bold text-white mb-2">Milestones</h3>
             <p className="text-[#cccccc] text-sm">Reach level milestones and community goals</p>

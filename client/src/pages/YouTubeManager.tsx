@@ -120,7 +120,7 @@ export default function YouTubeManager() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-[#00eaff] text-xl">Loading YouTube Manager...</div>
       </div>
     );
@@ -128,7 +128,7 @@ export default function YouTubeManager() {
 
   if (!isAuthenticated || user?.role !== "admin") {
     return (
-      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-center">
           <AlertCircle className="w-16 h-16 mx-auto mb-4 text-[#ff00c8]" />
           <p className="text-[#00eaff] text-xl mb-4">Admin access required</p>
@@ -141,9 +141,9 @@ export default function YouTubeManager() {
   }
 
   return (
-    <div className="min-h-screen bg-[#04040a] text-[#00eaff]">
+    <div className="min-h-screen bg-[#0A0A10] text-[#00eaff]">
       {/* Navigation */}
-      <nav className="border-b border-[#2b2b42] px-6 py-4 sticky top-0 bg-[#04040a]/95 backdrop-blur z-10">
+      <nav className="border-b border-[#08080f] px-6 py-4 sticky top-0 bg-[#0A0A10]/95 backdrop-blur z-10">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-4">
             <Button variant="ghost" onClick={() => navigate("/admin")} className="text-[#cccccc]">
@@ -162,7 +162,7 @@ export default function YouTubeManager() {
       <main className="max-w-7xl mx-auto px-6 py-12">
         {/* Channel Statistics */}
         <div className="grid md:grid-cols-4 gap-6 mb-12">
-          <Card className="bg-[#141423] border border-[#2b2b42] p-6" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+          <Card className="bg-[#141423] border border-[#08080f] p-6" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[#cccccc] text-sm">Subscribers</p>
@@ -172,7 +172,7 @@ export default function YouTubeManager() {
             </div>
           </Card>
 
-          <Card className="bg-[#141423] border border-[#2b2b42] p-6" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+          <Card className="bg-[#141423] border border-[#08080f] p-6" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[#cccccc] text-sm">Total Views</p>
@@ -182,7 +182,7 @@ export default function YouTubeManager() {
             </div>
           </Card>
 
-          <Card className="bg-[#141423] border border-[#2b2b42] p-6" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+          <Card className="bg-[#141423] border border-[#08080f] p-6" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[#cccccc] text-sm">Total Videos</p>
@@ -192,7 +192,7 @@ export default function YouTubeManager() {
             </div>
           </Card>
 
-          <Card className="bg-[#141423] border border-[#2b2b42] p-6" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+          <Card className="bg-[#141423] border border-[#08080f] p-6" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[#cccccc] text-sm">Avg Engagement</p>
@@ -205,7 +205,7 @@ export default function YouTubeManager() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="bg-[#141423] border border-[#2b2b42] mb-8">
+          <TabsList className="bg-[#141423] border border-[#08080f] mb-8">
             <TabsTrigger value="upload" className="text-[#00eaff]">
               <Upload className="w-4 h-4 mr-2" />
               Upload Video
@@ -226,12 +226,12 @@ export default function YouTubeManager() {
 
           {/* Upload Tab */}
           <TabsContent value="upload" className="space-y-6">
-            <Card className="bg-[#141423] border border-[#2b2b42] p-8">
+            <Card className="bg-[#141423] border border-[#08080f] p-8">
               <div className="space-y-6">
                 <h3 className="text-xl font-bold text-[#ff00c8]">Upload New Video</h3>
 
                 {/* File Upload Area */}
-                <div className="border-2 border-dashed border-[#2b2b42] rounded-lg p-12 text-center hover:border-[#00eaff] transition-colors cursor-pointer">
+                <div className="border-2 border-dashed border-[#08080f] rounded-lg p-12 text-center hover:border-[#00eaff] transition-colors cursor-pointer">
                   <input
                     type="file"
                     accept="video/*"
@@ -252,23 +252,23 @@ export default function YouTubeManager() {
                 <div className="space-y-4">
                   <div>
                     <label className="block text-[#00eaff] font-bold mb-2">Video Title</label>
-                    <Input placeholder="Enter video title..." className="bg-[#04040a] border border-[#2b2b42] text-[#00eaff]" />
+                    <Input placeholder="Enter video title..." className="bg-[#0A0A10] border border-[#08080f] text-[#00eaff]" />
                   </div>
 
                   <div>
                     <label className="block text-[#00eaff] font-bold mb-2">Description</label>
-                    <textarea placeholder="Enter video description..." className="w-full bg-[#04040a] border border-[#2b2b42] text-[#00eaff] p-3 rounded min-h-24" />
+                    <textarea placeholder="Enter video description..." className="w-full bg-[#0A0A10] border border-[#08080f] text-[#00eaff] p-3 rounded min-h-24" />
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-[#00eaff] font-bold mb-2">Tags</label>
-                      <Input placeholder="anom, artsy, neon, community..." className="bg-[#04040a] border border-[#2b2b42] text-[#00eaff]" />
+                      <Input placeholder="anom, artsy, neon, community..." className="bg-[#0A0A10] border border-[#08080f] text-[#00eaff]" />
                     </div>
 
                     <div>
                       <label className="block text-[#00eaff] font-bold mb-2">Visibility</label>
-                      <select className="w-full bg-[#04040a] border border-[#2b2b42] text-[#00eaff] p-2 rounded">
+                      <select className="w-full bg-[#0A0A10] border border-[#08080f] text-[#00eaff] p-2 rounded">
                         <option>Public</option>
                         <option>Unlisted</option>
                         <option>Private</option>
@@ -284,7 +284,7 @@ export default function YouTubeManager() {
                       <span className="text-[#00eaff]">Uploading...</span>
                       <span className="text-[#cccccc]">{uploadProgress}%</span>
                     </div>
-                    <div className="w-full bg-[#04040a] rounded-full h-2 border border-[#2b2b42]">
+                    <div className="w-full bg-[#0A0A10] rounded-full h-2 border border-[#08080f]">
                       <div
                         className="bg-gradient-to-r from-[#ff00c8] to-[#00eaff] h-full rounded-full transition-all"
                         style={{ width: `${uploadProgress}%` }}
@@ -321,7 +321,7 @@ export default function YouTubeManager() {
             <h3 className="text-xl font-bold text-[#ff00c8]">Video Library</h3>
             <div className="grid md:grid-cols-2 gap-6">
               {videos.map((video) => (
-                <Card key={video.id} className="bg-[#141423] border border-[#2b2b42] overflow-hidden hover:border-[#00eaff] transition-colors">
+                <Card key={video.id} className="bg-[#141423] border border-[#08080f] overflow-hidden hover:border-[#00eaff] transition-colors">
                   <img src={video.thumbnail} alt={video.title} className="w-full h-40 object-cover" />
                   <div className="p-4 space-y-3">
                     <div>
@@ -330,26 +330,26 @@ export default function YouTubeManager() {
                     </div>
 
                     <div className="grid grid-cols-3 gap-2 text-sm">
-                      <div className="bg-[#04040a] p-2 rounded text-center">
+                      <div className="bg-[#0A0A10] p-2 rounded text-center">
                         <p className="text-[#cccccc] text-xs">Views</p>
                         <p className="text-[#00eaff] font-bold">{video.views}</p>
                       </div>
-                      <div className="bg-[#04040a] p-2 rounded text-center">
+                      <div className="bg-[#0A0A10] p-2 rounded text-center">
                         <p className="text-[#cccccc] text-xs">Likes</p>
                         <p className="text-[#ff00c8] font-bold">{video.likes}</p>
                       </div>
-                      <div className="bg-[#04040a] p-2 rounded text-center">
+                      <div className="bg-[#0A0A10] p-2 rounded text-center">
                         <p className="text-[#cccccc] text-xs">Comments</p>
                         <p className="text-[#d8ae55] font-bold">{video.comments}</p>
                       </div>
                     </div>
 
                     <div className="flex gap-2 pt-2">
-                      <Button size="sm" variant="outline" className="flex-1 text-[#00eaff] border-[#2b2b42]" onClick={() => handleShare(video.id)}>
+                      <Button size="sm" variant="outline" className="flex-1 text-[#00eaff] border-[#08080f]" onClick={() => handleShare(video.id)}>
                         <Share2 className="w-3 h-3 mr-1" />
                         Share
                       </Button>
-                      <Button size="sm" variant="outline" className="flex-1 text-[#cccccc] border-[#2b2b42]" onClick={() => handleDelete(video.id)}>
+                      <Button size="sm" variant="outline" className="flex-1 text-[#cccccc] border-[#08080f]" onClick={() => handleDelete(video.id)}>
                         <Trash2 className="w-3 h-3 mr-1" />
                         Delete
                       </Button>
@@ -363,18 +363,18 @@ export default function YouTubeManager() {
           {/* Analytics Tab */}
           <TabsContent value="analytics" className="space-y-6">
             <h3 className="text-xl font-bold text-[#ff00c8]">Channel Analytics</h3>
-            <Card className="bg-[#141423] border border-[#2b2b42] p-6">
+            <Card className="bg-[#141423] border border-[#08080f] p-6">
               <div className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <p className="text-[#cccccc] text-sm mb-2">Views Over Time</p>
-                    <div className="h-40 bg-[#04040a] rounded border border-[#2b2b42] flex items-center justify-center">
+                    <div className="h-40 bg-[#0A0A10] rounded border border-[#08080f] flex items-center justify-center">
                       <p className="text-[#cccccc]">Chart placeholder</p>
                     </div>
                   </div>
                   <div>
                     <p className="text-[#cccccc] text-sm mb-2">Engagement Rate</p>
-                    <div className="h-40 bg-[#04040a] rounded border border-[#2b2b42] flex items-center justify-center">
+                    <div className="h-40 bg-[#0A0A10] rounded border border-[#08080f] flex items-center justify-center">
                       <p className="text-[#cccccc]">Chart placeholder</p>
                     </div>
                   </div>
@@ -384,7 +384,7 @@ export default function YouTubeManager() {
                   <p className="text-[#cccccc] text-sm mb-2">Top Videos</p>
                   <div className="space-y-2">
                     {videos.filter(v => v.status === "published").map((video) => (
-                      <div key={video.id} className="flex justify-between items-center p-3 bg-[#04040a] rounded border border-[#2b2b42]">
+                      <div key={video.id} className="flex justify-between items-center p-3 bg-[#0A0A10] rounded border border-[#08080f]">
                         <div className="flex-1">
                           <p className="text-[#00eaff] font-bold text-sm">{video.title}</p>
                         </div>
@@ -403,21 +403,21 @@ export default function YouTubeManager() {
           {/* Settings Tab */}
           <TabsContent value="settings" className="space-y-6">
             <h3 className="text-xl font-bold text-[#ff00c8]">YouTube Settings</h3>
-            <Card className="bg-[#141423] border border-[#2b2b42] p-6">
+            <Card className="bg-[#141423] border border-[#08080f] p-6">
               <div className="space-y-6">
                 <div>
                   <label className="block text-[#00eaff] font-bold mb-2">Channel Name</label>
-                  <Input value="Anom Artsy" disabled className="bg-[#04040a] border border-[#2b2b42] text-[#00eaff]" />
+                  <Input value="Anom Artsy" disabled className="bg-[#0A0A10] border border-[#08080f] text-[#00eaff]" />
                 </div>
 
                 <div>
                   <label className="block text-[#00eaff] font-bold mb-2">Default Video Description</label>
-                  <textarea placeholder="Enter default description for all videos..." className="w-full bg-[#04040a] border border-[#2b2b42] text-[#00eaff] p-3 rounded min-h-24" />
+                  <textarea placeholder="Enter default description for all videos..." className="w-full bg-[#0A0A10] border border-[#08080f] text-[#00eaff] p-3 rounded min-h-24" />
                 </div>
 
                 <div>
                   <label className="block text-[#00eaff] font-bold mb-2">Default Tags</label>
-                  <Input placeholder="anom, artsy, neon..." className="bg-[#04040a] border border-[#2b2b42] text-[#00eaff]" />
+                  <Input placeholder="anom, artsy, neon..." className="bg-[#0A0A10] border border-[#08080f] text-[#00eaff]" />
                 </div>
 
                 <div>

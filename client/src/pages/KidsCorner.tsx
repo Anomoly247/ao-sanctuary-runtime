@@ -18,14 +18,14 @@ function VideoPlayer({ videoUrl, title, onClose }: { videoUrl: string; title: st
       <Card className="bg-[#141423] border border-[#ff00c8] w-full max-w-2xl">
         <div className="p-6">
           <h2 className="text-2xl font-bold text-[#ff00c8] mb-4">{title}</h2>
-          <div className="aspect-video bg-[#04040a] rounded-lg overflow-hidden mb-4 relative">
+          <div className="aspect-video bg-[#0A0A10] rounded-lg overflow-hidden mb-4 relative">
             {isLoading && (
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-[#00eaff]">Loading video...</div>
               </div>
             )}
             {hasError && (
-              <div className="absolute inset-0 flex items-center justify-center bg-[#04040a]">
+              <div className="absolute inset-0 flex items-center justify-center bg-[#0A0A10]">
                 <div className="text-center">
                   <p className="text-[#ff00c8] mb-2">Unable to load video</p>
                   <p className="text-[#cccccc] text-sm">Please try again later</p>
@@ -154,25 +154,25 @@ function OffGridGame({ onClose, onComplete }: { onClose: () => void; onComplete:
           <p className="text-[#cccccc] mb-4">Level {level} / 3</p>
 
           {/* Game Area */}
-          <div className="bg-[#04040a] rounded-lg p-6 mb-4 text-center">
+          <div className="bg-[#0A0A10] rounded-lg p-6 mb-4 text-center">
             <div className="text-6xl mb-4">🌲</div>
             <p className="text-[#00eaff] font-bold mb-4">Collect resources to survive!</p>
             <div className="grid grid-cols-3 gap-2 mb-4">
               <button
                 onClick={handleCollectResource}
-                className="p-4 bg-[#141423] border border-[#2b2b42] rounded hover:border-[#ff00c8] transition-colors text-2xl"
+                className="p-4 bg-[#141423] border border-[#08080f] rounded hover:border-[#ff00c8] transition-colors text-2xl"
               >
                 🌿
               </button>
               <button
                 onClick={handleCollectResource}
-                className="p-4 bg-[#141423] border border-[#2b2b42] rounded hover:border-[#ff00c8] transition-colors text-2xl"
+                className="p-4 bg-[#141423] border border-[#08080f] rounded hover:border-[#ff00c8] transition-colors text-2xl"
               >
                 💧
               </button>
               <button
                 onClick={handleCollectResource}
-                className="p-4 bg-[#141423] border border-[#2b2b42] rounded hover:border-[#ff00c8] transition-colors text-2xl"
+                className="p-4 bg-[#141423] border border-[#08080f] rounded hover:border-[#ff00c8] transition-colors text-2xl"
               >
                 🍄
               </button>
@@ -222,7 +222,7 @@ export default function KidsCorner() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-[#00eaff] text-xl">Loading Kids Corner...</div>
       </div>
     );
@@ -230,7 +230,7 @@ export default function KidsCorner() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-center">
           <p className="text-[#00eaff] text-xl mb-4">Please sign in to access Kids Corner</p>
           <Button className="btn-primary" onClick={() => navigate("/")}>
@@ -311,9 +311,9 @@ export default function KidsCorner() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#04040a] text-[#00eaff]">
+    <div className="min-h-screen bg-[#0A0A10] text-[#00eaff]">
       {/* Navigation */}
-      <nav className="border-b border-[#2b2b42] px-6 py-4 sticky top-0 bg-[#04040a]/95 backdrop-blur">
+      <nav className="border-b border-[#08080f] px-6 py-4 sticky top-0 bg-[#0A0A10]/95 backdrop-blur">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-4">
             <Button variant="ghost" onClick={() => navigate("/")} className="text-[#cccccc]">
@@ -330,7 +330,7 @@ export default function KidsCorner() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-6 py-12">
         <Tabs defaultValue="videos" className="w-full">
-          <TabsList className="bg-[#141423] border border-[#2b2b42] mb-8">
+          <TabsList className="bg-[#141423] border border-[#08080f] mb-8">
             <TabsTrigger value="videos" className="text-[#00eaff]">
               <Play className="w-4 h-4 mr-2" />
               Pixel & Dot Videos
@@ -354,9 +354,9 @@ export default function KidsCorner() {
                   return (
                     <Card
                       key={video.id}
-                      className="bg-[#141423] border border-[#2b2b42] p-6 hover:border-[#ff00c8] transition-colors"
+                      className="bg-[#141423] border border-[#08080f] p-6 hover:border-[#ff00c8] transition-colors"
                       style={{
-                        boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
+                        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
                       }}
                     >
                       <div className="flex items-start justify-between mb-4">
@@ -412,9 +412,9 @@ export default function KidsCorner() {
                 return (
                   <Card
                     key={activity.id}
-                    className="bg-[#141423] border border-[#2b2b42] p-6 hover:border-[#00eaff] transition-colors"
+                    className="bg-[#141423] border border-[#08080f] p-6 hover:border-[#00eaff] transition-colors"
                     style={{
-                      boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
+                      boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
                     }}
                   >
                     <div className="flex items-start justify-between mb-4">
@@ -469,7 +469,7 @@ export default function KidsCorner() {
 
         {/* Progress Summary */}
         {!contentLoading && (
-          <div className="mt-12 bg-[#141423] border border-[#2b2b42] rounded-lg p-6">
+          <div className="mt-12 bg-[#141423] border border-[#08080f] rounded-lg p-6">
             <h3 className="text-xl font-bold text-[#ff00c8] mb-4">Your Progress</h3>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="text-center">

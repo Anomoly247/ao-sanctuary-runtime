@@ -123,7 +123,7 @@ export default function CollaborationStation() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-[#00eaff] text-xl">Loading Collaboration Station...</div>
       </div>
     );
@@ -131,7 +131,7 @@ export default function CollaborationStation() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-center">
           <p className="text-[#00eaff] text-xl mb-4">Please sign in to join social good projects</p>
           <Button className="btn-primary" onClick={() => navigate("/")}>
@@ -173,9 +173,9 @@ export default function CollaborationStation() {
   };
 
   return (
-    <div className="min-h-screen bg-[#04040a] text-[#00eaff]">
+    <div className="min-h-screen bg-[#0A0A10] text-[#00eaff]">
       {/* Navigation */}
-      <nav className="border-b border-[#2b2b42] px-6 py-4 sticky top-0 bg-[#04040a]/95 backdrop-blur">
+      <nav className="border-b border-[#08080f] px-6 py-4 sticky top-0 bg-[#0A0A10]/95 backdrop-blur">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-4">
             <Button variant="ghost" onClick={() => navigate("/")} className="text-[#cccccc]">
@@ -192,7 +192,7 @@ export default function CollaborationStation() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-6 py-12">
         <Tabs defaultValue="discover" className="w-full">
-          <TabsList className="bg-[#141423] border border-[#2b2b42] mb-8">
+          <TabsList className="bg-[#141423] border border-[#08080f] mb-8">
             <TabsTrigger value="discover" className="text-[#00eaff]">
               <TrendingUp className="w-4 h-4 mr-2" />
               Discover Projects
@@ -220,10 +220,10 @@ export default function CollaborationStation() {
                   return (
                     <Card
                       key={project.id}
-                      className="bg-[#141423] border border-[#2b2b42] p-6 hover:border-[#ff00c8] transition-colors cursor-pointer"
+                      className="bg-[#141423] border border-[#08080f] p-6 hover:border-[#ff00c8] transition-colors cursor-pointer"
                       onClick={() => setSelectedProject(project.id)}
                       style={{
-                        boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
+                        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
                       }}
                     >
                       <div className="flex items-start justify-between mb-4">
@@ -283,7 +283,7 @@ export default function CollaborationStation() {
                     className="bg-[#141423] border border-[#00eaff] p-6 cursor-pointer hover:border-[#ff00c8] transition-colors"
                     onClick={() => setSelectedProject(project.id)}
                     style={{
-                      boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
+                      boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
                     }}
                   >
                     <h3 className="text-lg font-bold text-[#00eaff] mb-2">{project.title}</h3>
@@ -309,7 +309,7 @@ export default function CollaborationStation() {
 
           {/* Create Tab */}
           <TabsContent value="create">
-            <Card className="bg-[#141423] border border-[#2b2b42] p-8 max-w-2xl">
+            <Card className="bg-[#141423] border border-[#08080f] p-8 max-w-2xl">
               <h2 className="text-2xl font-bold text-[#ff00c8] mb-6">Create Social Good Project</h2>
 
               <div className="space-y-6">
@@ -319,7 +319,7 @@ export default function CollaborationStation() {
                     placeholder="e.g., Community Garden Initiative"
                     value={formData.title}
                     onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                    className="bg-[#04040a] border border-[#2b2b42] text-[#00eaff]"
+                    className="bg-[#0A0A10] border border-[#08080f] text-[#00eaff]"
                   />
                 </div>
 
@@ -329,7 +329,7 @@ export default function CollaborationStation() {
                     placeholder="Describe your project and its impact..."
                     value={formData.description}
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                    className="bg-[#04040a] border border-[#2b2b42] text-[#00eaff] min-h-24"
+                    className="bg-[#0A0A10] border border-[#08080f] text-[#00eaff] min-h-24"
                   />
                 </div>
 
@@ -338,7 +338,7 @@ export default function CollaborationStation() {
                   <select
                     value={formData.cause}
                     onChange={(e) => setFormData({ ...formData, cause: e.target.value })}
-                    className="w-full bg-[#04040a] border border-[#2b2b42] text-[#00eaff] p-2 rounded"
+                    className="w-full bg-[#0A0A10] border border-[#08080f] text-[#00eaff] p-2 rounded"
                   >
                     {CAUSES.map((cause) => (
                       <option key={cause} value={cause}>
@@ -355,7 +355,7 @@ export default function CollaborationStation() {
                     placeholder="10"
                     value={formData.coinRewardPerTask}
                     onChange={(e) => setFormData({ ...formData, coinRewardPerTask: e.target.value })}
-                    className="bg-[#04040a] border border-[#2b2b42] text-[#00eaff]"
+                    className="bg-[#0A0A10] border border-[#08080f] text-[#00eaff]"
                   />
                 </div>
 
@@ -400,7 +400,7 @@ export default function CollaborationStation() {
                     {projectTasks.map((task) => (
                       <div
                         key={task.id}
-                        className="bg-[#04040a] border border-[#2b2b42] p-3 rounded flex items-center justify-between"
+                        className="bg-[#0A0A10] border border-[#08080f] p-3 rounded flex items-center justify-between"
                       >
                         <div className="flex-1">
                           <p className="text-[#00eaff] font-bold">{task.title}</p>
@@ -425,7 +425,7 @@ export default function CollaborationStation() {
                       placeholder="Add new task..."
                       value={newTask}
                       onChange={(e) => setNewTask(e.target.value)}
-                      className="flex-1 bg-[#04040a] border border-[#2b2b42] text-[#00eaff] p-2 rounded"
+                      className="flex-1 bg-[#0A0A10] border border-[#08080f] text-[#00eaff] p-2 rounded"
                     />
                     <Button
                       className="btn-primary text-sm"
@@ -442,7 +442,7 @@ export default function CollaborationStation() {
                   <h3 className="text-lg font-bold text-[#00eaff] mb-4">Project Updates</h3>
                   <div className="space-y-3 mb-4 max-h-48 overflow-y-auto">
                     {projectUpdates.map((update) => (
-                      <div key={update.id} className="bg-[#04040a] border border-[#2b2b42] p-3 rounded">
+                      <div key={update.id} className="bg-[#0A0A10] border border-[#08080f] p-3 rounded">
                         <p className="text-[#00eaff] text-sm">{update.content}</p>
                         <p className="text-xs text-[#cccccc] mt-2">
                           {new Date(update.createdAt).toLocaleDateString()}
@@ -456,7 +456,7 @@ export default function CollaborationStation() {
                       placeholder="Share an update..."
                       value={newUpdate}
                       onChange={(e) => setNewUpdate(e.target.value)}
-                      className="flex-1 bg-[#04040a] border border-[#2b2b42] text-[#00eaff] p-2 rounded text-sm min-h-20"
+                      className="flex-1 bg-[#0A0A10] border border-[#08080f] text-[#00eaff] p-2 rounded text-sm min-h-20"
                     />
                     <Button
                       className="btn-primary text-sm"

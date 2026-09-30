@@ -14,7 +14,7 @@ export default function Wallet() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#04040a] text-white flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A10] text-white flex items-center justify-center">
         <div className="text-center">
           <p className="text-[#cccccc] mb-4">Sign in to view your Anom Coin wallet</p>
         </div>
@@ -26,7 +26,7 @@ export default function Wallet() {
   const transactions = historyData || [];
 
   return (
-    <div className="min-h-screen bg-[#04040a] text-white p-6">
+    <div className="min-h-screen bg-[#0A0A10] text-white p-6">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -57,7 +57,7 @@ export default function Wallet() {
             <Zap className="w-4 h-4 mr-2" />
             Earn Coins
           </Button>
-          <Button className="bg-[#00eaff] hover:bg-[#00eaff]/80 text-[#04040a] font-bold py-6">
+          <Button className="bg-[#00eaff] hover:bg-[#00eaff]/80 text-black font-bold py-6">
             <TrendingUp className="w-4 h-4 mr-2" />
             Spend Coins
           </Button>
@@ -78,7 +78,7 @@ export default function Wallet() {
             <div
               className="rounded-lg border-2 border-[#cccccc] p-8 text-center"
               style={{
-                boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
+                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
               }}
             >
               <p className="text-[#cccccc]">No transactions yet. Start earning Anom Coins!</p>
@@ -90,7 +90,7 @@ export default function Wallet() {
                   key={transaction.id}
                   className="rounded-lg border-2 border-[#cccccc] p-4 flex items-center justify-between hover:border-[#ff00c8] transition-colors"
                   style={{
-                    boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
+                    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
                   }}
                 >
                   <div className="flex items-center gap-4">
@@ -117,7 +117,7 @@ export default function Wallet() {
         </div>
 
         {/* Earning Guide */}
-        <div className="mt-12 rounded-lg border-2 border-[#d8ae55] p-6" style={{ boxShadow: "0 6px 18px rgba(15, 23, 42, 0.22)" }}>
+        <div className="mt-12 rounded-lg border-2 border-[#d8ae55] p-6" style={{ boxShadow: "0 6px 18px rgba(0, 0, 0, 0.45)" }}>
           <h3 className="text-xl font-bold text-[#d8ae55] mb-4">How to Earn Anom Coins</h3>
           <ul className="space-y-3 text-[#cccccc]">
             <li className="flex items-start gap-3">

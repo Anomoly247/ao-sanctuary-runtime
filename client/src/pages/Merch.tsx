@@ -51,13 +51,13 @@ export default function Merch() {
   const { data: designs = [] } = trpc.merch.getMyRequests.useQuery(undefined, { enabled: !!user });
 
   if (loading) {
-    return <div className="min-h-screen bg-[#04040a] flex items-center justify-center text-[#ff00c8]">Loading...</div>;
+    return <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center text-[#ff00c8]">Loading...</div>;
   }
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
-        <Card className="border-2 border-[#ff00c8] bg-[#04040a]/80 p-8">
+      <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
+        <Card className="border-2 border-[#ff00c8] bg-[#0A0A10]/80 p-8">
           <p className="text-[#ff00c8] mb-4">Please sign in to access the merch shop</p>
           <Button onClick={() => navigate("/")} className="bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black">
             Go to Home
@@ -166,7 +166,7 @@ export default function Merch() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#04040a] to-[#141423] p-4 md:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-[#0A0A10] to-[#141423] p-4 md:p-8">
       {/* Header */}
       <div className="max-w-7xl mx-auto mb-8">
         <div className="flex items-center justify-between mb-4">
@@ -209,7 +209,7 @@ export default function Merch() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {AVAILABLE_MERCH.map((item) => (
-              <Card key={item.id} className="border-2 border-[#ff00c8] bg-[#04040a]/80 p-6 hover:border-[#00eaff] transition-all">
+              <Card key={item.id} className="border-2 border-[#ff00c8] bg-[#0A0A10]/80 p-6 hover:border-[#00eaff] transition-all">
                 <div className="text-6xl mb-4">{item.image}</div>
                 <h3 className="text-xl font-bold text-[#ff00c8] mb-2">{item.name}</h3>
                 <p className="text-2xl font-bold text-[#00eaff] mb-4">${item.price}</p>
@@ -226,7 +226,7 @@ export default function Merch() {
       {activeTab === "cart" && (
         <div className="max-w-4xl mx-auto">
           {cart.length === 0 ? (
-            <Card className="border-2 border-[#00eaff] bg-[#04040a]/80 p-8 text-center">
+            <Card className="border-2 border-[#00eaff] bg-[#0A0A10]/80 p-8 text-center">
               <ShoppingCart className="w-16 h-16 text-[#00eaff] mx-auto mb-4 opacity-50" />
               <p className="text-[#00eaff] text-lg">Your cart is empty</p>
             </Card>
@@ -234,7 +234,7 @@ export default function Merch() {
             <>
               <div className="space-y-4 mb-8">
                 {cart.map((item) => (
-                  <Card key={item.id} className="border-2 border-[#ff00c8] bg-[#04040a]/80 p-4">
+                  <Card key={item.id} className="border-2 border-[#ff00c8] bg-[#0A0A10]/80 p-4">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-4">
                         <div className="text-4xl">{item.image}</div>
@@ -259,7 +259,7 @@ export default function Merch() {
               </div>
 
               {/* Checkout */}
-              <Card className="border-2 border-[#00eaff] bg-[#04040a]/80 p-6">
+              <Card className="border-2 border-[#00eaff] bg-[#0A0A10]/80 p-6">
                 <div className="mb-6">
                   <p className="text-[#00eaff] text-lg font-bold mb-2">Order Summary</p>
                   <div className="space-y-2 text-gray-300">
@@ -282,7 +282,7 @@ export default function Merch() {
                       Proceed to Checkout
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="bg-[#04040a] border-2 border-[#ff00c8]">
+                  <DialogContent className="bg-[#0A0A10] border-2 border-[#ff00c8]">
                     <DialogHeader>
                       <DialogTitle className="text-[#ff00c8]">Checkout</DialogTitle>
                     </DialogHeader>
@@ -325,7 +325,7 @@ export default function Merch() {
                   Submit Custom Design
                 </Button>
               </DialogTrigger>
-              <DialogContent className="bg-[#04040a] border-2 border-[#ff00c8]">
+              <DialogContent className="bg-[#0A0A10] border-2 border-[#ff00c8]">
                 <DialogHeader>
                   <DialogTitle className="text-[#ff00c8]">Submit Custom Merch Design</DialogTitle>
                   <DialogDescription className="text-gray-400">Tell us your idea and we'll create it for you</DialogDescription>
@@ -356,13 +356,13 @@ export default function Merch() {
           </div>
 
           {designs.length === 0 ? (
-            <Card className="border-2 border-[#00eaff] bg-[#04040a]/80 p-6 text-center">
+            <Card className="border-2 border-[#00eaff] bg-[#0A0A10]/80 p-6 text-center">
               <p className="text-[#00eaff]">No custom design requests yet</p>
             </Card>
           ) : (
             <div className="space-y-4">
               {designs.map((design: any) => (
-                <Card key={design.id} className="border-2 border-[#ff00c8] bg-[#04040a]/80 p-6">
+                <Card key={design.id} className="border-2 border-[#ff00c8] bg-[#0A0A10]/80 p-6">
                   <div className="flex items-start justify-between">
                     <div>
                       <h3 className="text-xl font-bold text-[#ff00c8] mb-2">{design.title}</h3>
@@ -384,13 +384,13 @@ export default function Merch() {
       {activeTab === "orders" && (
         <div className="max-w-4xl mx-auto">
           {orders.length === 0 ? (
-            <Card className="border-2 border-[#00eaff] bg-[#04040a]/80 p-6 text-center">
+            <Card className="border-2 border-[#00eaff] bg-[#0A0A10]/80 p-6 text-center">
               <p className="text-[#00eaff]">No orders yet</p>
             </Card>
           ) : (
             <div className="space-y-4">
               {orders.map((order: any) => (
-                <Card key={order.id} className="border-2 border-[#ff00c8] bg-[#04040a]/80 p-6">
+                <Card key={order.id} className="border-2 border-[#ff00c8] bg-[#0A0A10]/80 p-6">
                   <div className="flex items-start justify-between">
                     <div>
                       <h3 className="text-xl font-bold text-[#ff00c8] mb-2">Order #{order.id.slice(0, 8)}</h3>

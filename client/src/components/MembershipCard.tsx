@@ -56,7 +56,7 @@ export default function MembershipCard({
   const getBorderColor = () => {
     if (isCurrentTier) return "#ff00c8";
     if (featured) return getTierColor();
-    return "#2b2b42";
+    return "#08080f";
   };
 
   return (
@@ -114,7 +114,7 @@ export default function MembershipCard({
       {isCurrentTier ? (
         <Button
           disabled
-          className="w-full bg-[#2b2b42] text-[#cccccc] font-bold"
+          className="w-full bg-[#08080f] text-[#cccccc] font-bold"
         >
           Current Plan
         </Button>

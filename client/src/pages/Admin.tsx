@@ -51,7 +51,7 @@ export default function Admin() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-[#00eaff] text-xl">Loading Admin Dashboard...</div>
       </div>
     );
@@ -59,7 +59,7 @@ export default function Admin() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-center">
           <p className="text-[#00eaff] text-xl mb-4">Please sign in</p>
           <Button className="btn-primary" onClick={() => navigate("/")}>
@@ -72,7 +72,7 @@ export default function Admin() {
 
   if (user?.role !== "admin") {
     return (
-      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-center">
           <AlertCircle className="w-16 h-16 mx-auto mb-4 text-[#ff00c8]" />
           <p className="text-[#00eaff] text-xl mb-4">Admin access required</p>
@@ -85,9 +85,9 @@ export default function Admin() {
   }
 
   return (
-    <div className="min-h-screen bg-[#04040a] text-[#00eaff]">
+    <div className="min-h-screen bg-[#0A0A10] text-[#00eaff]">
       {/* Navigation */}
-      <nav className="border-b border-[#2b2b42] px-6 py-4 sticky top-0 bg-[#04040a]/95 backdrop-blur z-10">
+      <nav className="border-b border-[#08080f] px-6 py-4 sticky top-0 bg-[#0A0A10]/95 backdrop-blur z-10">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-4">
             <Button variant="ghost" onClick={() => navigate("/")} className="text-[#cccccc]">
@@ -95,19 +95,19 @@ export default function Admin() {
             </Button>
             <h1 className="text-2xl font-bold text-accent">Admin Dashboard</h1>
           </div>
-          <Button variant="outline" className="text-[#ff00c8] border-[#2b2b42] gap-2" onClick={() => navigate("/business-control")}>
+          <Button variant="outline" className="text-[#ff00c8] border-[#08080f] gap-2" onClick={() => navigate("/business-control")}>
             <Shield className="w-4 h-4" />
             Business Control
           </Button>
-          <Button variant="outline" className="text-[#ff00c8] border-[#2b2b42] gap-2" onClick={() => navigate("/youtube-manager")}>
+          <Button variant="outline" className="text-[#ff00c8] border-[#08080f] gap-2" onClick={() => navigate("/youtube-manager")}>
             <Play className="w-4 h-4" />
             YouTube
           </Button>
-          <Button variant="outline" className="text-[#ff00c8] border-[#2b2b42] gap-2" onClick={() => navigate("/payment-merch")}>
+          <Button variant="outline" className="text-[#ff00c8] border-[#08080f] gap-2" onClick={() => navigate("/payment-merch")}>
             <CreditCard className="w-4 h-4" />
             Payments
           </Button>
-          <Button variant="outline" className="text-[#ff00c8] border-[#2b2b42] gap-2" onClick={() => navigate("/owner-settings")}>
+          <Button variant="outline" className="text-[#ff00c8] border-[#08080f] gap-2" onClick={() => navigate("/owner-settings")}>
             <Settings className="w-4 h-4" />
             Settings
           </Button>
@@ -119,9 +119,9 @@ export default function Admin() {
         {/* Stats Grid */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           <Card
-            className="bg-[#141423] border border-[#2b2b42] p-6"
+            className="bg-[#141423] border border-[#08080f] p-6"
             style={{
-              boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
+              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
             }}
           >
             <div className="flex items-center justify-between">
@@ -134,9 +134,9 @@ export default function Admin() {
           </Card>
 
           <Card
-            className="bg-[#141423] border border-[#2b2b42] p-6"
+            className="bg-[#141423] border border-[#08080f] p-6"
             style={{
-              boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
+              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
             }}
           >
             <div className="flex items-center justify-between">
@@ -150,9 +150,9 @@ export default function Admin() {
           </Card>
 
           <Card
-            className="bg-[#141423] border border-[#2b2b42] p-6"
+            className="bg-[#141423] border border-[#08080f] p-6"
             style={{
-              boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
+              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
             }}
           >
             <div className="flex items-center justify-between">
@@ -168,7 +168,7 @@ export default function Admin() {
 
         {/* Tabs */}
         <Tabs defaultValue="merch" className="w-full">
-          <TabsList className="bg-[#141423] border border-[#2b2b42] mb-8">
+          <TabsList className="bg-[#141423] border border-[#08080f] mb-8">
             <TabsTrigger value="merch" className="text-[#00eaff]">
               <ShoppingBag className="w-4 h-4 mr-2" />
               Merch Requests
@@ -195,9 +195,9 @@ export default function Admin() {
               {(merchRequests || []).map((request: any) => (
                 <Card
                   key={request.id}
-                  className="bg-[#141423] border border-[#2b2b42] p-6"
+                  className="bg-[#141423] border border-[#08080f] p-6"
                   style={{
-                    boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
+                    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
                   }}
                 >
                   <div className="flex items-center justify-between">
@@ -218,7 +218,7 @@ export default function Admin() {
                           </Button>
                           <Button
                             variant="outline"
-                            className="text-[#ff00c8] border-[#2b2b42] text-sm"
+                            className="text-[#ff00c8] border-[#08080f] text-sm"
                             onClick={() => handleRejectMerch(request.id.toString())}
                             disabled={rejectMutation.isPending}
                           >
@@ -227,12 +227,12 @@ export default function Admin() {
                         </>
                       )}
                       {request.status === "approved" && (
-                        <span className="px-3 py-1 bg-[#04040a] text-[#00eaff] text-sm rounded">
+                        <span className="px-3 py-1 bg-[#0A0A10] text-[#00eaff] text-sm rounded">
                           ✓ Approved
                         </span>
                       )}
                       {request.status === "in_progress" && (
-                        <span className="px-3 py-1 bg-[#04040a] text-[#d8ae55] text-sm rounded">
+                        <span className="px-3 py-1 bg-[#0A0A10] text-[#d8ae55] text-sm rounded">
                           ⚙ In Progress
                         </span>
                       )}
@@ -247,9 +247,9 @@ export default function Admin() {
           <TabsContent value="users" className="space-y-6">
             <h3 className="text-xl font-bold text-[#ff00c8]">User Management</h3>
             <Card
-              className="bg-[#141423] border border-[#2b2b42] p-6"
+              className="bg-[#141423] border border-[#08080f] p-6"
               style={{
-                boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
+                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
               }}
             >
               <p className="text-[#cccccc]">User management features coming soon...</p>
@@ -261,9 +261,9 @@ export default function Admin() {
             <h3 className="text-xl font-bold text-[#ff00c8]">Platform Analytics</h3>
             <div className="grid md:grid-cols-2 gap-6">
               <Card
-                className="bg-[#141423] border border-[#2b2b42] p-6"
+                className="bg-[#141423] border border-[#08080f] p-6"
                 style={{
-                  boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
+                  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
                 }}
               >
                 <h4 className="text-lg font-bold text-[#00eaff] mb-4">Merch Requests</h4>
@@ -271,9 +271,9 @@ export default function Admin() {
               </Card>
 
               <Card
-                className="bg-[#141423] border border-[#2b2b42] p-6"
+                className="bg-[#141423] border border-[#08080f] p-6"
                 style={{
-                  boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
+                  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
                 }}
               >
                 <h4 className="text-lg font-bold text-[#00eaff] mb-4">Pending Requests</h4>

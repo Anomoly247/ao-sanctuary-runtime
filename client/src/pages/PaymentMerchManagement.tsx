@@ -53,7 +53,7 @@ export default function PaymentMerchManagement() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-[#00eaff] text-xl">Loading Payment Dashboard...</div>
       </div>
     );
@@ -61,7 +61,7 @@ export default function PaymentMerchManagement() {
 
   if (!isAuthenticated || user?.role !== "admin") {
     return (
-      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-center">
           <AlertCircle className="w-16 h-16 mx-auto mb-4 text-[#ff00c8]" />
           <p className="text-[#00eaff] text-xl mb-4">Admin access required</p>
@@ -74,9 +74,9 @@ export default function PaymentMerchManagement() {
   }
 
   return (
-    <div className="min-h-screen bg-[#04040a] text-[#00eaff]">
+    <div className="min-h-screen bg-[#0A0A10] text-[#00eaff]">
       {/* Navigation */}
-      <nav className="border-b border-[#2b2b42] px-6 py-4 sticky top-0 bg-[#04040a]/95 backdrop-blur z-10">
+      <nav className="border-b border-[#08080f] px-6 py-4 sticky top-0 bg-[#0A0A10]/95 backdrop-blur z-10">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-4">
             <Button variant="ghost" onClick={() => navigate("/")} className="text-[#cccccc]">
@@ -84,7 +84,7 @@ export default function PaymentMerchManagement() {
             </Button>
             <h1 className="text-2xl font-bold text-accent">Payment & Merch Management</h1>
           </div>
-          <Button variant="outline" className="text-[#ff00c8] border-[#2b2b42] gap-2" onClick={handleExportData}>
+          <Button variant="outline" className="text-[#ff00c8] border-[#08080f] gap-2" onClick={handleExportData}>
             <Download className="w-4 h-4" />
             Export Data
           </Button>
@@ -95,7 +95,7 @@ export default function PaymentMerchManagement() {
       <main className="max-w-7xl mx-auto px-6 py-12">
         {/* Revenue Overview */}
         <div className="grid md:grid-cols-4 gap-6 mb-12">
-          <Card className="bg-[#141423] border border-[#2b2b42] p-6" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+          <Card className="bg-[#141423] border border-[#08080f] p-6" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[#cccccc] text-sm">VIP Revenue</p>
@@ -105,7 +105,7 @@ export default function PaymentMerchManagement() {
             </div>
           </Card>
 
-          <Card className="bg-[#141423] border border-[#2b2b42] p-6" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+          <Card className="bg-[#141423] border border-[#08080f] p-6" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[#cccccc] text-sm">Merch Sales</p>
@@ -115,7 +115,7 @@ export default function PaymentMerchManagement() {
             </div>
           </Card>
 
-          <Card className="bg-[#141423] border border-[#2b2b42] p-6" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+          <Card className="bg-[#141423] border border-[#08080f] p-6" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[#cccccc] text-sm">Total Revenue</p>
@@ -125,7 +125,7 @@ export default function PaymentMerchManagement() {
             </div>
           </Card>
 
-          <Card className="bg-[#141423] border border-[#2b2b42] p-6" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+          <Card className="bg-[#141423] border border-[#08080f] p-6" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[#cccccc] text-sm">Active VIP Members</p>
@@ -138,7 +138,7 @@ export default function PaymentMerchManagement() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="bg-[#141423] border border-[#2b2b42] mb-8">
+          <TabsList className="bg-[#141423] border border-[#08080f] mb-8">
             <TabsTrigger value="overview" className="text-[#00eaff]">
               <CreditCard className="w-4 h-4 mr-2" />
               Overview
@@ -165,11 +165,11 @@ export default function PaymentMerchManagement() {
           <TabsContent value="overview" className="space-y-6">
             <h3 className="text-xl font-bold text-[#ff00c8]">Dashboard Overview</h3>
             <div className="grid md:grid-cols-2 gap-6">
-              <Card className="bg-[#141423] border border-[#2b2b42] p-6">
+              <Card className="bg-[#141423] border border-[#08080f] p-6">
                 <h4 className="text-lg font-bold text-[#00eaff] mb-4">Recent VIP Signups</h4>
                 <div className="space-y-3">
                   {vipTransactions.slice(0, 3).map((tx) => (
-                    <div key={tx.id} className="flex justify-between items-center pb-3 border-b border-[#2b2b42]">
+                    <div key={tx.id} className="flex justify-between items-center pb-3 border-b border-[#08080f]">
                       <div>
                         <p className="text-[#00eaff] font-bold">{tx.user}</p>
                         <p className="text-xs text-[#cccccc]">{tx.tier}</p>
@@ -180,11 +180,11 @@ export default function PaymentMerchManagement() {
                 </div>
               </Card>
 
-              <Card className="bg-[#141423] border border-[#2b2b42] p-6">
+              <Card className="bg-[#141423] border border-[#08080f] p-6">
                 <h4 className="text-lg font-bold text-[#00eaff] mb-4">Pending Merch Orders</h4>
                 <div className="space-y-3">
                   {merchOrders.filter(o => o.status === "pending_approval").map((order) => (
-                    <div key={order.id} className="flex justify-between items-center pb-3 border-b border-[#2b2b42]">
+                    <div key={order.id} className="flex justify-between items-center pb-3 border-b border-[#08080f]">
                       <div>
                         <p className="text-[#00eaff] font-bold">{order.design}</p>
                         <p className="text-xs text-[#cccccc]">by {order.user}</p>
@@ -202,7 +202,7 @@ export default function PaymentMerchManagement() {
             <h3 className="text-xl font-bold text-[#ff00c8]">Payment Methods</h3>
             <div className="space-y-4">
               {paymentMethods.map((method) => (
-                <Card key={method.id} className="bg-[#141423] border border-[#2b2b42] p-6">
+                <Card key={method.id} className="bg-[#141423] border border-[#08080f] p-6">
                   <div className="flex items-center justify-between">
                     <div className="flex-1">
                       <h4 className="text-lg font-bold text-[#00eaff]">{method.type}</h4>
@@ -238,7 +238,7 @@ export default function PaymentMerchManagement() {
             <h3 className="text-xl font-bold text-[#ff00c8]">VIP Subscription Transactions</h3>
             <div className="space-y-4">
               {vipTransactions.map((tx) => (
-                <Card key={tx.id} className="bg-[#141423] border border-[#2b2b42] p-6">
+                <Card key={tx.id} className="bg-[#141423] border border-[#08080f] p-6">
                   <div className="flex items-center justify-between">
                     <div>
                       <h4 className="text-lg font-bold text-[#00eaff]">{tx.user}</h4>
@@ -276,7 +276,7 @@ export default function PaymentMerchManagement() {
             <h3 className="text-xl font-bold text-[#ff00c8]">Merch Orders</h3>
             <div className="space-y-4">
               {merchOrders.map((order) => (
-                <Card key={order.id} className="bg-[#141423] border border-[#2b2b42] p-6">
+                <Card key={order.id} className="bg-[#141423] border border-[#08080f] p-6">
                   <div className="flex items-center justify-between">
                     <div className="flex-1">
                       <h4 className="text-lg font-bold text-[#00eaff]">{order.design}</h4>
@@ -304,7 +304,7 @@ export default function PaymentMerchManagement() {
                         <Button className="btn-secondary text-sm" onClick={() => handleApproveMerch(order.id)}>
                           Approve
                         </Button>
-                        <Button variant="outline" className="text-[#ff00c8] border-[#2b2b42] text-sm" onClick={() => handleRejectMerch(order.id)}>
+                        <Button variant="outline" className="text-[#ff00c8] border-[#08080f] text-sm" onClick={() => handleRejectMerch(order.id)}>
                           Reject
                         </Button>
                       </div>
@@ -318,26 +318,26 @@ export default function PaymentMerchManagement() {
           {/* Settings Tab */}
           <TabsContent value="settings" className="space-y-6">
             <h3 className="text-xl font-bold text-[#ff00c8]">Payment Settings</h3>
-            <Card className="bg-[#141423] border border-[#2b2b42] p-6">
+            <Card className="bg-[#141423] border border-[#08080f] p-6">
               <div className="space-y-6">
                 <div>
                   <label className="block text-[#00eaff] font-bold mb-2">Stripe API Key</label>
-                  <Input placeholder="sk_live_..." className="bg-[#04040a] border border-[#2b2b42] text-[#00eaff]" />
+                  <Input placeholder="sk_live_..." className="bg-[#0A0A10] border border-[#08080f] text-[#00eaff]" />
                 </div>
 
                 <div>
                   <label className="block text-[#00eaff] font-bold mb-2">PayPal Business Email</label>
-                  <Input placeholder="business@paypal.com" className="bg-[#04040a] border border-[#2b2b42] text-[#00eaff]" />
+                  <Input placeholder="business@paypal.com" className="bg-[#0A0A10] border border-[#08080f] text-[#00eaff]" />
                 </div>
 
                 <div>
                   <label className="block text-[#00eaff] font-bold mb-2">Cash App Business Tag</label>
-                  <Input placeholder="$YourBusinessTag" className="bg-[#04040a] border border-[#2b2b42] text-[#00eaff]" />
+                  <Input placeholder="$YourBusinessTag" className="bg-[#0A0A10] border border-[#08080f] text-[#00eaff]" />
                 </div>
 
                 <div>
                   <label className="block text-[#00eaff] font-bold mb-2">Cash Payment Instructions</label>
-                  <textarea placeholder="Enter payment instructions for cash payments..." className="w-full bg-[#04040a] border border-[#2b2b42] text-[#00eaff] p-3 rounded min-h-24" />
+                  <textarea placeholder="Enter payment instructions for cash payments..." className="w-full bg-[#0A0A10] border border-[#08080f] text-[#00eaff] p-3 rounded min-h-24" />
                 </div>
 
                 <Button className="w-full btn-primary">Save Settings</Button>

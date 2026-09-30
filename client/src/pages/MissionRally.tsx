@@ -70,7 +70,7 @@ export default function MissionRally() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#04040a] text-[#00eaff]">
+    <div className="min-h-screen bg-[#0A0A10] text-[#00eaff]">
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 px-6">
         <div className="absolute inset-0 bg-gradient-to-br from-[#ff00c8]/10 to-[#00eaff]/10 pointer-events-none" />
@@ -91,7 +91,7 @@ export default function MissionRally() {
           <Card
             className="bg-[#141423] border-2 border-[#ff00c8] p-12 mb-12 text-center"
             style={{
-              boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)',
+              boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)',
             }}
           >
             <h2 className="text-3xl font-bold text-[#ff00c8] mb-6">Our Mission</h2>
@@ -119,7 +119,7 @@ export default function MissionRally() {
       </section>
 
       {/* Impact Metrics */}
-      <section className="py-16 px-6 bg-[#04040a]/50">
+      <section className="py-16 px-6 bg-[#0A0A10]/50">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12 text-info">
             Real Impact. Real Numbers.
@@ -130,7 +130,7 @@ export default function MissionRally() {
               return (
                 <Card
                   key={idx}
-                  className="bg-[#141423] border border-[#2b2b42] p-6 text-center hover:scale-105 transition-transform"
+                  className="bg-[#141423] border border-[#08080f] p-6 text-center hover:scale-105 transition-transform"
                   style={{
                     boxShadow: `0 0 20px ${metric.color}40, 0 0 40px ${metric.color}20`,
                   }}
@@ -188,7 +188,7 @@ export default function MissionRally() {
             ].map((value, idx) => (
               <Card
                 key={idx}
-                className="bg-[#141423] border border-[#2b2b42] p-6 hover:border-[#00eaff] transition-colors"
+                className="bg-[#141423] border border-[#08080f] p-6 hover:border-[#00eaff] transition-colors"
               >
                 <div className="text-4xl mb-4">{value.icon}</div>
                 <h3 className="text-xl font-bold text-[#ff00c8] mb-2">{value.title}</h3>
@@ -200,7 +200,7 @@ export default function MissionRally() {
       </section>
 
       {/* Community Stories */}
-      <section className="py-16 px-6 bg-[#04040a]/50">
+      <section className="py-16 px-6 bg-[#0A0A10]/50">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12 text-info">
             Community Stories
@@ -209,7 +209,7 @@ export default function MissionRally() {
             {stories.map((story) => (
               <Card
                 key={story.id}
-                className="bg-[#141423] border border-[#2b2b42] p-6 hover:border-[#ff00c8] transition-colors"
+                className="bg-[#141423] border border-[#08080f] p-6 hover:border-[#ff00c8] transition-colors"
               >
                 <div className="flex items-start gap-4">
                   <div className="text-4xl">{story.avatar}</div>
@@ -234,11 +234,11 @@ export default function MissionRally() {
           <h2 className="text-3xl font-bold text-center mb-12 text-accent">
             Impact Leaderboard
           </h2>
-          <Card className="bg-[#141423] border border-[#2b2b42] overflow-hidden">
+          <Card className="bg-[#141423] border border-[#08080f] overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-[#2b2b42] bg-[#04040a]">
+                  <tr className="border-b border-[#08080f] bg-[#0A0A10]">
                     <th className="px-6 py-4 text-left text-[#cccccc]">Rank</th>
                     <th className="px-6 py-4 text-left text-[#cccccc]">Member</th>
                     <th className="px-6 py-4 text-left text-[#cccccc]">Impact Score</th>
@@ -248,7 +248,7 @@ export default function MissionRally() {
                   {leaderboard.map((entry) => (
                     <tr
                       key={entry.rank}
-                      className="border-b border-[#2b2b42] hover:bg-[#04040a] transition-colors"
+                      className="border-b border-[#08080f] hover:bg-[#0A0A10] transition-colors"
                     >
                       <td className="px-6 py-4 text-[#ff00c8] font-bold">
                         {entry.badge} #{entry.rank}
@@ -256,7 +256,7 @@ export default function MissionRally() {
                       <td className="px-6 py-4 text-[#00eaff] font-bold">{entry.name}</td>
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-2">
-                          <div className="w-32 bg-[#04040a] rounded-full h-2">
+                          <div className="w-32 bg-[#0A0A10] rounded-full h-2">
                             <div
                               className="bg-gradient-to-r from-[#ff00c8] to-[#00eaff] h-2 rounded-full"
                               style={{ width: `${(entry.impact / 2500) * 100}%` }}

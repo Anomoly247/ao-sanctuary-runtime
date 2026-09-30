@@ -41,8 +41,8 @@ export default function OwnerControlPanel() {
   // Check if user is admin/owner
   if (user?.role !== 'admin') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[#04040a] to-[#141423] p-4 flex items-center justify-center">
-        <Card className="border-2 border-[#ff00c8] bg-[#04040a]/80 p-8 max-w-md">
+      <div className="min-h-screen bg-gradient-to-br from-[#0A0A10] to-[#141423] p-4 flex items-center justify-center">
+        <Card className="border-2 border-[#ff00c8] bg-[#0A0A10]/80 p-8 max-w-md">
           <div className="flex items-center justify-center mb-4">
             <Lock className="w-12 h-12 text-[#ff00c8]" />
           </div>
@@ -100,7 +100,7 @@ export default function OwnerControlPanel() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#04040a] to-[#141423] p-4 md:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-[#0A0A10] to-[#141423] p-4 md:p-8">
       {/* Header */}
       <div className="mb-8 flex items-center justify-between">
         <div>
@@ -144,22 +144,22 @@ export default function OwnerControlPanel() {
       {activeTab === 'dashboard' && (
         <div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            <Card className="border-2 border-[#ff00c8] bg-[#04040a]/80 p-6">
+            <Card className="border-2 border-[#ff00c8] bg-[#0A0A10]/80 p-6">
               <div className="text-gray-400 text-sm mb-2">Total Users</div>
               <div className="text-3xl font-bold text-[#ff00c8]">{stats?.totalUsers || 0}</div>
               <div className="text-green-400 text-xs mt-2">↑ {stats?.userGrowth || 0}% this month</div>
             </Card>
-            <Card className="border-2 border-[#00eaff] bg-[#04040a]/80 p-6">
+            <Card className="border-2 border-[#00eaff] bg-[#0A0A10]/80 p-6">
               <div className="text-gray-400 text-sm mb-2">Active Members</div>
               <div className="text-3xl font-bold text-[#00eaff]">{stats?.activeMembers || 0}</div>
               <div className="text-green-400 text-xs mt-2">↑ {stats?.activeGrowth || 0}% this week</div>
             </Card>
-            <Card className="border-2 border-[#a855f7] bg-[#04040a]/80 p-6">
+            <Card className="border-2 border-[#a855f7] bg-[#0A0A10]/80 p-6">
               <div className="text-gray-400 text-sm mb-2">Revenue (This Month)</div>
               <div className="text-3xl font-bold text-[#a855f7]">${stats?.monthlyRevenue || 0}</div>
               <div className="text-green-400 text-xs mt-2">↑ {stats?.revenueGrowth || 0}% vs last month</div>
             </Card>
-            <Card className="border-2 border-[#fbbf24] bg-[#04040a]/80 p-6">
+            <Card className="border-2 border-[#fbbf24] bg-[#0A0A10]/80 p-6">
               <div className="text-gray-400 text-sm mb-2">Coins Distributed</div>
               <div className="text-3xl font-bold text-[#fbbf24]">{stats?.coinsDistributed || 0}</div>
               <div className="text-green-400 text-xs mt-2">↑ {stats?.coinsGrowth || 0}% this week</div>
@@ -168,15 +168,15 @@ export default function OwnerControlPanel() {
 
           {/* Additional Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Card className="border-2 border-[#00ff88] bg-[#04040a]/80 p-6">
+            <Card className="border-2 border-[#00ff88] bg-[#0A0A10]/80 p-6">
               <div className="text-gray-400 text-sm mb-2">Total Lounges</div>
               <div className="text-3xl font-bold text-[#00ff88]">{stats?.totalLounges || 0}</div>
             </Card>
-            <Card className="border-2 border-[#ff6b9d] bg-[#04040a]/80 p-6">
+            <Card className="border-2 border-[#ff6b9d] bg-[#0A0A10]/80 p-6">
               <div className="text-gray-400 text-sm mb-2">Merch Orders</div>
               <div className="text-3xl font-bold text-[#ff6b9d]">{stats?.totalOrders || 0}</div>
             </Card>
-            <Card className="border-2 border-[#00d4ff] bg-[#04040a]/80 p-6">
+            <Card className="border-2 border-[#00d4ff] bg-[#0A0A10]/80 p-6">
               <div className="text-gray-400 text-sm mb-2">Achievements Unlocked</div>
               <div className="text-3xl font-bold text-[#00d4ff]">{stats?.achievementsUnlocked || 0}</div>
             </Card>
@@ -188,11 +188,11 @@ export default function OwnerControlPanel() {
       {activeTab === 'users' && (
         <div>
           <h2 className="text-2xl font-bold text-[#ff00c8] mb-4">Manage Users</h2>
-          <Card className="border-2 border-[#00eaff] bg-[#04040a]/80 p-6">
+          <Card className="border-2 border-[#00eaff] bg-[#0A0A10]/80 p-6">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-[#2b2b42]">
+                  <tr className="border-b border-[#08080f]">
                     <th className="text-left py-2 text-[#00eaff]">User ID</th>
                     <th className="text-left py-2 text-[#00eaff]">Name</th>
                     <th className="text-left py-2 text-[#00eaff]">Email</th>
@@ -202,7 +202,7 @@ export default function OwnerControlPanel() {
                 </thead>
                 <tbody>
                   {users.map((u: any) => (
-                    <tr key={u.id} className="border-b border-[#2b2b42] hover:bg-[#141423]">
+                    <tr key={u.id} className="border-b border-[#08080f] hover:bg-[#141423]">
                       <td className="py-2 text-gray-300">{u.id}</td>
                       <td className="py-2 text-gray-300">{u.name}</td>
                       <td className="py-2 text-gray-300">{u.email}</td>
@@ -223,7 +223,7 @@ export default function OwnerControlPanel() {
           <h2 className="text-2xl font-bold text-[#ff00c8] mb-4">Community Highlights & Events</h2>
           
           {/* Create Event Form */}
-          <Card className="border-2 border-[#ff00c8] bg-[#04040a]/80 p-6 mb-6">
+          <Card className="border-2 border-[#ff00c8] bg-[#0A0A10]/80 p-6 mb-6">
             <h3 className="text-xl font-bold text-[#ff00c8] mb-4 flex items-center gap-2">
               <Plus className="w-5 h-5" />
               Create New Event
@@ -282,7 +282,7 @@ export default function OwnerControlPanel() {
             <h3 className="text-lg font-bold text-[#00eaff]">Upcoming Events</h3>
             {events && events.length > 0 ? (
               events.map((event: any) => (
-                <Card key={event.id} className="border-2 border-[#00eaff] bg-[#04040a]/80 p-6">
+                <Card key={event.id} className="border-2 border-[#00eaff] bg-[#0A0A10]/80 p-6">
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <h4 className="text-xl font-bold text-[#ff00c8] mb-2">{event.title}</h4>
@@ -300,7 +300,7 @@ export default function OwnerControlPanel() {
                 </Card>
               ))
             ) : (
-              <Card className="border-2 border-[#00eaff] bg-[#04040a]/80 p-6 text-center">
+              <Card className="border-2 border-[#00eaff] bg-[#0A0A10]/80 p-6 text-center">
                 <p className="text-gray-400">No events yet. Create one to get started!</p>
               </Card>
             )}
@@ -312,7 +312,7 @@ export default function OwnerControlPanel() {
       {activeTab === 'settings' && (
         <div>
           <h2 className="text-2xl font-bold text-[#ff00c8] mb-4">Platform Settings</h2>
-          <Card className="border-2 border-[#00eaff] bg-[#04040a]/80 p-6">
+          <Card className="border-2 border-[#00eaff] bg-[#0A0A10]/80 p-6">
             <div className="space-y-6">
               <div>
                 <label className="block text-sm font-bold text-gray-300 mb-2">Site Name</label>
@@ -387,7 +387,7 @@ export default function OwnerControlPanel() {
               { name: 'Collaborations', status: 'active', icon: '🤝' },
               { name: 'Achievements', status: 'active', icon: '🏆' },
             ].map((feature) => (
-              <Card key={feature.name} className="border-2 border-[#00eaff] bg-[#04040a]/80 p-4">
+              <Card key={feature.name} className="border-2 border-[#00eaff] bg-[#0A0A10]/80 p-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <span className="text-2xl">{feature.icon}</span>

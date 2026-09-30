@@ -115,7 +115,7 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
 
   if (loading || loungeLoading) {
     return (
-      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-[#00eaff] text-xl">Loading lounge...</div>
       </div>
     );
@@ -123,7 +123,7 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-center">
           <p className="text-[#00eaff] text-xl mb-4">Please sign in to access this lounge</p>
           <Button className="btn-primary" onClick={() => navigate("/")}>
@@ -136,7 +136,7 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
 
   if (!lounge) {
     return (
-      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-center">
           <p className="text-[#00eaff] text-xl mb-4">Lounge not found</p>
           <Button className="btn-primary" onClick={() => navigate("/lounges")}>
@@ -150,7 +150,7 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
   const themeColor = lounge.neonTheme === "cyan" ? "#00eaff" : lounge.neonTheme === "purple" ? "#d8ae55" : "#ff00c8";
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#04040a] to-[#141423]">
+    <div className="min-h-screen bg-gradient-to-br from-[#0A0A10] to-[#141423]">
       {/* Header */}
       <div className="bg-[#141423] border-b-2" style={{ borderColor: themeColor }} >
         <div className="max-w-7xl mx-auto flex justify-between items-center p-4">
@@ -160,7 +160,7 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
             </h1>
             <p className="text-[#00eaff]">{lounge.type} Lounge</p>
           </div>
-          <Button onClick={() => navigate("/lounges")} className="bg-[#2b2b42] hover:bg-[#3a3f4e] text-[#00eaff]">
+          <Button onClick={() => navigate("/lounges")} className="bg-[#08080f] hover:bg-[#3a3f4e] text-[#00eaff]">
             Back to Lounges
           </Button>
         </div>
@@ -179,7 +179,7 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
                   </div>
                 ) : (
                   messages.map((msg, idx) => (
-                    <div key={idx} className="bg-[#04040a] rounded-lg p-3 border border-[#00eaff]/20">
+                    <div key={idx} className="bg-[#0A0A10] rounded-lg p-3 border border-[#00eaff]/20">
                       <p className="text-[#00eaff] font-bold text-sm">User</p>
                       <p className="text-gray-300 text-sm">{msg.content}</p>
                       <p className="text-[#cccccc] text-xs mt-1">{new Date(msg.createdAt).toLocaleTimeString()}</p>
@@ -222,7 +222,7 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
             </h3>
             <div className="space-y-2 max-h-48 overflow-y-auto">
               {members.map((member, idx) => (
-                <div key={idx} className="text-sm text-gray-300 p-2 bg-[#04040a] rounded">
+                <div key={idx} className="text-sm text-gray-300 p-2 bg-[#0A0A10] rounded">
                   {member.user?.name || 'Member'}
                   {member.member?.role === 'owner' && <span className="text-[#ff00c8] ml-2 text-xs">(Owner)</span>}
                 </div>
@@ -256,7 +256,7 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
                       <Input
                         value={customizeData.name}
                         onChange={(e) => setCustomizeData({ ...customizeData, name: e.target.value })}
-                        className="bg-[#04040a] border-[#2b2b42] text-[#00eaff] placeholder-[#cccccc]"
+                        className="bg-[#0A0A10] border-[#08080f] text-[#00eaff] placeholder-[#cccccc]"
                       />
                     </div>
 
@@ -266,17 +266,17 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
                         value={customizeData.description}
                         onChange={(e) => setCustomizeData({ ...customizeData, description: e.target.value })}
                         placeholder="What's this lounge about?"
-                        className="bg-[#04040a] border-[#2b2b42] text-[#00eaff] placeholder-[#cccccc]"
+                        className="bg-[#0A0A10] border-[#08080f] text-[#00eaff] placeholder-[#cccccc]"
                       />
                     </div>
 
                     <div>
                       <label className="text-[#00eaff] text-sm font-medium">Theme</label>
                       <Select value={customizeData.neonTheme} onValueChange={(value: any) => setCustomizeData({ ...customizeData, neonTheme: value })}>
-                        <SelectTrigger className="bg-[#04040a] border-[#2b2b42] text-[#00eaff]">
+                        <SelectTrigger className="bg-[#0A0A10] border-[#08080f] text-[#00eaff]">
                           <SelectValue />
                         </SelectTrigger>
-                        <SelectContent className="bg-[#141423] border-[#2b2b42]">
+                        <SelectContent className="bg-[#141423] border-[#08080f]">
                           <SelectItem value="magenta" className="text-[#ff00c8]">
                             Magenta
                           </SelectItem>
@@ -323,7 +323,7 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
                         value={inviteEmail}
                         onChange={(e) => setInviteEmail(e.target.value)}
                         placeholder="friend@example.com"
-                        className="bg-[#04040a] border-[#2b2b42] text-[#00eaff] placeholder-[#cccccc]"
+                        className="bg-[#0A0A10] border-[#08080f] text-[#00eaff] placeholder-[#cccccc]"
                       />
                     </div>
                     <Button

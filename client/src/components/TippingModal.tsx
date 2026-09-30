@@ -109,7 +109,7 @@ export default function TippingModal({ isOpen, onClose }: TippingModalProps) {
                   className={`p-3 rounded-lg border-2 font-bold transition-colors ${
                     selectedAmount === amount
                       ? "border-[#ff00c8] bg-[#ff00c8]/20 text-[#ff00c8]"
-                      : "border-[#2b2b42] bg-[#04040a] text-[#cccccc] hover:border-[#00eaff]"
+                      : "border-[#08080f] bg-[#0A0A10] text-[#cccccc] hover:border-[#00eaff]"
                   }`}
                 >
                   ${amount}
@@ -130,7 +130,7 @@ export default function TippingModal({ isOpen, onClose }: TippingModalProps) {
                 placeholder="Custom amount"
                 min="1"
                 step="0.01"
-                className="flex-1 px-3 py-2 bg-[#04040a] border border-[#2b2b42] rounded-lg text-[#00eaff] placeholder-[#cccccc] focus:border-[#ff00c8] focus:outline-none"
+                className="flex-1 px-3 py-2 bg-[#0A0A10] border border-[#08080f] rounded-lg text-[#00eaff] placeholder-[#cccccc] focus:border-[#ff00c8] focus:outline-none"
               />
             </div>
           </div>
@@ -145,7 +145,7 @@ export default function TippingModal({ isOpen, onClose }: TippingModalProps) {
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Leave a message of support..."
               maxLength={500}
-              className="w-full h-20 px-3 py-2 bg-[#04040a] border border-[#2b2b42] rounded-lg text-[#00eaff] placeholder-[#cccccc] focus:border-[#ff00c8] focus:outline-none resize-none"
+              className="w-full h-20 px-3 py-2 bg-[#0A0A10] border border-[#08080f] rounded-lg text-[#00eaff] placeholder-[#cccccc] focus:border-[#ff00c8] focus:outline-none resize-none"
             />
             <p className="text-xs text-[#cccccc] mt-1">
               {message.length}/500 characters
@@ -154,7 +154,7 @@ export default function TippingModal({ isOpen, onClose }: TippingModalProps) {
 
           {/* Summary */}
           {finalAmount > 0 && (
-            <div className="bg-[#04040a] rounded-lg p-4 mb-6 border border-[#2b2b42]">
+            <div className="bg-[#0A0A10] rounded-lg p-4 mb-6 border border-[#08080f]">
               <div className="flex justify-between items-center">
                 <span className="text-[#cccccc]">Total Amount:</span>
                 <span className="text-2xl font-bold text-[#00eaff]">
@@ -174,7 +174,7 @@ export default function TippingModal({ isOpen, onClose }: TippingModalProps) {
             <Button
               onClick={onClose}
               variant="outline"
-              className="flex-1 text-[#cccccc] border-[#2b2b42]"
+              className="flex-1 text-[#cccccc] border-[#08080f]"
             >
               Cancel
             </Button>
