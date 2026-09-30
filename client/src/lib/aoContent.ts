@@ -24,6 +24,16 @@ export type PlatformChannel = {
   note: string;
 };
 
+export type SocialPost = {
+  id: string;
+  platform: "facebook" | "instagram";
+  url: string;
+  title: string;
+  caption: string;
+  status: "draft" | "published";
+  featured: boolean;
+};
+
 export type ShopOffer = {
   id: string;
   title: string;
@@ -36,6 +46,7 @@ export type ShopOffer = {
 export type AOContentConfig = {
   entries: ContentEntry[];
   channels: PlatformChannel[];
+  socialPosts: SocialPost[];
   offers: ShopOffer[];
 };
 
@@ -76,6 +87,7 @@ export const DEFAULT_CONTENT_CONFIG: AOContentConfig = {
     { platform: "substack", label: "Substack publication", url: "https://anomorig.substack.com/", status: "ready", note: "Long-form lore, lessons, and behind the scenes" },
     { platform: "spreadshop", label: "Spreadshop", url: "", status: "needs-link", note: "Official products and collections" },
   ],
+  socialPosts: [],
   offers: [
     { id: "spreadshop-ao-collection", title: "AO Originals collection", type: "spreadshop", url: "", description: "Wearable art and world signals from the Archive.", status: "featured" },
     { id: "custom-world-design", title: "Custom world and identity design", type: "service", url: "", description: "Design a living identity space, character system, or creative world for a client.", status: "featured" },
@@ -91,6 +103,7 @@ export function readAOContentConfig(): AOContentConfig {
     return {
       entries: parsed.entries?.length ? parsed.entries : DEFAULT_CONTENT_CONFIG.entries,
       channels: parsed.channels?.length ? parsed.channels : DEFAULT_CONTENT_CONFIG.channels,
+      socialPosts: parsed.socialPosts || DEFAULT_CONTENT_CONFIG.socialPosts,
       offers: parsed.offers?.length ? parsed.offers : DEFAULT_CONTENT_CONFIG.offers,
     };
   } catch {
@@ -116,4 +129,21 @@ export function getPlatformLabel(platform: Platform) {
     substack: "Substack",
     spreadshop: "Spreadshop",
   }[platform];
+}
+
+export function getSocialPostPlatform(url: string): SocialPost["platform"] | "" {
+  try {
+    const parsed = new URL(url);
+    const host = parsed.hostname.toLowerCase().replace(/^www\./, "");
+    const path = parsed.pathname.toLowerCase();
+    if (host === "facebook.com" && /(posts|reel|share|story|permalink)/.test(path)) return "facebook";
+    if (host === "instagram.com" && /\/(p|reel|tv|share)\//.test(path)) return "instagram";
+  } catch {
+    return "";
+  }
+  return "";
+}
+
+export function isEmbedReadySocialUrl(url: string, platform: SocialPost["platform"]) {
+  return getSocialPostPlatform(url) === platform;
 }

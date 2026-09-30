@@ -22,7 +22,7 @@ const episodes: Episode[] = [
     title: "Pixel & Dot's Full Story | Anom's Corner",
     storageUrl: "/manus-storage/v8_pixel_dot_full_story_final_45228357.mp4",
     duration: "Full Story",
-    description: "The complete Pixel & Dot story. Join these two characters on their epic journey through a neon-powered universe filled with mystery, wonder, and unforgettable moments. This is the definitive Anom's Corner experience.",
+    description: "The complete Pixel & Dot story. Join these two characters on their epic journey through a signal-lit universe filled with mystery, wonder, and unforgettable moments. This is the definitive Anom's Corner experience.",
     featured: true,
   },
   {
@@ -30,7 +30,7 @@ const episodes: Episode[] = [
     title: "Pixel & Dot's New Adventure | Anom's Corner",
     videoId: "0pBrQUqU0ig",
     duration: "1:50",
-    description: "Join Pixel and Dot on their first adventure in Anom's Corner! Discover their neon-powered world and the mysteries that await.",
+    description: "Join Pixel and Dot on their first adventure in Anom's Corner! Discover their signal-lit world and the mysteries that await.",
   },
 ];
 
@@ -72,7 +72,7 @@ export default function AnomsCorner() {
               Digital Storybooks featuring <span style={{ color: "#d8ae55" }}>Pixel</span> & <span style={{ color: "#00eaff" }}>Dot</span>
             </p>
             <p className="text-[#cccccc] max-w-2xl mx-auto">
-              Step into a neon-powered universe where two characters navigate surreal landscapes, uncover mysteries, and create unforgettable moments.
+              Step into a living universe where two characters navigate surreal landscapes, uncover mysteries, and create unforgettable moments.
             </p>
           </div>
 
