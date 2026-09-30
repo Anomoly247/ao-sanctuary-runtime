@@ -261,7 +261,17 @@ export async function getUserAchievements(userId: number) {
   if (!db) return [];
 
   try {
-    return await db.select().from(userAchievements).where(eq(userAchievements.userId, userId));
+    return await db.select({
+      id: userAchievements.id,
+      achievementId: userAchievements.achievementId,
+      unlockedAt: userAchievements.unlockedAt,
+      name: achievements.name,
+      description: achievements.description,
+      icon: achievements.icon,
+      category: achievements.category,
+    }).from(userAchievements)
+      .leftJoin(achievements, eq(userAchievements.achievementId, achievements.id))
+      .where(eq(userAchievements.userId, userId));
   } catch (error) {
     console.error("[Database] Failed to get user achievements:", error);
     throw error;

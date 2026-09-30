@@ -14,13 +14,13 @@ export default function DotProfile() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0b0e14]">
+    <div className="min-h-screen bg-[#0f172a]">
       {/* Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-b from-[#1a1f2e] to-[#0b0e14] py-12">
+      <div className="relative overflow-hidden bg-gradient-to-b from-[#1e293b] to-[#0f172a] py-12">
         <div className="absolute inset-0 opacity-30">
           <div
             className="absolute inset-0 blur-3xl"
-            style={{ background: "radial-gradient(circle at 50% 50%, #00eaff 0%, transparent 70%)" }}
+            style={{ background: "radial-gradient(circle at 50% 50%, #93c5fd 0%, transparent 70%)" }}
           />
         </div>
 
@@ -30,24 +30,24 @@ export default function DotProfile() {
             <div
               className="w-32 h-32 rounded-full mx-auto mb-6 flex items-center justify-center font-bold text-6xl border-4"
               style={{
-                borderColor: "#00eaff",
-                background: "linear-gradient(135deg, #00eaff40 0%, #00eaff20 100%)",
-                color: "#00eaff",
-                boxShadow: "0 0 30px rgba(0, 234, 255, 0.5)",
+                borderColor: "#93c5fd",
+                background: "linear-gradient(135deg, #93c5fd40 0%, #93c5fd20 100%)",
+                color: "#93c5fd",
+                boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)',
               }}
             >
               D
             </div>
 
             <h1 className="text-5xl font-bold text-white mb-2">Dot</h1>
-            <p className="text-xl text-[#7a7f8e] mb-4">The Explorer</p>
+            <p className="text-xl text-[#94a3b8] mb-4">The Explorer</p>
 
             <div className="flex justify-center gap-3 mb-6">
-              <Badge className="bg-[#00eaff] text-black font-bold">Anom's Corner</Badge>
-              <Badge className="bg-[#2a2f3e] text-[#ff00cc] font-bold">Main Character</Badge>
+              <Badge className="bg-[#93c5fd] text-black font-bold">Anom's Corner</Badge>
+              <Badge className="bg-[#334155] text-[#c4b5fd] font-bold">Main Character</Badge>
             </div>
 
-            <p className="text-[#7a7f8e] text-lg max-w-xl mx-auto mb-8">
+            <p className="text-[#94a3b8] text-lg max-w-xl mx-auto mb-8">
               Dot is the adventurous spirit of Anom's Corner. With an insatiable curiosity and boundless energy, Dot explores the neon-lit landscapes, uncovering secrets and creating magical moments alongside Pixel.
             </p>
 
@@ -56,8 +56,8 @@ export default function DotProfile() {
                 onClick={() => setLiked(!liked)}
                 className={`${
                   liked
-                    ? "bg-[#00eaff] text-black hover:bg-[#00eaff]/80"
-                    : "bg-[#2a2f3e] text-[#7a7f8e] hover:bg-[#3a3f4e]"
+                    ? "bg-[#93c5fd] text-black hover:bg-[#93c5fd]/80"
+                    : "bg-[#334155] text-[#94a3b8] hover:bg-[#3a3f4e]"
                 }`}
               >
                 <Heart className={`w-4 h-4 mr-2 ${liked ? "fill-current" : ""}`} />
@@ -65,7 +65,7 @@ export default function DotProfile() {
               </Button>
               <Button
                 onClick={handleShare}
-                className="bg-[#2a2f3e] text-[#7a7f8e] hover:bg-[#3a3f4e]"
+                className="bg-[#334155] text-[#94a3b8] hover:bg-[#3a3f4e]"
               >
                 <Share2 className="w-4 h-4 mr-2" />
                 Share
@@ -81,23 +81,23 @@ export default function DotProfile() {
           {/* Main Content */}
           <div className="md:col-span-2 space-y-6">
             {/* About */}
-            <Card className="bg-[#1a1f2e] border border-[#2a2f3e] p-6">
+            <Card className="bg-[#1e293b] border border-[#334155] p-6">
               <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                <Sparkles className="w-6 h-6" style={{ color: "#00eaff" }} />
+                <Sparkles className="w-6 h-6" style={{ color: "#93c5fd" }} />
                 About Dot
               </h2>
-              <p className="text-[#7a7f8e] leading-relaxed mb-4">
+              <p className="text-[#94a3b8] leading-relaxed mb-4">
                 Dot is an intrepid explorer with a heart full of wonder. With an eye for beauty and a mind full of questions, Dot ventures into the unknown, discovering hidden truths and sharing experiences with viewers.
               </p>
-              <p className="text-[#7a7f8e] leading-relaxed">
+              <p className="text-[#94a3b8] leading-relaxed">
                 In Anom's Corner, Dot complements Pixel's creativity with exploration and discovery. Together, they create a dynamic duo that guides audiences through surreal journeys, each episode revealing new mysteries and artistic wonders.
               </p>
             </Card>
 
             {/* Abilities */}
-            <Card className="bg-[#1a1f2e] border border-[#2a2f3e] p-6">
+            <Card className="bg-[#1e293b] border border-[#334155] p-6">
               <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                <Zap className="w-6 h-6" style={{ color: "#ff00cc" }} />
+                <Zap className="w-6 h-6" style={{ color: "#c4b5fd" }} />
                 Exploratory Powers
               </h2>
               <div className="grid grid-cols-2 gap-4">
@@ -112,14 +112,14 @@ export default function DotProfile() {
                   <div key={ability.name}>
                     <div className="flex justify-between mb-2">
                       <span className="text-sm font-bold text-white">{ability.name}</span>
-                      <span className="text-xs text-[#7a7f8e]">{ability.level}%</span>
+                      <span className="text-xs text-[#94a3b8]">{ability.level}%</span>
                     </div>
-                    <div className="w-full bg-[#0b0e14] rounded-full h-2 border border-[#2a2f3e]">
+                    <div className="w-full bg-[#0f172a] rounded-full h-2 border border-[#334155]">
                       <div
                         className="h-full rounded-full"
                         style={{
                           width: `${ability.level}%`,
-                          background: "linear-gradient(90deg, #00eaff 0%, #ff00cc 100%)",
+                          background: "linear-gradient(90deg, #93c5fd 0%, #c4b5fd 100%)",
                         }}
                       />
                     </div>
@@ -132,32 +132,32 @@ export default function DotProfile() {
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Stats */}
-            <Card className="bg-[#1a1f2e] border border-[#2a2f3e] p-6">
+            <Card className="bg-[#1e293b] border border-[#334155] p-6">
               <h3 className="text-lg font-bold text-white mb-4">Character Stats</h3>
               <div className="space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-[#7a7f8e]">Episodes</span>
-                  <span className="font-bold text-[#00eaff]">1</span>
+                  <span className="text-[#94a3b8]">Episodes</span>
+                  <span className="font-bold text-[#93c5fd]">1</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#7a7f8e]">Appearances</span>
-                  <span className="font-bold text-[#00eaff]">1</span>
+                  <span className="text-[#94a3b8]">Appearances</span>
+                  <span className="font-bold text-[#93c5fd]">1</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#7a7f8e]">Fan Likes</span>
-                  <span className="font-bold text-[#00eaff]">18</span>
+                  <span className="text-[#94a3b8]">Fan Likes</span>
+                  <span className="font-bold text-[#93c5fd]">18</span>
                 </div>
               </div>
             </Card>
 
             {/* Traits */}
-            <Card className="bg-[#1a1f2e] border border-[#2a2f3e] p-6">
+            <Card className="bg-[#1e293b] border border-[#334155] p-6">
               <h3 className="text-lg font-bold text-white mb-4">Character Traits</h3>
               <div className="flex flex-wrap gap-2">
                 {["Adventurous", "Curious", "Energetic", "Observant", "Friendly"].map((trait) => (
                   <Badge
                     key={trait}
-                    className="bg-[#00eaff]/20 text-[#00eaff] border border-[#00eaff]"
+                    className="bg-[#93c5fd]/20 text-[#93c5fd] border border-[#93c5fd]"
                   >
                     {trait}
                   </Badge>
@@ -166,13 +166,13 @@ export default function DotProfile() {
             </Card>
 
             {/* Related */}
-            <Card className="bg-[#1a1f2e] border border-[#2a2f3e] p-6">
+            <Card className="bg-[#1e293b] border border-[#334155] p-6">
               <h3 className="text-lg font-bold text-white mb-4">Related</h3>
               <div className="space-y-2">
-                <Button className="w-full bg-[#2a2f3e] text-[#7a7f8e] hover:bg-[#3a3f4e] justify-start">
+                <Button className="w-full bg-[#334155] text-[#94a3b8] hover:bg-[#3a3f4e] justify-start">
                   Partner: Pixel
                 </Button>
-                <Button className="w-full bg-[#2a2f3e] text-[#7a7f8e] hover:bg-[#3a3f4e] justify-start">
+                <Button className="w-full bg-[#334155] text-[#94a3b8] hover:bg-[#3a3f4e] justify-start">
                   View Episodes
                 </Button>
               </div>

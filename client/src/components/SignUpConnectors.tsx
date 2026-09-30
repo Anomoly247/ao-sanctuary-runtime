@@ -4,8 +4,8 @@ import { Chrome, Github, Mail } from "lucide-react";
 
 export default function SignUpConnectors() {
   return (
-    <Card className="bg-[#1a1f2e] border border-[#2a2f3e] p-8 max-w-md mx-auto">
-      <h3 className="text-2xl font-bold text-[#ff00cc] mb-6 text-center">
+    <Card className="bg-[#1e293b] border border-[#334155] p-8 max-w-md mx-auto">
+      <h3 className="text-2xl font-bold text-[#c4b5fd] mb-6 text-center">
         Join Anom Artsy
       </h3>
 
@@ -32,16 +32,16 @@ export default function SignUpConnectors() {
 
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-[#2a2f3e]"></div>
+            <div className="w-full border-t border-[#334155]"></div>
           </div>
           <div className="relative flex justify-center text-sm">
-            <span className="px-2 bg-[#1a1f2e] text-[#7a7f8e]">or</span>
+            <span className="px-2 bg-[#1e293b] text-[#94a3b8]">or</span>
           </div>
         </div>
 
         <Button
           asChild
-          className="w-full btn-neon-magenta font-bold flex items-center justify-center gap-2"
+          className="w-full btn-primary font-bold flex items-center justify-center gap-2"
         >
           <a href="/api/auth/google">
             <Mail className="w-5 h-5" />
@@ -50,7 +50,7 @@ export default function SignUpConnectors() {
         </Button>
       </div>
 
-      <p className="text-xs text-[#7a7f8e] text-center mt-6">
+      <p className="text-xs text-[#94a3b8] text-center mt-6">
         By signing up, you agree to our Terms of Service and Privacy Policy
       </p>
     </Card>

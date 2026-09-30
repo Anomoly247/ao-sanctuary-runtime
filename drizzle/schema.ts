@@ -29,7 +29,7 @@ export const userProfiles = mysqlTable("user_profiles", {
   avatarUrl: text("avatar_url"),
   neonTheme: varchar("neon_theme", { length: 50 }).default("magenta"),
   nameColor: varchar("name_color", { length: 7 }).default("#00eaff"), // hex color for VIP name display
-  decorationPackageIds: json("decoration_package_ids").$type<number[]>().default([]),
+  decorationPackageIds: json("decoration_package_ids").$type<number[]>(),
   level: int("level").default(1),
   xp: int("xp").default(0),
   anomCoinBalance: decimal("anom_coin_balance", { precision: 10, scale: 2 }).default("0"),
@@ -87,6 +87,7 @@ export const globalMissions = mysqlTable("global_missions", {
   name: varchar("name", { length: 120 }).notNull(),
   description: text("description"),
   reward: decimal("reward", { precision: 10, scale: 2 }).notNull(),
+  achievementId: int("achievement_id"),
   active: boolean("active").default(true).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().onUpdateNow().notNull(),
@@ -122,7 +123,7 @@ export const achievements = mysqlTable("achievements", {
   id: int("id").autoincrement().primaryKey(),
   name: varchar("name", { length: 100 }).notNull(),
   description: text("description"),
-  iconUrl: text("icon_url"),
+  icon: text("icon"),
   category: varchar("category", { length: 50 }).notNull(), // "social_good", "game", "family", "community"
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
@@ -138,7 +139,9 @@ export const userAchievements = mysqlTable("user_achievements", {
   userId: int("user_id").notNull(),
   achievementId: int("achievement_id").notNull(),
   unlockedAt: timestamp("unlocked_at").defaultNow().notNull(),
-});
+}, table => ({
+  userAchievement: uniqueIndex("user_achievements_user_achievement").on(table.userId, table.achievementId),
+}));
 
 export type UserAchievement = typeof userAchievements.$inferSelect;
 export type InsertUserAchievement = typeof userAchievements.$inferInsert;
@@ -199,7 +202,7 @@ export const merchRequests = mysqlTable("merch_requests", {
   userId: int("user_id").notNull(),
   title: varchar("title", { length: 100 }).notNull(),
   description: text("description").notNull(),
-  referenceImages: json("reference_images").$type<string[]>().default([]),
+  referenceImages: json("reference_images").$type<string[]>(),
   status: mysqlEnum("status", ["pending", "approved", "in_progress", "completed", "rejected"]).default("pending"),
   estimatedPrice: decimal("estimated_price", { precision: 10, scale: 2 }),
   createdAt: timestamp("created_at").defaultNow().notNull(),
@@ -417,7 +420,7 @@ export const vipTiers = mysqlTable("vip_tiers", {
   displayName: varchar("display_name", { length: 100 }).notNull(), // "Free VIP", "VIP", "VIP Max"
   monthlyPrice: decimal("monthly_price", { precision: 10, scale: 2 }).notNull(), // 0, 10, 25, etc.
   description: text("description"),
-  benefits: json("benefits").$type<string[]>().default([]),
+  benefits: json("benefits").$type<string[]>(),
   coinMultiplier: decimal("coin_multiplier", { precision: 3, scale: 2 }).default("1.0"), // 1.0x, 1.5x, 2.0x
   xpMultiplier: decimal("xp_multiplier", { precision: 3, scale: 2 }).default("1.0"),
   badgeColor: varchar("badge_color", { length: 7 }).default("#ff00cc"), // hex color

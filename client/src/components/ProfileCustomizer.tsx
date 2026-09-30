@@ -57,14 +57,14 @@ export default function ProfileCustomizer({
 
   return (
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-      <Card className="bg-[#1a1f2e] border border-[#ff00cc] w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+      <Card className="bg-[#1e293b] border border-[#c4b5fd] w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         <div className="p-6">
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-[#ff00cc]">Customize Profile</h2>
+            <h2 className="text-2xl font-bold text-[#c4b5fd]">Customize Profile</h2>
             <button
               onClick={onClose}
-              className="text-[#7a7f8e] hover:text-[#00eaff] transition-colors"
+              className="text-[#94a3b8] hover:text-[#93c5fd] transition-colors"
             >
               <X className="w-6 h-6" />
             </button>
@@ -72,7 +72,7 @@ export default function ProfileCustomizer({
 
           {/* Tabs */}
           <Tabs defaultValue="pictures" className="w-full">
-            <TabsList className="grid w-full grid-cols-4 bg-[#0b0e14] border border-[#2a2f3e]">
+            <TabsList className="grid w-full grid-cols-4 bg-[#0f172a] border border-[#334155]">
               <TabsTrigger value="pictures" className="text-xs">
                 <Camera className="w-4 h-4 mr-2" />
                 Pictures
@@ -96,7 +96,7 @@ export default function ProfileCustomizer({
               <div className="space-y-4">
                 {/* Profile Picture */}
                 <div>
-                  <p className="font-bold text-[#00eaff] mb-3">Profile Picture</p>
+                  <p className="font-bold text-[#93c5fd] mb-3">Profile Picture</p>
                   {showImageUploader === "profile" ? (
                     <ImageUploader
                       onImageSelect={(file: File) => {
@@ -120,7 +120,7 @@ export default function ProfileCustomizer({
 
                 {/* Background Image */}
                 <div>
-                  <p className="font-bold text-[#00eaff] mb-3">Background Image</p>
+                  <p className="font-bold text-[#93c5fd] mb-3">Background Image</p>
                   {showImageUploader === "background" ? (
                     <ImageUploader
                       onImageSelect={(file: File) => {
@@ -147,7 +147,7 @@ export default function ProfileCustomizer({
             {/* Info Tab */}
             <TabsContent value="info" className="space-y-4 mt-4">
               <div>
-                <label className="block text-sm font-bold text-[#00eaff] mb-2">
+                <label className="block text-sm font-bold text-[#93c5fd] mb-2">
                   Bio
                 </label>
                 <textarea
@@ -155,15 +155,15 @@ export default function ProfileCustomizer({
                   onChange={(e) => setBio(e.target.value)}
                   placeholder="Tell us about yourself..."
                   maxLength={500}
-                  className="w-full h-24 px-3 py-2 bg-[#0b0e14] border border-[#2a2f3e] rounded-lg text-[#00eaff] placeholder-[#7a7f8e] focus:border-[#ff00cc] focus:outline-none resize-none"
+                  className="w-full h-24 px-3 py-2 bg-[#0f172a] border border-[#334155] rounded-lg text-[#93c5fd] placeholder-[#94a3b8] focus:border-[#c4b5fd] focus:outline-none resize-none"
                 />
-                <p className="text-xs text-[#7a7f8e] mt-1">
+                <p className="text-xs text-[#94a3b8] mt-1">
                   {bio.length}/500 characters
                 </p>
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-[#00eaff] mb-2">
+                <label className="block text-sm font-bold text-[#93c5fd] mb-2">
                   Profile Visibility
                 </label>
                 <div className="flex gap-4">
@@ -174,7 +174,7 @@ export default function ProfileCustomizer({
                       onChange={() => setIsPublic(true)}
                       className="w-4 h-4"
                     />
-                    <span className="text-[#7a7f8e]">Public</span>
+                    <span className="text-[#94a3b8]">Public</span>
                   </label>
                   <label className="flex items-center gap-2 cursor-pointer">
                     <input
@@ -183,7 +183,7 @@ export default function ProfileCustomizer({
                       onChange={() => setIsPublic(false)}
                       className="w-4 h-4"
                     />
-                    <span className="text-[#7a7f8e]">Private</span>
+                    <span className="text-[#94a3b8]">Private</span>
                   </label>
                 </div>
               </div>
@@ -192,7 +192,7 @@ export default function ProfileCustomizer({
             {/* Theme Tab */}
             <TabsContent value="theme" className="space-y-4 mt-4">
               <div>
-                <label className="block text-sm font-bold text-[#00eaff] mb-3">
+                <label className="block text-sm font-bold text-[#93c5fd] mb-3">
                   Profile Layout
                 </label>
                 <div className="grid grid-cols-3 gap-3">
@@ -202,8 +202,8 @@ export default function ProfileCustomizer({
                       onClick={() => setProfileLayout(layout as any)}
                       className={`p-3 rounded-lg border-2 transition-colors capitalize font-bold ${
                         profileLayout === layout
-                          ? "border-[#ff00cc] bg-[#ff00cc]/20 text-[#ff00cc]"
-                          : "border-[#2a2f3e] bg-[#0b0e14] text-[#7a7f8e] hover:border-[#00eaff]"
+                          ? "border-[#c4b5fd] bg-[#c4b5fd]/20 text-[#c4b5fd]"
+                          : "border-[#334155] bg-[#0f172a] text-[#94a3b8] hover:border-[#93c5fd]"
                       }`}
                     >
                       {layout}
@@ -227,8 +227,8 @@ export default function ProfileCustomizer({
                   title="Your Decorations"
                 />
               ) : (
-                <Card className="bg-[#0b0e14] border border-[#2a2f3e] p-4 text-center">
-                  <p className="text-[#7a7f8e]">
+                <Card className="bg-[#0f172a] border border-[#334155] p-4 text-center">
+                  <p className="text-[#94a3b8]">
                     No decorations yet. Earn them through gameplay!
                   </p>
                 </Card>
@@ -241,14 +241,14 @@ export default function ProfileCustomizer({
             <Button
               onClick={onClose}
               variant="outline"
-              className="flex-1 text-[#7a7f8e] border-[#2a2f3e]"
+              className="flex-1 text-[#94a3b8] border-[#334155]"
             >
               Cancel
             </Button>
             <Button
               onClick={handleSave}
               disabled={updateProfile.isPending}
-              className="flex-1 bg-[#ff00cc] hover:bg-[#ff00cc]/80 text-black font-bold disabled:opacity-50"
+              className="flex-1 bg-[#c4b5fd] hover:bg-[#c4b5fd]/80 text-black font-bold disabled:opacity-50"
             >
               <Save className="w-4 h-4 mr-2" />
               Save Changes

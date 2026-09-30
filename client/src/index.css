@@ -43,77 +43,77 @@
 }
 
 :root {
-  --color-primary: #ff00cc;
-  --color-secondary: #00eaff;
-  --color-accent: #9d4edd;
-  --primary: #ff00cc;
-  --primary-foreground: #0b0e14;
-  --sidebar-primary: #ff00cc;
-  --sidebar-primary-foreground: #0b0e14;
-  --chart-1: #ff00cc;
-  --chart-2: #00eaff;
-  --chart-3: #8b00ff;
-  --chart-4: #ff00cc;
-  --chart-5: #00eaff;
+  --color-primary: #c4b5fd;
+  --color-secondary: #93c5fd;
+  --color-accent: #a5b4fc;
+  --primary: #c4b5fd;
+  --primary-foreground: #0f172a;
+  --sidebar-primary: #c4b5fd;
+  --sidebar-primary-foreground: #0f172a;
+  --chart-1: #c4b5fd;
+  --chart-2: #93c5fd;
+  --chart-3: #a5b4fc;
+  --chart-4: #c4b5fd;
+  --chart-5: #93c5fd;
   --radius: 0.5rem;
-  --background: #0b0e14;
-  --foreground: #00eaff;
-  --card: #1a1f2e;
-  --card-foreground: #00eaff;
-  --popover: #1a1f2e;
-  --popover-foreground: #00eaff;
-  --secondary: #8b00ff;
-  --secondary-foreground: #ff00cc;
-  --muted: #2a2f3e;
-  --muted-foreground: #7a7f8e;
-  --accent: #ff00cc;
-  --accent-foreground: #0b0e14;
-  --destructive: #ff0033;
-  --destructive-foreground: #0b0e14;
-  --border: #2a2f3e;
-  --input: #1a1f2e;
-  --ring: #00eaff;
-  --sidebar: #1a1f2e;
-  --sidebar-foreground: #00eaff;
-  --sidebar-accent: #ff00cc;
-  --sidebar-accent-foreground: #0b0e14;
-  --sidebar-border: #2a2f3e;
-  --sidebar-ring: #00eaff;
+  --background: #0f172a;
+  --foreground: #93c5fd;
+  --card: #1e293b;
+  --card-foreground: #93c5fd;
+  --popover: #1e293b;
+  --popover-foreground: #93c5fd;
+  --secondary: #a5b4fc;
+  --secondary-foreground: #c4b5fd;
+  --muted: #334155;
+  --muted-foreground: #94a3b8;
+  --accent: #c4b5fd;
+  --accent-foreground: #0f172a;
+  --destructive: #ef4444;
+  --destructive-foreground: #0f172a;
+  --border: #334155;
+  --input: #1e293b;
+  --ring: #93c5fd;
+  --sidebar: #1e293b;
+  --sidebar-foreground: #93c5fd;
+  --sidebar-accent: #c4b5fd;
+  --sidebar-accent-foreground: #0f172a;
+  --sidebar-border: #334155;
+  --sidebar-ring: #93c5fd;
 }
 
 .dark {
-  --primary: #ff00cc;
-  --primary-foreground: #0b0e14;
-  --sidebar-primary: #ff00cc;
-  --sidebar-primary-foreground: #0b0e14;
-  --background: #0b0e14;
-  --foreground: #00eaff;
-  --card: #1a1f2e;
-  --card-foreground: #00eaff;
-  --popover: #1a1f2e;
-  --popover-foreground: #00eaff;
-  --secondary: #8b00ff;
-  --secondary-foreground: #ff00cc;
-  --muted: #2a2f3e;
-  --muted-foreground: #7a7f8e;
-  --accent: #ff00cc;
-  --accent-foreground: #0b0e14;
-  --destructive: #ff0033;
-  --destructive-foreground: #0b0e14;
-  --border: #2a2f3e;
-  --input: #1a1f2e;
-  --ring: #00eaff;
-  --chart-1: #ff00cc;
-  --chart-2: #00eaff;
-  --chart-3: #8b00ff;
-  --chart-4: #ff00cc;
-  --chart-5: #00eaff;
-  --sidebar: #1a1f2e;
-  --sidebar-foreground: #00eaff;
-  --sidebar-accent: #ff00cc;
-  --sidebar-accent-foreground: #0b0e14;
-  --sidebar-border: #2a2f3e;
-  --sidebar-ring: #00eaff;
+  --primary: #c4b5fd;
+  --primary-foreground: #0f172a;
+  --sidebar-primary: #c4b5fd;
+  --sidebar-primary-foreground: #0f172a;
+  --background: #0f172a;
+  --foreground: #93c5fd;
+  --card: #1e293b;
+  --card-foreground: #93c5fd;
+  --popover: #1e293b;
+  --popover-foreground: #93c5fd;
+  --secondary: #a5b4fc;
+  --secondary-foreground: #c4b5fd;
+  --muted: #334155;
+  --muted-foreground: #94a3b8;
+  --accent: #c4b5fd;
+  --accent-foreground: #0f172a;
+  --destructive: #ef4444;
+  --destructive-foreground: #0f172a;
+  --border: #334155;
+  --input: #1e293b;
+  --ring: #93c5fd;
+  --chart-1: #c4b5fd;
+  --chart-2: #93c5fd;
+  --chart-3: #a5b4fc;
+  --chart-4: #c4b5fd;
+  --chart-5: #93c5fd;
+  --sidebar: #1e293b;
+  --sidebar-foreground: #93c5fd;
+  --sidebar-accent: #c4b5fd;
+  --sidebar-accent-foreground: #0f172a;
+  --sidebar-border: #334155;
+  --sidebar-ring: #93c5fd;
 }
 
 @layer base {
@@ -150,86 +150,86 @@
     min-width: 0;
   }
 
-  .neon-glow-magenta {
-    box-shadow: 0 0 10px rgba(255, 0, 204, 0.5), 0 0 20px rgba(255, 0, 204, 0.3);
+  .surface-shadow {
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
   }
 
-  .neon-glow-cyan {
-    box-shadow: 0 0 10px rgba(0, 234, 255, 0.5), 0 0 20px rgba(0, 234, 255, 0.3);
+  .surface-shadow {
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
   }
 
-  .neon-glow-purple {
-    box-shadow: 0 0 10px rgba(139, 0, 255, 0.5), 0 0 20px rgba(139, 0, 255, 0.3);
+  .surface-shadow {
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
   }
 
-  .neon-text-magenta {
-    color: #ff00cc;
-    filter: drop-shadow(0 0 8px rgba(255, 0, 204, 0.6));
+  .text-accent {
+    color: #c4b5fd;
+
   }
 
-  .neon-text-cyan {
-    color: #00eaff;
-    filter: drop-shadow(0 0 8px rgba(0, 234, 255, 0.6));
+  .text-info {
+    color: #93c5fd;
+
   }
 
-  .neon-border-magenta {
-    border-color: #ff00cc;
+  .border-accent {
+    border-color: #c4b5fd;
     border-width: 2px;
   }
 
-  .neon-border-cyan {
-    border-color: #00eaff;
+  .border-info {
+    border-color: #93c5fd;
     border-width: 2px;
   }
 
-  .btn-neon-magenta {
-    background-color: #ff00cc;
-    color: #0b0e14;
+  .btn-primary {
+    background-color: #c4b5fd;
+    color: #0f172a;
     font-weight: bold;
     padding: 0.5rem 1rem;
     border-radius: 0.375rem;
     transition: all 0.2s;
-    box-shadow: 0 0 10px rgba(255, 0, 204, 0.5), 0 0 20px rgba(255, 0, 204, 0.3);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
   }
 
-  .btn-neon-magenta:hover {
-    box-shadow: 0 0 20px rgba(255, 0, 204, 0.8), 0 0 40px rgba(255, 0, 204, 0.5);
+  .btn-primary:hover {
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
   }
 
-  .btn-neon-cyan {
-    background-color: #00eaff;
-    color: #0b0e14;
+  .btn-secondary {
+    background-color: #93c5fd;
+    color: #0f172a;
     font-weight: bold;
     padding: 0.5rem 1rem;
     border-radius: 0.375rem;
     transition: all 0.2s;
-    box-shadow: 0 0 10px rgba(0, 234, 255, 0.5), 0 0 20px rgba(0, 234, 255, 0.3);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
   }
 
-  .btn-neon-cyan:hover {
-    box-shadow: 0 0 20px rgba(0, 234, 255, 0.8), 0 0 40px rgba(0, 234, 255, 0.5);
+  .btn-secondary:hover {
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
   }
 
-  .btn-neon-outline {
-    border: 2px solid #ff00cc;
-    color: #ff00cc;
+  .btn-outline {
+    border: 2px solid #c4b5fd;
+    color: #c4b5fd;
     background-color: transparent;
     padding: 0.5rem 1rem;
     border-radius: 0.375rem;
     transition: all 0.2s;
   }
 
-  .btn-neon-outline:hover {
-    background-color: #ff00cc;
-    color: #0b0e14;
+  .btn-outline:hover {
+    background-color: #c4b5fd;
+    color: #0f172a;
   }
 
-  .card-neon {
-    background-color: #1a1f2e;
-    border: 1px solid #2a2f3e;
+  .card-surface {
+    background-color: #1e293b;
+    border: 1px solid #334155;
     border-radius: 0.5rem;
     padding: 1rem;
-    box-shadow: 0 0 10px rgba(255, 0, 204, 0.5), 0 0 20px rgba(255, 0, 204, 0.3);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
   }
 
   @media (min-width: 640px) {

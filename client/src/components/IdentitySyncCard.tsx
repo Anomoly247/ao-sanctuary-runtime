@@ -75,15 +75,15 @@ export default function IdentitySyncCard() {
   };
 
   return (
-    <Card className="bg-gradient-to-br from-[#1a1f2e] to-[#0b0e14] border-2 border-[#ff00cc] p-6">
-      <h3 className="text-xl font-bold text-[#ff00cc] mb-4 flex items-center gap-2">
+    <Card className="bg-gradient-to-br from-[#1e293b] to-[#0f172a] border-2 border-[#c4b5fd] p-6">
+      <h3 className="text-xl font-bold text-[#c4b5fd] mb-4 flex items-center gap-2">
         <RefreshCw className="w-5 h-5" />
         Identity Sync
       </h3>
 
       {/* Current Identity Info */}
-      <div className="bg-[#0b0e14] p-4 rounded-lg border border-[#2a2f3e] mb-6">
-        <p className="text-sm text-[#7a7f8e] mb-3">
+      <div className="bg-[#0f172a] p-4 rounded-lg border border-[#334155] mb-6">
+        <p className="text-sm text-[#94a3b8] mb-3">
           <strong>Your Current Identity:</strong>
         </p>
         <div className="grid grid-cols-3 gap-3">
@@ -92,7 +92,7 @@ export default function IdentitySyncCard() {
               className="w-12 h-12 rounded-full mx-auto mb-2"
               style={{ backgroundColor: settings.colors.primary }}
             />
-            <p className="text-xs text-[#7a7f8e]">Primary</p>
+            <p className="text-xs text-[#94a3b8]">Primary</p>
             <p className="text-xs font-bold text-white">{settings.colors.primary}</p>
           </div>
           <div className="text-center">
@@ -100,7 +100,7 @@ export default function IdentitySyncCard() {
               className="w-12 h-12 rounded-full mx-auto mb-2"
               style={{ backgroundColor: settings.colors.secondary }}
             />
-            <p className="text-xs text-[#7a7f8e]">Secondary</p>
+            <p className="text-xs text-[#94a3b8]">Secondary</p>
             <p className="text-xs font-bold text-white">{settings.colors.secondary}</p>
           </div>
           <div className="text-center">
@@ -108,7 +108,7 @@ export default function IdentitySyncCard() {
               className="w-12 h-12 rounded-full mx-auto mb-2"
               style={{ backgroundColor: settings.colors.accent }}
             />
-            <p className="text-xs text-[#7a7f8e]">Accent</p>
+            <p className="text-xs text-[#94a3b8]">Accent</p>
             <p className="text-xs font-bold text-white">{settings.colors.accent}</p>
           </div>
         </div>
@@ -118,24 +118,24 @@ export default function IdentitySyncCard() {
       <div className="mb-6">
         <Button
           onClick={handleGenerateSyncCode}
-          className="w-full bg-[#ff00cc] hover:bg-[#ff00cc]/80 text-black font-bold flex items-center justify-center gap-2 mb-3"
+          className="w-full bg-[#c4b5fd] hover:bg-[#c4b5fd]/80 text-black font-bold flex items-center justify-center gap-2 mb-3"
         >
           <QrCode className="w-4 h-4" />
           Generate Sync Code
         </Button>
 
         {showSyncCode && (
-          <div className="bg-[#0b0e14] p-4 rounded-lg border border-[#00eaff]">
-            <p className="text-xs text-[#7a7f8e] mb-2">Your Sync Code:</p>
+          <div className="bg-[#0f172a] p-4 rounded-lg border border-[#93c5fd]">
+            <p className="text-xs text-[#94a3b8] mb-2">Your Sync Code:</p>
             <div className="flex gap-2">
               <Input
                 value={syncCode}
                 readOnly
-                className="bg-[#1a1f2e] border-[#00eaff] text-white font-mono text-xs"
+                className="bg-[#1e293b] border-[#93c5fd] text-white font-mono text-xs"
               />
               <Button
                 onClick={handleCopySyncCode}
-                className="bg-[#00eaff] hover:bg-[#00eaff]/80 text-black font-bold"
+                className="bg-[#93c5fd] hover:bg-[#93c5fd]/80 text-black font-bold"
               >
                 <Copy className="w-4 h-4" />
               </Button>
@@ -146,7 +146,7 @@ export default function IdentitySyncCard() {
 
       {/* Apply Sync Code */}
       <div className="mb-6">
-        <p className="text-sm text-[#7a7f8e] mb-2">
+        <p className="text-sm text-[#94a3b8] mb-2">
           <strong>Import Someone's Identity:</strong>
         </p>
         <div className="flex gap-2">
@@ -154,12 +154,12 @@ export default function IdentitySyncCard() {
             placeholder="Paste sync code here..."
             value={syncCode}
             onChange={(e) => setSyncCode(e.target.value)}
-            className="bg-[#0b0e14] border-[#ff00cc] text-white font-mono text-xs"
+            className="bg-[#0f172a] border-[#c4b5fd] text-white font-mono text-xs"
           />
           <Button
             onClick={handleApplySyncCode}
             disabled={isApplying || !syncCode.trim()}
-            className="bg-[#ff00cc] hover:bg-[#ff00cc]/80 text-black font-bold"
+            className="bg-[#c4b5fd] hover:bg-[#c4b5fd]/80 text-black font-bold"
           >
             {isApplying ? "Syncing..." : "Sync"}
           </Button>
@@ -168,7 +168,7 @@ export default function IdentitySyncCard() {
 
       {/* Social Sharing */}
       <div className="mb-4">
-        <p className="text-sm text-[#7a7f8e] mb-3">
+        <p className="text-sm text-[#94a3b8] mb-3">
           <strong>Share Your Identity:</strong>
         </p>
         <div className="grid grid-cols-3 gap-2">
@@ -194,8 +194,8 @@ export default function IdentitySyncCard() {
       </div>
 
       {/* Info */}
-      <div className="bg-[#0b0e14] p-4 rounded-lg border border-[#2a2f3e]">
-        <p className="text-xs text-[#7a7f8e]">
+      <div className="bg-[#0f172a] p-4 rounded-lg border border-[#334155]">
+        <p className="text-xs text-[#94a3b8]">
           <strong>How it works:</strong> Generate a sync code to share your Anom Artsy identity (colors, theme, photos) with friends. They can paste the code to instantly match your aesthetic. Perfect for creating a unified look across your community!
         </p>
       </div>

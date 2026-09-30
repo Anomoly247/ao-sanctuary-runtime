@@ -49,30 +49,30 @@ export default function TippingModal({ isOpen, onClose }: TippingModalProps) {
 
   return (
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-      <Card className="bg-[#1a1f2e] border border-[#ff00cc] w-full max-w-md">
+      <Card className="bg-[#1e293b] border border-[#c4b5fd] w-full max-w-md">
         <div className="p-6">
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-2">
-              <Heart className="w-6 h-6 text-[#ff00cc]" />
-              <h2 className="text-2xl font-bold text-[#ff00cc]">Support Anom Artsy</h2>
+              <Heart className="w-6 h-6 text-[#c4b5fd]" />
+              <h2 className="text-2xl font-bold text-[#c4b5fd]">Support Anom Artsy</h2>
             </div>
             <button
               onClick={onClose}
-              className="text-[#7a7f8e] hover:text-[#00eaff] transition-colors"
+              className="text-[#94a3b8] hover:text-[#93c5fd] transition-colors"
             >
               <X className="w-6 h-6" />
             </button>
           </div>
 
           {/* Description */}
-          <p className="text-[#7a7f8e] mb-6">
+          <p className="text-[#94a3b8] mb-6">
             Your support helps us continue building amazing features and supporting our community.
           </p>
 
           {/* Tip Type */}
           <div className="mb-6">
-            <p className="text-sm font-bold text-[#00eaff] mb-3">Tip Type</p>
+            <p className="text-sm font-bold text-[#93c5fd] mb-3">Tip Type</p>
             <div className="flex gap-3">
               <label className="flex items-center gap-2 cursor-pointer flex-1">
                 <input
@@ -81,7 +81,7 @@ export default function TippingModal({ isOpen, onClose }: TippingModalProps) {
                   onChange={() => setTipType("one_time")}
                   className="w-4 h-4"
                 />
-                <span className="text-[#7a7f8e]">One-Time</span>
+                <span className="text-[#94a3b8]">One-Time</span>
               </label>
               <label className="flex items-center gap-2 cursor-pointer flex-1">
                 <input
@@ -90,14 +90,14 @@ export default function TippingModal({ isOpen, onClose }: TippingModalProps) {
                   onChange={() => setTipType("recurring")}
                   className="w-4 h-4"
                 />
-                <span className="text-[#7a7f8e]">Monthly</span>
+                <span className="text-[#94a3b8]">Monthly</span>
               </label>
             </div>
           </div>
 
           {/* Amount Selection */}
           <div className="mb-6">
-            <p className="text-sm font-bold text-[#00eaff] mb-3">Select Amount</p>
+            <p className="text-sm font-bold text-[#93c5fd] mb-3">Select Amount</p>
             <div className="grid grid-cols-3 gap-2 mb-3">
               {tipAmounts.map((amount) => (
                 <button
@@ -108,8 +108,8 @@ export default function TippingModal({ isOpen, onClose }: TippingModalProps) {
                   }}
                   className={`p-3 rounded-lg border-2 font-bold transition-colors ${
                     selectedAmount === amount
-                      ? "border-[#ff00cc] bg-[#ff00cc]/20 text-[#ff00cc]"
-                      : "border-[#2a2f3e] bg-[#0b0e14] text-[#7a7f8e] hover:border-[#00eaff]"
+                      ? "border-[#c4b5fd] bg-[#c4b5fd]/20 text-[#c4b5fd]"
+                      : "border-[#334155] bg-[#0f172a] text-[#94a3b8] hover:border-[#93c5fd]"
                   }`}
                 >
                   ${amount}
@@ -119,7 +119,7 @@ export default function TippingModal({ isOpen, onClose }: TippingModalProps) {
 
             {/* Custom Amount */}
             <div className="flex gap-2">
-              <DollarSign className="w-5 h-5 text-[#7a7f8e] mt-2" />
+              <DollarSign className="w-5 h-5 text-[#94a3b8] mt-2" />
               <input
                 type="number"
                 value={customAmount}
@@ -130,14 +130,14 @@ export default function TippingModal({ isOpen, onClose }: TippingModalProps) {
                 placeholder="Custom amount"
                 min="1"
                 step="0.01"
-                className="flex-1 px-3 py-2 bg-[#0b0e14] border border-[#2a2f3e] rounded-lg text-[#00eaff] placeholder-[#7a7f8e] focus:border-[#ff00cc] focus:outline-none"
+                className="flex-1 px-3 py-2 bg-[#0f172a] border border-[#334155] rounded-lg text-[#93c5fd] placeholder-[#94a3b8] focus:border-[#c4b5fd] focus:outline-none"
               />
             </div>
           </div>
 
           {/* Message */}
           <div className="mb-6">
-            <label className="block text-sm font-bold text-[#00eaff] mb-2">
+            <label className="block text-sm font-bold text-[#93c5fd] mb-2">
               Message (Optional)
             </label>
             <textarea
@@ -145,24 +145,24 @@ export default function TippingModal({ isOpen, onClose }: TippingModalProps) {
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Leave a message of support..."
               maxLength={500}
-              className="w-full h-20 px-3 py-2 bg-[#0b0e14] border border-[#2a2f3e] rounded-lg text-[#00eaff] placeholder-[#7a7f8e] focus:border-[#ff00cc] focus:outline-none resize-none"
+              className="w-full h-20 px-3 py-2 bg-[#0f172a] border border-[#334155] rounded-lg text-[#93c5fd] placeholder-[#94a3b8] focus:border-[#c4b5fd] focus:outline-none resize-none"
             />
-            <p className="text-xs text-[#7a7f8e] mt-1">
+            <p className="text-xs text-[#94a3b8] mt-1">
               {message.length}/500 characters
             </p>
           </div>
 
           {/* Summary */}
           {finalAmount > 0 && (
-            <div className="bg-[#0b0e14] rounded-lg p-4 mb-6 border border-[#2a2f3e]">
+            <div className="bg-[#0f172a] rounded-lg p-4 mb-6 border border-[#334155]">
               <div className="flex justify-between items-center">
-                <span className="text-[#7a7f8e]">Total Amount:</span>
-                <span className="text-2xl font-bold text-[#00eaff]">
+                <span className="text-[#94a3b8]">Total Amount:</span>
+                <span className="text-2xl font-bold text-[#93c5fd]">
                   ${finalAmount.toFixed(2)}
                 </span>
               </div>
               {tipType === "recurring" && (
-                <p className="text-xs text-[#7a7f8e] mt-2">
+                <p className="text-xs text-[#94a3b8] mt-2">
                   Billed monthly until canceled
                 </p>
               )}
@@ -174,14 +174,14 @@ export default function TippingModal({ isOpen, onClose }: TippingModalProps) {
             <Button
               onClick={onClose}
               variant="outline"
-              className="flex-1 text-[#7a7f8e] border-[#2a2f3e]"
+              className="flex-1 text-[#94a3b8] border-[#334155]"
             >
               Cancel
             </Button>
             <Button
               onClick={handleSubmit}
               disabled={createTip.isPending || finalAmount <= 0}
-              className="flex-1 bg-[#ff00cc] hover:bg-[#ff00cc]/80 text-black font-bold disabled:opacity-50"
+              className="flex-1 bg-[#c4b5fd] hover:bg-[#c4b5fd]/80 text-black font-bold disabled:opacity-50"
             >
               <Heart className="w-4 h-4 mr-2" />
               Tip ${finalAmount.toFixed(2)}

@@ -63,18 +63,18 @@ export default function AdminDashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#0b0e14] flex items-center justify-center">
-        <div className="text-[#00eaff] text-xl">Loading Admin Dashboard...</div>
+      <div className="min-h-screen bg-[#0f172a] flex items-center justify-center">
+        <div className="text-[#93c5fd] text-xl">Loading Admin Dashboard...</div>
       </div>
     );
   }
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#0b0e14] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0f172a] flex items-center justify-center">
         <div className="text-center">
-          <p className="text-[#00eaff] text-xl mb-4">Please sign in</p>
-          <Button className="btn-neon-magenta" onClick={() => navigate("/")}>
+          <p className="text-[#93c5fd] text-xl mb-4">Please sign in</p>
+          <Button className="btn-primary" onClick={() => navigate("/")}>
             Back to Home
           </Button>
         </div>
@@ -84,11 +84,11 @@ export default function AdminDashboard() {
 
   if (user?.role !== "admin") {
     return (
-      <div className="min-h-screen bg-[#0b0e14] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0f172a] flex items-center justify-center">
         <div className="text-center">
-          <AlertCircle className="w-16 h-16 mx-auto mb-4 text-[#ff00cc]" />
-          <p className="text-[#00eaff] text-xl mb-4">Admin access required</p>
-          <Button className="btn-neon-magenta" onClick={() => navigate("/")}>
+          <AlertCircle className="w-16 h-16 mx-auto mb-4 text-[#c4b5fd]" />
+          <p className="text-[#93c5fd] text-xl mb-4">Admin access required</p>
+          <Button className="btn-primary" onClick={() => navigate("/")}>
             Back to Home
           </Button>
         </div>
@@ -97,18 +97,18 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0b0e14] text-[#00eaff]">
+    <div className="min-h-screen bg-[#0f172a] text-[#93c5fd]">
       {/* Navigation */}
-      <nav className="border-b border-[#2a2f3e] px-6 py-4 sticky top-0 bg-[#0b0e14]/95 backdrop-blur z-10">
+      <nav className="border-b border-[#334155] px-6 py-4 sticky top-0 bg-[#0f172a]/95 backdrop-blur z-10">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <Button variant="ghost" onClick={() => navigate("/")} className="text-[#7a7f8e]">
+            <Button variant="ghost" onClick={() => navigate("/")} className="text-[#94a3b8]">
               ← Back
             </Button>
-            <h1 className="text-2xl font-bold neon-text-magenta">Admin Dashboard</h1>
+            <h1 className="text-2xl font-bold text-accent">Admin Dashboard</h1>
           </div>
           <div className="flex gap-2">
-            <Button variant="outline" className="text-[#ff00cc] border-[#2a2f3e] gap-2" onClick={() => navigate("/owner-settings")}>
+            <Button variant="outline" className="text-[#c4b5fd] border-[#334155] gap-2" onClick={() => navigate("/owner-settings")}>
               <Settings className="w-4 h-4" />
               Settings
             </Button>
@@ -120,40 +120,40 @@ export default function AdminDashboard() {
       <main className="max-w-7xl mx-auto px-6 py-12">
         {/* Stats Grid */}
         <div className="grid md:grid-cols-4 gap-4 mb-12">
-          <Card className="bg-[#1a1f2e] border border-[#2a2f3e] p-6" style={{ boxShadow: "0 0 10px rgba(255, 0, 204, 0.5)" }}>
+          <Card className="bg-[#1e293b] border border-[#334155] p-6" style={{ boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)" }}>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-[#7a7f8e] text-sm">Total Users</p>
-                <p className="text-3xl font-bold text-[#ff00cc]">{analytics?.totalUsers || 0}</p>
+                <p className="text-[#94a3b8] text-sm">Total Users</p>
+                <p className="text-3xl font-bold text-[#c4b5fd]">{analytics?.totalUsers || 0}</p>
               </div>
-              <Users className="w-8 h-8 text-[#ff00cc] opacity-50" />
+              <Users className="w-8 h-8 text-[#c4b5fd] opacity-50" />
             </div>
           </Card>
 
-          <Card className="bg-[#1a1f2e] border border-[#2a2f3e] p-6" style={{ boxShadow: "0 0 10px rgba(0, 234, 255, 0.5)" }}>
+          <Card className="bg-[#1e293b] border border-[#334155] p-6" style={{ boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)" }}>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-[#7a7f8e] text-sm">Active Members</p>
-                <p className="text-3xl font-bold text-[#00eaff]">{(analytics as any)?.activeMembers || 0}</p>
+                <p className="text-[#94a3b8] text-sm">Active Members</p>
+                <p className="text-3xl font-bold text-[#93c5fd]">{(analytics as any)?.activeMembers || 0}</p>
               </div>
-              <Activity className="w-8 h-8 text-[#00eaff] opacity-50" />
+              <Activity className="w-8 h-8 text-[#93c5fd] opacity-50" />
             </div>
           </Card>
 
-          <Card className="bg-[#1a1f2e] border border-[#2a2f3e] p-6" style={{ boxShadow: "0 0 10px rgba(157, 78, 221, 0.5)" }}>
+          <Card className="bg-[#1e293b] border border-[#334155] p-6" style={{ boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)" }}>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-[#7a7f8e] text-sm">Total Donations</p>
-                <p className="text-3xl font-bold text-[#9d4edd]">${(analytics as any)?.totalDonations || 0}</p>
+                <p className="text-[#94a3b8] text-sm">Total Donations</p>
+                <p className="text-3xl font-bold text-[#a5b4fc]">${(analytics as any)?.totalDonations || 0}</p>
               </div>
-              <CreditCard className="w-8 h-8 text-[#9d4edd] opacity-50" />
+              <CreditCard className="w-8 h-8 text-[#a5b4fc] opacity-50" />
             </div>
           </Card>
 
-          <Card className="bg-[#1a1f2e] border border-[#2a2f3e] p-6" style={{ boxShadow: "0 0 10px rgba(255, 215, 0, 0.5)" }}>
+          <Card className="bg-[#1e293b] border border-[#334155] p-6" style={{ boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)" }}>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-[#7a7f8e] text-sm">Coin Economy</p>
+                <p className="text-[#94a3b8] text-sm">Coin Economy</p>
                 <p className="text-3xl font-bold text-[#ffd700]">{(analytics as any)?.totalCoinSpent || 0}</p>
               </div>
               <BarChart3 className="w-8 h-8 text-[#ffd700] opacity-50" />
@@ -163,24 +163,24 @@ export default function AdminDashboard() {
 
         {/* Tabs */}
         <Tabs defaultValue="content" className="w-full">
-          <TabsList className="bg-[#1a1f2e] border border-[#2a2f3e] mb-8 grid w-full grid-cols-5">
-            <TabsTrigger value="content" className="text-[#00eaff]">
+          <TabsList className="bg-[#1e293b] border border-[#334155] mb-8 grid w-full grid-cols-5">
+            <TabsTrigger value="content" className="text-[#93c5fd]">
               <Eye className="w-4 h-4 mr-2" />
               Content Control
             </TabsTrigger>
-            <TabsTrigger value="users" className="text-[#00eaff]">
+            <TabsTrigger value="users" className="text-[#93c5fd]">
               <Users className="w-4 h-4 mr-2" />
               Users
             </TabsTrigger>
-            <TabsTrigger value="merch" className="text-[#00eaff]">
+            <TabsTrigger value="merch" className="text-[#93c5fd]">
               <ShoppingBag className="w-4 h-4 mr-2" />
               Merch
             </TabsTrigger>
-            <TabsTrigger value="reports" className="text-[#00eaff]">
+            <TabsTrigger value="reports" className="text-[#93c5fd]">
               <Flag className="w-4 h-4 mr-2" />
               Reports
             </TabsTrigger>
-            <TabsTrigger value="analytics" className="text-[#00eaff]">
+            <TabsTrigger value="analytics" className="text-[#93c5fd]">
               <TrendingUp className="w-4 h-4 mr-2" />
               Analytics
             </TabsTrigger>
@@ -193,12 +193,12 @@ export default function AdminDashboard() {
                 placeholder="Search content..." 
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="bg-[#1a1f2e] border-[#2a2f3e] text-[#00eaff]"
+                className="bg-[#1e293b] border-[#334155] text-[#93c5fd]"
               />
               <select 
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value)}
-                className="bg-[#1a1f2e] border border-[#2a2f3e] text-[#00eaff] px-4 rounded"
+                className="bg-[#1e293b] border border-[#334155] text-[#93c5fd] px-4 rounded"
               >
                 <option value="all">All Content</option>
                 <option value="pending">Pending Review</option>
@@ -207,29 +207,29 @@ export default function AdminDashboard() {
               </select>
             </div>
 
-            <Card className="bg-[#1a1f2e] border border-[#2a2f3e] p-6">
-              <h3 className="text-xl font-bold text-[#ff00cc] mb-4">Content Moderation</h3>
+            <Card className="bg-[#1e293b] border border-[#334155] p-6">
+              <h3 className="text-xl font-bold text-[#c4b5fd] mb-4">Content Moderation</h3>
               <div className="space-y-4">
-                <div className="flex items-center justify-between p-4 bg-[#0b0e14] rounded border border-[#2a2f3e]">
+                <div className="flex items-center justify-between p-4 bg-[#0f172a] rounded border border-[#334155]">
                   <div>
-                    <p className="text-[#00eaff] font-semibold">Social Feed Posts</p>
-                    <p className="text-[#7a7f8e] text-sm">Monitor and moderate community posts</p>
+                    <p className="text-[#93c5fd] font-semibold">Social Feed Posts</p>
+                    <p className="text-[#94a3b8] text-sm">Monitor and moderate community posts</p>
                   </div>
-                  <Button variant="outline" className="text-[#ff00cc] border-[#2a2f3e]">Review</Button>
+                  <Button variant="outline" className="text-[#c4b5fd] border-[#334155]">Review</Button>
                 </div>
-                <div className="flex items-center justify-between p-4 bg-[#0b0e14] rounded border border-[#2a2f3e]">
+                <div className="flex items-center justify-between p-4 bg-[#0f172a] rounded border border-[#334155]">
                   <div>
-                    <p className="text-[#00eaff] font-semibold">Lounge Messages</p>
-                    <p className="text-[#7a7f8e] text-sm">Monitor lounge chat and conversations</p>
+                    <p className="text-[#93c5fd] font-semibold">Lounge Messages</p>
+                    <p className="text-[#94a3b8] text-sm">Monitor lounge chat and conversations</p>
                   </div>
-                  <Button variant="outline" className="text-[#ff00cc] border-[#2a2f3e]">Review</Button>
+                  <Button variant="outline" className="text-[#c4b5fd] border-[#334155]">Review</Button>
                 </div>
-                <div className="flex items-center justify-between p-4 bg-[#0b0e14] rounded border border-[#2a2f3e]">
+                <div className="flex items-center justify-between p-4 bg-[#0f172a] rounded border border-[#334155]">
                   <div>
-                    <p className="text-[#00eaff] font-semibold">User Profiles</p>
-                    <p className="text-[#7a7f8e] text-sm">Review profile content and images</p>
+                    <p className="text-[#93c5fd] font-semibold">User Profiles</p>
+                    <p className="text-[#94a3b8] text-sm">Review profile content and images</p>
                   </div>
-                  <Button variant="outline" className="text-[#ff00cc] border-[#2a2f3e]">Review</Button>
+                  <Button variant="outline" className="text-[#c4b5fd] border-[#334155]">Review</Button>
                 </div>
               </div>
             </Card>
@@ -240,9 +240,9 @@ export default function AdminDashboard() {
             <div className="flex gap-4 mb-6">
               <Input 
                 placeholder="Search users..." 
-                className="bg-[#1a1f2e] border-[#2a2f3e] text-[#00eaff]"
+                className="bg-[#1e293b] border-[#334155] text-[#93c5fd]"
               />
-              <select className="bg-[#1a1f2e] border border-[#2a2f3e] text-[#00eaff] px-4 rounded">
+              <select className="bg-[#1e293b] border border-[#334155] text-[#93c5fd] px-4 rounded">
                 <option>All Users</option>
                 <option>Basic</option>
                 <option>VIP</option>
@@ -250,36 +250,36 @@ export default function AdminDashboard() {
               </select>
             </div>
 
-            <Card className="bg-[#1a1f2e] border border-[#2a2f3e] p-6">
-              <h3 className="text-xl font-bold text-[#ff00cc] mb-4">User Management</h3>
+            <Card className="bg-[#1e293b] border border-[#334155] p-6">
+              <h3 className="text-xl font-bold text-[#c4b5fd] mb-4">User Management</h3>
               <div className="space-y-2">
-                <p className="text-[#7a7f8e]">Total Users: {analytics?.totalUsers || 0}</p>
-                <p className="text-[#7a7f8e]">Active This Week: {(analytics as any)?.newMembersThisWeek || 0}</p>
-                <p className="text-[#7a7f8e]">Currently Active: {(analytics as any)?.activeMembers || 0}</p>
+                <p className="text-[#94a3b8]">Total Users: {analytics?.totalUsers || 0}</p>
+                <p className="text-[#94a3b8]">Active This Week: {(analytics as any)?.newMembersThisWeek || 0}</p>
+                <p className="text-[#94a3b8]">Currently Active: {(analytics as any)?.activeMembers || 0}</p>
               </div>
             </Card>
           </TabsContent>
 
           {/* Merch Tab */}
           <TabsContent value="merch" className="space-y-6">
-            <h3 className="text-xl font-bold text-[#ff00cc]">Pending Merch Requests</h3>
+            <h3 className="text-xl font-bold text-[#c4b5fd]">Pending Merch Requests</h3>
             {requestsLoading ? (
-              <p className="text-[#7a7f8e]">Loading requests...</p>
+              <p className="text-[#94a3b8]">Loading requests...</p>
             ) : (merchRequests || []).length === 0 ? (
-              <p className="text-[#7a7f8e]">No merch requests to review.</p>
+              <p className="text-[#94a3b8]">No merch requests to review.</p>
             ) : null}
             <div className="space-y-4">
               {(merchRequests || []).map((request: any) => (
-                <Card key={request.id} className="bg-[#1a1f2e] border border-[#2a2f3e] p-6">
+                <Card key={request.id} className="bg-[#1e293b] border border-[#334155] p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-[#00eaff] font-semibold">{request.title}</p>
-                      <p className="text-[#7a7f8e] text-sm">{request.description}</p>
+                      <p className="text-[#93c5fd] font-semibold">{request.title}</p>
+                      <p className="text-[#94a3b8] text-sm">{request.description}</p>
                     </div>
                     <div className="flex gap-2">
                       <Button 
                         size="sm" 
-                        className="bg-[#00eaff] text-[#0b0e14] hover:bg-[#00eaff]/80"
+                        className="bg-[#93c5fd] text-[#0f172a] hover:bg-[#93c5fd]/80"
                         onClick={() => handleApproveMerch(request.id)}
                       >
                         <CheckCircle className="w-4 h-4 mr-1" />
@@ -287,7 +287,7 @@ export default function AdminDashboard() {
                       </Button>
                       <Button 
                         size="sm" 
-                        className="bg-[#ff00cc] text-[#0b0e14] hover:bg-[#ff00cc]/80"
+                        className="bg-[#c4b5fd] text-[#0f172a] hover:bg-[#c4b5fd]/80"
                         onClick={() => handleRejectMerch(request.id)}
                       >
                         <XCircle className="w-4 h-4 mr-1" />
@@ -302,30 +302,30 @@ export default function AdminDashboard() {
 
           {/* Reports Tab */}
           <TabsContent value="reports" className="space-y-6">
-            <Card className="bg-[#1a1f2e] border border-[#2a2f3e] p-6">
-              <h3 className="text-xl font-bold text-[#ff00cc] mb-4">Content Reports</h3>
-              <p className="text-[#7a7f8e]">No reports at this time.</p>
+            <Card className="bg-[#1e293b] border border-[#334155] p-6">
+              <h3 className="text-xl font-bold text-[#c4b5fd] mb-4">Content Reports</h3>
+              <p className="text-[#94a3b8]">No reports at this time.</p>
             </Card>
           </TabsContent>
 
           {/* Analytics Tab */}
           <TabsContent value="analytics" className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
-              <Card className="bg-[#1a1f2e] border border-[#2a2f3e] p-6">
-                <h3 className="text-xl font-bold text-[#ff00cc] mb-4">Platform Growth</h3>
+              <Card className="bg-[#1e293b] border border-[#334155] p-6">
+                <h3 className="text-xl font-bold text-[#c4b5fd] mb-4">Platform Growth</h3>
                 <div className="space-y-2">
-                  <p className="text-[#00eaff]">Total Users: {analytics?.totalUsers || 0}</p>
-                  <p className="text-[#00eaff]">New This Week: {(analytics as any)?.newMembersThisWeek || 0}</p>
-                  <p className="text-[#00eaff]">Active Lounges: {analytics?.totalLounges || 0}</p>
+                  <p className="text-[#93c5fd]">Total Users: {analytics?.totalUsers || 0}</p>
+                  <p className="text-[#93c5fd]">New This Week: {(analytics as any)?.newMembersThisWeek || 0}</p>
+                  <p className="text-[#93c5fd]">Active Lounges: {analytics?.totalLounges || 0}</p>
                 </div>
               </Card>
 
-              <Card className="bg-[#1a1f2e] border border-[#2a2f3e] p-6">
-                <h3 className="text-xl font-bold text-[#ff00cc] mb-4">Revenue Metrics</h3>
+              <Card className="bg-[#1e293b] border border-[#334155] p-6">
+                <h3 className="text-xl font-bold text-[#c4b5fd] mb-4">Revenue Metrics</h3>
                 <div className="space-y-2">
-                  <p className="text-[#00eaff]">Total Donations: ${(analytics as any)?.totalDonations || 0}</p>
-                  <p className="text-[#00eaff]">Coins in Circulation: {(analytics as any)?.totalCoinSpent || 0}</p>
-                  <p className="text-[#00eaff]">Pending Merch: {analytics?.pendingMerchRequests || 0}</p>
+                  <p className="text-[#93c5fd]">Total Donations: ${(analytics as any)?.totalDonations || 0}</p>
+                  <p className="text-[#93c5fd]">Coins in Circulation: {(analytics as any)?.totalCoinSpent || 0}</p>
+                  <p className="text-[#93c5fd]">Pending Merch: {analytics?.pendingMerchRequests || 0}</p>
                 </div>
               </Card>
             </div>

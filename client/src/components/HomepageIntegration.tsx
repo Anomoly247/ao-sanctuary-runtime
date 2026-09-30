@@ -38,22 +38,22 @@ export default function HomepageIntegration() {
   return (
     <div className="space-y-12">
       {/* Calendar Section */}
-      <section className="bg-[#1a1f2e] border border-[#2a2f3e] rounded-lg p-8" style={{boxShadow: '0 0 10px rgba(0, 234, 255, 0.3), 0 0 20px rgba(0, 234, 255, 0.1)'}}>
+      <section className="bg-[#1e293b] border border-[#334155] rounded-lg p-8" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
         <div className="flex items-center gap-3 mb-6">
-          <Calendar className="w-6 h-6 text-[#00eaff]" />
-          <h3 className="text-2xl font-bold text-[#ff00cc]">Upcoming Events</h3>
+          <Calendar className="w-6 h-6 text-[#93c5fd]" />
+          <h3 className="text-2xl font-bold text-[#c4b5fd]">Upcoming Events</h3>
         </div>
 
         <div className="grid md:grid-cols-3 gap-4">
           {upcomingEvents.map((event, idx) => (
             <Card
               key={idx}
-              className="bg-[#0b0e14] border border-[#2a2f3e] p-4 hover:border-[#00eaff] transition-colors"
+              className="bg-[#0f172a] border border-[#334155] p-4 hover:border-[#93c5fd] transition-colors"
             >
               <div className="text-3xl mb-2">{event.icon}</div>
-              <p className="text-[#7a7f8e] text-sm mb-1">{event.date}</p>
-              <p className="text-[#00eaff] font-bold">{event.title}</p>
-              <Button size="sm" className="btn-neon-cyan mt-3 w-full text-xs">
+              <p className="text-[#94a3b8] text-sm mb-1">{event.date}</p>
+              <p className="text-[#93c5fd] font-bold">{event.title}</p>
+              <Button size="sm" className="btn-secondary mt-3 w-full text-xs">
                 Learn More
               </Button>
             </Card>
@@ -62,31 +62,31 @@ export default function HomepageIntegration() {
       </section>
 
       {/* Contacts / Community Members Section */}
-      <section className="bg-[#1a1f2e] border border-[#2a2f3e] rounded-lg p-8" style={{boxShadow: '0 0 10px rgba(255, 0, 204, 0.3), 0 0 20px rgba(255, 0, 204, 0.1)'}}>
+      <section className="bg-[#1e293b] border border-[#334155] rounded-lg p-8" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
         <div className="flex items-center gap-3 mb-6">
-          <Users className="w-6 h-6 text-[#ff00cc]" />
-          <h3 className="text-2xl font-bold text-[#00eaff]">Community Highlights</h3>
+          <Users className="w-6 h-6 text-[#c4b5fd]" />
+          <h3 className="text-2xl font-bold text-[#93c5fd]">Community Highlights</h3>
         </div>
 
         <div className="grid md:grid-cols-4 gap-4">
           {communityMembers.map((member, idx) => (
             <Card
               key={idx}
-              className="bg-[#0b0e14] border border-[#2a2f3e] p-4 hover:border-[#ff00cc] transition-colors"
+              className="bg-[#0f172a] border border-[#334155] p-4 hover:border-[#c4b5fd] transition-colors"
             >
               <div className="flex items-center justify-between mb-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#ff00cc] to-[#00eaff] flex items-center justify-center text-white font-bold">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#c4b5fd] to-[#93c5fd] flex items-center justify-center text-white font-bold">
                   {member.name[0]}
                 </div>
-                <Trophy className="w-4 h-4 text-[#9d4edd]" />
+                <Trophy className="w-4 h-4 text-[#a5b4fc]" />
               </div>
-              <p className="text-[#00eaff] font-bold text-sm">{member.name}</p>
-              <p className="text-xs text-[#7a7f8e] mb-2">Level {member.level}</p>
-              <div className="flex items-center gap-1 text-xs text-[#ff00cc]">
+              <p className="text-[#93c5fd] font-bold text-sm">{member.name}</p>
+              <p className="text-xs text-[#94a3b8] mb-2">Level {member.level}</p>
+              <div className="flex items-center gap-1 text-xs text-[#c4b5fd]">
                 <Zap className="w-3 h-3" />
                 {member.coins} coins
               </div>
-              <Button size="sm" className="btn-neon-magenta mt-3 w-full text-xs">
+              <Button size="sm" className="btn-primary mt-3 w-full text-xs">
                 View Profile
               </Button>
             </Card>
@@ -95,12 +95,12 @@ export default function HomepageIntegration() {
       </section>
 
       {/* Email Newsletter Section */}
-      <section className="bg-gradient-to-r from-[#1a1f2e] to-[#2a2f3e] border border-[#2a2f3e] rounded-lg p-8" style={{boxShadow: '0 0 10px rgba(157, 78, 221, 0.3), 0 0 20px rgba(157, 78, 221, 0.1)'}}>
+      <section className="bg-gradient-to-r from-[#1e293b] to-[#334155] border border-[#334155] rounded-lg p-8" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
         <div className="flex items-start gap-4">
-          <Mail className="w-8 h-8 text-[#9d4edd] flex-shrink-0 mt-1" />
+          <Mail className="w-8 h-8 text-[#a5b4fc] flex-shrink-0 mt-1" />
           <div className="flex-1">
-            <h3 className="text-2xl font-bold text-[#ff00cc] mb-2">Stay Connected</h3>
-            <p className="text-[#7a7f8e] mb-4">
+            <h3 className="text-2xl font-bold text-[#c4b5fd] mb-2">Stay Connected</h3>
+            <p className="text-[#94a3b8] mb-4">
               Get weekly updates on new collaborations, game tournaments, and community highlights. Join {Math.floor(Math.random() * 5000) + 1000}+ subscribers.
             </p>
 
@@ -111,10 +111,10 @@ export default function HomepageIntegration() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 onKeyPress={(e) => e.key === "Enter" && handleEmailSubscribe()}
-                className="bg-[#0b0e14] border border-[#2a2f3e] text-[#00eaff] flex-1"
+                className="bg-[#0f172a] border border-[#334155] text-[#93c5fd] flex-1"
               />
               <Button
-                className="btn-neon-cyan"
+                className="btn-secondary"
                 onClick={handleEmailSubscribe}
                 disabled={isSubscribed}
               >
@@ -122,7 +122,7 @@ export default function HomepageIntegration() {
               </Button>
             </div>
 
-            <p className="text-xs text-[#7a7f8e] mt-3">
+            <p className="text-xs text-[#94a3b8] mt-3">
               We respect your privacy. Unsubscribe anytime.
             </p>
           </div>
@@ -130,37 +130,37 @@ export default function HomepageIntegration() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="bg-[#1a1f2e] border border-[#2a2f3e] rounded-lg p-8" style={{boxShadow: '0 0 10px rgba(0, 234, 255, 0.3), 0 0 20px rgba(0, 234, 255, 0.1)'}}>
-        <h3 className="text-2xl font-bold text-[#ff00cc] mb-6">Get in Touch</h3>
+      <section className="bg-[#1e293b] border border-[#334155] rounded-lg p-8" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+        <h3 className="text-2xl font-bold text-[#c4b5fd] mb-6">Get in Touch</h3>
 
         <div className="grid md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-[#00eaff] font-bold mb-2">Your Name</label>
+            <label className="block text-[#93c5fd] font-bold mb-2">Your Name</label>
             <Input
               placeholder="Full name"
-              className="bg-[#0b0e14] border border-[#2a2f3e] text-[#00eaff]"
+              className="bg-[#0f172a] border border-[#334155] text-[#93c5fd]"
             />
           </div>
 
           <div>
-            <label className="block text-[#00eaff] font-bold mb-2">Email</label>
+            <label className="block text-[#93c5fd] font-bold mb-2">Email</label>
             <Input
               type="email"
               placeholder="your@email.com"
-              className="bg-[#0b0e14] border border-[#2a2f3e] text-[#00eaff]"
+              className="bg-[#0f172a] border border-[#334155] text-[#93c5fd]"
             />
           </div>
 
           <div className="md:col-span-2">
-            <label className="block text-[#00eaff] font-bold mb-2">Message</label>
+            <label className="block text-[#93c5fd] font-bold mb-2">Message</label>
             <textarea
               placeholder="Tell us what you think..."
-              className="w-full bg-[#0b0e14] border border-[#2a2f3e] text-[#00eaff] p-3 rounded min-h-24"
+              className="w-full bg-[#0f172a] border border-[#334155] text-[#93c5fd] p-3 rounded min-h-24"
             />
           </div>
 
           <div className="md:col-span-2">
-            <Button className="w-full btn-neon-magenta text-lg py-6">
+            <Button className="w-full btn-primary text-lg py-6">
               Send Message
             </Button>
           </div>
@@ -169,17 +169,17 @@ export default function HomepageIntegration() {
 
       {/* Social Links */}
       <section className="text-center py-8">
-        <p className="text-[#7a7f8e] mb-4">Follow us on social media</p>
+        <p className="text-[#94a3b8] mb-4">Follow us on social media</p>
         <div className="flex justify-center gap-4">
-          <Button variant="outline" className="text-[#00eaff] border-[#2a2f3e] gap-2">
+          <Button variant="outline" className="text-[#93c5fd] border-[#334155] gap-2">
             <Heart className="w-4 h-4" />
             Twitter
           </Button>
-          <Button variant="outline" className="text-[#ff00cc] border-[#2a2f3e] gap-2">
+          <Button variant="outline" className="text-[#c4b5fd] border-[#334155] gap-2">
             <Heart className="w-4 h-4" />
             Discord
           </Button>
-          <Button variant="outline" className="text-[#9d4edd] border-[#2a2f3e] gap-2">
+          <Button variant="outline" className="text-[#a5b4fc] border-[#334155] gap-2">
             <Heart className="w-4 h-4" />
             Instagram
           </Button>

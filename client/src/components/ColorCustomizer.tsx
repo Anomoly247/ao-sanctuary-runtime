@@ -11,37 +11,37 @@ interface ColorScheme {
 
 const PRESET_SCHEMES: Record<string, ColorScheme> = {
   "Neon Pink": {
-    primary: "#ff00cc",
-    secondary: "#00eaff",
-    accent: "#9d4edd",
+    primary: "#c4b5fd",
+    secondary: "#93c5fd",
+    accent: "#a5b4fc",
   },
   "Neon Blue": {
-    primary: "#00eaff",
-    secondary: "#ff00cc",
-    accent: "#9d4edd",
+    primary: "#93c5fd",
+    secondary: "#c4b5fd",
+    accent: "#a5b4fc",
   },
   "Neon Purple": {
-    primary: "#9d4edd",
-    secondary: "#00eaff",
-    accent: "#ff00cc",
+    primary: "#a5b4fc",
+    secondary: "#93c5fd",
+    accent: "#c4b5fd",
   },
   "Neon Green": {
     primary: "#00ff88",
-    secondary: "#ff00cc",
-    accent: "#00eaff",
+    secondary: "#c4b5fd",
+    accent: "#93c5fd",
   },
   "Neon Orange": {
     primary: "#ff6600",
-    secondary: "#00eaff",
-    accent: "#9d4edd",
+    secondary: "#93c5fd",
+    accent: "#a5b4fc",
   },
 };
 
 export default function ColorCustomizer() {
   const [colors, setColors] = useState<ColorScheme>({
-    primary: "#ff00cc",
-    secondary: "#00eaff",
-    accent: "#9d4edd",
+    primary: "#c4b5fd",
+    secondary: "#93c5fd",
+    accent: "#a5b4fc",
   });
   const [isOpen, setIsOpen] = useState(false);
 
@@ -76,9 +76,9 @@ export default function ColorCustomizer() {
 
   const resetColors = () => {
     const defaultColors = {
-      primary: "#ff00cc",
-      secondary: "#00eaff",
-      accent: "#9d4edd",
+      primary: "#c4b5fd",
+      secondary: "#93c5fd",
+      accent: "#a5b4fc",
     };
     setColors(defaultColors);
     applyColors(defaultColors);
@@ -90,7 +90,7 @@ export default function ColorCustomizer() {
       {/* Floating Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-14 h-14 rounded-full bg-gradient-to-br from-[#ff00cc] to-[#00eaff] flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all hover:scale-110"
+        className="w-14 h-14 rounded-full bg-gradient-to-br from-[#c4b5fd] to-[#93c5fd] flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all hover:scale-110"
         title="Customize Colors"
       >
         <Palette className="w-6 h-6" />
@@ -98,23 +98,23 @@ export default function ColorCustomizer() {
 
       {/* Customization Panel */}
       {isOpen && (
-        <Card className="absolute bottom-20 right-0 bg-[#1a1f2e] border border-[#2a2f3e] p-6 w-80 shadow-2xl">
+        <Card className="absolute bottom-20 right-0 bg-[#1e293b] border border-[#334155] p-6 w-80 shadow-2xl">
           <div className="space-y-4">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-bold text-[#ff00cc]">Theme Colors</h3>
+              <h3 className="text-lg font-bold text-[#c4b5fd]">Theme Colors</h3>
               <button
                 onClick={resetColors}
-                className="p-1 hover:bg-[#2a2f3e] rounded transition-colors"
+                className="p-1 hover:bg-[#334155] rounded transition-colors"
                 title="Reset to defaults"
               >
-                <RotateCcw className="w-4 h-4 text-[#7a7f8e]" />
+                <RotateCcw className="w-4 h-4 text-[#94a3b8]" />
               </button>
             </div>
 
             {/* Color Pickers */}
             <div className="space-y-3">
               <div>
-                <label className="block text-sm text-[#00eaff] font-bold mb-2">
+                <label className="block text-sm text-[#93c5fd] font-bold mb-2">
                   Primary Color
                 </label>
                 <div className="flex gap-2">
@@ -122,19 +122,19 @@ export default function ColorCustomizer() {
                     type="color"
                     value={colors.primary}
                     onChange={(e) => handleColorChange("primary", e.target.value)}
-                    className="w-12 h-10 rounded cursor-pointer border border-[#2a2f3e]"
+                    className="w-12 h-10 rounded cursor-pointer border border-[#334155]"
                   />
                   <input
                     type="text"
                     value={colors.primary}
                     onChange={(e) => handleColorChange("primary", e.target.value)}
-                    className="flex-1 bg-[#0b0e14] border border-[#2a2f3e] text-[#00eaff] px-2 py-1 rounded text-sm font-mono"
+                    className="flex-1 bg-[#0f172a] border border-[#334155] text-[#93c5fd] px-2 py-1 rounded text-sm font-mono"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm text-[#00eaff] font-bold mb-2">
+                <label className="block text-sm text-[#93c5fd] font-bold mb-2">
                   Secondary Color
                 </label>
                 <div className="flex gap-2">
@@ -142,19 +142,19 @@ export default function ColorCustomizer() {
                     type="color"
                     value={colors.secondary}
                     onChange={(e) => handleColorChange("secondary", e.target.value)}
-                    className="w-12 h-10 rounded cursor-pointer border border-[#2a2f3e]"
+                    className="w-12 h-10 rounded cursor-pointer border border-[#334155]"
                   />
                   <input
                     type="text"
                     value={colors.secondary}
                     onChange={(e) => handleColorChange("secondary", e.target.value)}
-                    className="flex-1 bg-[#0b0e14] border border-[#2a2f3e] text-[#00eaff] px-2 py-1 rounded text-sm font-mono"
+                    className="flex-1 bg-[#0f172a] border border-[#334155] text-[#93c5fd] px-2 py-1 rounded text-sm font-mono"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm text-[#00eaff] font-bold mb-2">
+                <label className="block text-sm text-[#93c5fd] font-bold mb-2">
                   Accent Color
                 </label>
                 <div className="flex gap-2">
@@ -162,27 +162,27 @@ export default function ColorCustomizer() {
                     type="color"
                     value={colors.accent}
                     onChange={(e) => handleColorChange("accent", e.target.value)}
-                    className="w-12 h-10 rounded cursor-pointer border border-[#2a2f3e]"
+                    className="w-12 h-10 rounded cursor-pointer border border-[#334155]"
                   />
                   <input
                     type="text"
                     value={colors.accent}
                     onChange={(e) => handleColorChange("accent", e.target.value)}
-                    className="flex-1 bg-[#0b0e14] border border-[#2a2f3e] text-[#00eaff] px-2 py-1 rounded text-sm font-mono"
+                    className="flex-1 bg-[#0f172a] border border-[#334155] text-[#93c5fd] px-2 py-1 rounded text-sm font-mono"
                   />
                 </div>
               </div>
             </div>
 
             {/* Preset Schemes */}
-            <div className="border-t border-[#2a2f3e] pt-4">
-              <p className="text-xs text-[#7a7f8e] font-bold mb-2">PRESET SCHEMES</p>
+            <div className="border-t border-[#334155] pt-4">
+              <p className="text-xs text-[#94a3b8] font-bold mb-2">PRESET SCHEMES</p>
               <div className="grid grid-cols-2 gap-2">
                 {Object.entries(PRESET_SCHEMES).map(([name, scheme]) => (
                   <button
                     key={name}
                     onClick={() => applyPreset(scheme)}
-                    className="p-2 bg-[#0b0e14] border border-[#2a2f3e] rounded hover:border-[#00eaff] transition-colors text-xs font-bold text-[#7a7f8e] hover:text-[#00eaff]"
+                    className="p-2 bg-[#0f172a] border border-[#334155] rounded hover:border-[#93c5fd] transition-colors text-xs font-bold text-[#94a3b8] hover:text-[#93c5fd]"
                   >
                     <div className="flex gap-1 mb-1">
                       <div
@@ -206,7 +206,7 @@ export default function ColorCustomizer() {
 
             {/* Close Button */}
             <Button
-              className="w-full btn-neon-cyan text-sm"
+              className="w-full btn-secondary text-sm"
               onClick={() => setIsOpen(false)}
             >
               Done

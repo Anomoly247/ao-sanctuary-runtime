@@ -64,6 +64,13 @@
       "when": 1780180000000,
       "tag": "0008_ao_global_ledger",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1780183600000,
+      "tag": "0009_badges_mission_link",
+      "breakpoints": true
     }
   ]
 }

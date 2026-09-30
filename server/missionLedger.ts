@@ -1,7 +1,7 @@
 import { and, eq } from "drizzle-orm";
 import { TRPCError } from "@trpc/server";
 import { getDb, getOrCreateUserProfile } from "./db";
-import { coinTransactions, globalMissions, missionContributions, userProfiles } from "../drizzle/schema";
+import { achievements, coinTransactions, globalMissions, missionContributions, userAchievements, userProfiles } from "../drizzle/schema";
 
 export const MISSION_CATALOG = [
   {
@@ -9,18 +9,21 @@ export const MISSION_CATALOG = [
     name: "Welcome to AO",
     description: "Choose a house and take your first step into the connected universe.",
     reward: "25.00",
+    achievementId: null,
   },
   {
     id: "play-with-purpose",
     name: "Play With Purpose",
     description: "Complete a connected game or creative activity from an AO destination.",
     reward: "50.00",
+    achievementId: null,
   },
   {
     id: "make-something-kind",
     name: "Make Something Kind",
     description: "Create, share, or complete a kid-safe creative activity.",
     reward: "40.00",
+    achievementId: null,
   },
 ] as const;
 
@@ -121,6 +124,24 @@ export async function completeGlobalMission(input: {
       balanceAfter: newBalance,
     });
 
-    return { completed: true, duplicate: false, reward, balance: newBalance };
+    let badgeAwarded = null;
+    if (mission.achievementId) {
+      const badge = await tx.select().from(achievements)
+        .where(eq(achievements.id, mission.achievementId)).limit(1);
+      const alreadyUnlocked = await tx.select().from(userAchievements)
+        .where(and(
+          eq(userAchievements.userId, input.userId),
+          eq(userAchievements.achievementId, mission.achievementId),
+        )).limit(1);
+      if (!alreadyUnlocked.length) {
+        await tx.insert(userAchievements).values({
+          userId: input.userId,
+          achievementId: mission.achievementId,
+        });
+      }
+      badgeAwarded = badge[0] || null;
+    }
+
+    return { completed: true, duplicate: false, reward, balance: newBalance, badgeAwarded };
   });
 }

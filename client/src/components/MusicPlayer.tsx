@@ -79,36 +79,36 @@ export default function MusicPlayer({ tracks, onTrackChange, compact = false }: 
 
   if (!currentTrack) {
     return (
-      <Card className="bg-[#1a1f2e] border border-[#2a2f3e] p-4">
-        <p className="text-[#7a7f8e] text-center">No music available</p>
+      <Card className="bg-[#1e293b] border border-[#334155] p-4">
+        <p className="text-[#94a3b8] text-center">No music available</p>
       </Card>
     );
   }
 
   if (compact) {
     return (
-      <div className="bg-[#0b0e14] border border-[#2a2f3e] rounded-lg p-3">
+      <div className="bg-[#0f172a] border border-[#334155] rounded-lg p-3">
         <audio ref={audioRef} src={currentTrack.url} />
         <div className="flex items-center gap-3">
           <Button
             size="sm"
             onClick={handlePlayPause}
-            className="bg-[#ff00cc] hover:bg-[#ff00cc]/80 text-black"
+            className="bg-[#c4b5fd] hover:bg-[#c4b5fd]/80 text-black"
           >
             {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
           </Button>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-bold text-[#00eaff] truncate">{currentTrack.title}</p>
-            <p className="text-xs text-[#7a7f8e] truncate">{currentTrack.artist}</p>
+            <p className="text-sm font-bold text-[#93c5fd] truncate">{currentTrack.title}</p>
+            <p className="text-xs text-[#94a3b8] truncate">{currentTrack.artist}</p>
           </div>
-          <Button size="sm" variant="ghost" onClick={handleNextTrack} className="text-[#7a7f8e]">
+          <Button size="sm" variant="ghost" onClick={handleNextTrack} className="text-[#94a3b8]">
             <SkipForward className="w-4 h-4" />
           </Button>
           <Button
             size="sm"
             variant="ghost"
             onClick={() => setShowShareModal(true)}
-            className="text-[#7a7f8e] hover:text-[#ff00cc]"
+            className="text-[#94a3b8] hover:text-[#c4b5fd]"
           >
             <Share2 className="w-4 h-4" />
           </Button>
@@ -128,14 +128,14 @@ export default function MusicPlayer({ tracks, onTrackChange, compact = false }: 
   }
 
   return (
-    <Card className="bg-[#1a1f2e] border border-[#ff00cc] p-6">
+    <Card className="bg-[#1e293b] border border-[#c4b5fd] p-6">
       <audio ref={audioRef} src={currentTrack.url} />
 
       <div className="flex items-center gap-4 mb-6">
-        <Music className="w-8 h-8 text-[#ff00cc]" />
+        <Music className="w-8 h-8 text-[#c4b5fd]" />
         <div className="flex-1">
-          <h4 className="text-lg font-bold text-[#00eaff]">{currentTrack.title}</h4>
-          <p className="text-sm text-[#7a7f8e]">{currentTrack.artist}</p>
+          <h4 className="text-lg font-bold text-[#93c5fd]">{currentTrack.title}</h4>
+          <p className="text-sm text-[#94a3b8]">{currentTrack.artist}</p>
         </div>
       </div>
 
@@ -145,14 +145,14 @@ export default function MusicPlayer({ tracks, onTrackChange, compact = false }: 
           size="sm"
           variant="outline"
           onClick={handlePrevTrack}
-          className="text-[#7a7f8e] border-[#2a2f3e]"
+          className="text-[#94a3b8] border-[#334155]"
         >
           <SkipBack className="w-4 h-4" />
         </Button>
 
         <Button
           onClick={handlePlayPause}
-          className="bg-[#ff00cc] hover:bg-[#ff00cc]/80 text-black font-bold w-12 h-12"
+          className="bg-[#c4b5fd] hover:bg-[#c4b5fd]/80 text-black font-bold w-12 h-12"
         >
           {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6" />}
         </Button>
@@ -161,7 +161,7 @@ export default function MusicPlayer({ tracks, onTrackChange, compact = false }: 
           size="sm"
           variant="outline"
           onClick={handleNextTrack}
-          className="text-[#7a7f8e] border-[#2a2f3e]"
+          className="text-[#94a3b8] border-[#334155]"
         >
           <SkipForward className="w-4 h-4" />
         </Button>
@@ -169,19 +169,19 @@ export default function MusicPlayer({ tracks, onTrackChange, compact = false }: 
 
       {/* Volume Control */}
       <div className="flex items-center gap-3 mb-6">
-        <Volume2 className="w-4 h-4 text-[#7a7f8e]" />
+        <Volume2 className="w-4 h-4 text-[#94a3b8]" />
         <input
           type="range"
           min="0"
           max="100"
           value={volume}
           onChange={handleVolumeChange}
-          className="flex-1 h-2 bg-[#2a2f3e] rounded-lg appearance-none cursor-pointer"
+          className="flex-1 h-2 bg-[#334155] rounded-lg appearance-none cursor-pointer"
           style={{
-            background: `linear-gradient(to right, #ff00cc 0%, #ff00cc ${volume}%, #2a2f3e ${volume}%, #2a2f3e 100%)`,
+            background: `linear-gradient(to right, #c4b5fd 0%, #c4b5fd ${volume}%, #334155 ${volume}%, #334155 100%)`,
           }}
         />
-        <span className="text-sm text-[#7a7f8e] w-8 text-right">{volume}%</span>
+        <span className="text-sm text-[#94a3b8] w-8 text-right">{volume}%</span>
       </div>
 
       {/* Share Button */}
@@ -196,28 +196,28 @@ export default function MusicPlayer({ tracks, onTrackChange, compact = false }: 
       </div>
 
       {/* Track Info */}
-      <div className="bg-[#0b0e14] rounded-lg p-4 border border-[#2a2f3e]">
+      <div className="bg-[#0f172a] rounded-lg p-4 border border-[#334155]">
         <div className="grid grid-cols-2 gap-4 text-sm">
           <div>
-            <p className="text-[#7a7f8e] text-xs mb-1">Mood</p>
-            <p className="text-[#00eaff] font-bold capitalize">{currentTrack.mood}</p>
+            <p className="text-[#94a3b8] text-xs mb-1">Mood</p>
+            <p className="text-[#93c5fd] font-bold capitalize">{currentTrack.mood}</p>
           </div>
           <div>
-            <p className="text-[#7a7f8e] text-xs mb-1">Duration</p>
-            <p className="text-[#00eaff] font-bold">
+            <p className="text-[#94a3b8] text-xs mb-1">Duration</p>
+            <p className="text-[#93c5fd] font-bold">
               {Math.floor(currentTrack.duration / 60)}:{String(currentTrack.duration % 60).padStart(2, "0")}
             </p>
           </div>
           <div className="col-span-2">
-            <p className="text-[#7a7f8e] text-xs mb-1">License</p>
-            <p className="text-[#ff00cc] font-bold capitalize">{currentTrack.license}</p>
+            <p className="text-[#94a3b8] text-xs mb-1">License</p>
+            <p className="text-[#c4b5fd] font-bold capitalize">{currentTrack.license}</p>
           </div>
         </div>
       </div>
 
       {/* Playlist */}
       <div className="mt-6">
-        <p className="text-sm font-bold text-[#00eaff] mb-3">Playlist ({tracks.length})</p>
+        <p className="text-sm font-bold text-[#93c5fd] mb-3">Playlist ({tracks.length})</p>
         <div className="space-y-2 max-h-48 overflow-y-auto">
           {tracks.map((track, idx) => (
             <button
@@ -230,14 +230,14 @@ export default function MusicPlayer({ tracks, onTrackChange, compact = false }: 
               }}
               className={`w-full text-left p-2 rounded-lg transition-colors ${
                 idx === currentTrackIndex
-                  ? "bg-[#ff00cc]/20 border border-[#ff00cc]"
-                  : "bg-[#0b0e14] border border-[#2a2f3e] hover:border-[#00eaff]"
+                  ? "bg-[#c4b5fd]/20 border border-[#c4b5fd]"
+                  : "bg-[#0f172a] border border-[#334155] hover:border-[#93c5fd]"
               }`}
             >
-              <p className={`text-sm font-bold ${idx === currentTrackIndex ? "text-[#ff00cc]" : "text-[#00eaff]"}`}>
+              <p className={`text-sm font-bold ${idx === currentTrackIndex ? "text-[#c4b5fd]" : "text-[#93c5fd]"}`}>
                 {track.title}
               </p>
-              <p className="text-xs text-[#7a7f8e]">{track.artist}</p>
+              <p className="text-xs text-[#94a3b8]">{track.artist}</p>
             </button>
           ))}
         </div>

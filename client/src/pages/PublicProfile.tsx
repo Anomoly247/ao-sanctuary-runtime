@@ -53,18 +53,18 @@ export default function PublicProfile() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#0b0e14] flex items-center justify-center">
-        <div className="text-[#00eaff]">Loading profile...</div>
+      <div className="min-h-screen bg-[#0f172a] flex items-center justify-center">
+        <div className="text-[#93c5fd]">Loading profile...</div>
       </div>
     );
   }
 
   if (!profile) {
     return (
-      <div className="min-h-screen bg-[#0b0e14] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0f172a] flex items-center justify-center">
         <div className="text-center">
-          <p className="text-[#ff00cc] text-xl mb-4">Profile not found</p>
-          <Button className="btn-neon-magenta" onClick={() => navigate("/")}>
+          <p className="text-[#c4b5fd] text-xl mb-4">Profile not found</p>
+          <Button className="btn-primary" onClick={() => navigate("/")}>
             Back to Home
           </Button>
         </div>
@@ -73,16 +73,16 @@ export default function PublicProfile() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0b0e14] text-[#00eaff]">
+    <div className="min-h-screen bg-[#0f172a] text-[#93c5fd]">
       {/* Navigation */}
-      <nav className="border-b border-[#2a2f3e] px-6 py-4 sticky top-0 bg-[#0b0e14]/95 backdrop-blur z-10">
+      <nav className="border-b border-[#334155] px-6 py-4 sticky top-0 bg-[#0f172a]/95 backdrop-blur z-10">
         <div className="max-w-4xl mx-auto flex justify-between items-center">
-          <Button variant="ghost" onClick={() => navigate("/")} className="text-[#7a7f8e] flex items-center gap-2">
+          <Button variant="ghost" onClick={() => navigate("/")} className="text-[#94a3b8] flex items-center gap-2">
             <ArrowLeft className="w-4 h-4" />
             Back
           </Button>
-          <h1 className="text-2xl font-bold neon-text-magenta">{profile.name}'s Profile</h1>
-          <Button variant="ghost" className="text-[#00eaff]" onClick={handleShare}>
+          <h1 className="text-2xl font-bold text-accent">{profile.name}'s Profile</h1>
+          <Button variant="ghost" className="text-[#93c5fd]" onClick={handleShare}>
             <Share2 className="w-4 h-4 mr-2" />
             Share
           </Button>
@@ -93,29 +93,29 @@ export default function PublicProfile() {
       <main className="max-w-4xl mx-auto px-6 py-12">
         {/* Profile Header */}
         <Card
-          className="bg-[#1a1f2e] border border-[#2a2f3e] p-8 mb-8"
+          className="bg-[#1e293b] border border-[#334155] p-8 mb-8"
           style={{
-            boxShadow: "0 0 20px rgba(255, 0, 204, 0.3), 0 0 40px rgba(255, 0, 204, 0.1)",
+            boxShadow: "0 8px 24px rgba(15, 23, 42, 0.28)",
           }}
         >
           <div className="flex items-start justify-between mb-6">
             <div className="flex items-center gap-6">
-              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#ff00cc] to-[#00eaff] flex items-center justify-center text-3xl">
+              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#c4b5fd] to-[#93c5fd] flex items-center justify-center text-3xl">
                 {profile.avatarUrl || "👤"}
               </div>
               <div>
-                <h2 className="text-3xl font-bold text-[#ff00cc] mb-2">{profile.name}</h2>
-                <p className="text-[#7a7f8e] mb-4">{profile.bio || "No bio yet"}</p>
+                <h2 className="text-3xl font-bold text-[#c4b5fd] mb-2">{profile.name}</h2>
+                <p className="text-[#94a3b8] mb-4">{profile.bio || "No bio yet"}</p>
                 <div className="flex gap-4">
                   <Button
                     variant="outline"
-                    className="text-[#00eaff] border-[#2a2f3e] gap-2"
+                    className="text-[#93c5fd] border-[#334155] gap-2"
                     onClick={handleCopyLink}
                   >
                     <Copy className="w-4 h-4" />
                     {copied ? "Copied!" : "Copy Link"}
                   </Button>
-                  <Button className="btn-neon-cyan gap-2" onClick={handleShare}>
+                  <Button className="btn-secondary gap-2" onClick={handleShare}>
                     <Share2 className="w-4 h-4" />
                     Share Profile
                   </Button>
@@ -128,47 +128,47 @@ export default function PublicProfile() {
         {/* Stats Grid */}
         <div className="grid md:grid-cols-3 gap-6 mb-8">
           <Card
-            className="bg-[#1a1f2e] border border-[#2a2f3e] p-6"
+            className="bg-[#1e293b] border border-[#334155] p-6"
             style={{
-              boxShadow: "0 0 10px rgba(255, 0, 204, 0.3), 0 0 20px rgba(255, 0, 204, 0.1)",
+              boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
             }}
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-[#7a7f8e] text-sm">Anom Coins</p>
-                <p className="text-3xl font-bold text-[#ff00cc]">{profile.coins || 0}</p>
+                <p className="text-[#94a3b8] text-sm">Anom Coins</p>
+                <p className="text-3xl font-bold text-[#c4b5fd]">{profile.coins || 0}</p>
               </div>
-              <Zap className="w-8 h-8 text-[#ff00cc] opacity-50" />
+              <Zap className="w-8 h-8 text-[#c4b5fd] opacity-50" />
             </div>
           </Card>
 
           <Card
-            className="bg-[#1a1f2e] border border-[#2a2f3e] p-6"
+            className="bg-[#1e293b] border border-[#334155] p-6"
             style={{
-              boxShadow: "0 0 10px rgba(0, 234, 255, 0.3), 0 0 20px rgba(0, 234, 255, 0.1)",
+              boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
             }}
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-[#7a7f8e] text-sm">Level</p>
-                <p className="text-3xl font-bold text-[#00eaff]">{profile.level || 1}</p>
+                <p className="text-[#94a3b8] text-sm">Level</p>
+                <p className="text-3xl font-bold text-[#93c5fd]">{profile.level || 1}</p>
               </div>
-              <Trophy className="w-8 h-8 text-[#00eaff] opacity-50" />
+              <Trophy className="w-8 h-8 text-[#93c5fd] opacity-50" />
             </div>
           </Card>
 
           <Card
-            className="bg-[#1a1f2e] border border-[#2a2f3e] p-6"
+            className="bg-[#1e293b] border border-[#334155] p-6"
             style={{
-              boxShadow: "0 0 10px rgba(157, 78, 221, 0.3), 0 0 20px rgba(157, 78, 221, 0.1)",
+              boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
             }}
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-[#7a7f8e] text-sm">Achievements</p>
-                <p className="text-3xl font-bold text-[#9d4edd]">{achievements.length || 0}</p>
+                <p className="text-[#94a3b8] text-sm">Achievements</p>
+                <p className="text-3xl font-bold text-[#a5b4fc]">{achievements.length || 0}</p>
               </div>
-              <Heart className="w-8 h-8 text-[#9d4edd] opacity-50" />
+              <Heart className="w-8 h-8 text-[#a5b4fc] opacity-50" />
             </div>
           </Card>
         </div>
@@ -176,21 +176,21 @@ export default function PublicProfile() {
         {/* Achievements Section */}
         {achievements && achievements.length > 0 && (
           <Card
-            className="bg-[#1a1f2e] border border-[#2a2f3e] p-6 mb-8"
+            className="bg-[#1e293b] border border-[#334155] p-6 mb-8"
             style={{
-              boxShadow: "0 0 15px rgba(157, 78, 221, 0.4), 0 0 30px rgba(157, 78, 221, 0.2)",
+              boxShadow: "0 6px 18px rgba(15, 23, 42, 0.22)",
             }}
           >
-            <h3 className="text-xl font-bold text-[#9d4edd] mb-6 flex items-center gap-2">
+            <h3 className="text-xl font-bold text-[#a5b4fc] mb-6 flex items-center gap-2">
               <Award className="w-5 h-5" />
               Achievements & Awards
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {achievements.map((achievement: any) => (
-                <div key={achievement.id} className="p-4 bg-[#0b0e14] rounded-lg border border-[#2a2f3e] hover:border-[#ff00cc] transition-colors">
+                <div key={achievement.id} className="p-4 bg-[#0f172a] rounded-lg border border-[#334155] hover:border-[#c4b5fd] transition-colors">
                   <div className="text-3xl mb-2">{achievement.icon || "🏆"}</div>
-                  <p className="text-[#00eaff] font-bold text-sm">{achievement.name}</p>
-                  <p className="text-[#7a7f8e] text-xs">{achievement.description}</p>
+                  <p className="text-[#93c5fd] font-bold text-sm">{achievement.name}</p>
+                  <p className="text-[#94a3b8] text-xs">{achievement.description}</p>
                 </div>
               ))}
             </div>
@@ -200,21 +200,21 @@ export default function PublicProfile() {
         {/* Decorations & Cosmetics Section */}
         {decorations && decorations.length > 0 && (
           <Card
-            className="bg-[#1a1f2e] border border-[#2a2f3e] p-6 mb-8"
+            className="bg-[#1e293b] border border-[#334155] p-6 mb-8"
             style={{
-              boxShadow: "0 0 15px rgba(157, 78, 221, 0.4), 0 0 30px rgba(157, 78, 221, 0.2)",
+              boxShadow: "0 6px 18px rgba(15, 23, 42, 0.22)",
             }}
           >
-            <h3 className="text-xl font-bold text-[#9d4edd] mb-6 flex items-center gap-2">
+            <h3 className="text-xl font-bold text-[#a5b4fc] mb-6 flex items-center gap-2">
               <Sparkles className="w-5 h-5" />
               Cosmetics & Decorations
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {decorations.map((decoration: any) => (
-                <div key={decoration.id} className="p-4 bg-[#0b0e14] rounded-lg border border-[#2a2f3e] hover:border-[#ff00cc] transition-colors cursor-pointer">
+                <div key={decoration.id} className="p-4 bg-[#0f172a] rounded-lg border border-[#334155] hover:border-[#c4b5fd] transition-colors cursor-pointer">
                   <div className="text-3xl mb-2">{decoration.icon || "✨"}</div>
-                  <p className="text-[#00eaff] font-bold text-sm">{decoration.name}</p>
-                  <p className="text-[#7a7f8e] text-xs">{decoration.type || "Cosmetic"}</p>
+                  <p className="text-[#93c5fd] font-bold text-sm">{decoration.name}</p>
+                  <p className="text-[#94a3b8] text-xs">{decoration.type || "Cosmetic"}</p>
                 </div>
               ))}
             </div>
@@ -223,50 +223,50 @@ export default function PublicProfile() {
 
         {/* Mood Glows Section */}
         <Card
-          className="bg-[#1a1f2e] border border-[#2a2f3e] p-6 mb-8"
+          className="bg-[#1e293b] border border-[#334155] p-6 mb-8"
           style={{
-            boxShadow: "0 0 15px rgba(0, 234, 255, 0.3), 0 0 30px rgba(0, 234, 255, 0.1)",
+            boxShadow: "0 6px 18px rgba(15, 23, 42, 0.22)",
           }}
         >
-          <h3 className="text-xl font-bold text-[#00eaff] mb-4 flex items-center gap-2">
+          <h3 className="text-xl font-bold text-[#93c5fd] mb-4 flex items-center gap-2">
             <Star className="w-5 h-5" />
             Mood Glows
           </h3>
           <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
             {["😊", "🔥", "💜", "✨", "🌈", "💫"].map((emoji, i) => (
-              <div key={i} className="p-3 bg-[#0b0e14] rounded-lg border border-[#2a2f3e] text-center hover:scale-110 transition-transform cursor-pointer">
+              <div key={i} className="p-3 bg-[#0f172a] rounded-lg border border-[#334155] text-center hover:scale-110 transition-transform cursor-pointer">
                 <div className="text-2xl">{emoji}</div>
               </div>
             ))}
           </div>
         </Card>
 
-        {/* Neon Themes Section */}
+        {/* Themes Section */}
         <Card
-          className="bg-[#1a1f2e] border border-[#2a2f3e] p-6 mb-8"
+          className="bg-[#1e293b] border border-[#334155] p-6 mb-8"
           style={{
-            boxShadow: "0 0 15px rgba(255, 0, 204, 0.3), 0 0 30px rgba(255, 0, 204, 0.1)",
+            boxShadow: "0 6px 18px rgba(15, 23, 42, 0.22)",
           }}
         >
-          <h3 className="text-xl font-bold text-[#ff00cc] mb-4 flex items-center gap-2">
+          <h3 className="text-xl font-bold text-[#c4b5fd] mb-4 flex items-center gap-2">
             <Shield className="w-5 h-5" />
-            Neon Themes
+            Themes
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="p-4 bg-gradient-to-br from-[#ff00cc] to-[#9d4edd] rounded-lg border-2 border-[#ff00cc] text-center cursor-pointer hover:scale-105 transition-transform">
+            <div className="p-4 bg-gradient-to-br from-[#c4b5fd] to-[#a5b4fc] rounded-lg border-2 border-[#c4b5fd] text-center cursor-pointer hover:scale-105 transition-transform">
               <p className="text-white font-bold">Magenta Dream</p>
               <p className="text-white text-xs opacity-75">Active</p>
             </div>
-            <div className="p-4 bg-gradient-to-br from-[#00eaff] to-[#0099ff] rounded-lg border border-[#2a2f3e] text-center hover:border-[#00eaff] transition-colors cursor-pointer hover:scale-105">
+            <div className="p-4 bg-gradient-to-br from-[#93c5fd] to-[#0099ff] rounded-lg border border-[#334155] text-center hover:border-[#93c5fd] transition-colors cursor-pointer hover:scale-105">
               <p className="text-white font-bold">Cyan Wave</p>
               <p className="text-white text-xs opacity-75">Available</p>
             </div>
-            <div className="p-4 bg-gradient-to-br from-[#9d4edd] to-[#ff00cc] rounded-lg border border-[#2a2f3e] text-center hover:border-[#9d4edd] transition-colors cursor-pointer hover:scale-105">
+            <div className="p-4 bg-gradient-to-br from-[#a5b4fc] to-[#c4b5fd] rounded-lg border border-[#334155] text-center hover:border-[#a5b4fc] transition-colors cursor-pointer hover:scale-105">
               <p className="text-white font-bold">Purple Haze</p>
               <p className="text-white text-xs opacity-75">Available</p>
             </div>
-            <div className="p-4 bg-gradient-to-br from-[#00ff88] to-[#00eaff] rounded-lg border border-[#2a2f3e] text-center hover:border-[#00ff88] transition-colors cursor-pointer hover:scale-105">
-              <p className="text-white font-bold">Neon Green</p>
+            <div className="p-4 bg-gradient-to-br from-[#00ff88] to-[#93c5fd] rounded-lg border border-[#334155] text-center hover:border-[#00ff88] transition-colors cursor-pointer hover:scale-105">
+              <p className="text-white font-bold">Green</p>
               <p className="text-white text-xs opacity-75">Available</p>
             </div>
           </div>
