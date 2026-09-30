@@ -6,6 +6,7 @@ import { Route, Router, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { AOBridgeProvider } from "./contexts/AOBridgeContext";
+import { AmbientAudioProvider } from "./contexts/AmbientAudioContext";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Wallet from "./pages/Wallet";
@@ -92,12 +93,14 @@ function App() {
           defaultTheme="light"
           // switchable
         >
-          <TooltipProvider>
-            <Toaster />
-            <ColorCustomizer />
-            <AppRoutes />
-            {isAuthenticated && <ChatWidget />}
-          </TooltipProvider>
+          <AmbientAudioProvider>
+            <TooltipProvider>
+              <Toaster />
+              <ColorCustomizer />
+              <AppRoutes />
+              {isAuthenticated && <ChatWidget />}
+            </TooltipProvider>
+          </AmbientAudioProvider>
         </ThemeProvider>
       </AOBridgeProvider>
     </ErrorBoundary>

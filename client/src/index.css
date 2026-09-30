@@ -1499,3 +1499,87 @@
   .ao-baba-status-row { gap: 0.4rem; }
   .ao-baba-status { font-size: 0.64rem; }
 }
+
+
+/* Site-wide ambient audio controls */
+.ao-ambient-control {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid rgba(216, 174, 85, 0.46);
+  border-radius: 999px;
+  background: rgba(10, 10, 16, 0.9);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.34);
+  backdrop-filter: blur(16px);
+}
+
+.ao-ambient-toggle {
+  border: 0;
+  background: transparent;
+  color: #d8ae55;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+}
+
+.ao-ambient-volume {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: rgba(255, 255, 255, 0.62);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.62rem;
+}
+
+.ao-ambient-volume input {
+  accent-color: #d8ae55;
+  width: 76px;
+}
+
+.ao-ambient-hint {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.65rem;
+  white-space: nowrap;
+}
+
+/* Baba Yaga forest palette: brighter moss, moonlight, and warm lantern color */
+.ao-baba-page {
+  --ao-forest-moss: #1f5143;
+  --ao-forest-leaf: #2e7252;
+  --ao-forest-moon: #9bc9bb;
+  --ao-forest-berry: #b86f78;
+  background:
+    radial-gradient(circle at 75% 28%, rgba(155, 201, 187, 0.22), transparent 24%),
+    radial-gradient(circle at 18% 68%, rgba(46, 114, 82, 0.3), transparent 32%),
+    linear-gradient(120deg, rgba(9, 25, 21, 0.77), rgba(10, 10, 16, 0.54)),
+    url("https://anomartsy.xyz/assets/backgrounds/05_moonlit_forest_spirit.jpg") center / cover fixed;
+}
+
+.ao-baba-art-haze {
+  border-color: rgba(155, 201, 187, 0.62);
+  background: radial-gradient(circle, rgba(46, 114, 82, 0.34), rgba(216, 174, 85, 0.1) 42%, transparent 70%);
+}
+
+.ao-baba-puzzle-panel,
+.ao-baba-story-card,
+.ao-baba-oly-card {
+  background: linear-gradient(135deg, rgba(10, 30, 25, 0.88), rgba(0, 0, 0, 0.72)) !important;
+}
+
+.ao-lantern-gold .ao-lantern-core { background: #e2b85f; }
+.ao-lantern-rose .ao-lantern-core { background: var(--ao-forest-berry); }
+.ao-lantern-cyan .ao-lantern-core { background: var(--ao-forest-moon); }
+
+@media (max-width: 680px) {
+  .ao-ambient-control {
+    right: 0.65rem;
+    bottom: 0.65rem;
+  }
+  .ao-ambient-hint { display: none; }
+}
