@@ -390,6 +390,18 @@ export default function Home() {
           <div className="ao-world-map" role="group" aria-label={`${visibleWorldPortals.length} connected Anom worlds orbiting a shared sanctuary core`}>
             <div className="ao-map-halo ao-map-halo-outer" />
             <div className="ao-map-halo ao-map-halo-inner" />
+            <div className="ao-map-live-ripple ao-map-live-ripple-one" aria-hidden="true" />
+            <div className="ao-map-live-ripple ao-map-live-ripple-two" aria-hidden="true" />
+            <div className="ao-map-connection-web" aria-hidden="true">
+              {Array.from({ length: 4 }, (_, index) => (
+                <span key={`connection-${index}`} className={`ao-map-connection ao-map-connection-${index + 1}`} />
+              ))}
+            </div>
+            <div className="ao-map-starfield" aria-hidden="true">
+              {Array.from({ length: 20 }, (_, index) => (
+                <span key={`twinkle-${index}`} className={`ao-map-twinkle ao-map-twinkle-${index + 1}`} />
+              ))}
+            </div>
             <div className="ao-map-star ao-map-star-one" />
             <div className="ao-map-star ao-map-star-two" />
             <div className="ao-map-star ao-map-star-three" />
