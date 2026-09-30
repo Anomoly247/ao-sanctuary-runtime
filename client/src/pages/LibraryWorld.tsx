@@ -3,6 +3,7 @@ import { ArrowLeft, BookOpen, Compass, Search, Sparkles, Users, Video } from "lu
 import { useLocation } from "wouter";
 import { toast } from "sonner";
 import { AO_LIBRARY_WORLD } from "../../../shared/aoWorldContract";
+import { ExternalContentSpots } from "@/components/ExternalContentSpots";
 
 const lessonTrails = [
   {
@@ -100,6 +101,8 @@ export default function LibraryWorld() {
             })}
           </div>
         </section>
+
+        <ExternalContentSpots placement="library" />
 
         <section className="ao-safety-rail" aria-label="Library World safety promise">
           <span className="ao-safety-badge"><BookOpen className="h-4 w-4" /> LIBRARY RULES</span>

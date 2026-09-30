@@ -4,7 +4,7 @@ import { useLocation } from "wouter";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { useState } from "react";
 import { toast } from "sonner";
-import SignUpConnectors from "@/components/SignUpConnectors";
+import ExternalWebDoor from "@/components/ExternalWebDoor";
 import HomepageIntegration from "@/components/HomepageIntegration";
 import { trpc } from "@/lib/trpc";
 import { AO_LIBRARY_WORLD, AO_SOCIAL_GOOD_MISSIONS, AO_WORLD_AGE_TIERS, AO_WORLD_PRINCIPLES, getAOBadgeRarity } from "../../../shared/aoWorldContract";
@@ -78,7 +78,7 @@ export default function Home() {
                 <span className="text-[#00eaff]">, Amplified</span>
               </h1>
               <p className="text-lg text-[#cccccc] mb-8">
-                Join the Anom Artsy community — a neon-lit sanctuary where family comes first, creativity thrives, and your identity matters. Every interaction drives real-world social good impact.
+                Enter a living sanctuary where family comes first, creativity thrives, and your identity matters. Every interaction can move real-world social good forward.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a href="/games">
@@ -105,7 +105,7 @@ export default function Home() {
                 <p className="text-[#cccccc] text-sm mt-3">Play and explore as a guest. Account login is optional for saving identity and ledger rewards.</p>
               </div>
             </div>
-            <SignUpConnectors />
+            <ExternalWebDoor />
           </div>
         </section>
 
@@ -354,8 +354,8 @@ export default function Home() {
               )}
             </div>
             {user?.role === 'admin' && (
-              <Button onClick={() => navigate('/owner')} className="btn-primary font-bold" size="sm">
-                Owner Panel
+              <Button onClick={() => navigate('/admin-hub')} className="btn-primary font-bold" size="sm">
+                Admin Hub
               </Button>
             )}
             <Button variant="outline" onClick={logout} className="text-[#00eaff]" size="sm">

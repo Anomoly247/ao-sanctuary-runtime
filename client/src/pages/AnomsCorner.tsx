@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Play, Share2, Heart, Star, Zap } from "lucide-react";
 import { toast } from "sonner";
 import { trpc } from "@/lib/trpc";
+import { ExternalContentSpots } from "@/components/ExternalContentSpots";
 
 interface Episode {
   id: string;
@@ -217,6 +218,10 @@ export default function AnomsCorner() {
             </Card>
           </div>
         </div>
+      </div>
+
+      <div className="container mx-auto px-4 pb-16">
+        <ExternalContentSpots placement="anoms-corner" />
       </div>
     </div>
   );

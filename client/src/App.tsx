@@ -37,6 +37,7 @@ import LibraryWorld from "./pages/LibraryWorld";
 import AnomsCorner from "./pages/AnomsCorner";
 import PixelProfile from "./pages/PixelProfile";
 import DotProfile from "./pages/DotProfile";
+import AdminHub from "./pages/AdminHub";
 
 const AppRoutes = () => {
   // make sure to consider if you need authentication for certain routes
@@ -60,6 +61,7 @@ const AppRoutes = () => {
       <Route path={"/games/baba-yaga"} component={BabaYagaGame} />
       <Route path={"/merch"} component={Merch} />
       <Route path="/admin" component={Admin} />
+      <Route path="/admin-hub" component={AdminHub} />
       <Route path="/collaboration" component={CollaborationStation} />
       <Route path="/owner-settings" component={OwnerSettings} />
       <Route path="/youtube-manager" component={YouTubeManager} />
