@@ -187,7 +187,7 @@ export default function PublicProfile() {
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {achievements.map((achievement: any) => (
-                <div key={achievement.id} className="p-4 bg-[#0A0A10] rounded-lg border border-[#08080f] hover:border-[#ff00c8] transition-colors">
+                <div key={achievement.id} className="p-4 bg-[#0A0A10] rounded-lg border border-[#08080f] hover:border-[#00eaff] transition-colors">
                   <div className="text-3xl mb-2">{achievement.icon || "🏆"}</div>
                   <p className="text-[#00eaff] font-bold text-sm">{achievement.name}</p>
                   <p className="text-[#cccccc] text-xs">{achievement.description}</p>
@@ -211,7 +211,7 @@ export default function PublicProfile() {
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {decorations.map((decoration: any) => (
-                <div key={decoration.id} className="p-4 bg-[#0A0A10] rounded-lg border border-[#08080f] hover:border-[#ff00c8] transition-colors cursor-pointer">
+                <div key={decoration.id} className="p-4 bg-[#0A0A10] rounded-lg border border-[#08080f] hover:border-[#00eaff] transition-colors cursor-pointer">
                   <div className="text-3xl mb-2">{decoration.icon || "✨"}</div>
                   <p className="text-[#00eaff] font-bold text-sm">{decoration.name}</p>
                   <p className="text-[#cccccc] text-xs">{decoration.type || "Cosmetic"}</p>
@@ -253,7 +253,7 @@ export default function PublicProfile() {
             Themes
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="p-4 bg-gradient-to-br from-[#ff00c8] to-[#d8ae55] rounded-lg border-2 border-[#ff00c8] text-center cursor-pointer hover:scale-105 transition-transform">
+            <div className="p-4 bg-gradient-to-br from-[#ff00c8] to-[#d8ae55] rounded-lg border-2 border-[#00eaff] text-center cursor-pointer hover:scale-105 transition-transform">
               <p className="text-white font-bold">Magenta Dream</p>
               <p className="text-white text-xs opacity-75">Active</p>
             </div>

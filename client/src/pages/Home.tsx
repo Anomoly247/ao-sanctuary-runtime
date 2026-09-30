@@ -43,7 +43,7 @@ export default function Home() {
         <section className="flex-1 px-6 py-20">
           <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="mb-6 inline-block bg-[#ff00c8]/20 border border-[#ff00c8] rounded-lg px-4 py-2">
+              <div className="mb-6 inline-block bg-transparent border border-[#00eaff] bg-[#00eaff]/10 border border-[#00eaff] rounded-lg px-4 py-2">
                 <p className="text-[#ff00c8] font-bold text-sm">🌍 Social Good First</p>
               </div>
               <h1 className="text-5xl font-bold mb-6">
@@ -60,7 +60,7 @@ export default function Home() {
                   </Button>
                 </a>
                 <a href="/mission-hub">
-                  <Button className="bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black font-bold text-lg py-6 px-8">
+                  <Button className="bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold text-lg py-6 px-8">
                     💜 Support Our Mission
                   </Button>
                 </a>
@@ -71,7 +71,7 @@ export default function Home() {
         </section>
 
         {/* Mission Section */}
-        <section className="bg-gradient-to-r from-[#ff00c8]/10 to-[#00eaff]/10 border-t border-[#ff00c8] px-6 py-16">
+        <section className="bg-gradient-to-r from-[#ff00c8]/10 to-[#00eaff]/10 border-t border-[#00eaff] px-6 py-16">
           <div className="max-w-7xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6">
               <span className="text-accent">Social Good</span>
@@ -233,7 +233,7 @@ export default function Home() {
             <div className="relative">
               <Button 
                 onClick={() => setShowBgMenu(!showBgMenu)}
-                className="bg-[#00eaff]/20 hover:bg-[#00eaff]/30 text-[#00eaff] border border-[#00eaff]"
+                className="bg-transparent border border-[#00eaff] bg-[#00eaff]/20 hover:bg-transparent border border-[#00eaff] bg-[#00eaff]/30 text-[#00eaff] border border-[#00eaff]"
                 size="sm"
               >
                 <Palette className="w-4 h-4 mr-2" />

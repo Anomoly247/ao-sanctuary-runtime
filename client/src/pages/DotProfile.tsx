@@ -43,7 +43,7 @@ export default function DotProfile() {
             <p className="text-xl text-[#cccccc] mb-4">The Explorer</p>
 
             <div className="flex justify-center gap-3 mb-6">
-              <Badge className="bg-[#00eaff] text-black font-bold">Anom's Corner</Badge>
+              <Badge className="bg-transparent border border-[#00eaff] text-[#00eaff] font-bold">Anom's Corner</Badge>
               <Badge className="bg-[#08080f] text-[#ff00c8] font-bold">Main Character</Badge>
             </div>
 
@@ -56,7 +56,7 @@ export default function DotProfile() {
                 onClick={() => setLiked(!liked)}
                 className={`${
                   liked
-                    ? "bg-[#00eaff] text-black hover:bg-[#00eaff]/80"
+                    ? "bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10"
                     : "bg-[#08080f] text-[#cccccc] hover:bg-[#3a3f4e]"
                 }`}
               >
@@ -157,7 +157,7 @@ export default function DotProfile() {
                 {["Adventurous", "Curious", "Energetic", "Observant", "Friendly"].map((trait) => (
                   <Badge
                     key={trait}
-                    className="bg-[#00eaff]/20 text-[#00eaff] border border-[#00eaff]"
+                    className="bg-transparent border border-[#00eaff] bg-[#00eaff]/20 text-[#00eaff] border border-[#00eaff]"
                   >
                     {trait}
                   </Badge>

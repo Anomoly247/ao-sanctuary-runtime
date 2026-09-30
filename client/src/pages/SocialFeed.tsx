@@ -223,7 +223,7 @@ export default function SocialFeed() {
             {reels.map((reel) => (
               <Card
                 key={reel.id}
-                className="bg-[#141423] border border-[#08080f] overflow-hidden hover:border-[#ff00c8] transition-all cursor-pointer group"
+                className="bg-[#141423] border border-[#08080f] overflow-hidden hover:border-[#00eaff] transition-all cursor-pointer group"
                 style={{
                   boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
                 }}
@@ -249,7 +249,7 @@ export default function SocialFeed() {
                     <span>👁️ {reel.views.toLocaleString()} views</span>
                     <Button
                       size="sm"
-                      className="bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black font-bold"
+                      className="bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold"
                       onClick={(e) => {
                         e.stopPropagation();
                         handlePlayReel(reel.id);
@@ -281,7 +281,7 @@ export default function SocialFeed() {
               <input
                 type="text"
                 placeholder="What's happening in your Anom Universe?"
-                className="w-full bg-[#0A0A10] border border-[#08080f] rounded px-4 py-3 text-[#00eaff] placeholder-[#cccccc] focus:outline-none focus:border-[#ff00c8]"
+                className="w-full bg-[#0A0A10] border border-[#08080f] rounded px-4 py-3 text-[#00eaff] placeholder-[#cccccc] focus:outline-none focus:border-[#00eaff]"
                 onClick={() => toast.info("Post creation coming soon!")}
               />
               <div className="flex justify-end gap-2 mt-4">
@@ -300,7 +300,7 @@ export default function SocialFeed() {
           {posts.map((post) => (
             <Card
               key={post.id}
-              className="bg-[#141423] border border-[#08080f] p-6 hover:border-[#ff00c8] transition-colors"
+              className="bg-[#141423] border border-[#08080f] p-6 hover:border-[#00eaff] transition-colors"
               style={{
                 boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
               }}

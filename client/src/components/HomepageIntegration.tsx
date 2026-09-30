@@ -72,7 +72,7 @@ export default function HomepageIntegration() {
           {communityMembers.map((member, idx) => (
             <Card
               key={idx}
-              className="bg-[#0A0A10] border border-[#08080f] p-4 hover:border-[#ff00c8] transition-colors"
+              className="bg-[#0A0A10] border border-[#08080f] p-4 hover:border-[#00eaff] transition-colors"
             >
               <div className="flex items-center justify-between mb-3">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#ff00c8] to-[#00eaff] flex items-center justify-center text-white font-bold">

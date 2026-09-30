@@ -75,7 +75,7 @@ export default function IdentitySyncCard() {
   };
 
   return (
-    <Card className="bg-gradient-to-br from-[#141423] to-[#0A0A10] border-2 border-[#ff00c8] p-6">
+    <Card className="bg-gradient-to-br from-[#141423] to-[#0A0A10] border-2 border-[#00eaff] p-6">
       <h3 className="text-xl font-bold text-[#ff00c8] mb-4 flex items-center gap-2">
         <RefreshCw className="w-5 h-5" />
         Identity Sync
@@ -118,7 +118,7 @@ export default function IdentitySyncCard() {
       <div className="mb-6">
         <Button
           onClick={handleGenerateSyncCode}
-          className="w-full bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black font-bold flex items-center justify-center gap-2 mb-3"
+          className="w-full bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold flex items-center justify-center gap-2 mb-3"
         >
           <QrCode className="w-4 h-4" />
           Generate Sync Code
@@ -135,7 +135,7 @@ export default function IdentitySyncCard() {
               />
               <Button
                 onClick={handleCopySyncCode}
-                className="bg-[#00eaff] hover:bg-[#00eaff]/80 text-black font-bold"
+                className="bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold"
               >
                 <Copy className="w-4 h-4" />
               </Button>
@@ -154,12 +154,12 @@ export default function IdentitySyncCard() {
             placeholder="Paste sync code here..."
             value={syncCode}
             onChange={(e) => setSyncCode(e.target.value)}
-            className="bg-[#0A0A10] border-[#ff00c8] text-white font-mono text-xs"
+            className="bg-[#0A0A10] border-[#00eaff] text-white font-mono text-xs"
           />
           <Button
             onClick={handleApplySyncCode}
             disabled={isApplying || !syncCode.trim()}
-            className="bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black font-bold"
+            className="bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold"
           >
             {isApplying ? "Syncing..." : "Sync"}
           </Button>

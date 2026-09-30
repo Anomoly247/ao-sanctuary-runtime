@@ -94,7 +94,7 @@ export default function ImageUploader({
   };
 
   return (
-    <Card className="bg-[#141423] border border-[#ff00c8] p-6 w-full max-w-md">
+    <Card className="bg-[#141423] border border-[#00eaff] p-6 w-full max-w-md">
       <div className="space-y-4">
         {/* Header */}
         <div>
@@ -116,7 +116,7 @@ export default function ImageUploader({
                 setSelectedFile(null);
                 setError("");
               }}
-              className="absolute top-2 right-2 bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black p-2 rounded-full"
+              className="absolute top-2 right-2 bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 p-2 rounded-full"
             >
               <X className="w-4 h-4" />
             </button>
@@ -130,7 +130,7 @@ export default function ImageUploader({
             onClick={() => fileInputRef.current?.click()}
             className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${
               isDragging
-                ? "border-[#ff00c8] bg-[#ff00c8]/10"
+                ? "border-[#00eaff] bg-transparent border border-[#00eaff] bg-[#00eaff]/10"
                 : "border-[#08080f] bg-[#0A0A10] hover:border-[#00eaff]"
             }`}
           >
@@ -154,7 +154,7 @@ export default function ImageUploader({
 
         {/* Error Message */}
         {error && (
-          <div className="flex gap-2 p-3 bg-[#ff00c8]/20 border border-[#ff00c8] rounded-lg">
+          <div className="flex gap-2 p-3 bg-transparent border border-[#00eaff] bg-[#00eaff]/10 border border-[#00eaff] rounded-lg">
             <AlertCircle className="w-5 h-5 text-[#ff00c8] flex-shrink-0" />
             <p className="text-sm text-[#ff00c8]">{error}</p>
           </div>
@@ -187,7 +187,7 @@ export default function ImageUploader({
           <Button
             onClick={handleConfirm}
             disabled={!selectedFile}
-            className="flex-1 bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black font-bold disabled:opacity-50"
+            className="flex-1 bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold disabled:opacity-50"
           >
             <Check className="w-4 h-4 mr-2" />
             Confirm

@@ -163,7 +163,7 @@ export default function ChatWidget() {
               onClick={() => setActiveTab("channels")}
               className={`flex-1 py-2 px-4 text-sm font-bold flex items-center justify-center gap-2 ${
                 activeTab === "channels"
-                  ? "text-[#ff00c8] border-b-2 border-[#ff00c8]"
+                  ? "text-[#ff00c8] border-b-2 border-[#00eaff]"
                   : "text-[#cccccc] hover:text-[#00eaff]"
               }`}
             >
@@ -174,7 +174,7 @@ export default function ChatWidget() {
               onClick={() => setActiveTab("dms")}
               className={`flex-1 py-2 px-4 text-sm font-bold flex items-center justify-center gap-2 ${
                 activeTab === "dms"
-                  ? "text-[#ff00c8] border-b-2 border-[#ff00c8]"
+                  ? "text-[#ff00c8] border-b-2 border-[#00eaff]"
                   : "text-[#cccccc] hover:text-[#00eaff]"
               }`}
             >

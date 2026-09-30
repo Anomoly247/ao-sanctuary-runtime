@@ -57,7 +57,7 @@ export default function ProfileCustomizer({
 
   return (
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-      <Card className="bg-[#141423] border border-[#ff00c8] w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+      <Card className="bg-[#141423] border border-[#00eaff] w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         <div className="p-6">
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
@@ -110,7 +110,7 @@ export default function ProfileCustomizer({
                   ) : (
                     <Button
                       onClick={() => setShowImageUploader("profile")}
-                      className="w-full bg-[#d8ae55] hover:bg-[#d8ae55]/80 text-white font-bold"
+                      className="w-full bg-transparent border border-[#d8ae55] text-[#d8ae55] hover:bg-[#d8ae55]/10 font-bold"
                     >
                       <Camera className="w-4 h-4 mr-2" />
                       Upload Profile Picture
@@ -134,7 +134,7 @@ export default function ProfileCustomizer({
                   ) : (
                     <Button
                       onClick={() => setShowImageUploader("background")}
-                      className="w-full bg-[#d8ae55] hover:bg-[#d8ae55]/80 text-white font-bold"
+                      className="w-full bg-transparent border border-[#d8ae55] text-[#d8ae55] hover:bg-[#d8ae55]/10 font-bold"
                     >
                       <ImageIcon className="w-4 h-4 mr-2" />
                       Upload Background Image
@@ -155,7 +155,7 @@ export default function ProfileCustomizer({
                   onChange={(e) => setBio(e.target.value)}
                   placeholder="Tell us about yourself..."
                   maxLength={500}
-                  className="w-full h-24 px-3 py-2 bg-[#0A0A10] border border-[#08080f] rounded-lg text-[#00eaff] placeholder-[#cccccc] focus:border-[#ff00c8] focus:outline-none resize-none"
+                  className="w-full h-24 px-3 py-2 bg-[#0A0A10] border border-[#08080f] rounded-lg text-[#00eaff] placeholder-[#cccccc] focus:border-[#00eaff] focus:outline-none resize-none"
                 />
                 <p className="text-xs text-[#cccccc] mt-1">
                   {bio.length}/500 characters
@@ -202,7 +202,7 @@ export default function ProfileCustomizer({
                       onClick={() => setProfileLayout(layout as any)}
                       className={`p-3 rounded-lg border-2 transition-colors capitalize font-bold ${
                         profileLayout === layout
-                          ? "border-[#ff00c8] bg-[#ff00c8]/20 text-[#ff00c8]"
+                          ? "border-[#00eaff] bg-transparent border border-[#00eaff] bg-[#00eaff]/10 text-[#ff00c8]"
                           : "border-[#08080f] bg-[#0A0A10] text-[#cccccc] hover:border-[#00eaff]"
                       }`}
                     >
@@ -248,7 +248,7 @@ export default function ProfileCustomizer({
             <Button
               onClick={handleSave}
               disabled={updateProfile.isPending}
-              className="flex-1 bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black font-bold disabled:opacity-50"
+              className="flex-1 bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold disabled:opacity-50"
             >
               <Save className="w-4 h-4 mr-2" />
               Save Changes

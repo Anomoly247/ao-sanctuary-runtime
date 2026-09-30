@@ -304,7 +304,7 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
 
               <Dialog open={isInviteOpen} onOpenChange={setIsInviteOpen}>
                 <DialogTrigger asChild>
-                  <Button className="w-full bg-[#00eaff] hover:bg-[#00eaff]/80 text-black font-bold">
+                  <Button className="w-full bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold">
                     Invite Members
                   </Button>
                 </DialogTrigger>
@@ -327,7 +327,7 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
                       />
                     </div>
                     <Button
-                      className="w-full bg-[#00eaff] hover:bg-[#00eaff]/80 text-black font-bold"
+                      className="w-full bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold"
                       onClick={() => {
                         if (!inviteEmail.trim()) {
                           toast.error("Please enter an email address");

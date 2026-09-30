@@ -41,7 +41,7 @@ export default function GlobalMissions() {
         </div>
 
         {bridge.mission && (
-          <div className="mb-6 rounded-xl border border-[#d8ae55]/50 bg-[#d8ae55]/10 p-4 text-sm text-[#ffffff]">
+          <div className="mb-6 rounded-xl border border-[#d8ae55]/50 bg-transparent border border-[#d8ae55] bg-[#d8ae55]/10 p-4 text-sm text-[#ffffff]">
             <Sparkles className="inline-block mr-2 h-4 w-4" />
             Continuing mission <strong>{bridge.mission}</strong> from {bridge.source}.
           </div>
@@ -59,7 +59,7 @@ export default function GlobalMissions() {
                 </div>
                 <p className="mt-4 min-h-16 text-sm text-[#9aa2b1]">{mission.description}</p>
                 <Button
-                  className="mt-6 w-full bg-[#ff00c8] hover:bg-[#ff00c8]/80"
+                  className="mt-6 w-full bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10"
                   disabled={isDone || complete.isPending}
                   onClick={() => complete.mutate({
                     missionId: mission.id,

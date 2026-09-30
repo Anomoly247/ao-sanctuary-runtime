@@ -42,7 +42,7 @@ export default function OwnerControlPanel() {
   if (user?.role !== 'admin') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-[#0A0A10] to-[#141423] p-4 flex items-center justify-center">
-        <Card className="border-2 border-[#ff00c8] bg-[#0A0A10]/80 p-8 max-w-md">
+        <Card className="border-2 border-[#00eaff] bg-[#0A0A10]/80 p-8 max-w-md">
           <div className="flex items-center justify-center mb-4">
             <Lock className="w-12 h-12 text-[#ff00c8]" />
           </div>
@@ -52,7 +52,7 @@ export default function OwnerControlPanel() {
           </p>
           <Button 
             onClick={() => navigate('/')}
-            className="w-full bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black font-bold"
+            className="w-full bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold"
           >
             Return to Home
           </Button>
@@ -129,7 +129,7 @@ export default function OwnerControlPanel() {
               onClick={() => setActiveTab(tab.id)}
               className={`p-3 rounded-lg border-2 transition-all flex items-center justify-center gap-2 ${
                 activeTab === tab.id
-                  ? 'border-[#ff00c8] bg-[#ff00c8]/20 text-[#ff00c8]'
+                  ? 'border-[#00eaff] bg-transparent border border-[#00eaff] bg-[#00eaff]/10 text-[#ff00c8]'
                   : 'border-[#00eaff] bg-transparent text-[#00eaff] hover:bg-[#00eaff]/10'
               }`}
             >
@@ -144,7 +144,7 @@ export default function OwnerControlPanel() {
       {activeTab === 'dashboard' && (
         <div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            <Card className="border-2 border-[#ff00c8] bg-[#0A0A10]/80 p-6">
+            <Card className="border-2 border-[#00eaff] bg-[#0A0A10]/80 p-6">
               <div className="text-gray-400 text-sm mb-2">Total Users</div>
               <div className="text-3xl font-bold text-[#ff00c8]">{stats?.totalUsers || 0}</div>
               <div className="text-green-400 text-xs mt-2">↑ {stats?.userGrowth || 0}% this month</div>
@@ -206,7 +206,7 @@ export default function OwnerControlPanel() {
                       <td className="py-2 text-gray-300">{u.id}</td>
                       <td className="py-2 text-gray-300">{u.name}</td>
                       <td className="py-2 text-gray-300">{u.email}</td>
-                      <td className="py-2"><span className="px-2 py-1 bg-[#ff00c8]/20 text-[#ff00c8] rounded text-xs">{u.role}</span></td>
+                      <td className="py-2"><span className="px-2 py-1 bg-transparent border border-[#00eaff] bg-[#00eaff]/10 text-[#ff00c8] rounded text-xs">{u.role}</span></td>
                       <td className="py-2 text-gray-300">{new Date(u.createdAt).toLocaleDateString()}</td>
                     </tr>
                   ))}
@@ -223,7 +223,7 @@ export default function OwnerControlPanel() {
           <h2 className="text-2xl font-bold text-[#ff00c8] mb-4">Community Highlights & Events</h2>
           
           {/* Create Event Form */}
-          <Card className="border-2 border-[#ff00c8] bg-[#0A0A10]/80 p-6 mb-6">
+          <Card className="border-2 border-[#00eaff] bg-[#0A0A10]/80 p-6 mb-6">
             <h3 className="text-xl font-bold text-[#ff00c8] mb-4 flex items-center gap-2">
               <Plus className="w-5 h-5" />
               Create New Event
@@ -235,7 +235,7 @@ export default function OwnerControlPanel() {
                   value={eventForm.title} 
                   onChange={(e) => setEventForm({ ...eventForm, title: e.target.value })}
                   placeholder="e.g., Tater & Clifford Episode Release"
-                  className="bg-[#141423] border-[#ff00c8] text-white"
+                  className="bg-[#141423] border-[#00eaff] text-white"
                 />
               </div>
               <div>
@@ -244,7 +244,7 @@ export default function OwnerControlPanel() {
                   value={eventForm.description} 
                   onChange={(e) => setEventForm({ ...eventForm, description: e.target.value })}
                   placeholder="Describe the event..."
-                  className="bg-[#141423] border-[#ff00c8] text-white"
+                  className="bg-[#141423] border-[#00eaff] text-white"
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
@@ -254,7 +254,7 @@ export default function OwnerControlPanel() {
                     type="datetime-local"
                     value={eventForm.date} 
                     onChange={(e) => setEventForm({ ...eventForm, date: e.target.value })}
-                    className="bg-[#141423] border-[#ff00c8] text-white"
+                    className="bg-[#141423] border-[#00eaff] text-white"
                   />
                 </div>
                 <div>
@@ -263,14 +263,14 @@ export default function OwnerControlPanel() {
                     value={eventForm.imageUrl} 
                     onChange={(e) => setEventForm({ ...eventForm, imageUrl: e.target.value })}
                     placeholder="https://..."
-                    className="bg-[#141423] border-[#ff00c8] text-white"
+                    className="bg-[#141423] border-[#00eaff] text-white"
                   />
                 </div>
               </div>
               <Button 
                 onClick={handleCreateEvent}
                 disabled={createEventMutation.isPending}
-                className="w-full bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black font-bold"
+                className="w-full bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold"
               >
                 {createEventMutation.isPending ? 'Creating...' : 'Create Event'}
               </Button>
@@ -319,7 +319,7 @@ export default function OwnerControlPanel() {
                 <Input 
                   value={settings.siteName}
                   onChange={(e) => setSettings({ ...settings, siteName: e.target.value })}
-                  className="bg-[#141423] border-[#ff00c8] text-white"
+                  className="bg-[#141423] border-[#00eaff] text-white"
                 />
               </div>
               <div>
@@ -327,7 +327,7 @@ export default function OwnerControlPanel() {
                 <Textarea 
                   value={settings.siteDescription}
                   onChange={(e) => setSettings({ ...settings, siteDescription: e.target.value })}
-                  className="bg-[#141423] border-[#ff00c8] text-white"
+                  className="bg-[#141423] border-[#00eaff] text-white"
                 />
               </div>
               <div className="grid grid-cols-3 gap-4">
@@ -337,7 +337,7 @@ export default function OwnerControlPanel() {
                     type="number"
                     value={settings.maxCoinsPerDay}
                     onChange={(e) => setSettings({ ...settings, maxCoinsPerDay: parseInt(e.target.value) })}
-                    className="bg-[#141423] border-[#ff00c8] text-white"
+                    className="bg-[#141423] border-[#00eaff] text-white"
                   />
                 </div>
                 <div>
@@ -346,7 +346,7 @@ export default function OwnerControlPanel() {
                     type="number"
                     value={settings.levelUpXP}
                     onChange={(e) => setSettings({ ...settings, levelUpXP: parseInt(e.target.value) })}
-                    className="bg-[#141423] border-[#ff00c8] text-white"
+                    className="bg-[#141423] border-[#00eaff] text-white"
                   />
                 </div>
                 <div>
@@ -356,14 +356,14 @@ export default function OwnerControlPanel() {
                     step="0.1"
                     value={settings.achievementMultiplier}
                     onChange={(e) => setSettings({ ...settings, achievementMultiplier: parseFloat(e.target.value) })}
-                    className="bg-[#141423] border-[#ff00c8] text-white"
+                    className="bg-[#141423] border-[#00eaff] text-white"
                   />
                 </div>
               </div>
               <Button 
                 onClick={handleSaveSettings}
                 disabled={updateSettingsMutation.isPending}
-                className="w-full bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black font-bold"
+                className="w-full bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold"
               >
                 {updateSettingsMutation.isPending ? 'Saving...' : 'Save Settings'}
               </Button>

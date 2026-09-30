@@ -71,7 +71,7 @@ export default function Profile() {
   if (profileError) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-[#0A0A10] to-[#141423] flex items-center justify-center p-4">
-        <Card className="border-2 border-[#ff00c8] bg-[#0A0A10]/80 p-8 max-w-md">
+        <Card className="border-2 border-[#00eaff] bg-[#0A0A10]/80 p-8 max-w-md">
           <div className="flex items-center gap-3 mb-4">
             <AlertCircle className="w-6 h-6 text-[#ff00c8]" />
             <h2 className="text-xl font-bold text-[#ff00c8]">Unable to Load Profile</h2>
@@ -82,13 +82,13 @@ export default function Profile() {
           <div className="flex gap-3">
             <Button 
               onClick={() => window.location.reload()} 
-              className="flex-1 bg-[#00eaff] hover:bg-[#00eaff]/80 text-black font-bold"
+              className="flex-1 bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold"
             >
               Retry
             </Button>
             <Button 
               onClick={() => navigate("/")} 
-              className="flex-1 bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black font-bold"
+              className="flex-1 bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold"
             >
               Go Home
             </Button>
@@ -101,9 +101,9 @@ export default function Profile() {
   if (!user) {
     return (
       <div className="min-h-screen bg-[#0A0A10] text-[#00eaff] flex items-center justify-center">
-        <Card className="border-2 border-[#ff00c8] bg-[#0A0A10]/80 p-8">
+        <Card className="border-2 border-[#00eaff] bg-[#0A0A10]/80 p-8">
           <p className="text-[#ff00c8] mb-4">Please sign in to view your profile</p>
-          <Button onClick={() => navigate("/")} className="bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black">
+          <Button onClick={() => navigate("/")} className="bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10">
             Go to Home
           </Button>
         </Card>
@@ -198,7 +198,7 @@ export default function Profile() {
               onClick={() => setActiveTab(tab.id as any)}
               className={`px-4 py-2 rounded-lg border-2 font-bold transition-all ${
                 activeTab === tab.id
-                  ? "border-[#ff00c8] bg-[#ff00c8]/20 text-[#ff00c8]"
+                  ? "border-[#00eaff] bg-transparent border border-[#00eaff] bg-[#00eaff]/10 text-[#ff00c8]"
                   : "border-[#00eaff] bg-transparent text-[#00eaff] hover:bg-[#00eaff]/10"
               }`}
             >
@@ -251,8 +251,8 @@ export default function Profile() {
                     onClick={() => handleThemeChange(theme.id)}
                     className={`p-4 rounded-lg border-2 transition-all ${
                       selectedTheme === theme.id
-                        ? "border-[#ff00c8] bg-[#ff00c8]/20"
-                        : "border-[#08080f] hover:border-[#ff00c8]"
+                        ? "border-[#00eaff] bg-transparent border border-[#00eaff] bg-[#00eaff]/10"
+                        : "border-[#08080f] hover:border-[#00eaff]"
                     }`}
                   >
                     <div className="text-3xl mb-2">{theme.preview}</div>
@@ -271,8 +271,8 @@ export default function Profile() {
                     onClick={() => handleNameColorChange(color.id)}
                     className={`p-4 rounded-lg border-2 transition-all ${
                       selectedNameColor === color.id
-                        ? "border-[#ff00c8] bg-[#ff00c8]/20"
-                        : "border-[#08080f] hover:border-[#ff00c8]"
+                        ? "border-[#00eaff] bg-transparent border border-[#00eaff] bg-[#00eaff]/10"
+                        : "border-[#08080f] hover:border-[#00eaff]"
                     }`}
                   >
                     <div 
@@ -297,12 +297,12 @@ export default function Profile() {
                   <textarea
                     value={editData.bio}
                     onChange={(e) => setEditData({ ...editData, bio: e.target.value })}
-                    className="w-full bg-[#0A0A10] border border-[#08080f] rounded-lg p-3 text-[#00eaff] placeholder-[#cccccc] focus:border-[#ff00c8] focus:outline-none"
+                    className="w-full bg-[#0A0A10] border border-[#08080f] rounded-lg p-3 text-[#00eaff] placeholder-[#cccccc] focus:border-[#00eaff] focus:outline-none"
                     placeholder="Tell us about yourself..."
                     rows={4}
                   />
                   <div className="flex gap-2">
-                    <Button onClick={handleUpdateProfile} className="flex-1 bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black font-bold">
+                    <Button onClick={handleUpdateProfile} className="flex-1 bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold">
                       Save Bio
                     </Button>
                     <Button onClick={() => setIsEditingProfile(false)} variant="outline" className="flex-1 text-[#00eaff] border-[#00eaff]">
@@ -311,7 +311,7 @@ export default function Profile() {
                   </div>
                 </div>
               ) : (
-                <Button onClick={() => setIsEditingProfile(true)} className="w-full bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black font-bold">
+                <Button onClick={() => setIsEditingProfile(true)} className="w-full bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold">
                   Edit Bio
                 </Button>
               )}
@@ -333,7 +333,7 @@ export default function Profile() {
                   />
                   <Button
                     onClick={handleCopyLink}
-                    className="bg-[#00eaff] hover:bg-[#00eaff]/80 text-black font-bold"
+                    className="bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold"
                   >
                     {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                   </Button>
@@ -348,7 +348,7 @@ export default function Profile() {
                     <Button
                       key={social.platform}
                       onClick={() => handleShareProfile(social.platform)}
-                      className="bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black font-bold"
+                      className="bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold"
                     >
                       {social.icon}
                     </Button>

@@ -89,7 +89,7 @@ export default function MissionRally() {
 
           {/* Mission Statement */}
           <Card
-            className="bg-[#141423] border-2 border-[#ff00c8] p-12 mb-12 text-center"
+            className="bg-[#141423] border-2 border-[#00eaff] p-12 mb-12 text-center"
             style={{
               boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)',
             }}
@@ -209,7 +209,7 @@ export default function MissionRally() {
             {stories.map((story) => (
               <Card
                 key={story.id}
-                className="bg-[#141423] border border-[#08080f] p-6 hover:border-[#ff00c8] transition-colors"
+                className="bg-[#141423] border border-[#08080f] p-6 hover:border-[#00eaff] transition-colors"
               >
                 <div className="flex items-start gap-4">
                   <div className="text-4xl">{story.avatar}</div>

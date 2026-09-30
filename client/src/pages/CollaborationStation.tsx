@@ -220,7 +220,7 @@ export default function CollaborationStation() {
                   return (
                     <Card
                       key={project.id}
-                      className="bg-[#141423] border border-[#08080f] p-6 hover:border-[#ff00c8] transition-colors cursor-pointer"
+                      className="bg-[#141423] border border-[#08080f] p-6 hover:border-[#00eaff] transition-colors cursor-pointer"
                       onClick={() => setSelectedProject(project.id)}
                       style={{
                         boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
@@ -280,7 +280,7 @@ export default function CollaborationStation() {
                 {myProjects.map((project) => (
                   <Card
                     key={project.id}
-                    className="bg-[#141423] border border-[#00eaff] p-6 cursor-pointer hover:border-[#ff00c8] transition-colors"
+                    className="bg-[#141423] border border-[#00eaff] p-6 cursor-pointer hover:border-[#00eaff] transition-colors"
                     onClick={() => setSelectedProject(project.id)}
                     style={{
                       boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
@@ -375,7 +375,7 @@ export default function CollaborationStation() {
         {/* Project Details Modal */}
         {selectedProject && projectDetails && (
           <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-            <Card className="bg-[#141423] border border-[#ff00c8] w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <Card className="bg-[#141423] border border-[#00eaff] w-full max-w-2xl max-h-[90vh] overflow-y-auto">
               <div className="p-6">
                 <div className="flex items-start justify-between mb-6">
                   <div>

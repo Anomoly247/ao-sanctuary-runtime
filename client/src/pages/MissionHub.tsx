@@ -65,7 +65,7 @@ export default function MissionHub() {
             )}
             <Button
               onClick={() => setShowDonationModal(true)}
-              className="bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black font-bold"
+              className="bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold"
             >
               <Heart className="w-4 h-4 mr-2" />
               Support Our Mission
@@ -90,7 +90,7 @@ export default function MissionHub() {
           <div className="flex gap-4 justify-center">
             <Button
               onClick={() => setShowDonationModal(true)}
-              className="bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black font-bold text-lg py-6 px-8"
+              className="bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold text-lg py-6 px-8"
             >
               Donate to Build the Mission
             </Button>
@@ -102,7 +102,7 @@ export default function MissionHub() {
             </Button>
             <Button
               onClick={() => navigate("/music-library")}
-              className="bg-[#d8ae55] hover:bg-[#d8ae55]/80 text-white font-bold text-lg py-6 px-8"
+              className="bg-transparent border border-[#d8ae55] text-[#d8ae55] hover:bg-[#d8ae55]/10 font-bold text-lg py-6 px-8"
             >
               Browse Music Library
             </Button>
@@ -122,7 +122,7 @@ export default function MissionHub() {
               return (
                 <Card
                   key={idx}
-                  className="bg-[#141423] border border-[#08080f] p-6 text-center hover:border-[#ff00c8] transition-colors"
+                  className="bg-[#141423] border border-[#08080f] p-6 text-center hover:border-[#00eaff] transition-colors"
                 >
                   <Icon
                     className="w-8 h-8 mx-auto mb-4"
@@ -202,7 +202,7 @@ export default function MissionHub() {
                 Explore Collaboration Station
               </Button>
             </div>
-            <Card className="bg-[#141423] border border-[#ff00c8] p-8">
+            <Card className="bg-[#141423] border border-[#00eaff] p-8">
               <div className="space-y-6">
                 <div className="bg-[#0A0A10] rounded-lg p-4 border border-[#08080f]">
                   <p className="text-[#00eaff] font-bold mb-2">Featured Project</p>
@@ -262,7 +262,7 @@ export default function MissionHub() {
       {/* Donation Modal */}
       {showDonationModal && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-          <Card className="bg-[#141423] border border-[#ff00c8] w-full max-w-md">
+          <Card className="bg-[#141423] border border-[#00eaff] w-full max-w-md">
             <div className="p-8">
               <h3 className="text-2xl font-bold text-[#ff00c8] mb-6">Support Our Mission</h3>
               <p className="text-[#cccccc] mb-6">
@@ -276,7 +276,7 @@ export default function MissionHub() {
                     onClick={() => setDonationAmount(amount)}
                     className={`w-full p-3 rounded-lg border-2 transition-all font-bold ${
                       donationAmount === amount
-                        ? "border-[#ff00c8] bg-[#ff00c8]/20 text-[#ff00c8]"
+                        ? "border-[#00eaff] bg-transparent border border-[#00eaff] bg-[#00eaff]/10 text-[#ff00c8]"
                         : "border-[#08080f] bg-[#0A0A10] text-[#cccccc] hover:border-[#00eaff]"
                     }`}
                   >
@@ -293,7 +293,7 @@ export default function MissionHub() {
               <div className="flex gap-4">
                 <Button
                   onClick={handleDonate}
-                  className="flex-1 bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black font-bold"
+                  className="flex-1 bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold"
                 >
                   Donate Now
                 </Button>

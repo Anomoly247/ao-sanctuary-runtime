@@ -279,7 +279,7 @@ export default function Lounges() {
               return (
                 <Card
                   key={lounge.id}
-                  className="bg-[#141423] border border-[#08080f] p-6 cursor-pointer hover:border-[#ff00c8] transition-colors"
+                  className="bg-[#141423] border border-[#08080f] p-6 cursor-pointer hover:border-[#00eaff] transition-colors"
                   onClick={() => navigate(`/lounges/${lounge.id}`)}
                   style={{
                     boxShadow:

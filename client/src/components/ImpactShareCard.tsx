@@ -30,7 +30,7 @@ export default function ImpactShareCard({
 
   return (
     <>
-      <Card className="bg-[#141423] border border-[#08080f] p-6 hover:border-[#ff00c8] transition-colors group">
+      <Card className="bg-[#141423] border border-[#08080f] p-6 hover:border-[#00eaff] transition-colors group">
         <div className="flex items-start justify-between mb-4">
           <div style={{ color }} className="opacity-80 group-hover:opacity-100">
             {icon}
@@ -53,7 +53,7 @@ export default function ImpactShareCard({
 
         <Button
           onClick={() => setShowShareModal(true)}
-          className="w-full bg-[#d8ae55] hover:bg-[#d8ae55]/80 text-white font-bold"
+          className="w-full bg-transparent border border-[#d8ae55] text-[#d8ae55] hover:bg-[#d8ae55]/10 font-bold"
           size="sm"
         >
           <Share2 className="w-4 h-4 mr-2" />

@@ -36,7 +36,7 @@ export default function Wallet() {
 
         {/* Balance Card */}
         <div
-          className="rounded-lg border-2 border-[#ff00c8] p-8 mb-8"
+          className="rounded-lg border-2 border-[#00eaff] p-8 mb-8"
           style={{
             boxShadow: "0 8px 24px rgba(15, 23, 42, 0.28)",
           }}
@@ -53,11 +53,11 @@ export default function Wallet() {
 
         {/* Quick Actions */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <Button className="bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-white font-bold py-6">
+          <Button className="bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold py-6">
             <Zap className="w-4 h-4 mr-2" />
             Earn Coins
           </Button>
-          <Button className="bg-[#00eaff] hover:bg-[#00eaff]/80 text-black font-bold py-6">
+          <Button className="bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold py-6">
             <TrendingUp className="w-4 h-4 mr-2" />
             Spend Coins
           </Button>
@@ -88,7 +88,7 @@ export default function Wallet() {
               {transactions.map((transaction) => (
                 <div
                   key={transaction.id}
-                  className="rounded-lg border-2 border-[#cccccc] p-4 flex items-center justify-between hover:border-[#ff00c8] transition-colors"
+                  className="rounded-lg border-2 border-[#cccccc] p-4 flex items-center justify-between hover:border-[#00eaff] transition-colors"
                   style={{
                     boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
                   }}

@@ -43,7 +43,7 @@ export default function PixelProfile() {
             <p className="text-xl text-[#cccccc] mb-4">The Creator</p>
 
             <div className="flex justify-center gap-3 mb-6">
-              <Badge className="bg-[#ff00c8] text-black font-bold">Anom's Corner</Badge>
+              <Badge className="bg-transparent border border-[#00eaff] text-[#00eaff] font-bold">Anom's Corner</Badge>
               <Badge className="bg-[#08080f] text-[#00eaff] font-bold">Main Character</Badge>
             </div>
 
@@ -56,7 +56,7 @@ export default function PixelProfile() {
                 onClick={() => setLiked(!liked)}
                 className={`${
                   liked
-                    ? "bg-[#ff00c8] text-black hover:bg-[#ff00c8]/80"
+                    ? "bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10"
                     : "bg-[#08080f] text-[#cccccc] hover:bg-[#3a3f4e]"
                 }`}
               >
@@ -157,7 +157,7 @@ export default function PixelProfile() {
                 {["Creative", "Visionary", "Artistic", "Curious", "Imaginative"].map((trait) => (
                   <Badge
                     key={trait}
-                    className="bg-[#ff00c8]/20 text-[#ff00c8] border border-[#ff00c8]"
+                    className="bg-transparent border border-[#00eaff] bg-[#00eaff]/10 text-[#ff00c8] border border-[#00eaff]"
                   >
                     {trait}
                   </Badge>

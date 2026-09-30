@@ -49,7 +49,7 @@ export default function TippingModal({ isOpen, onClose }: TippingModalProps) {
 
   return (
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-      <Card className="bg-[#141423] border border-[#ff00c8] w-full max-w-md">
+      <Card className="bg-[#141423] border border-[#00eaff] w-full max-w-md">
         <div className="p-6">
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
@@ -108,7 +108,7 @@ export default function TippingModal({ isOpen, onClose }: TippingModalProps) {
                   }}
                   className={`p-3 rounded-lg border-2 font-bold transition-colors ${
                     selectedAmount === amount
-                      ? "border-[#ff00c8] bg-[#ff00c8]/20 text-[#ff00c8]"
+                      ? "border-[#00eaff] bg-transparent border border-[#00eaff] bg-[#00eaff]/10 text-[#ff00c8]"
                       : "border-[#08080f] bg-[#0A0A10] text-[#cccccc] hover:border-[#00eaff]"
                   }`}
                 >
@@ -130,7 +130,7 @@ export default function TippingModal({ isOpen, onClose }: TippingModalProps) {
                 placeholder="Custom amount"
                 min="1"
                 step="0.01"
-                className="flex-1 px-3 py-2 bg-[#0A0A10] border border-[#08080f] rounded-lg text-[#00eaff] placeholder-[#cccccc] focus:border-[#ff00c8] focus:outline-none"
+                className="flex-1 px-3 py-2 bg-[#0A0A10] border border-[#08080f] rounded-lg text-[#00eaff] placeholder-[#cccccc] focus:border-[#00eaff] focus:outline-none"
               />
             </div>
           </div>
@@ -145,7 +145,7 @@ export default function TippingModal({ isOpen, onClose }: TippingModalProps) {
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Leave a message of support..."
               maxLength={500}
-              className="w-full h-20 px-3 py-2 bg-[#0A0A10] border border-[#08080f] rounded-lg text-[#00eaff] placeholder-[#cccccc] focus:border-[#ff00c8] focus:outline-none resize-none"
+              className="w-full h-20 px-3 py-2 bg-[#0A0A10] border border-[#08080f] rounded-lg text-[#00eaff] placeholder-[#cccccc] focus:border-[#00eaff] focus:outline-none resize-none"
             />
             <p className="text-xs text-[#cccccc] mt-1">
               {message.length}/500 characters
@@ -181,7 +181,7 @@ export default function TippingModal({ isOpen, onClose }: TippingModalProps) {
             <Button
               onClick={handleSubmit}
               disabled={createTip.isPending || finalAmount <= 0}
-              className="flex-1 bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black font-bold disabled:opacity-50"
+              className="flex-1 bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold disabled:opacity-50"
             >
               <Heart className="w-4 h-4 mr-2" />
               Tip ${finalAmount.toFixed(2)}

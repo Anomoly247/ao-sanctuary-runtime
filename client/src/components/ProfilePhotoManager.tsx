@@ -116,7 +116,7 @@ export default function ProfilePhotoManager() {
   return (
     <div className="space-y-6">
       {/* Upload Section */}
-      <Card className="bg-[#141423] border-2 border-[#ff00c8] p-6">
+      <Card className="bg-[#141423] border-2 border-[#00eaff] p-6">
         <h3 className="text-xl font-bold text-[#ff00c8] mb-4 flex items-center gap-2">
           <ImageIcon className="w-5 h-5" />
           Photo Library
@@ -134,7 +134,7 @@ export default function ProfilePhotoManager() {
           <Button
             onClick={() => fileInputRef.current?.click()}
             disabled={isUploading}
-            className="w-full bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black font-bold flex items-center justify-center gap-2"
+            className="w-full bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold flex items-center justify-center gap-2"
           >
             <Upload className="w-4 h-4" />
             {isUploading ? "Uploading..." : "Upload Photo"}
@@ -160,10 +160,10 @@ export default function ProfilePhotoManager() {
                 <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2 p-2">
                   <div className="flex gap-1 flex-wrap justify-center">
                     {photo.sets.isProfileImage && (
-                      <Badge className="bg-[#ff00c8] text-black text-xs">Profile</Badge>
+                      <Badge className="bg-transparent border border-[#00eaff] text-[#00eaff] text-xs">Profile</Badge>
                     )}
                     {photo.sets.isBackgroundImage && (
-                      <Badge className="bg-[#00eaff] text-black text-xs">Background</Badge>
+                      <Badge className="bg-transparent border border-[#00eaff] text-[#00eaff] text-xs">Background</Badge>
                     )}
                     {photo.sets.isDefault && (
                       <Badge className="bg-[#ffd700] text-black text-xs">Default</Badge>
@@ -175,7 +175,7 @@ export default function ProfilePhotoManager() {
                       <Button
                         size="sm"
                         onClick={() => handleSetAsProfileImage(photo.id)}
-                        className="bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black text-xs h-6 px-2"
+                        className="bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 text-xs h-6 px-2"
                       >
                         Profile
                       </Button>
@@ -184,7 +184,7 @@ export default function ProfilePhotoManager() {
                       <Button
                         size="sm"
                         onClick={() => handleSetAsBackgroundImage(photo.id)}
-                        className="bg-[#00eaff] hover:bg-[#00eaff]/80 text-black text-xs h-6 px-2"
+                        className="bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 text-xs h-6 px-2"
                       >
                         Background
                       </Button>
@@ -228,7 +228,7 @@ export default function ProfilePhotoManager() {
         <div className="space-y-3">
           <Button
             onClick={handleShareProfile}
-            className="w-full bg-[#00eaff] hover:bg-[#00eaff]/80 text-black font-bold flex items-center justify-center gap-2"
+            className="w-full bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold flex items-center justify-center gap-2"
           >
             <Copy className="w-4 h-4" />
             Copy Shareable Profile Link

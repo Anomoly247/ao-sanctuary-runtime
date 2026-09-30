@@ -51,7 +51,7 @@ export default function MusicLibrary() {
                     placeholder="Search by title or artist..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 bg-[#0A0A10] border border-[#08080f] rounded-lg text-[#00eaff] placeholder-[#cccccc] focus:border-[#ff00c8] focus:outline-none"
+                    className="w-full pl-10 pr-4 py-2 bg-[#0A0A10] border border-[#08080f] rounded-lg text-[#00eaff] placeholder-[#cccccc] focus:border-[#00eaff] focus:outline-none"
                   />
                 </div>
 
@@ -62,7 +62,7 @@ export default function MusicLibrary() {
                     <select
                       value={selectedMood}
                       onChange={(e) => setSelectedMood(e.target.value)}
-                      className="w-full px-3 py-2 bg-[#0A0A10] border border-[#08080f] rounded-lg text-[#00eaff] focus:border-[#ff00c8] focus:outline-none"
+                      className="w-full px-3 py-2 bg-[#0A0A10] border border-[#08080f] rounded-lg text-[#00eaff] focus:border-[#00eaff] focus:outline-none"
                     >
                       <option value="">All Moods</option>
                       {moods?.map((mood) => (
@@ -78,7 +78,7 @@ export default function MusicLibrary() {
                     <select
                       value={selectedGenre}
                       onChange={(e) => setSelectedGenre(e.target.value)}
-                      className="w-full px-3 py-2 bg-[#0A0A10] border border-[#08080f] rounded-lg text-[#00eaff] focus:border-[#ff00c8] focus:outline-none"
+                      className="w-full px-3 py-2 bg-[#0A0A10] border border-[#08080f] rounded-lg text-[#00eaff] focus:border-[#00eaff] focus:outline-none"
                     >
                       <option value="">All Genres</option>
                       {genres?.map((genre) => (
@@ -119,7 +119,7 @@ export default function MusicLibrary() {
                     onClick={() => setSelectedTrack(track)}
                     className={`bg-[#141423] border-2 p-4 cursor-pointer transition-all ${
                       selectedTrack?.id === track.id
-                        ? "border-[#ff00c8] bg-[#ff00c8]/10"
+                        ? "border-[#00eaff] bg-transparent border border-[#00eaff] bg-[#00eaff]/10"
                         : "border-[#08080f] hover:border-[#00eaff]"
                     }`}
                   >
@@ -135,7 +135,7 @@ export default function MusicLibrary() {
                       </div>
                       <Button
                         size="sm"
-                        className="bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black"
+                        className="bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10"
                         onClick={(e) => {
                           e.stopPropagation();
                           setSelectedTrack(track);
@@ -188,7 +188,7 @@ export default function MusicLibrary() {
                 </Card>
 
                 {/* Track Details */}
-                <Card className="bg-[#141423] border border-[#ff00c8] p-6">
+                <Card className="bg-[#141423] border border-[#00eaff] p-6">
                   <h3 className="font-bold text-[#ff00c8] mb-4">Track Details</h3>
                   <div className="space-y-3 text-sm">
                     <div>

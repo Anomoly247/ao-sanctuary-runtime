@@ -79,7 +79,7 @@ export default function MembershipCard({
         </div>
 
         {isCurrentTier && (
-          <Badge className="bg-[#ff00c8] text-black font-bold">Current Plan</Badge>
+          <Badge className="bg-transparent border border-[#00eaff] text-[#00eaff] font-bold">Current Plan</Badge>
         )}
         {featured && (
           <Badge className="bg-[#ffd700] text-black font-bold">Most Popular</Badge>

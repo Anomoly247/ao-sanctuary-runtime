@@ -279,7 +279,7 @@ export default function AdminDashboard() {
                     <div className="flex gap-2">
                       <Button 
                         size="sm" 
-                        className="bg-[#00eaff] text-black hover:bg-[#00eaff]/80"
+                        className="bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10"
                         onClick={() => handleApproveMerch(request.id)}
                       >
                         <CheckCircle className="w-4 h-4 mr-1" />
@@ -287,7 +287,7 @@ export default function AdminDashboard() {
                       </Button>
                       <Button 
                         size="sm" 
-                        className="bg-[#ff00c8] text-black hover:bg-[#ff00c8]/80"
+                        className="bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10"
                         onClick={() => handleRejectMerch(request.id)}
                       >
                         <XCircle className="w-4 h-4 mr-1" />

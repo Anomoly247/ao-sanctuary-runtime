@@ -91,7 +91,7 @@ export default function Achievements() {
                     key={achievement.id}
                     className={`rounded-lg border-2 p-6 transition-all ${
                       isUnlocked
-                        ? "border-[#ff00c8] bg-[#141423]"
+                        ? "border-[#00eaff] bg-[#141423]"
                         : "border-[#cccccc] bg-[#0A0A10] opacity-60"
                     }`}
                     style={{
@@ -134,7 +134,7 @@ export default function Achievements() {
             <h3 className="font-bold text-white mb-2">Games</h3>
             <p className="text-[#cccccc] text-sm">Unlock badges by winning mini-games</p>
           </div>
-          <div className="rounded-lg border-2 border-[#ff00c8] p-6" style={{ boxShadow: "0 6px 18px rgba(0, 0, 0, 0.45)" }}>
+          <div className="rounded-lg border-2 border-[#00eaff] p-6" style={{ boxShadow: "0 6px 18px rgba(0, 0, 0, 0.45)" }}>
             <Star className="w-8 h-8 text-[#ff00c8] mb-3" />
             <h3 className="font-bold text-white mb-2">Milestones</h3>
             <p className="text-[#cccccc] text-sm">Reach level milestones and community goals</p>

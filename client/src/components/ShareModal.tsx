@@ -94,7 +94,7 @@ export default function ShareModal({
 
   return (
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-      <Card className="bg-[#141423] border border-[#ff00c8] w-full max-w-md">
+      <Card className="bg-[#141423] border border-[#00eaff] w-full max-w-md">
         <div className="p-8">
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
@@ -130,8 +130,8 @@ export default function ShareModal({
                 onClick={handleCopyLink}
                 className={`${
                   copied
-                    ? "bg-[#00eaff] text-black"
-                    : "bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black"
+                    ? "bg-transparent border border-[#00eaff] text-[#00eaff]"
+                    : "bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10"
                 } font-bold`}
               >
                 {copied ? (

@@ -196,8 +196,8 @@ export default function AnomsCorner() {
                     onClick={() => setSelectedEpisode(episode)}
                     className={`w-full text-left p-3 rounded-lg border transition-all ${
                       selectedEpisode.id === episode.id
-                        ? "border-[#ff00c8] bg-[#ff00c8]/10"
-                        : "border-[#08080f] bg-[#0A0A10] hover:border-[#ff00c8]"
+                        ? "border-[#00eaff] bg-transparent border border-[#00eaff] bg-[#00eaff]/10"
+                        : "border-[#08080f] bg-[#0A0A10] hover:border-[#00eaff]"
                     }`}
                   >
                     <p className="font-semibold text-white text-sm mb-1">{episode.title}</p>
@@ -221,7 +221,7 @@ export default function AnomsCorner() {
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-[#cccccc] text-sm">Featured</span>
-                  <Badge className="bg-[#ff00c8] text-white">New</Badge>
+                  <Badge className="bg-transparent border border-[#00eaff] text-[#00eaff]">New</Badge>
                 </div>
               </div>
             </Card>
@@ -232,7 +232,7 @@ export default function AnomsCorner() {
               <div className="space-y-2">
                 <Button
                   variant="outline"
-                  className="w-full justify-start border-[#ff00c8] text-[#ff00c8] hover:bg-[#ff00c8]/10"
+                  className="w-full justify-start border-[#00eaff] text-[#ff00c8] hover:bg-[#00eaff]/10"
                   onClick={() => window.location.href = "/characters/pixel"}
                 >
                   <span style={{ color: "#ff00c8" }}>→</span> Pixel's Profile

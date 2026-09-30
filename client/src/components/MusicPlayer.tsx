@@ -93,7 +93,7 @@ export default function MusicPlayer({ tracks, onTrackChange, compact = false }: 
           <Button
             size="sm"
             onClick={handlePlayPause}
-            className="bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black"
+            className="bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10"
           >
             {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
           </Button>
@@ -128,7 +128,7 @@ export default function MusicPlayer({ tracks, onTrackChange, compact = false }: 
   }
 
   return (
-    <Card className="bg-[#141423] border border-[#ff00c8] p-6">
+    <Card className="bg-[#141423] border border-[#00eaff] p-6">
       <audio ref={audioRef} src={currentTrack.url} />
 
       <div className="flex items-center gap-4 mb-6">
@@ -152,7 +152,7 @@ export default function MusicPlayer({ tracks, onTrackChange, compact = false }: 
 
         <Button
           onClick={handlePlayPause}
-          className="bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black font-bold w-12 h-12"
+          className="bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold w-12 h-12"
         >
           {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6" />}
         </Button>
@@ -188,7 +188,7 @@ export default function MusicPlayer({ tracks, onTrackChange, compact = false }: 
       <div className="flex gap-2">
         <Button
           onClick={() => setShowShareModal(true)}
-          className="flex-1 bg-[#d8ae55] hover:bg-[#d8ae55]/80 text-white font-bold"
+          className="flex-1 bg-transparent border border-[#d8ae55] text-[#d8ae55] hover:bg-[#d8ae55]/10 font-bold"
         >
           <Share2 className="w-4 h-4 mr-2" />
           Share This Track
@@ -230,7 +230,7 @@ export default function MusicPlayer({ tracks, onTrackChange, compact = false }: 
               }}
               className={`w-full text-left p-2 rounded-lg transition-colors ${
                 idx === currentTrackIndex
-                  ? "bg-[#ff00c8]/20 border border-[#ff00c8]"
+                  ? "bg-transparent border border-[#00eaff] bg-[#00eaff]/10 border border-[#00eaff]"
                   : "bg-[#0A0A10] border border-[#08080f] hover:border-[#00eaff]"
               }`}
             >
