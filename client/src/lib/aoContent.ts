@@ -30,6 +30,7 @@ export type SocialPost = {
   url: string;
   title: string;
   caption: string;
+  fallbackMessage: string;
   status: "draft" | "published";
   featured: boolean;
 };
@@ -51,6 +52,7 @@ export type AOContentConfig = {
 };
 
 export const AO_CONTENT_STORAGE_KEY = "ao-admin-content-v1";
+export const DEFAULT_SOCIAL_FALLBACK_MESSAGE = "This post is resting outside the Sanctuary right now. Follow the main AO social channels for the newest signal.";
 
 export const DEFAULT_CONTENT_CONFIG: AOContentConfig = {
   entries: [
@@ -108,7 +110,7 @@ export function readAOContentConfig(): AOContentConfig {
         const url = saved.url || fallback.url;
         return { ...fallback, ...saved, url, status: url ? "ready" : saved.status };
       }),
-      socialPosts: parsed.socialPosts || DEFAULT_CONTENT_CONFIG.socialPosts,
+      socialPosts: (parsed.socialPosts || DEFAULT_CONTENT_CONFIG.socialPosts).map((post) => ({ ...post, fallbackMessage: post.fallbackMessage || DEFAULT_SOCIAL_FALLBACK_MESSAGE })),
       offers: DEFAULT_CONTENT_CONFIG.offers.map((fallback) => {
         const saved = parsed.offers?.find((offer) => offer.id === fallback.id);
         if (!saved) return fallback;

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { DEFAULT_CONTENT_CONFIG, getPlatformLabel, getSocialPostPlatform, getYouTubeEmbedUrl, isEmbedReadySocialUrl } from "../client/src/lib/aoContent";
+import { DEFAULT_CONTENT_CONFIG, DEFAULT_SOCIAL_FALLBACK_MESSAGE, getPlatformLabel, getSocialPostPlatform, getYouTubeEmbedUrl, isEmbedReadySocialUrl } from "../client/src/lib/aoContent";
 
 describe("AO content registry", () => {
   it("ships the provided YouTube and Substack destinations", () => {
@@ -24,6 +24,7 @@ describe("AO content registry", () => {
 
   it("recognizes only public-post permalink shapes for Meta embeds", () => {
     expect(DEFAULT_CONTENT_CONFIG.socialPosts).toEqual([]);
+    expect(DEFAULT_SOCIAL_FALLBACK_MESSAGE).toContain("main AO social channels");
     expect(getSocialPostPlatform("https://www.facebook.com/anomoriginals/posts/123456789")).toBe("facebook");
     expect(getSocialPostPlatform("https://www.instagram.com/p/C0ffee123/")) .toBe("instagram");
     expect(isEmbedReadySocialUrl("https://www.facebook.com/anomoriginals", "facebook")).toBe(false);
