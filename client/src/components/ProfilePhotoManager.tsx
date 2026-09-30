@@ -116,8 +116,8 @@ export default function ProfilePhotoManager() {
   return (
     <div className="space-y-6">
       {/* Upload Section */}
-      <Card className="bg-[#1e293b] border-2 border-[#c4b5fd] p-6">
-        <h3 className="text-xl font-bold text-[#c4b5fd] mb-4 flex items-center gap-2">
+      <Card className="bg-[#141423] border-2 border-[#ff00c8] p-6">
+        <h3 className="text-xl font-bold text-[#ff00c8] mb-4 flex items-center gap-2">
           <ImageIcon className="w-5 h-5" />
           Photo Library
         </h3>
@@ -134,7 +134,7 @@ export default function ProfilePhotoManager() {
           <Button
             onClick={() => fileInputRef.current?.click()}
             disabled={isUploading}
-            className="w-full bg-[#c4b5fd] hover:bg-[#c4b5fd]/80 text-black font-bold flex items-center justify-center gap-2"
+            className="w-full bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black font-bold flex items-center justify-center gap-2"
           >
             <Upload className="w-4 h-4" />
             {isUploading ? "Uploading..." : "Upload Photo"}
@@ -147,7 +147,7 @@ export default function ProfilePhotoManager() {
             {photos.map((photo) => (
               <div
                 key={photo.id}
-                className="relative group rounded-lg overflow-hidden border-2 border-[#93c5fd]/30 hover:border-[#93c5fd] transition-all"
+                className="relative group rounded-lg overflow-hidden border-2 border-[#00eaff]/30 hover:border-[#00eaff] transition-all"
               >
                 {/* Photo */}
                 <img
@@ -160,10 +160,10 @@ export default function ProfilePhotoManager() {
                 <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2 p-2">
                   <div className="flex gap-1 flex-wrap justify-center">
                     {photo.sets.isProfileImage && (
-                      <Badge className="bg-[#c4b5fd] text-black text-xs">Profile</Badge>
+                      <Badge className="bg-[#ff00c8] text-black text-xs">Profile</Badge>
                     )}
                     {photo.sets.isBackgroundImage && (
-                      <Badge className="bg-[#93c5fd] text-black text-xs">Background</Badge>
+                      <Badge className="bg-[#00eaff] text-black text-xs">Background</Badge>
                     )}
                     {photo.sets.isDefault && (
                       <Badge className="bg-[#ffd700] text-black text-xs">Default</Badge>
@@ -175,7 +175,7 @@ export default function ProfilePhotoManager() {
                       <Button
                         size="sm"
                         onClick={() => handleSetAsProfileImage(photo.id)}
-                        className="bg-[#c4b5fd] hover:bg-[#c4b5fd]/80 text-black text-xs h-6 px-2"
+                        className="bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black text-xs h-6 px-2"
                       >
                         Profile
                       </Button>
@@ -184,7 +184,7 @@ export default function ProfilePhotoManager() {
                       <Button
                         size="sm"
                         onClick={() => handleSetAsBackgroundImage(photo.id)}
-                        className="bg-[#93c5fd] hover:bg-[#93c5fd]/80 text-black text-xs h-6 px-2"
+                        className="bg-[#00eaff] hover:bg-[#00eaff]/80 text-black text-xs h-6 px-2"
                       >
                         Background
                       </Button>
@@ -212,15 +212,15 @@ export default function ProfilePhotoManager() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-8 text-[#94a3b8]">
+          <div className="text-center py-8 text-[#cccccc]">
             <p>No photos yet. Upload your first photo to get started!</p>
           </div>
         )}
       </Card>
 
       {/* Sharing & Export Section */}
-      <Card className="bg-[#1e293b] border-2 border-[#93c5fd] p-6">
-        <h3 className="text-xl font-bold text-[#93c5fd] mb-4 flex items-center gap-2">
+      <Card className="bg-[#141423] border-2 border-[#00eaff] p-6">
+        <h3 className="text-xl font-bold text-[#00eaff] mb-4 flex items-center gap-2">
           <Share2 className="w-5 h-5" />
           Share & Sync
         </h3>
@@ -228,7 +228,7 @@ export default function ProfilePhotoManager() {
         <div className="space-y-3">
           <Button
             onClick={handleShareProfile}
-            className="w-full bg-[#93c5fd] hover:bg-[#93c5fd]/80 text-black font-bold flex items-center justify-center gap-2"
+            className="w-full bg-[#00eaff] hover:bg-[#00eaff]/80 text-black font-bold flex items-center justify-center gap-2"
           >
             <Copy className="w-4 h-4" />
             Copy Shareable Profile Link
@@ -242,11 +242,11 @@ export default function ProfilePhotoManager() {
             Export Profile as JSON
           </Button>
 
-          <div className="bg-[#0f172a] p-4 rounded-lg border border-[#334155]">
-            <p className="text-sm text-[#94a3b8] mb-2">
+          <div className="bg-[#04040a] p-4 rounded-lg border border-[#2b2b42]">
+            <p className="text-sm text-[#cccccc] mb-2">
               <strong>Share your identity:</strong> Copy the link above and share it with friends or on social media to sync your profile settings across platforms.
             </p>
-            <p className="text-xs text-[#94a3b8]">
+            <p className="text-xs text-[#cccccc]">
               Recipients can import your profile colors, theme, and photo library to match your Anom Artsy identity.
             </p>
           </div>

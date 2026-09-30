@@ -15,20 +15,20 @@ function VideoPlayer({ videoUrl, title, onClose }: { videoUrl: string; title: st
 
   return (
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-      <Card className="bg-[#1e293b] border border-[#c4b5fd] w-full max-w-2xl">
+      <Card className="bg-[#141423] border border-[#ff00c8] w-full max-w-2xl">
         <div className="p-6">
-          <h2 className="text-2xl font-bold text-[#c4b5fd] mb-4">{title}</h2>
-          <div className="aspect-video bg-[#0f172a] rounded-lg overflow-hidden mb-4 relative">
+          <h2 className="text-2xl font-bold text-[#ff00c8] mb-4">{title}</h2>
+          <div className="aspect-video bg-[#04040a] rounded-lg overflow-hidden mb-4 relative">
             {isLoading && (
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-[#93c5fd]">Loading video...</div>
+                <div className="text-[#00eaff]">Loading video...</div>
               </div>
             )}
             {hasError && (
-              <div className="absolute inset-0 flex items-center justify-center bg-[#0f172a]">
+              <div className="absolute inset-0 flex items-center justify-center bg-[#04040a]">
                 <div className="text-center">
-                  <p className="text-[#c4b5fd] mb-2">Unable to load video</p>
-                  <p className="text-[#94a3b8] text-sm">Please try again later</p>
+                  <p className="text-[#ff00c8] mb-2">Unable to load video</p>
+                  <p className="text-[#cccccc] text-sm">Please try again later</p>
                 </div>
               </div>
             )}
@@ -60,14 +60,14 @@ function VideoPlayer({ videoUrl, title, onClose }: { videoUrl: string; title: st
 
 // Coloring Page Component
 function ColoringPage({ onClose, onComplete }: { onClose: () => void; onComplete: () => void }) {
-  const [selectedColor, setSelectedColor] = useState("#c4b5fd");
-  const colors = ["#c4b5fd", "#93c5fd", "#a5b4fc", "#ffd60a", "#3a86ff", "#fb5607"];
+  const [selectedColor, setSelectedColor] = useState("#ff00c8");
+  const colors = ["#ff00c8", "#00eaff", "#d8ae55", "#ffd60a", "#3a86ff", "#fb5607"];
 
   return (
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-      <Card className="bg-[#1e293b] border border-[#c4b5fd] w-full max-w-2xl">
+      <Card className="bg-[#141423] border border-[#ff00c8] w-full max-w-2xl">
         <div className="p-6">
-          <h2 className="text-2xl font-bold text-[#c4b5fd] mb-4">Pixel's Coloring Page</h2>
+          <h2 className="text-2xl font-bold text-[#ff00c8] mb-4">Pixel's Coloring Page</h2>
 
           {/* SVG Canvas */}
           <div className="bg-white rounded-lg p-4 mb-4">
@@ -91,7 +91,7 @@ function ColoringPage({ onClose, onComplete }: { onClose: () => void; onComplete
 
           {/* Color Picker */}
           <div className="mb-4">
-            <p className="text-[#93c5fd] font-bold mb-2">Pick a Color:</p>
+            <p className="text-[#00eaff] font-bold mb-2">Pick a Color:</p>
             <div className="flex gap-2 flex-wrap">
               {colors.map((color) => (
                 <button
@@ -148,36 +148,36 @@ function OffGridGame({ onClose, onComplete }: { onClose: () => void; onComplete:
 
   return (
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-      <Card className="bg-[#1e293b] border border-[#c4b5fd] w-full max-w-md">
+      <Card className="bg-[#141423] border border-[#ff00c8] w-full max-w-md">
         <div className="p-6">
-          <h2 className="text-2xl font-bold text-[#c4b5fd] mb-2">Off-Grid Adventure</h2>
-          <p className="text-[#94a3b8] mb-4">Level {level} / 3</p>
+          <h2 className="text-2xl font-bold text-[#ff00c8] mb-2">Off-Grid Adventure</h2>
+          <p className="text-[#cccccc] mb-4">Level {level} / 3</p>
 
           {/* Game Area */}
-          <div className="bg-[#0f172a] rounded-lg p-6 mb-4 text-center">
+          <div className="bg-[#04040a] rounded-lg p-6 mb-4 text-center">
             <div className="text-6xl mb-4">🌲</div>
-            <p className="text-[#93c5fd] font-bold mb-4">Collect resources to survive!</p>
+            <p className="text-[#00eaff] font-bold mb-4">Collect resources to survive!</p>
             <div className="grid grid-cols-3 gap-2 mb-4">
               <button
                 onClick={handleCollectResource}
-                className="p-4 bg-[#1e293b] border border-[#334155] rounded hover:border-[#c4b5fd] transition-colors text-2xl"
+                className="p-4 bg-[#141423] border border-[#2b2b42] rounded hover:border-[#ff00c8] transition-colors text-2xl"
               >
                 🌿
               </button>
               <button
                 onClick={handleCollectResource}
-                className="p-4 bg-[#1e293b] border border-[#334155] rounded hover:border-[#c4b5fd] transition-colors text-2xl"
+                className="p-4 bg-[#141423] border border-[#2b2b42] rounded hover:border-[#ff00c8] transition-colors text-2xl"
               >
                 💧
               </button>
               <button
                 onClick={handleCollectResource}
-                className="p-4 bg-[#1e293b] border border-[#334155] rounded hover:border-[#c4b5fd] transition-colors text-2xl"
+                className="p-4 bg-[#141423] border border-[#2b2b42] rounded hover:border-[#ff00c8] transition-colors text-2xl"
               >
                 🍄
               </button>
             </div>
-            <p className="text-[#c4b5fd] font-bold text-xl">Score: {score}</p>
+            <p className="text-[#ff00c8] font-bold text-xl">Score: {score}</p>
           </div>
 
           {/* Buttons */}
@@ -222,17 +222,17 @@ export default function KidsCorner() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#0f172a] flex items-center justify-center">
-        <div className="text-[#93c5fd] text-xl">Loading Kids Corner...</div>
+      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+        <div className="text-[#00eaff] text-xl">Loading Kids Corner...</div>
       </div>
     );
   }
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#0f172a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
         <div className="text-center">
-          <p className="text-[#93c5fd] text-xl mb-4">Please sign in to access Kids Corner</p>
+          <p className="text-[#00eaff] text-xl mb-4">Please sign in to access Kids Corner</p>
           <Button className="btn-primary" onClick={() => navigate("/")}>
             Back to Home
           </Button>
@@ -311,17 +311,17 @@ export default function KidsCorner() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0f172a] text-[#93c5fd]">
+    <div className="min-h-screen bg-[#04040a] text-[#00eaff]">
       {/* Navigation */}
-      <nav className="border-b border-[#334155] px-6 py-4 sticky top-0 bg-[#0f172a]/95 backdrop-blur">
+      <nav className="border-b border-[#2b2b42] px-6 py-4 sticky top-0 bg-[#04040a]/95 backdrop-blur">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <Button variant="ghost" onClick={() => navigate("/")} className="text-[#94a3b8]">
+            <Button variant="ghost" onClick={() => navigate("/")} className="text-[#cccccc]">
               ← Back
             </Button>
             <h1 className="text-2xl font-bold text-accent">Kids Corner</h1>
           </div>
-          <div className="text-sm text-[#94a3b8]">
+          <div className="text-sm text-[#cccccc]">
             {completedItems.length} / {videos.length + activities.length} completed
           </div>
         </div>
@@ -330,12 +330,12 @@ export default function KidsCorner() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-6 py-12">
         <Tabs defaultValue="videos" className="w-full">
-          <TabsList className="bg-[#1e293b] border border-[#334155] mb-8">
-            <TabsTrigger value="videos" className="text-[#93c5fd]">
+          <TabsList className="bg-[#141423] border border-[#2b2b42] mb-8">
+            <TabsTrigger value="videos" className="text-[#00eaff]">
               <Play className="w-4 h-4 mr-2" />
               Pixel & Dot Videos
             </TabsTrigger>
-            <TabsTrigger value="activities" className="text-[#93c5fd]">
+            <TabsTrigger value="activities" className="text-[#00eaff]">
               <Palette className="w-4 h-4 mr-2" />
               Activities & Games
             </TabsTrigger>
@@ -344,9 +344,9 @@ export default function KidsCorner() {
           {/* Videos Tab */}
           <TabsContent value="videos" className="space-y-6">
             {contentLoading ? (
-              <p className="text-[#94a3b8]">Loading videos...</p>
+              <p className="text-[#cccccc]">Loading videos...</p>
             ) : videos.length === 0 ? (
-              <p className="text-[#94a3b8]">No videos available yet.</p>
+              <p className="text-[#cccccc]">No videos available yet.</p>
             ) : (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {videos.map((video) => {
@@ -354,23 +354,23 @@ export default function KidsCorner() {
                   return (
                     <Card
                       key={video.id}
-                      className="bg-[#1e293b] border border-[#334155] p-6 hover:border-[#c4b5fd] transition-colors"
+                      className="bg-[#141423] border border-[#2b2b42] p-6 hover:border-[#ff00c8] transition-colors"
                       style={{
                         boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
                       }}
                     >
                       <div className="flex items-start justify-between mb-4">
                         <div>
-                          <h3 className="text-lg font-bold text-[#93c5fd]">{video.title}</h3>
-                          <p className="text-xs text-[#94a3b8] mt-1">Ages {video.ageRating}+</p>
+                          <h3 className="text-lg font-bold text-[#00eaff]">{video.title}</h3>
+                          <p className="text-xs text-[#cccccc] mt-1">Ages {video.ageRating}+</p>
                         </div>
-                        {isCompleted && <CheckCircle2 className="w-5 h-5 text-[#93c5fd]" />}
+                        {isCompleted && <CheckCircle2 className="w-5 h-5 text-[#00eaff]" />}
                       </div>
 
-                      <p className="text-sm text-[#94a3b8] mb-4">{video.description}</p>
+                      <p className="text-sm text-[#cccccc] mb-4">{video.description}</p>
 
                       <div className="flex items-center justify-between">
-                        <span className="text-xs text-[#94a3b8]">{video.duration} min</span>
+                        <span className="text-xs text-[#cccccc]">{video.duration} min</span>
                         <Button
                           className="btn-secondary gap-2 text-sm"
                           onClick={() => setActiveVideo(video.id)}
@@ -412,23 +412,23 @@ export default function KidsCorner() {
                 return (
                   <Card
                     key={activity.id}
-                    className="bg-[#1e293b] border border-[#334155] p-6 hover:border-[#93c5fd] transition-colors"
+                    className="bg-[#141423] border border-[#2b2b42] p-6 hover:border-[#00eaff] transition-colors"
                     style={{
                       boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
                     }}
                   >
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex items-center gap-3">
-                        <div className="text-[#c4b5fd]">{icon}</div>
+                        <div className="text-[#ff00c8]">{icon}</div>
                         <div>
-                          <h3 className="text-lg font-bold text-[#93c5fd]">{activity.title}</h3>
-                          <p className="text-xs text-[#94a3b8] mt-1">Ages {activity.ageRating}+</p>
+                          <h3 className="text-lg font-bold text-[#00eaff]">{activity.title}</h3>
+                          <p className="text-xs text-[#cccccc] mt-1">Ages {activity.ageRating}+</p>
                         </div>
                       </div>
-                      {isCompleted && <CheckCircle2 className="w-5 h-5 text-[#93c5fd]" />}
+                      {isCompleted && <CheckCircle2 className="w-5 h-5 text-[#00eaff]" />}
                     </div>
 
-                    <p className="text-sm text-[#94a3b8] mb-6">{activity.description}</p>
+                    <p className="text-sm text-[#cccccc] mb-6">{activity.description}</p>
 
                     <Button
                       className="w-full btn-primary gap-2"
@@ -469,24 +469,24 @@ export default function KidsCorner() {
 
         {/* Progress Summary */}
         {!contentLoading && (
-          <div className="mt-12 bg-[#1e293b] border border-[#334155] rounded-lg p-6">
-            <h3 className="text-xl font-bold text-[#c4b5fd] mb-4">Your Progress</h3>
+          <div className="mt-12 bg-[#141423] border border-[#2b2b42] rounded-lg p-6">
+            <h3 className="text-xl font-bold text-[#ff00c8] mb-4">Your Progress</h3>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="text-center">
-                <p className="text-3xl font-bold text-[#93c5fd]">{completedItems.length}</p>
-                <p className="text-[#94a3b8] text-sm">Items Completed</p>
+                <p className="text-3xl font-bold text-[#00eaff]">{completedItems.length}</p>
+                <p className="text-[#cccccc] text-sm">Items Completed</p>
               </div>
               <div className="text-center">
-                <p className="text-3xl font-bold text-[#c4b5fd]">
+                <p className="text-3xl font-bold text-[#ff00c8]">
                   {Math.round((completedItems.length / (videos.length + activities.length)) * 100)}%
                 </p>
-                <p className="text-[#94a3b8] text-sm">Completion Rate</p>
+                <p className="text-[#cccccc] text-sm">Completion Rate</p>
               </div>
               <div className="text-center">
-                <p className="text-3xl font-bold text-[#a5b4fc]">
+                <p className="text-3xl font-bold text-[#d8ae55]">
                   {videos.length + activities.length - completedItems.length}
                 </p>
-                <p className="text-[#94a3b8] text-sm">Items Remaining</p>
+                <p className="text-[#cccccc] text-sm">Items Remaining</p>
               </div>
             </div>
           </div>

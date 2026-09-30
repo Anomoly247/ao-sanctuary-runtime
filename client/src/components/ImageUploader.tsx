@@ -94,12 +94,12 @@ export default function ImageUploader({
   };
 
   return (
-    <Card className="bg-[#1e293b] border border-[#c4b5fd] p-6 w-full max-w-md">
+    <Card className="bg-[#141423] border border-[#ff00c8] p-6 w-full max-w-md">
       <div className="space-y-4">
         {/* Header */}
         <div>
-          <h3 className="text-xl font-bold text-[#c4b5fd] mb-2">{title}</h3>
-          <p className="text-sm text-[#94a3b8]">{description}</p>
+          <h3 className="text-xl font-bold text-[#ff00c8] mb-2">{title}</h3>
+          <p className="text-sm text-[#cccccc]">{description}</p>
         </div>
 
         {/* Preview */}
@@ -108,7 +108,7 @@ export default function ImageUploader({
             <img
               src={preview}
               alt="Preview"
-              className="w-full h-48 object-cover rounded-lg border border-[#334155]"
+              className="w-full h-48 object-cover rounded-lg border border-[#2b2b42]"
             />
             <button
               onClick={() => {
@@ -116,7 +116,7 @@ export default function ImageUploader({
                 setSelectedFile(null);
                 setError("");
               }}
-              className="absolute top-2 right-2 bg-[#c4b5fd] hover:bg-[#c4b5fd]/80 text-black p-2 rounded-full"
+              className="absolute top-2 right-2 bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black p-2 rounded-full"
             >
               <X className="w-4 h-4" />
             </button>
@@ -130,14 +130,14 @@ export default function ImageUploader({
             onClick={() => fileInputRef.current?.click()}
             className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${
               isDragging
-                ? "border-[#c4b5fd] bg-[#c4b5fd]/10"
-                : "border-[#334155] bg-[#0f172a] hover:border-[#93c5fd]"
+                ? "border-[#ff00c8] bg-[#ff00c8]/10"
+                : "border-[#2b2b42] bg-[#04040a] hover:border-[#00eaff]"
             }`}
           >
-            <Upload className="w-8 h-8 text-[#94a3b8] mx-auto mb-3" />
-            <p className="text-[#93c5fd] font-bold mb-1">Drag and drop your image</p>
-            <p className="text-sm text-[#94a3b8]">or click to browse</p>
-            <p className="text-xs text-[#94a3b8] mt-2">
+            <Upload className="w-8 h-8 text-[#cccccc] mx-auto mb-3" />
+            <p className="text-[#00eaff] font-bold mb-1">Drag and drop your image</p>
+            <p className="text-sm text-[#cccccc]">or click to browse</p>
+            <p className="text-xs text-[#cccccc] mt-2">
               Max size: {maxSize}MB • Formats: JPG, PNG, WebP
             </p>
           </div>
@@ -154,20 +154,20 @@ export default function ImageUploader({
 
         {/* Error Message */}
         {error && (
-          <div className="flex gap-2 p-3 bg-[#c4b5fd]/20 border border-[#c4b5fd] rounded-lg">
-            <AlertCircle className="w-5 h-5 text-[#c4b5fd] flex-shrink-0" />
-            <p className="text-sm text-[#c4b5fd]">{error}</p>
+          <div className="flex gap-2 p-3 bg-[#ff00c8]/20 border border-[#ff00c8] rounded-lg">
+            <AlertCircle className="w-5 h-5 text-[#ff00c8] flex-shrink-0" />
+            <p className="text-sm text-[#ff00c8]">{error}</p>
           </div>
         )}
 
         {/* File Info */}
         {selectedFile && (
-          <div className="bg-[#0f172a] rounded-lg p-3 border border-[#334155]">
-            <p className="text-sm text-[#94a3b8] mb-1">
-              <span className="font-bold text-[#93c5fd]">File:</span> {selectedFile.name}
+          <div className="bg-[#04040a] rounded-lg p-3 border border-[#2b2b42]">
+            <p className="text-sm text-[#cccccc] mb-1">
+              <span className="font-bold text-[#00eaff]">File:</span> {selectedFile.name}
             </p>
-            <p className="text-sm text-[#94a3b8]">
-              <span className="font-bold text-[#93c5fd]">Size:</span>{" "}
+            <p className="text-sm text-[#cccccc]">
+              <span className="font-bold text-[#00eaff]">Size:</span>{" "}
               {(selectedFile.size / 1024 / 1024).toFixed(2)}MB
             </p>
           </div>
@@ -179,7 +179,7 @@ export default function ImageUploader({
             <Button
               onClick={onClose}
               variant="outline"
-              className="flex-1 text-[#94a3b8] border-[#334155]"
+              className="flex-1 text-[#cccccc] border-[#2b2b42]"
             >
               Cancel
             </Button>
@@ -187,7 +187,7 @@ export default function ImageUploader({
           <Button
             onClick={handleConfirm}
             disabled={!selectedFile}
-            className="flex-1 bg-[#c4b5fd] hover:bg-[#c4b5fd]/80 text-black font-bold disabled:opacity-50"
+            className="flex-1 bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black font-bold disabled:opacity-50"
           >
             <Check className="w-4 h-4 mr-2" />
             Confirm

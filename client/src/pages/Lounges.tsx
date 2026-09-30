@@ -58,17 +58,17 @@ export default function Lounges() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#0f172a] flex items-center justify-center">
-        <div className="text-[#93c5fd] text-xl">Loading Lounges...</div>
+      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+        <div className="text-[#00eaff] text-xl">Loading Lounges...</div>
       </div>
     );
   }
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#0f172a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
         <div className="text-center">
-          <p className="text-[#93c5fd] text-xl mb-4">Please sign in to access lounges</p>
+          <p className="text-[#00eaff] text-xl mb-4">Please sign in to access lounges</p>
           <Button className="btn-primary" onClick={() => navigate("/")}>
             Back to Home
           </Button>
@@ -78,12 +78,12 @@ export default function Lounges() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0f172a] text-[#93c5fd]">
+    <div className="min-h-screen bg-[#04040a] text-[#00eaff]">
       {/* Navigation */}
-      <nav className="border-b border-[#334155] px-6 py-4 sticky top-0 bg-[#0f172a]/95 backdrop-blur">
+      <nav className="border-b border-[#2b2b42] px-6 py-4 sticky top-0 bg-[#04040a]/95 backdrop-blur">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <Button variant="ghost" onClick={() => navigate("/")} className="text-[#94a3b8]">
+            <Button variant="ghost" onClick={() => navigate("/")} className="text-[#cccccc]">
               ← Back
             </Button>
             <h1 className="text-2xl font-bold text-accent">Private Lounges</h1>
@@ -95,38 +95,38 @@ export default function Lounges() {
                 Create Lounge
               </Button>
             </DialogTrigger>
-            <DialogContent className="bg-[#1e293b] border border-[#334155]">
+            <DialogContent className="bg-[#141423] border border-[#2b2b42]">
               <DialogHeader>
-                <DialogTitle className="text-[#c4b5fd]">Create a New Lounge</DialogTitle>
-                <DialogDescription className="text-[#94a3b8]">
+                <DialogTitle className="text-[#ff00c8]">Create a New Lounge</DialogTitle>
+                <DialogDescription className="text-[#cccccc]">
                   Create a private space for family, friends, or coworkers to connect.
                 </DialogDescription>
               </DialogHeader>
               <div className="space-y-4">
                 <div>
-                  <label className="text-[#93c5fd] text-sm font-medium">Lounge Name</label>
+                  <label className="text-[#00eaff] text-sm font-medium">Lounge Name</label>
                   <Input
                     placeholder="e.g., The Family Hub"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="bg-[#0f172a] border-[#334155] text-[#93c5fd] placeholder-[#94a3b8]"
+                    className="bg-[#04040a] border-[#2b2b42] text-[#00eaff] placeholder-[#cccccc]"
                   />
                 </div>
 
                 <div>
-                  <label className="text-[#93c5fd] text-sm font-medium">Lounge Type</label>
+                  <label className="text-[#00eaff] text-sm font-medium">Lounge Type</label>
                   <Select value={formData.type} onValueChange={(value: any) => setFormData({ ...formData, type: value })}>
-                    <SelectTrigger className="bg-[#0f172a] border-[#334155] text-[#93c5fd]">
+                    <SelectTrigger className="bg-[#04040a] border-[#2b2b42] text-[#00eaff]">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent className="bg-[#1e293b] border-[#334155]">
-                      <SelectItem value="family" className="text-[#93c5fd]">
+                    <SelectContent className="bg-[#141423] border-[#2b2b42]">
+                      <SelectItem value="family" className="text-[#00eaff]">
                         👨‍👩‍👧‍👦 Family
                       </SelectItem>
-                      <SelectItem value="friends" className="text-[#93c5fd]">
+                      <SelectItem value="friends" className="text-[#00eaff]">
                         👫 Friends
                       </SelectItem>
-                      <SelectItem value="coworkers" className="text-[#93c5fd]">
+                      <SelectItem value="coworkers" className="text-[#00eaff]">
                         💼 Coworkers
                       </SelectItem>
                     </SelectContent>
@@ -134,30 +134,30 @@ export default function Lounges() {
                 </div>
 
                 <div>
-                  <label className="text-[#93c5fd] text-sm font-medium">Description (Optional)</label>
+                  <label className="text-[#00eaff] text-sm font-medium">Description (Optional)</label>
                   <Textarea
                     placeholder="What's this lounge about?"
                     value={formData.description}
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                    className="bg-[#0f172a] border-[#334155] text-[#93c5fd] placeholder-[#94a3b8]"
+                    className="bg-[#04040a] border-[#2b2b42] text-[#00eaff] placeholder-[#cccccc]"
                   />
                 </div>
 
                 <div>
-                  <label className="text-[#93c5fd] text-sm font-medium">Theme</label>
+                  <label className="text-[#00eaff] text-sm font-medium">Theme</label>
                   <Select value={formData.neonTheme} onValueChange={(value: any) => setFormData({ ...formData, neonTheme: value })}>
-                    <SelectTrigger className="bg-[#0f172a] border-[#334155] text-[#93c5fd]">
+                    <SelectTrigger className="bg-[#04040a] border-[#2b2b42] text-[#00eaff]">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent className="bg-[#1e293b] border-[#334155]">
-                      <SelectItem value="magenta" className="text-[#c4b5fd]">
+                    <SelectContent className="bg-[#141423] border-[#2b2b42]">
+                      <SelectItem value="magenta" className="text-[#ff00c8]">
                         Magenta
                       </SelectItem>
-                      <SelectItem value="cyan" className="text-[#93c5fd]">
+                      <SelectItem value="cyan" className="text-[#00eaff]">
                         Cyan
                       </SelectItem>
-                      <SelectItem value="purple" className="text-[#a5b4fc]">
-                        Purple
+                      <SelectItem value="purple" className="text-[#d8ae55]">
+                        Badge Gold
                       </SelectItem>
                     </SelectContent>
                   </Select>
@@ -180,12 +180,12 @@ export default function Lounges() {
       <main className="max-w-7xl mx-auto px-6 py-12">
         {loungesLoading ? (
           <div className="text-center py-12">
-            <p className="text-[#94a3b8]">Loading lounges...</p>
+            <p className="text-[#cccccc]">Loading lounges...</p>
           </div>
         ) : myLounges.length === 0 ? (
           <div className="text-center py-12">
-            <Users className="w-16 h-16 mx-auto mb-4 text-[#c4b5fd] opacity-50" />
-            <p className="text-[#94a3b8] mb-6">No lounges yet. Create one to get started!</p>
+            <Users className="w-16 h-16 mx-auto mb-4 text-[#ff00c8] opacity-50" />
+            <p className="text-[#cccccc] mb-6">No lounges yet. Create one to get started!</p>
             <Dialog open={isCreateOpen} onOpenChange={setIsCreateOpen}>
               <DialogTrigger asChild>
                 <Button className="btn-secondary gap-2">
@@ -193,38 +193,38 @@ export default function Lounges() {
                   Create Your First Lounge
                 </Button>
               </DialogTrigger>
-              <DialogContent className="bg-[#1e293b] border border-[#334155]">
+              <DialogContent className="bg-[#141423] border border-[#2b2b42]">
                 <DialogHeader>
-                  <DialogTitle className="text-[#c4b5fd]">Create a New Lounge</DialogTitle>
-                  <DialogDescription className="text-[#94a3b8]">
+                  <DialogTitle className="text-[#ff00c8]">Create a New Lounge</DialogTitle>
+                  <DialogDescription className="text-[#cccccc]">
                     Create a private space for family, friends, or coworkers to connect.
                   </DialogDescription>
                 </DialogHeader>
                 <div className="space-y-4">
                   <div>
-                    <label className="text-[#93c5fd] text-sm font-medium">Lounge Name</label>
+                    <label className="text-[#00eaff] text-sm font-medium">Lounge Name</label>
                     <Input
                       placeholder="e.g., The Family Hub"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="bg-[#0f172a] border-[#334155] text-[#93c5fd] placeholder-[#94a3b8]"
+                      className="bg-[#04040a] border-[#2b2b42] text-[#00eaff] placeholder-[#cccccc]"
                     />
                   </div>
 
                   <div>
-                    <label className="text-[#93c5fd] text-sm font-medium">Lounge Type</label>
+                    <label className="text-[#00eaff] text-sm font-medium">Lounge Type</label>
                     <Select value={formData.type} onValueChange={(value: any) => setFormData({ ...formData, type: value })}>
-                      <SelectTrigger className="bg-[#0f172a] border-[#334155] text-[#93c5fd]">
+                      <SelectTrigger className="bg-[#04040a] border-[#2b2b42] text-[#00eaff]">
                         <SelectValue />
                       </SelectTrigger>
-                      <SelectContent className="bg-[#1e293b] border-[#334155]">
-                        <SelectItem value="family" className="text-[#93c5fd]">
+                      <SelectContent className="bg-[#141423] border-[#2b2b42]">
+                        <SelectItem value="family" className="text-[#00eaff]">
                           👨‍👩‍👧‍👦 Family
                         </SelectItem>
-                        <SelectItem value="friends" className="text-[#93c5fd]">
+                        <SelectItem value="friends" className="text-[#00eaff]">
                           👫 Friends
                         </SelectItem>
-                        <SelectItem value="coworkers" className="text-[#93c5fd]">
+                        <SelectItem value="coworkers" className="text-[#00eaff]">
                           💼 Coworkers
                         </SelectItem>
                       </SelectContent>
@@ -232,30 +232,30 @@ export default function Lounges() {
                   </div>
 
                   <div>
-                    <label className="text-[#93c5fd] text-sm font-medium">Description (Optional)</label>
+                    <label className="text-[#00eaff] text-sm font-medium">Description (Optional)</label>
                     <Textarea
                       placeholder="What's this lounge about?"
                       value={formData.description}
                       onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                      className="bg-[#0f172a] border-[#334155] text-[#93c5fd] placeholder-[#94a3b8]"
+                      className="bg-[#04040a] border-[#2b2b42] text-[#00eaff] placeholder-[#cccccc]"
                     />
                   </div>
 
                   <div>
-                    <label className="text-[#93c5fd] text-sm font-medium">Theme</label>
+                    <label className="text-[#00eaff] text-sm font-medium">Theme</label>
                     <Select value={formData.neonTheme} onValueChange={(value: any) => setFormData({ ...formData, neonTheme: value })}>
-                      <SelectTrigger className="bg-[#0f172a] border-[#334155] text-[#93c5fd]">
+                      <SelectTrigger className="bg-[#04040a] border-[#2b2b42] text-[#00eaff]">
                         <SelectValue />
                       </SelectTrigger>
-                      <SelectContent className="bg-[#1e293b] border-[#334155]">
-                        <SelectItem value="magenta" className="text-[#c4b5fd]">
+                      <SelectContent className="bg-[#141423] border-[#2b2b42]">
+                        <SelectItem value="magenta" className="text-[#ff00c8]">
                           Magenta
                         </SelectItem>
-                        <SelectItem value="cyan" className="text-[#93c5fd]">
+                        <SelectItem value="cyan" className="text-[#00eaff]">
                           Cyan
                         </SelectItem>
-                        <SelectItem value="purple" className="text-[#a5b4fc]">
-                          Purple
+                        <SelectItem value="purple" className="text-[#d8ae55]">
+                          Badge Gold
                         </SelectItem>
                       </SelectContent>
                     </Select>
@@ -279,7 +279,7 @@ export default function Lounges() {
               return (
                 <Card
                   key={lounge.id}
-                  className="bg-[#1e293b] border border-[#334155] p-6 cursor-pointer hover:border-[#c4b5fd] transition-colors"
+                  className="bg-[#141423] border border-[#2b2b42] p-6 cursor-pointer hover:border-[#ff00c8] transition-colors"
                   onClick={() => navigate(`/lounges/${lounge.id}`)}
                   style={{
                     boxShadow:
@@ -292,17 +292,17 @@ export default function Lounges() {
                 >
                   <div className="flex items-start justify-between mb-4">
                     <div>
-                      <h3 className="text-xl font-bold text-[#93c5fd] mb-1">{lounge.name}</h3>
-                      <p className="text-sm text-[#94a3b8] capitalize">{lounge.type} Lounge</p>
+                      <h3 className="text-xl font-bold text-[#00eaff] mb-1">{lounge.name}</h3>
+                      <p className="text-sm text-[#cccccc] capitalize">{lounge.type} Lounge</p>
                     </div>
-                    <Lock className="w-5 h-5 text-[#c4b5fd]" />
+                    <Lock className="w-5 h-5 text-[#ff00c8]" />
                   </div>
 
                   {lounge.description && (
-                    <p className="text-[#94a3b8] text-sm mb-4 line-clamp-2">{lounge.description}</p>
+                    <p className="text-[#cccccc] text-sm mb-4 line-clamp-2">{lounge.description}</p>
                   )}
 
-                  <div className="flex items-center gap-2 text-[#93c5fd] text-sm">
+                  <div className="flex items-center gap-2 text-[#00eaff] text-sm">
                     <Users className="w-4 h-4" />
                     <span>View & Join</span>
                   </div>

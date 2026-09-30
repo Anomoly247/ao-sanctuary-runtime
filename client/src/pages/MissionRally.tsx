@@ -22,9 +22,9 @@ export default function MissionRally() {
 
   // Mock impact metrics
   const impactMetrics = [
-    { label: "Lives Touched", value: "2,847", icon: Heart, color: "#c4b5fd" },
-    { label: "Active Members", value: "1,240", icon: Users, color: "#93c5fd" },
-    { label: "Projects Completed", value: "156", icon: Target, color: "#a5b4fc" },
+    { label: "Lives Touched", value: "2,847", icon: Heart, color: "#ff00c8" },
+    { label: "Active Members", value: "1,240", icon: Users, color: "#00eaff" },
+    { label: "Projects Completed", value: "156", icon: Target, color: "#d8ae55" },
     { label: "Global Reach", value: "42 Countries", icon: Globe, color: "#00ff88" },
   ];
 
@@ -70,32 +70,32 @@ export default function MissionRally() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0f172a] text-[#93c5fd]">
+    <div className="min-h-screen bg-[#04040a] text-[#00eaff]">
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 px-6">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#c4b5fd]/10 to-[#93c5fd]/10 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#ff00c8]/10 to-[#00eaff]/10 pointer-events-none" />
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="text-center mb-12">
             <h1 className="text-5xl md:text-6xl font-bold mb-6 text-accent">
               The Anom Mission Rally
             </h1>
-            <p className="text-xl text-[#94a3b8] mb-4 max-w-3xl mx-auto">
+            <p className="text-xl text-[#cccccc] mb-4 max-w-3xl mx-auto">
               Unite your physical and digital identity. Make real-world impact. Build the future together.
             </p>
-            <p className="text-lg text-[#93c5fd] font-bold">
+            <p className="text-lg text-[#00eaff] font-bold">
               Every action counts. Every voice matters. Every person can change the world.
             </p>
           </div>
 
           {/* Mission Statement */}
           <Card
-            className="bg-[#1e293b] border-2 border-[#c4b5fd] p-12 mb-12 text-center"
+            className="bg-[#141423] border-2 border-[#ff00c8] p-12 mb-12 text-center"
             style={{
               boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)',
             }}
           >
-            <h2 className="text-3xl font-bold text-[#c4b5fd] mb-6">Our Mission</h2>
-            <p className="text-lg text-[#93c5fd] mb-6 leading-relaxed">
+            <h2 className="text-3xl font-bold text-[#ff00c8] mb-6">Our Mission</h2>
+            <p className="text-lg text-[#00eaff] mb-6 leading-relaxed">
               Anom Artsy is more than a platform—it's a movement. We believe that your digital identity and physical impact are one and the same. By connecting your authentic self with meaningful action, we're building a world where social good isn't just a goal—it's a way of life.
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
@@ -119,7 +119,7 @@ export default function MissionRally() {
       </section>
 
       {/* Impact Metrics */}
-      <section className="py-16 px-6 bg-[#0f172a]/50">
+      <section className="py-16 px-6 bg-[#04040a]/50">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12 text-info">
             Real Impact. Real Numbers.
@@ -130,7 +130,7 @@ export default function MissionRally() {
               return (
                 <Card
                   key={idx}
-                  className="bg-[#1e293b] border border-[#334155] p-6 text-center hover:scale-105 transition-transform"
+                  className="bg-[#141423] border border-[#2b2b42] p-6 text-center hover:scale-105 transition-transform"
                   style={{
                     boxShadow: `0 0 20px ${metric.color}40, 0 0 40px ${metric.color}20`,
                   }}
@@ -139,7 +139,7 @@ export default function MissionRally() {
                   <p className="text-3xl font-bold mb-2" style={{ color: metric.color }}>
                     {metric.value}
                   </p>
-                  <p className="text-[#94a3b8]">{metric.label}</p>
+                  <p className="text-[#cccccc]">{metric.label}</p>
                 </Card>
               );
             })}
@@ -188,11 +188,11 @@ export default function MissionRally() {
             ].map((value, idx) => (
               <Card
                 key={idx}
-                className="bg-[#1e293b] border border-[#334155] p-6 hover:border-[#93c5fd] transition-colors"
+                className="bg-[#141423] border border-[#2b2b42] p-6 hover:border-[#00eaff] transition-colors"
               >
                 <div className="text-4xl mb-4">{value.icon}</div>
-                <h3 className="text-xl font-bold text-[#c4b5fd] mb-2">{value.title}</h3>
-                <p className="text-[#94a3b8]">{value.desc}</p>
+                <h3 className="text-xl font-bold text-[#ff00c8] mb-2">{value.title}</h3>
+                <p className="text-[#cccccc]">{value.desc}</p>
               </Card>
             ))}
           </div>
@@ -200,7 +200,7 @@ export default function MissionRally() {
       </section>
 
       {/* Community Stories */}
-      <section className="py-16 px-6 bg-[#0f172a]/50">
+      <section className="py-16 px-6 bg-[#04040a]/50">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12 text-info">
             Community Stories
@@ -209,14 +209,14 @@ export default function MissionRally() {
             {stories.map((story) => (
               <Card
                 key={story.id}
-                className="bg-[#1e293b] border border-[#334155] p-6 hover:border-[#c4b5fd] transition-colors"
+                className="bg-[#141423] border border-[#2b2b42] p-6 hover:border-[#ff00c8] transition-colors"
               >
                 <div className="flex items-start gap-4">
                   <div className="text-4xl">{story.avatar}</div>
                   <div className="flex-1">
-                    <h3 className="text-lg font-bold text-[#c4b5fd]">{story.name}</h3>
-                    <p className="text-[#93c5fd] font-bold text-sm mb-2">{story.title}</p>
-                    <p className="text-[#94a3b8] text-sm">
+                    <h3 className="text-lg font-bold text-[#ff00c8]">{story.name}</h3>
+                    <p className="text-[#00eaff] font-bold text-sm mb-2">{story.title}</p>
+                    <p className="text-[#cccccc] text-sm">
                       <Sparkles className="w-4 h-4 inline mr-2" />
                       Impact: {story.impact}
                     </p>
@@ -234,35 +234,35 @@ export default function MissionRally() {
           <h2 className="text-3xl font-bold text-center mb-12 text-accent">
             Impact Leaderboard
           </h2>
-          <Card className="bg-[#1e293b] border border-[#334155] overflow-hidden">
+          <Card className="bg-[#141423] border border-[#2b2b42] overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-[#334155] bg-[#0f172a]">
-                    <th className="px-6 py-4 text-left text-[#94a3b8]">Rank</th>
-                    <th className="px-6 py-4 text-left text-[#94a3b8]">Member</th>
-                    <th className="px-6 py-4 text-left text-[#94a3b8]">Impact Score</th>
+                  <tr className="border-b border-[#2b2b42] bg-[#04040a]">
+                    <th className="px-6 py-4 text-left text-[#cccccc]">Rank</th>
+                    <th className="px-6 py-4 text-left text-[#cccccc]">Member</th>
+                    <th className="px-6 py-4 text-left text-[#cccccc]">Impact Score</th>
                   </tr>
                 </thead>
                 <tbody>
                   {leaderboard.map((entry) => (
                     <tr
                       key={entry.rank}
-                      className="border-b border-[#334155] hover:bg-[#0f172a] transition-colors"
+                      className="border-b border-[#2b2b42] hover:bg-[#04040a] transition-colors"
                     >
-                      <td className="px-6 py-4 text-[#c4b5fd] font-bold">
+                      <td className="px-6 py-4 text-[#ff00c8] font-bold">
                         {entry.badge} #{entry.rank}
                       </td>
-                      <td className="px-6 py-4 text-[#93c5fd] font-bold">{entry.name}</td>
+                      <td className="px-6 py-4 text-[#00eaff] font-bold">{entry.name}</td>
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-2">
-                          <div className="w-32 bg-[#0f172a] rounded-full h-2">
+                          <div className="w-32 bg-[#04040a] rounded-full h-2">
                             <div
-                              className="bg-gradient-to-r from-[#c4b5fd] to-[#93c5fd] h-2 rounded-full"
+                              className="bg-gradient-to-r from-[#ff00c8] to-[#00eaff] h-2 rounded-full"
                               style={{ width: `${(entry.impact / 2500) * 100}%` }}
                             />
                           </div>
-                          <span className="text-[#94a3b8] text-sm">{entry.impact}</span>
+                          <span className="text-[#cccccc] text-sm">{entry.impact}</span>
                         </div>
                       </td>
                     </tr>
@@ -275,12 +275,12 @@ export default function MissionRally() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 px-6 bg-gradient-to-r from-[#c4b5fd]/10 to-[#93c5fd]/10">
+      <section className="py-20 px-6 bg-gradient-to-r from-[#ff00c8]/10 to-[#00eaff]/10">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-6 text-accent">
             Ready to Join the Movement?
           </h2>
-          <p className="text-lg text-[#94a3b8] mb-8">
+          <p className="text-lg text-[#cccccc] mb-8">
             Your digital identity + your real-world impact = infinite possibilities. Start collaborating on social good projects today.
           </p>
           <div className="flex gap-4 justify-center flex-wrap">

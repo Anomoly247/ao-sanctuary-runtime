@@ -41,18 +41,18 @@ export default function OwnerControlPanel() {
   // Check if user is admin/owner
   if (user?.role !== 'admin') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[#0f172a] to-[#1e293b] p-4 flex items-center justify-center">
-        <Card className="border-2 border-[#c4b5fd] bg-[#0f172a]/80 p-8 max-w-md">
+      <div className="min-h-screen bg-gradient-to-br from-[#04040a] to-[#141423] p-4 flex items-center justify-center">
+        <Card className="border-2 border-[#ff00c8] bg-[#04040a]/80 p-8 max-w-md">
           <div className="flex items-center justify-center mb-4">
-            <Lock className="w-12 h-12 text-[#c4b5fd]" />
+            <Lock className="w-12 h-12 text-[#ff00c8]" />
           </div>
-          <h1 className="text-2xl font-bold text-center text-[#c4b5fd] mb-4">Access Denied</h1>
+          <h1 className="text-2xl font-bold text-center text-[#ff00c8] mb-4">Access Denied</h1>
           <p className="text-center text-gray-300 mb-6">
             Only administrators can access the Owner Control Panel.
           </p>
           <Button 
             onClick={() => navigate('/')}
-            className="w-full bg-[#c4b5fd] hover:bg-[#c4b5fd]/80 text-black font-bold"
+            className="w-full bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black font-bold"
           >
             Return to Home
           </Button>
@@ -100,14 +100,14 @@ export default function OwnerControlPanel() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0f172a] to-[#1e293b] p-4 md:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-[#04040a] to-[#141423] p-4 md:p-8">
       {/* Header */}
       <div className="mb-8 flex items-center justify-between">
         <div>
-          <h1 className="text-4xl font-bold text-[#c4b5fd] mb-2">Owner Control Panel</h1>
+          <h1 className="text-4xl font-bold text-[#ff00c8] mb-2">Owner Control Panel</h1>
           <p className="text-gray-400">Manage your Anom Artsy platform • Real-time stats</p>
         </div>
-        <Button variant="outline" onClick={() => navigate('/')} className="text-[#93c5fd] border-[#93c5fd] hover:bg-[#93c5fd]/10 flex items-center gap-2">
+        <Button variant="outline" onClick={() => navigate('/')} className="text-[#00eaff] border-[#00eaff] hover:bg-[#00eaff]/10 flex items-center gap-2">
           <ArrowLeft className="w-4 h-4" />
           Back to Home
         </Button>
@@ -129,8 +129,8 @@ export default function OwnerControlPanel() {
               onClick={() => setActiveTab(tab.id)}
               className={`p-3 rounded-lg border-2 transition-all flex items-center justify-center gap-2 ${
                 activeTab === tab.id
-                  ? 'border-[#c4b5fd] bg-[#c4b5fd]/20 text-[#c4b5fd]'
-                  : 'border-[#93c5fd] bg-transparent text-[#93c5fd] hover:bg-[#93c5fd]/10'
+                  ? 'border-[#ff00c8] bg-[#ff00c8]/20 text-[#ff00c8]'
+                  : 'border-[#00eaff] bg-transparent text-[#00eaff] hover:bg-[#00eaff]/10'
               }`}
             >
               <Icon className="w-4 h-4" />
@@ -144,22 +144,22 @@ export default function OwnerControlPanel() {
       {activeTab === 'dashboard' && (
         <div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            <Card className="border-2 border-[#c4b5fd] bg-[#0f172a]/80 p-6">
+            <Card className="border-2 border-[#ff00c8] bg-[#04040a]/80 p-6">
               <div className="text-gray-400 text-sm mb-2">Total Users</div>
-              <div className="text-3xl font-bold text-[#c4b5fd]">{stats?.totalUsers || 0}</div>
+              <div className="text-3xl font-bold text-[#ff00c8]">{stats?.totalUsers || 0}</div>
               <div className="text-green-400 text-xs mt-2">↑ {stats?.userGrowth || 0}% this month</div>
             </Card>
-            <Card className="border-2 border-[#93c5fd] bg-[#0f172a]/80 p-6">
+            <Card className="border-2 border-[#00eaff] bg-[#04040a]/80 p-6">
               <div className="text-gray-400 text-sm mb-2">Active Members</div>
-              <div className="text-3xl font-bold text-[#93c5fd]">{stats?.activeMembers || 0}</div>
+              <div className="text-3xl font-bold text-[#00eaff]">{stats?.activeMembers || 0}</div>
               <div className="text-green-400 text-xs mt-2">↑ {stats?.activeGrowth || 0}% this week</div>
             </Card>
-            <Card className="border-2 border-[#a855f7] bg-[#0f172a]/80 p-6">
+            <Card className="border-2 border-[#a855f7] bg-[#04040a]/80 p-6">
               <div className="text-gray-400 text-sm mb-2">Revenue (This Month)</div>
               <div className="text-3xl font-bold text-[#a855f7]">${stats?.monthlyRevenue || 0}</div>
               <div className="text-green-400 text-xs mt-2">↑ {stats?.revenueGrowth || 0}% vs last month</div>
             </Card>
-            <Card className="border-2 border-[#fbbf24] bg-[#0f172a]/80 p-6">
+            <Card className="border-2 border-[#fbbf24] bg-[#04040a]/80 p-6">
               <div className="text-gray-400 text-sm mb-2">Coins Distributed</div>
               <div className="text-3xl font-bold text-[#fbbf24]">{stats?.coinsDistributed || 0}</div>
               <div className="text-green-400 text-xs mt-2">↑ {stats?.coinsGrowth || 0}% this week</div>
@@ -168,15 +168,15 @@ export default function OwnerControlPanel() {
 
           {/* Additional Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Card className="border-2 border-[#00ff88] bg-[#0f172a]/80 p-6">
+            <Card className="border-2 border-[#00ff88] bg-[#04040a]/80 p-6">
               <div className="text-gray-400 text-sm mb-2">Total Lounges</div>
               <div className="text-3xl font-bold text-[#00ff88]">{stats?.totalLounges || 0}</div>
             </Card>
-            <Card className="border-2 border-[#ff6b9d] bg-[#0f172a]/80 p-6">
+            <Card className="border-2 border-[#ff6b9d] bg-[#04040a]/80 p-6">
               <div className="text-gray-400 text-sm mb-2">Merch Orders</div>
               <div className="text-3xl font-bold text-[#ff6b9d]">{stats?.totalOrders || 0}</div>
             </Card>
-            <Card className="border-2 border-[#00d4ff] bg-[#0f172a]/80 p-6">
+            <Card className="border-2 border-[#00d4ff] bg-[#04040a]/80 p-6">
               <div className="text-gray-400 text-sm mb-2">Achievements Unlocked</div>
               <div className="text-3xl font-bold text-[#00d4ff]">{stats?.achievementsUnlocked || 0}</div>
             </Card>
@@ -187,26 +187,26 @@ export default function OwnerControlPanel() {
       {/* Users Tab */}
       {activeTab === 'users' && (
         <div>
-          <h2 className="text-2xl font-bold text-[#c4b5fd] mb-4">Manage Users</h2>
-          <Card className="border-2 border-[#93c5fd] bg-[#0f172a]/80 p-6">
+          <h2 className="text-2xl font-bold text-[#ff00c8] mb-4">Manage Users</h2>
+          <Card className="border-2 border-[#00eaff] bg-[#04040a]/80 p-6">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-[#334155]">
-                    <th className="text-left py-2 text-[#93c5fd]">User ID</th>
-                    <th className="text-left py-2 text-[#93c5fd]">Name</th>
-                    <th className="text-left py-2 text-[#93c5fd]">Email</th>
-                    <th className="text-left py-2 text-[#93c5fd]">Role</th>
-                    <th className="text-left py-2 text-[#93c5fd]">Joined</th>
+                  <tr className="border-b border-[#2b2b42]">
+                    <th className="text-left py-2 text-[#00eaff]">User ID</th>
+                    <th className="text-left py-2 text-[#00eaff]">Name</th>
+                    <th className="text-left py-2 text-[#00eaff]">Email</th>
+                    <th className="text-left py-2 text-[#00eaff]">Role</th>
+                    <th className="text-left py-2 text-[#00eaff]">Joined</th>
                   </tr>
                 </thead>
                 <tbody>
                   {users.map((u: any) => (
-                    <tr key={u.id} className="border-b border-[#334155] hover:bg-[#1e293b]">
+                    <tr key={u.id} className="border-b border-[#2b2b42] hover:bg-[#141423]">
                       <td className="py-2 text-gray-300">{u.id}</td>
                       <td className="py-2 text-gray-300">{u.name}</td>
                       <td className="py-2 text-gray-300">{u.email}</td>
-                      <td className="py-2"><span className="px-2 py-1 bg-[#c4b5fd]/20 text-[#c4b5fd] rounded text-xs">{u.role}</span></td>
+                      <td className="py-2"><span className="px-2 py-1 bg-[#ff00c8]/20 text-[#ff00c8] rounded text-xs">{u.role}</span></td>
                       <td className="py-2 text-gray-300">{new Date(u.createdAt).toLocaleDateString()}</td>
                     </tr>
                   ))}
@@ -220,11 +220,11 @@ export default function OwnerControlPanel() {
       {/* Events Tab */}
       {activeTab === 'events' && (
         <div>
-          <h2 className="text-2xl font-bold text-[#c4b5fd] mb-4">Community Highlights & Events</h2>
+          <h2 className="text-2xl font-bold text-[#ff00c8] mb-4">Community Highlights & Events</h2>
           
           {/* Create Event Form */}
-          <Card className="border-2 border-[#c4b5fd] bg-[#0f172a]/80 p-6 mb-6">
-            <h3 className="text-xl font-bold text-[#c4b5fd] mb-4 flex items-center gap-2">
+          <Card className="border-2 border-[#ff00c8] bg-[#04040a]/80 p-6 mb-6">
+            <h3 className="text-xl font-bold text-[#ff00c8] mb-4 flex items-center gap-2">
               <Plus className="w-5 h-5" />
               Create New Event
             </h3>
@@ -235,7 +235,7 @@ export default function OwnerControlPanel() {
                   value={eventForm.title} 
                   onChange={(e) => setEventForm({ ...eventForm, title: e.target.value })}
                   placeholder="e.g., Tater & Clifford Episode Release"
-                  className="bg-[#1e293b] border-[#c4b5fd] text-white"
+                  className="bg-[#141423] border-[#ff00c8] text-white"
                 />
               </div>
               <div>
@@ -244,7 +244,7 @@ export default function OwnerControlPanel() {
                   value={eventForm.description} 
                   onChange={(e) => setEventForm({ ...eventForm, description: e.target.value })}
                   placeholder="Describe the event..."
-                  className="bg-[#1e293b] border-[#c4b5fd] text-white"
+                  className="bg-[#141423] border-[#ff00c8] text-white"
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
@@ -254,7 +254,7 @@ export default function OwnerControlPanel() {
                     type="datetime-local"
                     value={eventForm.date} 
                     onChange={(e) => setEventForm({ ...eventForm, date: e.target.value })}
-                    className="bg-[#1e293b] border-[#c4b5fd] text-white"
+                    className="bg-[#141423] border-[#ff00c8] text-white"
                   />
                 </div>
                 <div>
@@ -263,14 +263,14 @@ export default function OwnerControlPanel() {
                     value={eventForm.imageUrl} 
                     onChange={(e) => setEventForm({ ...eventForm, imageUrl: e.target.value })}
                     placeholder="https://..."
-                    className="bg-[#1e293b] border-[#c4b5fd] text-white"
+                    className="bg-[#141423] border-[#ff00c8] text-white"
                   />
                 </div>
               </div>
               <Button 
                 onClick={handleCreateEvent}
                 disabled={createEventMutation.isPending}
-                className="w-full bg-[#c4b5fd] hover:bg-[#c4b5fd]/80 text-black font-bold"
+                className="w-full bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black font-bold"
               >
                 {createEventMutation.isPending ? 'Creating...' : 'Create Event'}
               </Button>
@@ -279,15 +279,15 @@ export default function OwnerControlPanel() {
 
           {/* Events List */}
           <div className="space-y-4">
-            <h3 className="text-lg font-bold text-[#93c5fd]">Upcoming Events</h3>
+            <h3 className="text-lg font-bold text-[#00eaff]">Upcoming Events</h3>
             {events && events.length > 0 ? (
               events.map((event: any) => (
-                <Card key={event.id} className="border-2 border-[#93c5fd] bg-[#0f172a]/80 p-6">
+                <Card key={event.id} className="border-2 border-[#00eaff] bg-[#04040a]/80 p-6">
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
-                      <h4 className="text-xl font-bold text-[#c4b5fd] mb-2">{event.title}</h4>
+                      <h4 className="text-xl font-bold text-[#ff00c8] mb-2">{event.title}</h4>
                       <p className="text-gray-300 mb-2">{event.description}</p>
-                      <p className="text-[#93c5fd] text-sm">📅 {new Date(event.date).toLocaleString()}</p>
+                      <p className="text-[#00eaff] text-sm">📅 {new Date(event.date).toLocaleString()}</p>
                     </div>
                     <Button 
                       variant="destructive"
@@ -300,7 +300,7 @@ export default function OwnerControlPanel() {
                 </Card>
               ))
             ) : (
-              <Card className="border-2 border-[#93c5fd] bg-[#0f172a]/80 p-6 text-center">
+              <Card className="border-2 border-[#00eaff] bg-[#04040a]/80 p-6 text-center">
                 <p className="text-gray-400">No events yet. Create one to get started!</p>
               </Card>
             )}
@@ -311,15 +311,15 @@ export default function OwnerControlPanel() {
       {/* Settings Tab */}
       {activeTab === 'settings' && (
         <div>
-          <h2 className="text-2xl font-bold text-[#c4b5fd] mb-4">Platform Settings</h2>
-          <Card className="border-2 border-[#93c5fd] bg-[#0f172a]/80 p-6">
+          <h2 className="text-2xl font-bold text-[#ff00c8] mb-4">Platform Settings</h2>
+          <Card className="border-2 border-[#00eaff] bg-[#04040a]/80 p-6">
             <div className="space-y-6">
               <div>
                 <label className="block text-sm font-bold text-gray-300 mb-2">Site Name</label>
                 <Input 
                   value={settings.siteName}
                   onChange={(e) => setSettings({ ...settings, siteName: e.target.value })}
-                  className="bg-[#1e293b] border-[#c4b5fd] text-white"
+                  className="bg-[#141423] border-[#ff00c8] text-white"
                 />
               </div>
               <div>
@@ -327,7 +327,7 @@ export default function OwnerControlPanel() {
                 <Textarea 
                   value={settings.siteDescription}
                   onChange={(e) => setSettings({ ...settings, siteDescription: e.target.value })}
-                  className="bg-[#1e293b] border-[#c4b5fd] text-white"
+                  className="bg-[#141423] border-[#ff00c8] text-white"
                 />
               </div>
               <div className="grid grid-cols-3 gap-4">
@@ -337,7 +337,7 @@ export default function OwnerControlPanel() {
                     type="number"
                     value={settings.maxCoinsPerDay}
                     onChange={(e) => setSettings({ ...settings, maxCoinsPerDay: parseInt(e.target.value) })}
-                    className="bg-[#1e293b] border-[#c4b5fd] text-white"
+                    className="bg-[#141423] border-[#ff00c8] text-white"
                   />
                 </div>
                 <div>
@@ -346,7 +346,7 @@ export default function OwnerControlPanel() {
                     type="number"
                     value={settings.levelUpXP}
                     onChange={(e) => setSettings({ ...settings, levelUpXP: parseInt(e.target.value) })}
-                    className="bg-[#1e293b] border-[#c4b5fd] text-white"
+                    className="bg-[#141423] border-[#ff00c8] text-white"
                   />
                 </div>
                 <div>
@@ -356,14 +356,14 @@ export default function OwnerControlPanel() {
                     step="0.1"
                     value={settings.achievementMultiplier}
                     onChange={(e) => setSettings({ ...settings, achievementMultiplier: parseFloat(e.target.value) })}
-                    className="bg-[#1e293b] border-[#c4b5fd] text-white"
+                    className="bg-[#141423] border-[#ff00c8] text-white"
                   />
                 </div>
               </div>
               <Button 
                 onClick={handleSaveSettings}
                 disabled={updateSettingsMutation.isPending}
-                className="w-full bg-[#c4b5fd] hover:bg-[#c4b5fd]/80 text-black font-bold"
+                className="w-full bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black font-bold"
               >
                 {updateSettingsMutation.isPending ? 'Saving...' : 'Save Settings'}
               </Button>
@@ -375,7 +375,7 @@ export default function OwnerControlPanel() {
       {/* Features Tab */}
       {activeTab === 'features' && (
         <div>
-          <h2 className="text-2xl font-bold text-[#c4b5fd] mb-4">Feature Management</h2>
+          <h2 className="text-2xl font-bold text-[#ff00c8] mb-4">Feature Management</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
               { name: 'Social Feed', status: 'active', icon: '📱' },
@@ -387,12 +387,12 @@ export default function OwnerControlPanel() {
               { name: 'Collaborations', status: 'active', icon: '🤝' },
               { name: 'Achievements', status: 'active', icon: '🏆' },
             ].map((feature) => (
-              <Card key={feature.name} className="border-2 border-[#93c5fd] bg-[#0f172a]/80 p-4">
+              <Card key={feature.name} className="border-2 border-[#00eaff] bg-[#04040a]/80 p-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <span className="text-2xl">{feature.icon}</span>
                     <div>
-                      <p className="font-bold text-[#c4b5fd]">{feature.name}</p>
+                      <p className="font-bold text-[#ff00c8]">{feature.name}</p>
                       <p className="text-xs text-gray-400">Status: {feature.status}</p>
                     </div>
                   </div>

@@ -115,17 +115,17 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
 
   if (loading || loungeLoading) {
     return (
-      <div className="min-h-screen bg-[#0f172a] flex items-center justify-center">
-        <div className="text-[#93c5fd] text-xl">Loading lounge...</div>
+      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+        <div className="text-[#00eaff] text-xl">Loading lounge...</div>
       </div>
     );
   }
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#0f172a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
         <div className="text-center">
-          <p className="text-[#93c5fd] text-xl mb-4">Please sign in to access this lounge</p>
+          <p className="text-[#00eaff] text-xl mb-4">Please sign in to access this lounge</p>
           <Button className="btn-primary" onClick={() => navigate("/")}>
             Back to Home
           </Button>
@@ -136,9 +136,9 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
 
   if (!lounge) {
     return (
-      <div className="min-h-screen bg-[#0f172a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
         <div className="text-center">
-          <p className="text-[#93c5fd] text-xl mb-4">Lounge not found</p>
+          <p className="text-[#00eaff] text-xl mb-4">Lounge not found</p>
           <Button className="btn-primary" onClick={() => navigate("/lounges")}>
             Back to Lounges
           </Button>
@@ -147,20 +147,20 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
     );
   }
 
-  const themeColor = lounge.neonTheme === "cyan" ? "#93c5fd" : lounge.neonTheme === "purple" ? "#a5b4fc" : "#c4b5fd";
+  const themeColor = lounge.neonTheme === "cyan" ? "#00eaff" : lounge.neonTheme === "purple" ? "#d8ae55" : "#ff00c8";
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0f172a] to-[#1e293b]">
+    <div className="min-h-screen bg-gradient-to-br from-[#04040a] to-[#141423]">
       {/* Header */}
-      <div className="bg-[#1e293b] border-b-2" style={{ borderColor: themeColor }} >
+      <div className="bg-[#141423] border-b-2" style={{ borderColor: themeColor }} >
         <div className="max-w-7xl mx-auto flex justify-between items-center p-4">
           <div>
             <h1 className="text-3xl font-bold" style={{ color: themeColor }}>
               {lounge.name}
             </h1>
-            <p className="text-[#93c5fd]">{lounge.type} Lounge</p>
+            <p className="text-[#00eaff]">{lounge.type} Lounge</p>
           </div>
-          <Button onClick={() => navigate("/lounges")} className="bg-[#334155] hover:bg-[#3a3f4e] text-[#93c5fd]">
+          <Button onClick={() => navigate("/lounges")} className="bg-[#2b2b42] hover:bg-[#3a3f4e] text-[#00eaff]">
             Back to Lounges
           </Button>
         </div>
@@ -170,19 +170,19 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
       <div className="max-w-7xl mx-auto p-4 grid grid-cols-1 lg:grid-cols-4 gap-6">
         {/* Chat Area */}
         <div className="lg:col-span-3 space-y-4">
-          <Card className="bg-[#1e293b] border-2 h-96 flex flex-col" style={{ borderColor: themeColor }}>
+          <Card className="bg-[#141423] border-2 h-96 flex flex-col" style={{ borderColor: themeColor }}>
             <ScrollArea ref={scrollRef} className="flex-1 p-4">
               <div className="space-y-3">
                 {messages.length === 0 ? (
                   <div className="text-center py-8">
-                    <p className="text-[#94a3b8]">No messages yet. Start the conversation!</p>
+                    <p className="text-[#cccccc]">No messages yet. Start the conversation!</p>
                   </div>
                 ) : (
                   messages.map((msg, idx) => (
-                    <div key={idx} className="bg-[#0f172a] rounded-lg p-3 border border-[#93c5fd]/20">
-                      <p className="text-[#93c5fd] font-bold text-sm">User</p>
+                    <div key={idx} className="bg-[#04040a] rounded-lg p-3 border border-[#00eaff]/20">
+                      <p className="text-[#00eaff] font-bold text-sm">User</p>
                       <p className="text-gray-300 text-sm">{msg.content}</p>
-                      <p className="text-[#94a3b8] text-xs mt-1">{new Date(msg.createdAt).toLocaleTimeString()}</p>
+                      <p className="text-[#cccccc] text-xs mt-1">{new Date(msg.createdAt).toLocaleTimeString()}</p>
                     </div>
                   ))
                 )}
@@ -197,7 +197,7 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
               onChange={(e) => setMessageInput(e.target.value)}
               onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
               placeholder="Type a message..."
-              className="bg-[#1e293b] border-2 text-white"
+              className="bg-[#141423] border-2 text-white"
               style={{ borderColor: themeColor }}
             />
             <Button
@@ -215,23 +215,23 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
         {/* Sidebar */}
         <div className="space-y-4">
           {/* Members */}
-          <Card className="bg-[#1e293b] border-2 border-[#93c5fd] p-4">
-            <h3 className="text-lg font-bold text-[#93c5fd] mb-4 flex items-center gap-2">
+          <Card className="bg-[#141423] border-2 border-[#00eaff] p-4">
+            <h3 className="text-lg font-bold text-[#00eaff] mb-4 flex items-center gap-2">
               <Users className="w-5 h-5" />
               Members ({members.length})
             </h3>
             <div className="space-y-2 max-h-48 overflow-y-auto">
               {members.map((member, idx) => (
-                <div key={idx} className="text-sm text-gray-300 p-2 bg-[#0f172a] rounded">
+                <div key={idx} className="text-sm text-gray-300 p-2 bg-[#04040a] rounded">
                   {member.user?.name || 'Member'}
-                  {member.member?.role === 'owner' && <span className="text-[#c4b5fd] ml-2 text-xs">(Owner)</span>}
+                  {member.member?.role === 'owner' && <span className="text-[#ff00c8] ml-2 text-xs">(Owner)</span>}
                 </div>
               ))}
             </div>
           </Card>
 
           {/* Settings */}
-          <Card className="bg-[#1e293b] border-2 p-4" style={{ borderColor: themeColor }}>
+          <Card className="bg-[#141423] border-2 p-4" style={{ borderColor: themeColor }}>
             <h3 className="text-lg font-bold mb-4 flex items-center gap-2" style={{ color: themeColor }}>
               <Settings className="w-5 h-5" />
               Lounge Settings
@@ -243,48 +243,48 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
                     Customize Lounge
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="bg-[#1e293b] border-2" style={{ borderColor: themeColor }}>
+                <DialogContent className="bg-[#141423] border-2" style={{ borderColor: themeColor }}>
                   <DialogHeader>
                     <DialogTitle style={{ color: themeColor }}>Customize Lounge</DialogTitle>
-                    <DialogDescription className="text-[#94a3b8]">
+                    <DialogDescription className="text-[#cccccc]">
                       Update your lounge name, description, and theme.
                     </DialogDescription>
                   </DialogHeader>
                   <div className="space-y-4">
                     <div>
-                      <label className="text-[#93c5fd] text-sm font-medium">Lounge Name</label>
+                      <label className="text-[#00eaff] text-sm font-medium">Lounge Name</label>
                       <Input
                         value={customizeData.name}
                         onChange={(e) => setCustomizeData({ ...customizeData, name: e.target.value })}
-                        className="bg-[#0f172a] border-[#334155] text-[#93c5fd] placeholder-[#94a3b8]"
+                        className="bg-[#04040a] border-[#2b2b42] text-[#00eaff] placeholder-[#cccccc]"
                       />
                     </div>
 
                     <div>
-                      <label className="text-[#93c5fd] text-sm font-medium">Description (Optional)</label>
+                      <label className="text-[#00eaff] text-sm font-medium">Description (Optional)</label>
                       <Textarea
                         value={customizeData.description}
                         onChange={(e) => setCustomizeData({ ...customizeData, description: e.target.value })}
                         placeholder="What's this lounge about?"
-                        className="bg-[#0f172a] border-[#334155] text-[#93c5fd] placeholder-[#94a3b8]"
+                        className="bg-[#04040a] border-[#2b2b42] text-[#00eaff] placeholder-[#cccccc]"
                       />
                     </div>
 
                     <div>
-                      <label className="text-[#93c5fd] text-sm font-medium">Theme</label>
+                      <label className="text-[#00eaff] text-sm font-medium">Theme</label>
                       <Select value={customizeData.neonTheme} onValueChange={(value: any) => setCustomizeData({ ...customizeData, neonTheme: value })}>
-                        <SelectTrigger className="bg-[#0f172a] border-[#334155] text-[#93c5fd]">
+                        <SelectTrigger className="bg-[#04040a] border-[#2b2b42] text-[#00eaff]">
                           <SelectValue />
                         </SelectTrigger>
-                        <SelectContent className="bg-[#1e293b] border-[#334155]">
-                          <SelectItem value="magenta" className="text-[#c4b5fd]">
+                        <SelectContent className="bg-[#141423] border-[#2b2b42]">
+                          <SelectItem value="magenta" className="text-[#ff00c8]">
                             Magenta
                           </SelectItem>
-                          <SelectItem value="cyan" className="text-[#93c5fd]">
+                          <SelectItem value="cyan" className="text-[#00eaff]">
                             Cyan
                           </SelectItem>
-                          <SelectItem value="purple" className="text-[#a5b4fc]">
-                            Purple
+                          <SelectItem value="purple" className="text-[#d8ae55]">
+                            Badge Gold
                           </SelectItem>
                         </SelectContent>
                       </Select>
@@ -304,30 +304,30 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
 
               <Dialog open={isInviteOpen} onOpenChange={setIsInviteOpen}>
                 <DialogTrigger asChild>
-                  <Button className="w-full bg-[#93c5fd] hover:bg-[#93c5fd]/80 text-black font-bold">
+                  <Button className="w-full bg-[#00eaff] hover:bg-[#00eaff]/80 text-black font-bold">
                     Invite Members
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="bg-[#1e293b] border-2 border-[#93c5fd]">
+                <DialogContent className="bg-[#141423] border-2 border-[#00eaff]">
                   <DialogHeader>
-                    <DialogTitle className="text-[#93c5fd]">Invite Members</DialogTitle>
-                    <DialogDescription className="text-[#94a3b8]">
+                    <DialogTitle className="text-[#00eaff]">Invite Members</DialogTitle>
+                    <DialogDescription className="text-[#cccccc]">
                       Invite people to join your lounge by email.
                     </DialogDescription>
                   </DialogHeader>
                   <div className="space-y-4">
                     <div>
-                      <label className="text-[#93c5fd] text-sm font-medium">Email Address</label>
+                      <label className="text-[#00eaff] text-sm font-medium">Email Address</label>
                       <Input
                         type="email"
                         value={inviteEmail}
                         onChange={(e) => setInviteEmail(e.target.value)}
                         placeholder="friend@example.com"
-                        className="bg-[#0f172a] border-[#334155] text-[#93c5fd] placeholder-[#94a3b8]"
+                        className="bg-[#04040a] border-[#2b2b42] text-[#00eaff] placeholder-[#cccccc]"
                       />
                     </div>
                     <Button
-                      className="w-full bg-[#93c5fd] hover:bg-[#93c5fd]/80 text-black font-bold"
+                      className="w-full bg-[#00eaff] hover:bg-[#00eaff]/80 text-black font-bold"
                       onClick={() => {
                         if (!inviteEmail.trim()) {
                           toast.error("Please enter an email address");

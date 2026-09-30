@@ -56,9 +56,9 @@ function TriviaGame({ onClose, onComplete }: { onClose: () => void; onComplete: 
   if (gameOver) {
     return (
       <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-        <Card className="bg-[#1e293b] border border-[#c4b5fd] p-8 max-w-md text-center">
-          <h2 className="text-2xl font-bold text-[#c4b5fd] mb-4">Game Over!</h2>
-          <p className="text-4xl font-bold text-[#93c5fd] mb-6">{score} Points</p>
+        <Card className="bg-[#141423] border border-[#ff00c8] p-8 max-w-md text-center">
+          <h2 className="text-2xl font-bold text-[#ff00c8] mb-4">Game Over!</h2>
+          <p className="text-4xl font-bold text-[#00eaff] mb-6">{score} Points</p>
           <div className="flex gap-4">
             <Button
               className="flex-1 btn-secondary"
@@ -88,27 +88,27 @@ function TriviaGame({ onClose, onComplete }: { onClose: () => void; onComplete: 
 
   return (
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-      <Card className="bg-[#1e293b] border border-[#c4b5fd] p-8 max-w-2xl w-full mx-4">
+      <Card className="bg-[#141423] border border-[#ff00c8] p-8 max-w-2xl w-full mx-4">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold text-[#c4b5fd]">Trivia Challenge</h2>
-          <Button variant="ghost" onClick={onClose} className="text-[#94a3b8]">
+          <h2 className="text-2xl font-bold text-[#ff00c8]">Trivia Challenge</h2>
+          <Button variant="ghost" onClick={onClose} className="text-[#cccccc]">
             <X className="w-5 h-5" />
           </Button>
         </div>
 
         <div className="mb-6">
-          <p className="text-[#94a3b8] text-sm mb-2">
+          <p className="text-[#cccccc] text-sm mb-2">
             Question {currentQuestion + 1} / {questions.length}
           </p>
-          <div className="w-full bg-[#0f172a] rounded-full h-2">
+          <div className="w-full bg-[#04040a] rounded-full h-2">
             <div
-              className="bg-[#c4b5fd] h-2 rounded-full transition-all"
+              className="bg-[#ff00c8] h-2 rounded-full transition-all"
               style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
             />
           </div>
         </div>
 
-        <h3 className="text-xl font-bold text-[#93c5fd] mb-6">{questions[currentQuestion].q}</h3>
+        <h3 className="text-xl font-bold text-[#00eaff] mb-6">{questions[currentQuestion].q}</h3>
 
         <div className="grid grid-cols-2 gap-4">
           {questions[currentQuestion].options.map((option, idx) => (
@@ -122,7 +122,7 @@ function TriviaGame({ onClose, onComplete }: { onClose: () => void; onComplete: 
           ))}
         </div>
 
-        <p className="text-center text-[#c4b5fd] font-bold mt-6">Score: {score}</p>
+        <p className="text-center text-[#ff00c8] font-bold mt-6">Score: {score}</p>
       </Card>
     </div>
   );
@@ -179,10 +179,10 @@ function MemoryGame({ onClose, onComplete }: { onClose: () => void; onComplete: 
   if (gameOver) {
     return (
       <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-        <Card className="bg-[#1e293b] border border-[#c4b5fd] p-8 max-w-md text-center">
-          <h2 className="text-2xl font-bold text-[#c4b5fd] mb-4">You Won!</h2>
-          <p className="text-4xl font-bold text-[#93c5fd] mb-2">{100 - moves * 5} Points</p>
-          <p className="text-[#94a3b8] mb-6">Completed in {moves} moves</p>
+        <Card className="bg-[#141423] border border-[#ff00c8] p-8 max-w-md text-center">
+          <h2 className="text-2xl font-bold text-[#ff00c8] mb-4">You Won!</h2>
+          <p className="text-4xl font-bold text-[#00eaff] mb-2">{100 - moves * 5} Points</p>
+          <p className="text-[#cccccc] mb-6">Completed in {moves} moves</p>
           <Button
             className="w-full btn-secondary"
             onClick={() => {
@@ -199,10 +199,10 @@ function MemoryGame({ onClose, onComplete }: { onClose: () => void; onComplete: 
 
   return (
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-      <Card className="bg-[#1e293b] border border-[#c4b5fd] p-8 max-w-md">
+      <Card className="bg-[#141423] border border-[#ff00c8] p-8 max-w-md">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold text-[#c4b5fd]">Memory Game</h2>
-          <Button variant="ghost" onClick={onClose} className="text-[#94a3b8]">
+          <h2 className="text-2xl font-bold text-[#ff00c8]">Memory Game</h2>
+          <Button variant="ghost" onClick={onClose} className="text-[#cccccc]">
             <X className="w-5 h-5" />
           </Button>
         </div>
@@ -212,14 +212,14 @@ function MemoryGame({ onClose, onComplete }: { onClose: () => void; onComplete: 
             <button
               key={idx}
               onClick={() => handleCardClick(idx)}
-              className="w-16 h-16 bg-gradient-to-br from-[#c4b5fd] to-[#a5b4fc] rounded-lg flex items-center justify-center text-2xl hover:scale-110 transition-transform"
+              className="w-16 h-16 bg-gradient-to-br from-[#ff00c8] to-[#d8ae55] rounded-lg flex items-center justify-center text-2xl hover:scale-110 transition-transform"
             >
               {card.flipped || card.matched ? card.emoji : "?"}
             </button>
           ))}
         </div>
 
-        <p className="text-center text-[#93c5fd] font-bold">Moves: {moves}</p>
+        <p className="text-center text-[#00eaff] font-bold">Moves: {moves}</p>
       </Card>
     </div>
   );
@@ -261,30 +261,30 @@ function MoodMatcherGame({ onClose, onComplete }: { onClose: () => void; onCompl
 
   return (
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-      <Card className="bg-[#1e293b] border border-[#c4b5fd] p-8 max-w-md">
+      <Card className="bg-[#141423] border border-[#ff00c8] p-8 max-w-md">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold text-[#c4b5fd]">Mood Matcher</h2>
-          <Button variant="ghost" onClick={onClose} className="text-[#94a3b8]">
+          <h2 className="text-2xl font-bold text-[#ff00c8]">Mood Matcher</h2>
+          <Button variant="ghost" onClick={onClose} className="text-[#cccccc]">
             <X className="w-5 h-5" />
           </Button>
         </div>
 
-        <p className="text-[#93c5fd] text-lg mb-6 text-center font-bold">{rounds[round].question}</p>
+        <p className="text-[#00eaff] text-lg mb-6 text-center font-bold">{rounds[round].question}</p>
 
         <div className="grid grid-cols-2 gap-4 mb-6">
           {moods.map((mood) => (
             <button
               key={mood.name}
               onClick={() => handleMoodClick(mood.name)}
-              className="p-4 bg-[#0f172a] border border-[#334155] rounded-lg hover:border-[#c4b5fd] transition-colors"
+              className="p-4 bg-[#04040a] border border-[#2b2b42] rounded-lg hover:border-[#ff00c8] transition-colors"
             >
               <div className="text-4xl mb-2">{mood.emoji}</div>
-              <div className="text-sm text-[#94a3b8]">{mood.name}</div>
+              <div className="text-sm text-[#cccccc]">{mood.name}</div>
             </button>
           ))}
         </div>
 
-        <p className="text-center text-[#c4b5fd] font-bold">Score: {score}</p>
+        <p className="text-center text-[#ff00c8] font-bold">Score: {score}</p>
       </Card>
     </div>
   );
@@ -344,17 +344,17 @@ export default function Games() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#0f172a] flex items-center justify-center">
-        <div className="text-[#93c5fd] text-xl">Loading Games...</div>
+      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+        <div className="text-[#00eaff] text-xl">Loading Games...</div>
       </div>
     );
   }
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#0f172a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
         <div className="text-center">
-          <p className="text-[#93c5fd] text-xl mb-4">Please sign in to play games</p>
+          <p className="text-[#00eaff] text-xl mb-4">Please sign in to play games</p>
           <Button className="btn-primary" onClick={() => navigate("/")}>
             Back to Home
           </Button>
@@ -366,12 +366,12 @@ export default function Games() {
   const totalRewards = Object.values(gameScores).reduce((a, b) => a + b, 0);
 
   return (
-    <div className="min-h-screen bg-[#0f172a] text-[#93c5fd]">
+    <div className="min-h-screen bg-[#04040a] text-[#00eaff]">
       {/* Navigation */}
-      <nav className="border-b border-[#334155] px-6 py-4 sticky top-0 bg-[#0f172a]/95 backdrop-blur z-10">
+      <nav className="border-b border-[#2b2b42] px-6 py-4 sticky top-0 bg-[#04040a]/95 backdrop-blur z-10">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <Button variant="ghost" onClick={() => navigate("/")} className="text-[#94a3b8]">
+            <Button variant="ghost" onClick={() => navigate("/")} className="text-[#cccccc]">
               ← Back
             </Button>
             <h1 className="text-2xl font-bold text-info">Mini-Games Arcade</h1>
@@ -384,47 +384,47 @@ export default function Games() {
         {/* Stats Section */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           <Card
-            className="bg-[#1e293b] border border-[#334155] p-6"
+            className="bg-[#141423] border border-[#2b2b42] p-6"
             style={{
               boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
             }}
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-[#94a3b8] text-sm">Games Played</p>
-                <p className="text-3xl font-bold text-[#c4b5fd]">{Object.keys(gameScores).length}</p>
+                <p className="text-[#cccccc] text-sm">Games Played</p>
+                <p className="text-3xl font-bold text-[#ff00c8]">{Object.keys(gameScores).length}</p>
               </div>
-              <Gamepad2 className="w-8 h-8 text-[#c4b5fd] opacity-50" />
+              <Gamepad2 className="w-8 h-8 text-[#ff00c8] opacity-50" />
             </div>
           </Card>
 
           <Card
-            className="bg-[#1e293b] border border-[#334155] p-6"
+            className="bg-[#141423] border border-[#2b2b42] p-6"
             style={{
               boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
             }}
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-[#94a3b8] text-sm">Total Points</p>
-                <p className="text-3xl font-bold text-[#93c5fd]">{totalRewards}</p>
+                <p className="text-[#cccccc] text-sm">Total Points</p>
+                <p className="text-3xl font-bold text-[#00eaff]">{totalRewards}</p>
               </div>
-              <Zap className="w-8 h-8 text-[#93c5fd] opacity-50" />
+              <Zap className="w-8 h-8 text-[#00eaff] opacity-50" />
             </div>
           </Card>
 
           <Card
-            className="bg-[#1e293b] border border-[#334155] p-6"
+            className="bg-[#141423] border border-[#2b2b42] p-6"
             style={{
               boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
             }}
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-[#94a3b8] text-sm">Games Available</p>
-                <p className="text-3xl font-bold text-[#a5b4fc]">{games.length}</p>
+                <p className="text-[#cccccc] text-sm">Games Available</p>
+                <p className="text-3xl font-bold text-[#d8ae55]">{games.length}</p>
               </div>
-              <Trophy className="w-8 h-8 text-[#a5b4fc] opacity-50" />
+              <Trophy className="w-8 h-8 text-[#d8ae55] opacity-50" />
             </div>
           </Card>
         </div>
@@ -436,20 +436,20 @@ export default function Games() {
             return (
               <Card
                 key={game.id}
-                className="bg-[#1e293b] border border-[#334155] p-6 hover:border-[#c4b5fd] transition-colors"
+                className="bg-[#141423] border border-[#2b2b42] p-6 hover:border-[#ff00c8] transition-colors"
                 style={{
                   boxShadow: "0 4px 12px rgba(15, 23, 42, 0.18)",
                 }}
               >
                 <div className="text-5xl mb-4 text-center">{game.icon}</div>
-                <h3 className="text-lg font-bold text-[#93c5fd] mb-2">{game.title}</h3>
-                <p className="text-sm text-[#94a3b8] mb-4">{game.description}</p>
+                <h3 className="text-lg font-bold text-[#00eaff] mb-2">{game.title}</h3>
+                <p className="text-sm text-[#cccccc] mb-4">{game.description}</p>
 
-                <div className="flex items-center justify-between mb-4 pb-4 border-b border-[#334155]">
-                  <span className="text-xs px-2 py-1 bg-[#0f172a] rounded text-[#94a3b8]">
+                <div className="flex items-center justify-between mb-4 pb-4 border-b border-[#2b2b42]">
+                  <span className="text-xs px-2 py-1 bg-[#04040a] rounded text-[#cccccc]">
                     {game.difficulty}
                   </span>
-                  <span className="text-xs px-2 py-1 bg-[#0f172a] rounded text-[#c4b5fd] flex items-center gap-1">
+                  <span className="text-xs px-2 py-1 bg-[#04040a] rounded text-[#ff00c8] flex items-center gap-1">
                     <Zap className="w-3 h-3" />
                     {gameScores[game.id] || game.reward} pts
                   </span>
@@ -457,9 +457,9 @@ export default function Games() {
 
                 {gameScores[game.id] && (
                   <div className="mb-4">
-                    <p className="text-xs text-[#94a3b8] mb-1">Best Score</p>
-                    <p className="text-2xl font-bold text-[#93c5fd] flex items-center gap-2">
-                      <Star className="w-5 h-5 text-[#c4b5fd]" />
+                    <p className="text-xs text-[#cccccc] mb-1">Best Score</p>
+                    <p className="text-2xl font-bold text-[#00eaff] flex items-center gap-2">
+                      <Star className="w-5 h-5 text-[#ff00c8]" />
                       {gameScores[game.id]}
                     </p>
                   </div>

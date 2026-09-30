@@ -362,9 +362,9 @@ export const platformSettings = mysqlTable("platform_settings", {
   siteDescription: text("site_description"),
   logoUrl: text("logo_url"),
   faviconUrl: text("favicon_url"),
-  primaryColor: varchar("primary_color", { length: 7 }).default("#ff00cc"), // magenta
+  primaryColor: varchar("primary_color", { length: 7 }).default("#ff00c8"), // magenta
   secondaryColor: varchar("secondary_color", { length: 7 }).default("#00eaff"), // cyan
-  accentColor: varchar("accent_color", { length: 7 }).default("#9d4edd"), // purple
+  accentColor: varchar("accent_color", { length: 7 }).default("#d8ae55"), // badge gold
   
   // Economy settings
   coinRewardPerAction: int("coin_reward_per_action").default(10),
@@ -423,7 +423,7 @@ export const vipTiers = mysqlTable("vip_tiers", {
   benefits: json("benefits").$type<string[]>(),
   coinMultiplier: decimal("coin_multiplier", { precision: 3, scale: 2 }).default("1.0"), // 1.0x, 1.5x, 2.0x
   xpMultiplier: decimal("xp_multiplier", { precision: 3, scale: 2 }).default("1.0"),
-  badgeColor: varchar("badge_color", { length: 7 }).default("#ff00cc"), // hex color
+  badgeColor: varchar("badge_color", { length: 7 }).default("#ff00c8"), // hex color
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 

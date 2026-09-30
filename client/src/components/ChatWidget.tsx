@@ -124,7 +124,7 @@ export default function ChatWidget() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-r from-[#c4b5fd] to-[#93c5fd] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:scale-110 z-40 surface-shadow"
+          className="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-r from-[#ff00c8] to-[#00eaff] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:scale-110 z-40 surface-shadow"
           style={{
             boxShadow: "0 8px 24px rgba(15, 23, 42, 0.28)",
           }}
@@ -140,9 +140,9 @@ export default function ChatWidget() {
 
       {/* Chat Panel */}
       {isOpen && (
-        <Card className="fixed bottom-6 right-6 w-96 h-[600px] bg-[#1e293b] border border-[#334155] rounded-lg shadow-2xl z-50 flex flex-col overflow-hidden" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+        <Card className="fixed bottom-6 right-6 w-96 h-[600px] bg-[#141423] border border-[#2b2b42] rounded-lg shadow-2xl z-50 flex flex-col overflow-hidden" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
           {/* Header */}
-          <div className="bg-gradient-to-r from-[#c4b5fd] to-[#93c5fd] p-4 flex items-center justify-between">
+          <div className="bg-gradient-to-r from-[#ff00c8] to-[#00eaff] p-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <MessageCircle className="w-5 h-5 text-white" />
               <h3 className="text-white font-bold">Anom Universe Chat</h3>
@@ -158,13 +158,13 @@ export default function ChatWidget() {
           </div>
 
           {/* Tabs */}
-          <div className="flex border-b border-[#334155]">
+          <div className="flex border-b border-[#2b2b42]">
             <button
               onClick={() => setActiveTab("channels")}
               className={`flex-1 py-2 px-4 text-sm font-bold flex items-center justify-center gap-2 ${
                 activeTab === "channels"
-                  ? "text-[#c4b5fd] border-b-2 border-[#c4b5fd]"
-                  : "text-[#94a3b8] hover:text-[#93c5fd]"
+                  ? "text-[#ff00c8] border-b-2 border-[#ff00c8]"
+                  : "text-[#cccccc] hover:text-[#00eaff]"
               }`}
             >
               <Hash className="w-4 h-4" />
@@ -174,8 +174,8 @@ export default function ChatWidget() {
               onClick={() => setActiveTab("dms")}
               className={`flex-1 py-2 px-4 text-sm font-bold flex items-center justify-center gap-2 ${
                 activeTab === "dms"
-                  ? "text-[#c4b5fd] border-b-2 border-[#c4b5fd]"
-                  : "text-[#94a3b8] hover:text-[#93c5fd]"
+                  ? "text-[#ff00c8] border-b-2 border-[#ff00c8]"
+                  : "text-[#cccccc] hover:text-[#00eaff]"
               }`}
             >
               <Users className="w-4 h-4" />
@@ -185,7 +185,7 @@ export default function ChatWidget() {
 
           {/* Channel/DM List */}
           {activeTab === "channels" && (
-            <div className="flex-1 overflow-y-auto border-b border-[#334155]">
+            <div className="flex-1 overflow-y-auto border-b border-[#2b2b42]">
               <div className="p-3 space-y-2">
                 {channels.map((channel) => (
                   <button
@@ -193,20 +193,20 @@ export default function ChatWidget() {
                     onClick={() => setSelectedChannel(channel.id)}
                     className={`w-full text-left p-3 rounded-lg transition-colors ${
                       selectedChannel === channel.id
-                        ? "bg-[#334155] border border-[#93c5fd]"
-                        : "hover:bg-[#0f172a]"
+                        ? "bg-[#2b2b42] border border-[#00eaff]"
+                        : "hover:bg-[#04040a]"
                     }`}
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         {channel.type === "announcements" ? (
-                          <Lock className="w-4 h-4 text-[#c4b5fd]" />
+                          <Lock className="w-4 h-4 text-[#ff00c8]" />
                         ) : (
-                          <Hash className="w-4 h-4 text-[#93c5fd]" />
+                          <Hash className="w-4 h-4 text-[#00eaff]" />
                         )}
                         <div>
-                          <p className="text-[#93c5fd] font-bold text-sm">#{channel.name}</p>
-                          <p className="text-[#94a3b8] text-xs">{channel.members} members</p>
+                          <p className="text-[#00eaff] font-bold text-sm">#{channel.name}</p>
+                          <p className="text-[#cccccc] text-xs">{channel.members} members</p>
                         </div>
                       </div>
                       {channel.unread > 0 && (
@@ -222,7 +222,7 @@ export default function ChatWidget() {
           )}
 
           {/* Messages Area */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-[#0f172a]">
+          <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-[#04040a]">
             {messages.map((msg) => (
               <div key={msg.id} className={`flex gap-2 ${msg.isOwn ? "justify-end" : "justify-start"}`}>
                 {!msg.isOwn && (
@@ -230,13 +230,13 @@ export default function ChatWidget() {
                 )}
                 <div className={`max-w-xs ${msg.isOwn ? "text-right" : "text-left"}`}>
                   {!msg.isOwn && (
-                    <p className="text-[#94a3b8] text-xs font-bold">{msg.sender}</p>
+                    <p className="text-[#cccccc] text-xs font-bold">{msg.sender}</p>
                   )}
                   <div
                     className={`px-3 py-2 rounded-lg text-sm ${
                       msg.isOwn
-                        ? "bg-gradient-to-r from-[#c4b5fd] to-[#a5b4fc] text-white"
-                        : "bg-[#1e293b] text-[#93c5fd] border border-[#334155]"
+                        ? "bg-gradient-to-r from-[#ff00c8] to-[#d8ae55] text-white"
+                        : "bg-[#141423] text-[#00eaff] border border-[#2b2b42]"
                     }`}
                   >
                     {msg.content}
@@ -248,7 +248,7 @@ export default function ChatWidget() {
                       </span>
                     ))}
                   </div>
-                  <p className="text-[#94a3b8] text-xs mt-1">{msg.timestamp}</p>
+                  <p className="text-[#cccccc] text-xs mt-1">{msg.timestamp}</p>
                 </div>
                 {msg.isOwn && (
                   <img src={msg.avatar} alt={msg.sender} className="w-8 h-8 rounded-full" />
@@ -259,26 +259,26 @@ export default function ChatWidget() {
           </div>
 
           {/* Input Area */}
-          <div className="p-4 border-t border-[#334155] space-y-2">
+          <div className="p-4 border-t border-[#2b2b42] space-y-2">
             <div className="flex gap-2">
               <Input
                 value={messageInput}
                 onChange={(e) => setMessageInput(e.target.value)}
                 onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
                 placeholder="Type a message..."
-                className="bg-[#0f172a] border border-[#334155] text-[#93c5fd] flex-1"
+                className="bg-[#04040a] border border-[#2b2b42] text-[#00eaff] flex-1"
               />
               <div className="relative">
                 <Button
                   size="sm"
                   variant="outline"
-                  className="text-[#93c5fd] border-[#334155]"
+                  className="text-[#00eaff] border-[#2b2b42]"
                   onClick={() => setShowEmojiPicker(!showEmojiPicker)}
                 >
                   <Smile className="w-4 h-4" />
                 </Button>
                 {showEmojiPicker && (
-                  <div className="absolute bottom-12 right-0 bg-[#1e293b] border border-[#334155] rounded-lg p-2 grid grid-cols-4 gap-1 w-40">
+                  <div className="absolute bottom-12 right-0 bg-[#141423] border border-[#2b2b42] rounded-lg p-2 grid grid-cols-4 gap-1 w-40">
                     {["👍", "❤️", "🎉", "🚀", "😂", "🔥", "✨", "🌟"].map((emoji) => (
                       <button
                         key={emoji}
@@ -299,8 +299,8 @@ export default function ChatWidget() {
                 <Send className="w-4 h-4" />
               </Button>
             </div>
-            <p className="text-[#94a3b8] text-xs">
-              Chatting in <span className="text-[#93c5fd] font-bold">#global</span>
+            <p className="text-[#cccccc] text-xs">
+              Chatting in <span className="text-[#00eaff] font-bold">#global</span>
             </p>
           </div>
         </Card>

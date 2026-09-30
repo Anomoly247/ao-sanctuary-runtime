@@ -163,18 +163,18 @@ export default function BusinessControlCenter() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#0f172a] flex items-center justify-center">
-        <div className="text-[#93c5fd] text-xl">Loading Business Control Center...</div>
+      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+        <div className="text-[#00eaff] text-xl">Loading Business Control Center...</div>
       </div>
     );
   }
 
   if (!isAuthenticated || user?.role !== "admin") {
     return (
-      <div className="min-h-screen bg-[#0f172a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
         <div className="text-center">
-          <AlertCircle className="w-16 h-16 mx-auto mb-4 text-[#c4b5fd]" />
-          <p className="text-[#93c5fd] text-xl mb-4">Admin access required</p>
+          <AlertCircle className="w-16 h-16 mx-auto mb-4 text-[#ff00c8]" />
+          <p className="text-[#00eaff] text-xl mb-4">Admin access required</p>
           <Button className="btn-primary" onClick={() => navigate("/")}>
             Back to Home
           </Button>
@@ -184,19 +184,19 @@ export default function BusinessControlCenter() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0f172a] text-[#93c5fd]">
+    <div className="min-h-screen bg-[#04040a] text-[#00eaff]">
       {/* Navigation */}
-      <nav className="border-b border-[#334155] px-6 py-4 sticky top-0 bg-[#0f172a]/95 backdrop-blur z-10">
+      <nav className="border-b border-[#2b2b42] px-6 py-4 sticky top-0 bg-[#04040a]/95 backdrop-blur z-10">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <Button variant="ghost" onClick={() => navigate("/admin")} className="text-[#94a3b8]">
+            <Button variant="ghost" onClick={() => navigate("/admin")} className="text-[#cccccc]">
               ← Back
             </Button>
             <h1 className="text-2xl font-bold text-accent">Business Control Center</h1>
           </div>
           <div className="flex items-center gap-2 text-sm">
             <Shield className="w-4 h-4 text-green-500" />
-            <span className="text-[#94a3b8]">Secure Mode</span>
+            <span className="text-[#cccccc]">Secure Mode</span>
           </div>
         </div>
       </nav>
@@ -205,52 +205,52 @@ export default function BusinessControlCenter() {
       <main className="max-w-7xl mx-auto px-6 py-12">
         {/* Key Metrics */}
         <div className="grid md:grid-cols-5 gap-4 mb-12">
-          <Card className="bg-[#1e293b] border border-[#334155] p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
-            <p className="text-[#94a3b8] text-xs">Monthly Revenue</p>
-            <p className="text-2xl font-bold text-[#c4b5fd]">{metrics.monthlyRevenue}</p>
+          <Card className="bg-[#141423] border border-[#2b2b42] p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+            <p className="text-[#cccccc] text-xs">Monthly Revenue</p>
+            <p className="text-2xl font-bold text-[#ff00c8]">{metrics.monthlyRevenue}</p>
           </Card>
 
-          <Card className="bg-[#1e293b] border border-[#334155] p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
-            <p className="text-[#94a3b8] text-xs">Active Members</p>
-            <p className="text-2xl font-bold text-[#93c5fd]">{metrics.activeMembers}</p>
+          <Card className="bg-[#141423] border border-[#2b2b42] p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+            <p className="text-[#cccccc] text-xs">Active Members</p>
+            <p className="text-2xl font-bold text-[#00eaff]">{metrics.activeMembers}</p>
           </Card>
 
-          <Card className="bg-[#1e293b] border border-[#334155] p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
-            <p className="text-[#94a3b8] text-xs">VIP Subscribers</p>
-            <p className="text-2xl font-bold text-[#a5b4fc]">{metrics.vipSubscribers}</p>
+          <Card className="bg-[#141423] border border-[#2b2b42] p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+            <p className="text-[#cccccc] text-xs">VIP Subscribers</p>
+            <p className="text-2xl font-bold text-[#d8ae55]">{metrics.vipSubscribers}</p>
           </Card>
 
-          <Card className="bg-[#1e293b] border border-[#334155] p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
-            <p className="text-[#94a3b8] text-xs">Pending Orders</p>
-            <p className="text-2xl font-bold text-[#93c5fd]">{metrics.pendingOrders}</p>
+          <Card className="bg-[#141423] border border-[#2b2b42] p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+            <p className="text-[#cccccc] text-xs">Pending Orders</p>
+            <p className="text-2xl font-bold text-[#00eaff]">{metrics.pendingOrders}</p>
           </Card>
 
-          <Card className="bg-[#1e293b] border border-[#334155] p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
-            <p className="text-[#94a3b8] text-xs">System Health</p>
+          <Card className="bg-[#141423] border border-[#2b2b42] p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+            <p className="text-[#cccccc] text-xs">System Health</p>
             <p className="text-2xl font-bold text-green-400">{metrics.systemHealth}</p>
           </Card>
         </div>
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="bg-[#1e293b] border border-[#334155] mb-8">
-            <TabsTrigger value="overview" className="text-[#93c5fd]">
+          <TabsList className="bg-[#141423] border border-[#2b2b42] mb-8">
+            <TabsTrigger value="overview" className="text-[#00eaff]">
               <BarChart3 className="w-4 h-4 mr-2" />
               Overview
             </TabsTrigger>
-            <TabsTrigger value="security" className="text-[#93c5fd]">
+            <TabsTrigger value="security" className="text-[#00eaff]">
               <Shield className="w-4 h-4 mr-2" />
               Security
             </TabsTrigger>
-            <TabsTrigger value="payments" className="text-[#93c5fd]">
+            <TabsTrigger value="payments" className="text-[#00eaff]">
               <CreditCard className="w-4 h-4 mr-2" />
               Payments
             </TabsTrigger>
-            <TabsTrigger value="activity" className="text-[#93c5fd]">
+            <TabsTrigger value="activity" className="text-[#00eaff]">
               <Activity className="w-4 h-4 mr-2" />
               Activity
             </TabsTrigger>
-            <TabsTrigger value="exports" className="text-[#93c5fd]">
+            <TabsTrigger value="exports" className="text-[#00eaff]">
               <Download className="w-4 h-4 mr-2" />
               Exports
             </TabsTrigger>
@@ -258,10 +258,10 @@ export default function BusinessControlCenter() {
 
           {/* Overview Tab */}
           <TabsContent value="overview" className="space-y-6">
-            <h3 className="text-xl font-bold text-[#c4b5fd]">Business Dashboard</h3>
+            <h3 className="text-xl font-bold text-[#ff00c8]">Business Dashboard</h3>
             <div className="grid md:grid-cols-2 gap-6">
-              <Card className="bg-[#1e293b] border border-[#334155] p-6">
-                <h4 className="text-lg font-bold text-[#93c5fd] mb-4">Quick Actions</h4>
+              <Card className="bg-[#141423] border border-[#2b2b42] p-6">
+                <h4 className="text-lg font-bold text-[#00eaff] mb-4">Quick Actions</h4>
                 <div className="space-y-2">
                   <Button className="w-full btn-primary justify-start" onClick={() => navigate("/payment-merch")}>
                     <CreditCard className="w-4 h-4 mr-2" />
@@ -278,23 +278,23 @@ export default function BusinessControlCenter() {
                 </div>
               </Card>
 
-              <Card className="bg-[#1e293b] border border-[#334155] p-6">
-                <h4 className="text-lg font-bold text-[#93c5fd] mb-4">System Status</h4>
+              <Card className="bg-[#141423] border border-[#2b2b42] p-6">
+                <h4 className="text-lg font-bold text-[#00eaff] mb-4">System Status</h4>
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
-                    <span className="text-[#94a3b8]">API Status</span>
+                    <span className="text-[#cccccc]">API Status</span>
                     <CheckCircle className="w-5 h-5 text-green-500" />
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-[#94a3b8]">Database</span>
+                    <span className="text-[#cccccc]">Database</span>
                     <CheckCircle className="w-5 h-5 text-green-500" />
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-[#94a3b8]">Payment Gateway</span>
+                    <span className="text-[#cccccc]">Payment Gateway</span>
                     <CheckCircle className="w-5 h-5 text-green-500" />
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-[#94a3b8]">Email Service</span>
+                    <span className="text-[#cccccc]">Email Service</span>
                     <CheckCircle className="w-5 h-5 text-green-500" />
                   </div>
                 </div>
@@ -304,16 +304,16 @@ export default function BusinessControlCenter() {
 
           {/* Security Tab */}
           <TabsContent value="security" className="space-y-6">
-            <h3 className="text-xl font-bold text-[#c4b5fd]">Security Settings</h3>
+            <h3 className="text-xl font-bold text-[#ff00c8]">Security Settings</h3>
 
             {/* Two-Factor Authentication */}
-            <Card className="bg-[#1e293b] border border-[#334155] p-6">
+            <Card className="bg-[#141423] border border-[#2b2b42] p-6">
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h4 className="text-lg font-bold text-[#93c5fd]">Two-Factor Authentication</h4>
-                  <p className="text-sm text-[#94a3b8] mt-1">Add an extra layer of security to your account</p>
+                  <h4 className="text-lg font-bold text-[#00eaff]">Two-Factor Authentication</h4>
+                  <p className="text-sm text-[#cccccc] mt-1">Add an extra layer of security to your account</p>
                 </div>
-                <Lock className="w-6 h-6 text-[#c4b5fd]" />
+                <Lock className="w-6 h-6 text-[#ff00c8]" />
               </div>
               <Button className="btn-secondary" onClick={handleEnableTwoFactor}>
                 Enable 2FA
@@ -321,18 +321,18 @@ export default function BusinessControlCenter() {
             </Card>
 
             {/* Active Sessions */}
-            <Card className="bg-[#1e293b] border border-[#334155] p-6">
-              <h4 className="text-lg font-bold text-[#93c5fd] mb-4">Active Sessions</h4>
+            <Card className="bg-[#141423] border border-[#2b2b42] p-6">
+              <h4 className="text-lg font-bold text-[#00eaff] mb-4">Active Sessions</h4>
               <div className="space-y-3">
                 {adminSessions.map((session) => (
-                  <div key={session.id} className="flex items-center justify-between p-3 bg-[#0f172a] rounded border border-[#334155]">
+                  <div key={session.id} className="flex items-center justify-between p-3 bg-[#04040a] rounded border border-[#2b2b42]">
                     <div>
-                      <p className="text-[#93c5fd] font-bold text-sm">{session.device}</p>
-                      <p className="text-xs text-[#94a3b8]">{session.browser} • {session.location}</p>
-                      <p className="text-xs text-[#94a3b8]">Last active: {session.lastActive}</p>
+                      <p className="text-[#00eaff] font-bold text-sm">{session.device}</p>
+                      <p className="text-xs text-[#cccccc]">{session.browser} • {session.location}</p>
+                      <p className="text-xs text-[#cccccc]">Last active: {session.lastActive}</p>
                     </div>
                     {session.status === "active" && (
-                      <Button size="sm" variant="outline" className="text-[#c4b5fd] border-[#334155]" onClick={() => handleLogoutSession(session.id)}>
+                      <Button size="sm" variant="outline" className="text-[#ff00c8] border-[#2b2b42]" onClick={() => handleLogoutSession(session.id)}>
                         <LogOut className="w-3 h-3 mr-1" />
                         Logout
                       </Button>
@@ -346,7 +346,7 @@ export default function BusinessControlCenter() {
           {/* Payments Tab */}
           <TabsContent value="payments" className="space-y-6">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl font-bold text-[#c4b5fd]">Payment Credentials</h3>
+              <h3 className="text-xl font-bold text-[#ff00c8]">Payment Credentials</h3>
               <Button className="btn-primary" onClick={handleAddPaymentMethod}>
                 <Plus className="w-4 h-4 mr-2" />
                 Add Method
@@ -355,37 +355,37 @@ export default function BusinessControlCenter() {
 
             <div className="space-y-4">
               {paymentCredentials.map((cred) => (
-                <Card key={cred.id} className="bg-[#1e293b] border border-[#334155] p-6">
+                <Card key={cred.id} className="bg-[#141423] border border-[#2b2b42] p-6">
                   <div className="flex items-center justify-between">
                     <div className="flex-1">
-                      <h4 className="text-lg font-bold text-[#93c5fd]">{cred.name}</h4>
+                      <h4 className="text-lg font-bold text-[#00eaff]">{cred.name}</h4>
                       <div className="grid grid-cols-3 gap-4 mt-2 text-sm">
                         <div>
-                          <p className="text-[#94a3b8]">Type</p>
-                          <p className="text-[#93c5fd]">{cred.type}</p>
+                          <p className="text-[#cccccc]">Type</p>
+                          <p className="text-[#00eaff]">{cred.type}</p>
                         </div>
                         <div>
-                          <p className="text-[#94a3b8]">Status</p>
+                          <p className="text-[#cccccc]">Status</p>
                           <p className={cred.status === "active" ? "text-green-400" : "text-yellow-400"}>{cred.status}</p>
                         </div>
                         <div>
-                          <p className="text-[#94a3b8]">Last Updated</p>
-                          <p className="text-[#93c5fd]">{cred.lastUpdated}</p>
+                          <p className="text-[#cccccc]">Last Updated</p>
+                          <p className="text-[#00eaff]">{cred.lastUpdated}</p>
                         </div>
                       </div>
                       <div className="mt-3 flex items-center gap-2">
-                        <code className="text-xs bg-[#0f172a] p-2 rounded text-[#94a3b8]">{showSecrets ? cred.masked : "••••••••••••••••"}</code>
-                        <button onClick={() => setShowSecrets(!showSecrets)} className="text-[#94a3b8] hover:text-[#93c5fd]">
+                        <code className="text-xs bg-[#04040a] p-2 rounded text-[#cccccc]">{showSecrets ? cred.masked : "••••••••••••••••"}</code>
+                        <button onClick={() => setShowSecrets(!showSecrets)} className="text-[#cccccc] hover:text-[#00eaff]">
                           {showSecrets ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                         </button>
                       </div>
                     </div>
                     <div className="flex gap-2">
-                      <Button size="sm" variant="outline" className="text-[#93c5fd] border-[#334155]" onClick={() => handleRotateCredential(cred.id)}>
+                      <Button size="sm" variant="outline" className="text-[#00eaff] border-[#2b2b42]" onClick={() => handleRotateCredential(cred.id)}>
                         <Lock className="w-3 h-3 mr-1" />
                         Rotate
                       </Button>
-                      <Button size="sm" variant="outline" className="text-[#c4b5fd] border-[#334155]">
+                      <Button size="sm" variant="outline" className="text-[#ff00c8] border-[#2b2b42]">
                         <Trash2 className="w-3 h-3 mr-1" />
                         Delete
                       </Button>
@@ -398,17 +398,17 @@ export default function BusinessControlCenter() {
 
           {/* Activity Tab */}
           <TabsContent value="activity" className="space-y-6">
-            <h3 className="text-xl font-bold text-[#c4b5fd]">Activity Log</h3>
+            <h3 className="text-xl font-bold text-[#ff00c8]">Activity Log</h3>
             <div className="space-y-3">
               {activityLog.map((log) => (
-                <Card key={log.id} className="bg-[#1e293b] border border-[#334155] p-4">
+                <Card key={log.id} className="bg-[#141423] border border-[#2b2b42] p-4">
                   <div className="flex items-center gap-4">
                     {log.status === "success" && <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />}
                     {log.status === "warning" && <AlertCircle className="w-5 h-5 text-yellow-500 flex-shrink-0" />}
                     <div className="flex-1">
-                      <p className="text-[#93c5fd] font-bold">{log.action}</p>
-                      <p className="text-xs text-[#94a3b8]">{log.details}</p>
-                      <p className="text-xs text-[#94a3b8] mt-1">by {log.user} • {log.timestamp}</p>
+                      <p className="text-[#00eaff] font-bold">{log.action}</p>
+                      <p className="text-xs text-[#cccccc]">{log.details}</p>
+                      <p className="text-xs text-[#cccccc] mt-1">by {log.user} • {log.timestamp}</p>
                     </div>
                   </div>
                 </Card>
@@ -418,10 +418,10 @@ export default function BusinessControlCenter() {
 
           {/* Exports Tab */}
           <TabsContent value="exports" className="space-y-6">
-            <h3 className="text-xl font-bold text-[#c4b5fd]">Data Exports</h3>
+            <h3 className="text-xl font-bold text-[#ff00c8]">Data Exports</h3>
             <div className="grid md:grid-cols-2 gap-6">
-              <Card className="bg-[#1e293b] border border-[#334155] p-6">
-                <h4 className="text-lg font-bold text-[#93c5fd] mb-4">Financial Reports</h4>
+              <Card className="bg-[#141423] border border-[#2b2b42] p-6">
+                <h4 className="text-lg font-bold text-[#00eaff] mb-4">Financial Reports</h4>
                 <div className="space-y-2">
                   <Button className="w-full btn-primary justify-start" onClick={() => handleExportData("CSV")}>
                     <Download className="w-4 h-4 mr-2" />
@@ -438,8 +438,8 @@ export default function BusinessControlCenter() {
                 </div>
               </Card>
 
-              <Card className="bg-[#1e293b] border border-[#334155] p-6">
-                <h4 className="text-lg font-bold text-[#93c5fd] mb-4">User Data</h4>
+              <Card className="bg-[#141423] border border-[#2b2b42] p-6">
+                <h4 className="text-lg font-bold text-[#00eaff] mb-4">User Data</h4>
                 <div className="space-y-2">
                   <Button className="w-full btn-primary justify-start" onClick={() => handleExportData("CSV")}>
                     <Download className="w-4 h-4 mr-2" />

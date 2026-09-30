@@ -18,7 +18,7 @@ export default function ImpactShareCard({
   value,
   description,
   icon = <Heart className="w-8 h-8" />,
-  color = "#c4b5fd",
+  color = "#ff00c8",
 }: ImpactShareCardProps) {
   const [showShareModal, setShowShareModal] = useState(false);
 
@@ -30,7 +30,7 @@ export default function ImpactShareCard({
 
   return (
     <>
-      <Card className="bg-[#1e293b] border border-[#334155] p-6 hover:border-[#c4b5fd] transition-colors group">
+      <Card className="bg-[#141423] border border-[#2b2b42] p-6 hover:border-[#ff00c8] transition-colors group">
         <div className="flex items-start justify-between mb-4">
           <div style={{ color }} className="opacity-80 group-hover:opacity-100">
             {icon}
@@ -39,7 +39,7 @@ export default function ImpactShareCard({
             size="sm"
             variant="ghost"
             onClick={() => setShowShareModal(true)}
-            className="text-[#94a3b8] hover:text-[#c4b5fd]"
+            className="text-[#cccccc] hover:text-[#ff00c8]"
           >
             <Share2 className="w-4 h-4" />
           </Button>
@@ -48,12 +48,12 @@ export default function ImpactShareCard({
         <p className="text-4xl font-bold mb-2" style={{ color }}>
           {value}
         </p>
-        <p className="text-[#93c5fd] font-bold mb-3">{metric}</p>
-        <p className="text-[#94a3b8] text-sm mb-4">{description}</p>
+        <p className="text-[#00eaff] font-bold mb-3">{metric}</p>
+        <p className="text-[#cccccc] text-sm mb-4">{description}</p>
 
         <Button
           onClick={() => setShowShareModal(true)}
-          className="w-full bg-[#b000ff] hover:bg-[#b000ff]/80 text-white font-bold"
+          className="w-full bg-[#d8ae55] hover:bg-[#d8ae55]/80 text-white font-bold"
           size="sm"
         >
           <Share2 className="w-4 h-4 mr-2" />

@@ -4,8 +4,8 @@ import { Chrome, Github, Mail } from "lucide-react";
 
 export default function SignUpConnectors() {
   return (
-    <Card className="bg-[#1e293b] border border-[#334155] p-8 max-w-md mx-auto">
-      <h3 className="text-2xl font-bold text-[#c4b5fd] mb-6 text-center">
+    <Card className="bg-[#141423] border border-[#2b2b42] p-8 max-w-md mx-auto">
+      <h3 className="text-2xl font-bold text-[#ff00c8] mb-6 text-center">
         Join Anom Artsy
       </h3>
 
@@ -32,10 +32,10 @@ export default function SignUpConnectors() {
 
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-[#334155]"></div>
+            <div className="w-full border-t border-[#2b2b42]"></div>
           </div>
           <div className="relative flex justify-center text-sm">
-            <span className="px-2 bg-[#1e293b] text-[#94a3b8]">or</span>
+            <span className="px-2 bg-[#141423] text-[#cccccc]">or</span>
           </div>
         </div>
 
@@ -50,7 +50,7 @@ export default function SignUpConnectors() {
         </Button>
       </div>
 
-      <p className="text-xs text-[#94a3b8] text-center mt-6">
+      <p className="text-xs text-[#cccccc] text-center mt-6">
         By signing up, you agree to our Terms of Service and Privacy Policy
       </p>
     </Card>

@@ -34,13 +34,13 @@ const PHOTOS_STORAGE_KEY = "anom_profile_photos";
 // Default settings
 const DEFAULT_SETTINGS: ProfileSettings = {
   colors: {
-    primary: "#c4b5fd",
-    secondary: "#93c5fd",
+    primary: "#ff00c8",
+    secondary: "#00eaff",
     accent: "#ffd700",
   },
   theme: "dark",
   bio: "",
-  nameColor: "#c4b5fd",
+  nameColor: "#ff00c8",
   photos: [],
 };
 

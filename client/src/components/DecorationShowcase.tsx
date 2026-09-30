@@ -24,12 +24,12 @@ export default function DecorationShowcase({
 }: DecorationShowcaseProps) {
   const getRarityColor = (rarity: string) => {
     const colors: Record<string, string> = {
-      common: "#94a3b8",
-      rare: "#93c5fd",
-      epic: "#b000ff",
+      common: "#cccccc",
+      rare: "#00eaff",
+      epic: "#d8ae55",
       legendary: "#ffd700",
     };
-    return colors[rarity] || "#94a3b8";
+    return colors[rarity] || "#cccccc";
   };
 
   const getCategoryIcon = (category: string) => {
@@ -54,9 +54,9 @@ export default function DecorationShowcase({
 
   if (decorations.length === 0) {
     return (
-      <Card className="bg-[#1e293b] border border-[#334155] p-6 text-center">
-        <Sparkles className="w-8 h-8 text-[#94a3b8] mx-auto mb-3" />
-        <p className="text-[#94a3b8]">No decorations yet. Earn them through gameplay and social good actions!</p>
+      <Card className="bg-[#141423] border border-[#2b2b42] p-6 text-center">
+        <Sparkles className="w-8 h-8 text-[#cccccc] mx-auto mb-3" />
+        <p className="text-[#cccccc]">No decorations yet. Earn them through gameplay and social good actions!</p>
       </Card>
     );
   }
@@ -64,7 +64,7 @@ export default function DecorationShowcase({
   if (compact) {
     return (
       <div className="space-y-2">
-        <p className="text-sm font-bold text-[#93c5fd]">{title}</p>
+        <p className="text-sm font-bold text-[#00eaff]">{title}</p>
         <div className="flex flex-wrap gap-2">
           {decorations.slice(0, 6).map((decoration) => (
             <div
@@ -79,15 +79,15 @@ export default function DecorationShowcase({
                 style={{ borderColor: getRarityColor(decoration.rarity) }}
               />
               <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block z-10">
-                <div className="bg-[#0f172a] border border-[#334155] rounded-lg p-2 whitespace-nowrap text-xs">
-                  <p className="font-bold text-[#93c5fd]">{decoration.name}</p>
-                  <p className="text-[#94a3b8]">{getCategoryLabel(decoration.category)}</p>
+                <div className="bg-[#04040a] border border-[#2b2b42] rounded-lg p-2 whitespace-nowrap text-xs">
+                  <p className="font-bold text-[#00eaff]">{decoration.name}</p>
+                  <p className="text-[#cccccc]">{getCategoryLabel(decoration.category)}</p>
                 </div>
               </div>
             </div>
           ))}
           {decorations.length > 6 && (
-            <div className="w-8 h-8 rounded-full bg-[#334155] border-2 border-[#94a3b8] flex items-center justify-center text-xs font-bold text-[#94a3b8]">
+            <div className="w-8 h-8 rounded-full bg-[#2b2b42] border-2 border-[#cccccc] flex items-center justify-center text-xs font-bold text-[#cccccc]">
               +{decorations.length - 6}
             </div>
           )}
@@ -109,16 +109,16 @@ export default function DecorationShowcase({
   );
 
   return (
-    <Card className="bg-[#1e293b] border border-[#334155] p-6">
-      <h3 className="text-lg font-bold text-[#c4b5fd] mb-6">{title}</h3>
+    <Card className="bg-[#141423] border border-[#2b2b42] p-6">
+      <h3 className="text-lg font-bold text-[#ff00c8] mb-6">{title}</h3>
 
       <div className="space-y-6">
         {Object.entries(grouped).map(([category, items]) => (
           <div key={category}>
             <div className="flex items-center gap-2 mb-3">
-              <div className="text-[#93c5fd]">{getCategoryIcon(category)}</div>
-              <p className="font-bold text-[#93c5fd] capitalize">{getCategoryLabel(category)}</p>
-              <Badge className="bg-[#334155] text-[#94a3b8] ml-auto">
+              <div className="text-[#00eaff]">{getCategoryIcon(category)}</div>
+              <p className="font-bold text-[#00eaff] capitalize">{getCategoryLabel(category)}</p>
+              <Badge className="bg-[#2b2b42] text-[#cccccc] ml-auto">
                 {items.length}
               </Badge>
             </div>
@@ -142,8 +142,8 @@ export default function DecorationShowcase({
 
                   {/* Hover Tooltip */}
                   <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block z-10 w-48">
-                    <div className="bg-[#0f172a] border border-[#334155] rounded-lg p-3">
-                      <p className="font-bold text-[#93c5fd] mb-1">{decoration.name}</p>
+                    <div className="bg-[#04040a] border border-[#2b2b42] rounded-lg p-3">
+                      <p className="font-bold text-[#00eaff] mb-1">{decoration.name}</p>
                       <div className="flex items-center gap-2 mb-2">
                         <Badge
                           className="text-xs"
@@ -159,7 +159,7 @@ export default function DecorationShowcase({
                         </Badge>
                       </div>
                       {decoration.unlockedAt && (
-                        <p className="text-xs text-[#94a3b8]">
+                        <p className="text-xs text-[#cccccc]">
                           Unlocked:{" "}
                           {new Date(decoration.unlockedAt).toLocaleDateString()}
                         </p>
@@ -172,7 +172,7 @@ export default function DecorationShowcase({
                     className="absolute top-1 right-1 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold"
                     style={{
                       backgroundColor: getRarityColor(decoration.rarity),
-                      color: "#0f172a",
+                      color: "#04040a",
                     }}
                   >
                     ★

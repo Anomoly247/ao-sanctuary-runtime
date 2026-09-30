@@ -51,15 +51,15 @@ export default function Merch() {
   const { data: designs = [] } = trpc.merch.getMyRequests.useQuery(undefined, { enabled: !!user });
 
   if (loading) {
-    return <div className="min-h-screen bg-[#0f172a] flex items-center justify-center text-[#c4b5fd]">Loading...</div>;
+    return <div className="min-h-screen bg-[#04040a] flex items-center justify-center text-[#ff00c8]">Loading...</div>;
   }
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#0f172a] flex items-center justify-center">
-        <Card className="border-2 border-[#c4b5fd] bg-[#0f172a]/80 p-8">
-          <p className="text-[#c4b5fd] mb-4">Please sign in to access the merch shop</p>
-          <Button onClick={() => navigate("/")} className="bg-[#c4b5fd] hover:bg-[#c4b5fd]/80 text-black">
+      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+        <Card className="border-2 border-[#ff00c8] bg-[#04040a]/80 p-8">
+          <p className="text-[#ff00c8] mb-4">Please sign in to access the merch shop</p>
+          <Button onClick={() => navigate("/")} className="bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black">
             Go to Home
           </Button>
         </Card>
@@ -142,7 +142,7 @@ export default function Merch() {
       case "approved":
         return "text-blue-400";
       case "in_production":
-        return "text-purple-400";
+        return "text-[#d8ae55]";
       case "shipped":
         return "text-green-400";
       default:
@@ -166,15 +166,15 @@ export default function Merch() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0f172a] to-[#1e293b] p-4 md:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-[#04040a] to-[#141423] p-4 md:p-8">
       {/* Header */}
       <div className="max-w-7xl mx-auto mb-8">
         <div className="flex items-center justify-between mb-4">
-          <h1 className="text-4xl font-bold text-[#c4b5fd] flex items-center gap-3">
+          <h1 className="text-4xl font-bold text-[#ff00c8] flex items-center gap-3">
             <ShoppingBag className="w-10 h-10" />
             Anom Artsy Merch
           </h1>
-          <Button variant="outline" onClick={() => navigate("/")} className="text-[#93c5fd] border-[#93c5fd] hover:bg-[#93c5fd]/10 flex items-center gap-2">
+          <Button variant="outline" onClick={() => navigate("/")} className="text-[#00eaff] border-[#00eaff] hover:bg-[#00eaff]/10 flex items-center gap-2">
             <ArrowLeft className="w-4 h-4" />
             Back to Home
           </Button>
@@ -195,8 +195,8 @@ export default function Merch() {
             onClick={() => setActiveTab(tab.id as any)}
             className={`px-4 py-2 rounded-lg border-2 font-bold transition-all ${
               activeTab === tab.id
-                ? "border-[#c4b5fd] bg-[#c4b5fd]/20 text-[#c4b5fd]"
-                : "border-[#93c5fd] bg-transparent text-[#93c5fd] hover:bg-[#93c5fd]/10"
+                ? "border-[#ff00c8] bg-[#ff00c8]/20 text-[#ff00c8]"
+                : "border-[#00eaff] bg-transparent text-[#00eaff] hover:bg-[#00eaff]/10"
             }`}
           >
             {tab.icon} {tab.label}
@@ -209,11 +209,11 @@ export default function Merch() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {AVAILABLE_MERCH.map((item) => (
-              <Card key={item.id} className="border-2 border-[#c4b5fd] bg-[#0f172a]/80 p-6 hover:border-[#93c5fd] transition-all">
+              <Card key={item.id} className="border-2 border-[#ff00c8] bg-[#04040a]/80 p-6 hover:border-[#00eaff] transition-all">
                 <div className="text-6xl mb-4">{item.image}</div>
-                <h3 className="text-xl font-bold text-[#c4b5fd] mb-2">{item.name}</h3>
-                <p className="text-2xl font-bold text-[#93c5fd] mb-4">${item.price}</p>
-                <Button onClick={() => addToCart(item)} className="w-full bg-[#c4b5fd] hover:bg-[#c4b5fd]/80 text-black font-bold">
+                <h3 className="text-xl font-bold text-[#ff00c8] mb-2">{item.name}</h3>
+                <p className="text-2xl font-bold text-[#00eaff] mb-4">${item.price}</p>
+                <Button onClick={() => addToCart(item)} className="w-full bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black font-bold">
                   Add to Cart
                 </Button>
               </Card>
@@ -226,28 +226,28 @@ export default function Merch() {
       {activeTab === "cart" && (
         <div className="max-w-4xl mx-auto">
           {cart.length === 0 ? (
-            <Card className="border-2 border-[#93c5fd] bg-[#0f172a]/80 p-8 text-center">
-              <ShoppingCart className="w-16 h-16 text-[#93c5fd] mx-auto mb-4 opacity-50" />
-              <p className="text-[#93c5fd] text-lg">Your cart is empty</p>
+            <Card className="border-2 border-[#00eaff] bg-[#04040a]/80 p-8 text-center">
+              <ShoppingCart className="w-16 h-16 text-[#00eaff] mx-auto mb-4 opacity-50" />
+              <p className="text-[#00eaff] text-lg">Your cart is empty</p>
             </Card>
           ) : (
             <>
               <div className="space-y-4 mb-8">
                 {cart.map((item) => (
-                  <Card key={item.id} className="border-2 border-[#c4b5fd] bg-[#0f172a]/80 p-4">
+                  <Card key={item.id} className="border-2 border-[#ff00c8] bg-[#04040a]/80 p-4">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-4">
                         <div className="text-4xl">{item.image}</div>
                         <div>
-                          <p className="font-bold text-[#c4b5fd]">{item.name}</p>
-                          <p className="text-[#93c5fd]">${item.price}</p>
+                          <p className="font-bold text-[#ff00c8]">{item.name}</p>
+                          <p className="text-[#00eaff]">${item.price}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-4">
                         <div className="flex items-center gap-2">
-                          <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="px-2 py-1 bg-[#c4b5fd]/20 text-[#c4b5fd] rounded">-</button>
+                          <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="px-2 py-1 bg-[#ff00c8]/20 text-[#ff00c8] rounded">-</button>
                           <span className="text-white font-bold w-8 text-center">{item.quantity}</span>
-                          <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className="px-2 py-1 bg-[#c4b5fd]/20 text-[#c4b5fd] rounded">+</button>
+                          <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className="px-2 py-1 bg-[#ff00c8]/20 text-[#ff00c8] rounded">+</button>
                         </div>
                         <button onClick={() => removeFromCart(item.id)} className="p-2 text-red-500 hover:bg-red-500/20 rounded">
                           <Trash2 className="w-5 h-5" />
@@ -259,9 +259,9 @@ export default function Merch() {
               </div>
 
               {/* Checkout */}
-              <Card className="border-2 border-[#93c5fd] bg-[#0f172a]/80 p-6">
+              <Card className="border-2 border-[#00eaff] bg-[#04040a]/80 p-6">
                 <div className="mb-6">
-                  <p className="text-[#93c5fd] text-lg font-bold mb-2">Order Summary</p>
+                  <p className="text-[#00eaff] text-lg font-bold mb-2">Order Summary</p>
                   <div className="space-y-2 text-gray-300">
                     {cart.map((item) => (
                       <div key={item.id} className="flex justify-between">
@@ -270,7 +270,7 @@ export default function Merch() {
                       </div>
                     ))}
                   </div>
-                  <div className="border-t border-[#93c5fd]/20 mt-4 pt-4 flex justify-between text-xl font-bold text-[#c4b5fd]">
+                  <div className="border-t border-[#00eaff]/20 mt-4 pt-4 flex justify-between text-xl font-bold text-[#ff00c8]">
                     <span>Total:</span>
                     <span>${cartTotal.toFixed(2)}</span>
                   </div>
@@ -278,30 +278,30 @@ export default function Merch() {
 
                 <Dialog open={isCheckoutOpen} onOpenChange={setIsCheckoutOpen}>
                   <DialogTrigger asChild>
-                    <Button className="w-full bg-[#93c5fd] hover:bg-[#93c5fd]/80 text-black font-bold py-3 text-lg">
+                    <Button className="w-full bg-[#00eaff] hover:bg-[#00eaff]/80 text-black font-bold py-3 text-lg">
                       Proceed to Checkout
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="bg-[#0f172a] border-2 border-[#c4b5fd]">
+                  <DialogContent className="bg-[#04040a] border-2 border-[#ff00c8]">
                     <DialogHeader>
-                      <DialogTitle className="text-[#c4b5fd]">Checkout</DialogTitle>
+                      <DialogTitle className="text-[#ff00c8]">Checkout</DialogTitle>
                     </DialogHeader>
                     <div className="space-y-4">
                       <div>
                         <label className="block text-sm font-bold text-gray-300 mb-2">Email</label>
-                        <Input value={checkoutData.email} onChange={(e) => setCheckoutData({ ...checkoutData, email: e.target.value })} className="bg-[#1e293b] border-[#c4b5fd] text-white" />
+                        <Input value={checkoutData.email} onChange={(e) => setCheckoutData({ ...checkoutData, email: e.target.value })} className="bg-[#141423] border-[#ff00c8] text-white" />
                       </div>
                       <div>
                         <label className="block text-sm font-bold text-gray-300 mb-2">Shipping Address</label>
-                        <Textarea value={checkoutData.address} onChange={(e) => setCheckoutData({ ...checkoutData, address: e.target.value })} placeholder="Street, City, State, ZIP" className="bg-[#1e293b] border-[#c4b5fd] text-white" />
+                        <Textarea value={checkoutData.address} onChange={(e) => setCheckoutData({ ...checkoutData, address: e.target.value })} placeholder="Street, City, State, ZIP" className="bg-[#141423] border-[#ff00c8] text-white" />
                       </div>
-                      <div className="bg-[#1e293b] p-4 rounded border border-[#93c5fd]/20">
-                        <p className="text-[#93c5fd] font-bold mb-2">Total: ${cartTotal.toFixed(2)}</p>
+                      <div className="bg-[#141423] p-4 rounded border border-[#00eaff]/20">
+                        <p className="text-[#00eaff] font-bold mb-2">Total: ${cartTotal.toFixed(2)}</p>
                         <p className="text-sm text-gray-400">You will be redirected to Stripe for secure payment</p>
                       </div>
                       <Button 
                         onClick={handleCheckout}
-                        className="w-full bg-[#c4b5fd] hover:bg-[#c4b5fd]/80 text-black font-bold py-3"
+                        className="w-full bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black font-bold py-3"
                       >
                         Complete Order
                       </Button>
@@ -320,33 +320,33 @@ export default function Merch() {
           <div className="mb-6">
             <Dialog open={isRequestOpen} onOpenChange={setIsRequestOpen}>
               <DialogTrigger asChild>
-                <Button className="bg-[#c4b5fd] hover:bg-[#c4b5fd]/80 text-black font-bold flex items-center gap-2">
+                <Button className="bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black font-bold flex items-center gap-2">
                   <Plus className="w-5 h-5" />
                   Submit Custom Design
                 </Button>
               </DialogTrigger>
-              <DialogContent className="bg-[#0f172a] border-2 border-[#c4b5fd]">
+              <DialogContent className="bg-[#04040a] border-2 border-[#ff00c8]">
                 <DialogHeader>
-                  <DialogTitle className="text-[#c4b5fd]">Submit Custom Merch Design</DialogTitle>
+                  <DialogTitle className="text-[#ff00c8]">Submit Custom Merch Design</DialogTitle>
                   <DialogDescription className="text-gray-400">Tell us your idea and we'll create it for you</DialogDescription>
                 </DialogHeader>
                 <div className="space-y-4">
                   <div>
                     <label className="block text-sm font-bold text-gray-300 mb-2">Design Title</label>
-                    <Input value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} placeholder="e.g., Neon Dragon T-Shirt" className="bg-[#1e293b] border-[#c4b5fd] text-white" />
+                    <Input value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} placeholder="e.g., Neon Dragon T-Shirt" className="bg-[#141423] border-[#ff00c8] text-white" />
                   </div>
                   <div>
                     <label className="block text-sm font-bold text-gray-300 mb-2">Description</label>
-                    <Textarea value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} placeholder="Describe your design idea..." className="bg-[#1e293b] border-[#c4b5fd] text-white" />
+                    <Textarea value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} placeholder="Describe your design idea..." className="bg-[#141423] border-[#ff00c8] text-white" />
                   </div>
                   <div>
                     <label className="block text-sm font-bold text-gray-300 mb-2">Design Details</label>
-                    <Textarea value={formData.design} onChange={(e) => setFormData({ ...formData, design: e.target.value })} placeholder="Colors, style, placement, etc..." className="bg-[#1e293b] border-[#c4b5fd] text-white" />
+                    <Textarea value={formData.design} onChange={(e) => setFormData({ ...formData, design: e.target.value })} placeholder="Colors, style, placement, etc..." className="bg-[#141423] border-[#ff00c8] text-white" />
                   </div>
                   <Button 
                     onClick={handleSubmitDesign}
                     disabled={submitDesignMutation.isPending}
-                    className="w-full bg-[#c4b5fd] hover:bg-[#c4b5fd]/80 text-black font-bold"
+                    className="w-full bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black font-bold"
                   >
                     {submitDesignMutation.isPending ? "Submitting..." : "Submit Design"}
                   </Button>
@@ -356,17 +356,17 @@ export default function Merch() {
           </div>
 
           {designs.length === 0 ? (
-            <Card className="border-2 border-[#93c5fd] bg-[#0f172a]/80 p-6 text-center">
-              <p className="text-[#93c5fd]">No custom design requests yet</p>
+            <Card className="border-2 border-[#00eaff] bg-[#04040a]/80 p-6 text-center">
+              <p className="text-[#00eaff]">No custom design requests yet</p>
             </Card>
           ) : (
             <div className="space-y-4">
               {designs.map((design: any) => (
-                <Card key={design.id} className="border-2 border-[#c4b5fd] bg-[#0f172a]/80 p-6">
+                <Card key={design.id} className="border-2 border-[#ff00c8] bg-[#04040a]/80 p-6">
                   <div className="flex items-start justify-between">
                     <div>
-                      <h3 className="text-xl font-bold text-[#c4b5fd] mb-2">{design.title}</h3>
-                      <p className="text-[#93c5fd] mb-2">{design.description}</p>
+                      <h3 className="text-xl font-bold text-[#ff00c8] mb-2">{design.title}</h3>
+                      <p className="text-[#00eaff] mb-2">{design.description}</p>
                       <p className="text-gray-400 text-sm mb-4">{design.design}</p>
                       <p className={`text-sm font-bold ${getStatusColor(design.status)}`}>
                         {getStatusIcon(design.status)} {design.status.replace("_", " ").toUpperCase()}
@@ -384,17 +384,17 @@ export default function Merch() {
       {activeTab === "orders" && (
         <div className="max-w-4xl mx-auto">
           {orders.length === 0 ? (
-            <Card className="border-2 border-[#93c5fd] bg-[#0f172a]/80 p-6 text-center">
-              <p className="text-[#93c5fd]">No orders yet</p>
+            <Card className="border-2 border-[#00eaff] bg-[#04040a]/80 p-6 text-center">
+              <p className="text-[#00eaff]">No orders yet</p>
             </Card>
           ) : (
             <div className="space-y-4">
               {orders.map((order: any) => (
-                <Card key={order.id} className="border-2 border-[#c4b5fd] bg-[#0f172a]/80 p-6">
+                <Card key={order.id} className="border-2 border-[#ff00c8] bg-[#04040a]/80 p-6">
                   <div className="flex items-start justify-between">
                     <div>
-                      <h3 className="text-xl font-bold text-[#c4b5fd] mb-2">Order #{order.id.slice(0, 8)}</h3>
-                      <p className="text-[#93c5fd] mb-2">${(order.total / 100).toFixed(2)}</p>
+                      <h3 className="text-xl font-bold text-[#ff00c8] mb-2">Order #{order.id.slice(0, 8)}</h3>
+                      <p className="text-[#00eaff] mb-2">${(order.total / 100).toFixed(2)}</p>
                       <p className="text-gray-400 text-sm mb-2">Items: {order.items}</p>
                       <p className="text-gray-400 text-sm mb-4">Ordered: {new Date(order.createdAt).toLocaleDateString()}</p>
                       <p className={`text-sm font-bold ${getStatusColor(order.status)}`}>

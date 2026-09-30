@@ -45,23 +45,23 @@ export default function MembershipCard({
   const getTierColor = () => {
     switch (tier) {
       case "vip":
-        return "#93c5fd";
+        return "#00eaff";
       case "super_vip":
         return "#ffd700";
       default:
-        return "#94a3b8";
+        return "#cccccc";
     }
   };
 
   const getBorderColor = () => {
-    if (isCurrentTier) return "#c4b5fd";
+    if (isCurrentTier) return "#ff00c8";
     if (featured) return getTierColor();
-    return "#334155";
+    return "#2b2b42";
   };
 
   return (
     <Card
-      className={`bg-[#1e293b] p-6 flex flex-col h-full transition-all ${
+      className={`bg-[#141423] p-6 flex flex-col h-full transition-all ${
         featured ? "ring-2 scale-105" : ""
       }`}
       style={{
@@ -79,7 +79,7 @@ export default function MembershipCard({
         </div>
 
         {isCurrentTier && (
-          <Badge className="bg-[#c4b5fd] text-black font-bold">Current Plan</Badge>
+          <Badge className="bg-[#ff00c8] text-black font-bold">Current Plan</Badge>
         )}
         {featured && (
           <Badge className="bg-[#ffd700] text-black font-bold">Most Popular</Badge>
@@ -93,10 +93,10 @@ export default function MembershipCard({
             <p className="text-4xl font-bold" style={{ color: getTierColor() }}>
               ${price}
             </p>
-            <p className="text-sm text-[#94a3b8]">/month</p>
+            <p className="text-sm text-[#cccccc]">/month</p>
           </>
         ) : (
-          <p className="text-3xl font-bold text-[#93c5fd]">Free</p>
+          <p className="text-3xl font-bold text-[#00eaff]">Free</p>
         )}
       </div>
 
@@ -104,8 +104,8 @@ export default function MembershipCard({
       <div className="space-y-3 mb-6 flex-1">
         {benefits.map((benefit, idx) => (
           <div key={idx} className="flex items-start gap-2">
-            <Check className="w-5 h-5 text-[#93c5fd] flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-[#94a3b8]">{benefit}</p>
+            <Check className="w-5 h-5 text-[#00eaff] flex-shrink-0 mt-0.5" />
+            <p className="text-sm text-[#cccccc]">{benefit}</p>
           </div>
         ))}
       </div>
@@ -114,7 +114,7 @@ export default function MembershipCard({
       {isCurrentTier ? (
         <Button
           disabled
-          className="w-full bg-[#334155] text-[#94a3b8] font-bold"
+          className="w-full bg-[#2b2b42] text-[#cccccc] font-bold"
         >
           Current Plan
         </Button>

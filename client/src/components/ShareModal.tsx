@@ -94,44 +94,44 @@ export default function ShareModal({
 
   return (
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-      <Card className="bg-[#1e293b] border border-[#c4b5fd] w-full max-w-md">
+      <Card className="bg-[#141423] border border-[#ff00c8] w-full max-w-md">
         <div className="p-8">
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-[#c4b5fd]">Share</h2>
+            <h2 className="text-2xl font-bold text-[#ff00c8]">Share</h2>
             <button
               onClick={onClose}
-              className="text-[#94a3b8] hover:text-[#93c5fd] transition-colors"
+              className="text-[#cccccc] hover:text-[#00eaff] transition-colors"
             >
               <X className="w-6 h-6" />
             </button>
           </div>
 
           {/* Title & Description */}
-          <div className="mb-6 p-4 bg-[#0f172a] rounded-lg border border-[#334155]">
-            <p className="text-sm text-[#94a3b8] mb-2">Share this:</p>
-            <h3 className="text-lg font-bold text-[#93c5fd] mb-2">{title}</h3>
+          <div className="mb-6 p-4 bg-[#04040a] rounded-lg border border-[#2b2b42]">
+            <p className="text-sm text-[#cccccc] mb-2">Share this:</p>
+            <h3 className="text-lg font-bold text-[#00eaff] mb-2">{title}</h3>
             {description && (
-              <p className="text-sm text-[#94a3b8]">{description}</p>
+              <p className="text-sm text-[#cccccc]">{description}</p>
             )}
           </div>
 
           {/* Copy Link Section */}
           <div className="mb-6">
-            <p className="text-sm font-bold text-[#94a3b8] mb-3">Direct Link</p>
+            <p className="text-sm font-bold text-[#cccccc] mb-3">Direct Link</p>
             <div className="flex gap-2">
               <input
                 type="text"
                 value={shareUrl}
                 readOnly
-                className="flex-1 px-3 py-2 bg-[#0f172a] border border-[#334155] rounded-lg text-[#93c5fd] text-sm"
+                className="flex-1 px-3 py-2 bg-[#04040a] border border-[#2b2b42] rounded-lg text-[#00eaff] text-sm"
               />
               <Button
                 onClick={handleCopyLink}
                 className={`${
                   copied
-                    ? "bg-[#93c5fd] text-black"
-                    : "bg-[#c4b5fd] hover:bg-[#c4b5fd]/80 text-black"
+                    ? "bg-[#00eaff] text-black"
+                    : "bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black"
                 } font-bold`}
               >
                 {copied ? (
@@ -145,7 +145,7 @@ export default function ShareModal({
 
           {/* Social Platforms */}
           <div className="mb-6">
-            <p className="text-sm font-bold text-[#94a3b8] mb-3">Share To</p>
+            <p className="text-sm font-bold text-[#cccccc] mb-3">Share To</p>
             <div className="grid grid-cols-2 gap-3">
               {platforms.map((platform) => {
                 const Icon = platform.icon;
@@ -153,13 +153,13 @@ export default function ShareModal({
                   <button
                     key={platform.id}
                     onClick={() => handleShare(platform.url, platform.name)}
-                    className="flex items-center gap-2 p-3 bg-[#0f172a] border border-[#334155] rounded-lg hover:border-[#93c5fd] transition-colors group"
+                    className="flex items-center gap-2 p-3 bg-[#04040a] border border-[#2b2b42] rounded-lg hover:border-[#00eaff] transition-colors group"
                   >
                     <Icon
-                      className="w-5 h-5 group-hover:text-[#93c5fd]"
+                      className="w-5 h-5 group-hover:text-[#00eaff]"
                       style={{ color: platform.color }}
                     />
-                    <span className="text-sm font-bold text-[#94a3b8] group-hover:text-[#93c5fd]">
+                    <span className="text-sm font-bold text-[#cccccc] group-hover:text-[#00eaff]">
                       {platform.name}
                     </span>
                   </button>
@@ -171,7 +171,7 @@ export default function ShareModal({
           {/* Close Button */}
           <Button
             onClick={onClose}
-            className="w-full bg-[#334155] hover:bg-[#3a3f4e] text-[#94a3b8] font-bold"
+            className="w-full bg-[#2b2b42] hover:bg-[#3a3f4e] text-[#cccccc] font-bold"
           >
             Close
           </Button>

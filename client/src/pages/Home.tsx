@@ -20,17 +20,17 @@ export default function Home() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#0f172a] flex items-center justify-center">
-        <div className="text-[#93c5fd] text-xl">Loading Anom Artsy...</div>
+      <div className="min-h-screen bg-[#04040a] flex items-center justify-center">
+        <div className="text-[#00eaff] text-xl">Loading Anom Artsy...</div>
       </div>
     );
   }
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#0f172a] text-[#93c5fd] flex flex-col">
+      <div className="min-h-screen bg-[#04040a] text-[#00eaff] flex flex-col">
         {/* Navigation */}
-        <nav className="border-b border-[#334155] px-6 py-4">
+        <nav className="border-b border-[#2b2b42] px-6 py-4">
           <div className="max-w-7xl mx-auto flex justify-between items-center">
             <div className="text-2xl font-bold text-accent">Anom Artsy</div>
             <a href="/api/auth/google">
@@ -43,14 +43,14 @@ export default function Home() {
         <section className="flex-1 px-6 py-20">
           <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="mb-6 inline-block bg-[#c4b5fd]/20 border border-[#c4b5fd] rounded-lg px-4 py-2">
-                <p className="text-[#c4b5fd] font-bold text-sm">🌍 Social Good First</p>
+              <div className="mb-6 inline-block bg-[#ff00c8]/20 border border-[#ff00c8] rounded-lg px-4 py-2">
+                <p className="text-[#ff00c8] font-bold text-sm">🌍 Social Good First</p>
               </div>
               <h1 className="text-5xl font-bold mb-6">
                 <span className="text-accent">Identity</span>
-                <span className="text-[#93c5fd]">, Amplified</span>
+                <span className="text-[#00eaff]">, Amplified</span>
               </h1>
-              <p className="text-lg text-[#94a3b8] mb-8">
+              <p className="text-lg text-[#cccccc] mb-8">
                 Join the Anom Artsy community — a neon-lit sanctuary where family comes first, creativity thrives, and your identity matters. Every interaction drives real-world social good impact.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -60,7 +60,7 @@ export default function Home() {
                   </Button>
                 </a>
                 <a href="/mission-hub">
-                  <Button className="bg-[#c4b5fd] hover:bg-[#c4b5fd]/80 text-black font-bold text-lg py-6 px-8">
+                  <Button className="bg-[#ff00c8] hover:bg-[#ff00c8]/80 text-black font-bold text-lg py-6 px-8">
                     💜 Support Our Mission
                   </Button>
                 </a>
@@ -71,14 +71,14 @@ export default function Home() {
         </section>
 
         {/* Mission Section */}
-        <section className="bg-gradient-to-r from-[#c4b5fd]/10 to-[#93c5fd]/10 border-t border-[#c4b5fd] px-6 py-16">
+        <section className="bg-gradient-to-r from-[#ff00c8]/10 to-[#00eaff]/10 border-t border-[#ff00c8] px-6 py-16">
           <div className="max-w-7xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6">
               <span className="text-accent">Social Good</span>
-              <span className="text-[#93c5fd]"> Meets </span>
+              <span className="text-[#00eaff]"> Meets </span>
               <span className="text-accent">Creative Power</span>
             </h2>
-            <p className="text-[#94a3b8] max-w-2xl mx-auto mb-6">
+            <p className="text-[#cccccc] max-w-2xl mx-auto mb-6">
               Every coin earned, every collaboration started, every voice amplified—it all drives real impact. Join artists, creators, and visionaries building a better world together.
             </p>
             <a href="/mission-hub">
@@ -90,62 +90,62 @@ export default function Home() {
         </section>
 
         {/* Features Section */}
-        <section className="bg-[#1e293b] border-t border-[#334155] px-6 py-20">
+        <section className="bg-[#141423] border-t border-[#2b2b42] px-6 py-20">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-16 text-accent">
               What Awaits You
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
               {/* Feature 1 */}
-              <div className="bg-[#1e293b] border border-[#334155] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
-                <Zap className="w-8 h-8 text-[#c4b5fd] mb-4" />
-                <h3 className="text-xl font-bold text-[#93c5fd] mb-2">Anom Coin Economy</h3>
-                <p className="text-[#94a3b8]">
+              <div className="bg-[#141423] border border-[#2b2b42] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+                <Zap className="w-8 h-8 text-[#ff00c8] mb-4" />
+                <h3 className="text-xl font-bold text-[#00eaff] mb-2">Anom Coin Economy</h3>
+                <p className="text-[#cccccc]">
                   Earn coins through social good actions, games, and community engagement. Spend them on profile decorations and exclusive lounges.
                 </p>
               </div>
 
               {/* Feature 2 */}
-              <div className="bg-[#1e293b] border border-[#334155] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
-                <Users className="w-8 h-8 text-[#93c5fd] mb-4" />
-                <h3 className="text-xl font-bold text-[#c4b5fd] mb-2">Private Lounges</h3>
-                <p className="text-[#94a3b8]">
+              <div className="bg-[#141423] border border-[#2b2b42] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+                <Users className="w-8 h-8 text-[#00eaff] mb-4" />
+                <h3 className="text-xl font-bold text-[#ff00c8] mb-2">Private Lounges</h3>
+                <p className="text-[#cccccc]">
                   Create family, friend, and coworker lounges. Chat, share goals, and customize your space with visual themes.
                 </p>
               </div>
 
               {/* Feature 3 */}
-              <div className="bg-[#1e293b] border border-[#334155] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
-                <Gamepad2 className="w-8 h-8 text-[#c4b5fd] mb-4" />
-                <h3 className="text-xl font-bold text-[#93c5fd] mb-2">Mini-Games</h3>
-                <p className="text-[#94a3b8]">
+              <div className="bg-[#141423] border border-[#2b2b42] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+                <Gamepad2 className="w-8 h-8 text-[#ff00c8] mb-4" />
+                <h3 className="text-xl font-bold text-[#00eaff] mb-2">Mini-Games</h3>
+                <p className="text-[#cccccc]">
                   Play Trivia, Memory, Mood Matcher, and Snack Vault Rush. Earn coins and climb the leaderboard.
                 </p>
               </div>
 
               {/* Feature 4 */}
-              <div className="bg-[#1e293b] border border-[#334155] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
-                <Heart className="w-8 h-8 text-[#93c5fd] mb-4" />
-                <h3 className="text-xl font-bold text-[#c4b5fd] mb-2">Kids Corner</h3>
-                <p className="text-[#94a3b8]">
+              <div className="bg-[#141423] border border-[#2b2b42] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+                <Heart className="w-8 h-8 text-[#00eaff] mb-4" />
+                <h3 className="text-xl font-bold text-[#ff00c8] mb-2">Kids Corner</h3>
+                <p className="text-[#cccccc]">
                   A safe space for children to watch Pixel & Dot episodes, play Off-Grid Adventure, and color.
                 </p>
               </div>
 
               {/* Feature 5 */}
-              <div className="bg-[#1e293b] border border-[#334155] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
-                <Sparkles className="w-8 h-8 text-[#c4b5fd] mb-4" />
-                <h3 className="text-xl font-bold text-[#93c5fd] mb-2">Profile Customization</h3>
-                <p className="text-[#94a3b8]">
+              <div className="bg-[#141423] border border-[#2b2b42] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+                <Sparkles className="w-8 h-8 text-[#ff00c8] mb-4" />
+                <h3 className="text-xl font-bold text-[#00eaff] mb-2">Profile Customization</h3>
+                <p className="text-[#cccccc]">
                   Apply visual themes, character badges, and mood glows to your profile. No coding required.
                 </p>
               </div>
 
               {/* Feature 6 */}
-              <div className="bg-[#1e293b] border border-[#334155] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
-                <ShoppingBag className="w-8 h-8 text-[#93c5fd] mb-4" />
-                <h3 className="text-xl font-bold text-[#c4b5fd] mb-2">Custom Merch</h3>
-                <p className="text-[#94a3b8]">
+              <div className="bg-[#141423] border border-[#2b2b42] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+                <ShoppingBag className="w-8 h-8 text-[#00eaff] mb-4" />
+                <h3 className="text-xl font-bold text-[#ff00c8] mb-2">Custom Merch</h3>
+                <p className="text-[#cccccc]">
                   Request your bespoke artwork. We create and fulfill it through our trusted partners.
                 </p>
               </div>
@@ -156,7 +156,7 @@ export default function Home() {
         {/* CTA Section */}
         <section className="px-6 py-20">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-6 text-[#93c5fd]">
+            <h2 className="text-3xl font-bold mb-6 text-[#00eaff]">
               Ready to join the Anom Universe?
             </h2>
             <a href="/api/auth/google">
@@ -168,7 +168,7 @@ export default function Home() {
         </section>
 
         {/* Footer */}
-        <footer className="border-t border-[#334155] px-6 py-8 text-center text-[#94a3b8]">
+        <footer className="border-t border-[#2b2b42] px-6 py-8 text-center text-[#cccccc]">
           <p>&copy; 2026 Anom Artsy. Identity, Amplified.</p>
         </footer>
       </div>
@@ -205,7 +205,7 @@ export default function Home() {
   // Authenticated Dashboard
   return (
     <div 
-      className="min-h-screen bg-[#0f172a] text-[#93c5fd]"
+      className="min-h-screen bg-[#04040a] text-[#00eaff]"
       style={{
         backgroundImage: backgroundUrl.startsWith('linear-gradient') ? backgroundUrl : undefined,
         backgroundSize: 'cover',
@@ -225,42 +225,42 @@ export default function Home() {
         />
       )}
       {/* Navigation */}
-      <nav className="border-b border-[#334155] px-6 py-4 sticky top-0 bg-[#0f172a]/95 backdrop-blur">
+      <nav className="border-b border-[#2b2b42] px-6 py-4 sticky top-0 bg-[#04040a]/95 backdrop-blur">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="text-2xl font-bold text-accent">Anom Artsy</div>
           <div className="flex items-center gap-4">
-            <span className="text-sm text-[#94a3b8]">Welcome, {user?.name}</span>
+            <span className="text-sm text-[#cccccc]">Welcome, {user?.name}</span>
             <div className="relative">
               <Button 
                 onClick={() => setShowBgMenu(!showBgMenu)}
-                className="bg-[#93c5fd]/20 hover:bg-[#93c5fd]/30 text-[#93c5fd] border border-[#93c5fd]"
+                className="bg-[#00eaff]/20 hover:bg-[#00eaff]/30 text-[#00eaff] border border-[#00eaff]"
                 size="sm"
               >
                 <Palette className="w-4 h-4 mr-2" />
                 Background
               </Button>
               {showBgMenu && (
-                <div className="absolute right-0 mt-2 w-48 bg-[#1e293b] border border-[#334155] rounded-lg p-4 shadow-lg z-50">
+                <div className="absolute right-0 mt-2 w-48 bg-[#141423] border border-[#2b2b42] rounded-lg p-4 shadow-lg z-50">
                   <div className="space-y-2">
                     <button
                       onClick={() => handlePresetBackground('gradient1')}
-                      className="w-full text-left px-3 py-2 rounded hover:bg-[#334155] text-[#93c5fd] text-sm"
+                      className="w-full text-left px-3 py-2 rounded hover:bg-[#2b2b42] text-[#00eaff] text-sm"
                     >
                       Magenta-Cyan
                     </button>
                     <button
                       onClick={() => handlePresetBackground('gradient2')}
-                      className="w-full text-left px-3 py-2 rounded hover:bg-[#334155] text-[#93c5fd] text-sm"
+                      className="w-full text-left px-3 py-2 rounded hover:bg-[#2b2b42] text-[#00eaff] text-sm"
                     >
-                      Purple-Magenta
+                      Gold-Magenta
                     </button>
                     <button
                       onClick={() => handlePresetBackground('gradient3')}
-                      className="w-full text-left px-3 py-2 rounded hover:bg-[#334155] text-[#93c5fd] text-sm"
+                      className="w-full text-left px-3 py-2 rounded hover:bg-[#2b2b42] text-[#00eaff] text-sm"
                     >
                       Cyan-Green
                     </button>
-                    <label className="w-full text-left px-3 py-2 rounded hover:bg-[#334155] text-[#93c5fd] text-sm cursor-pointer flex items-center">
+                    <label className="w-full text-left px-3 py-2 rounded hover:bg-[#2b2b42] text-[#00eaff] text-sm cursor-pointer flex items-center">
                       <Upload className="w-4 h-4 mr-2" />
                       Upload Image
                       <input
@@ -279,7 +279,7 @@ export default function Home() {
                 Owner Panel
               </Button>
             )}
-            <Button variant="outline" onClick={logout} className="text-[#c4b5fd]">
+            <Button variant="outline" onClick={logout} className="text-[#ff00c8]">
               Sign Out
             </Button>
           </div>
@@ -290,54 +290,54 @@ export default function Home() {
       <main className="max-w-7xl mx-auto px-6 py-12">
         <div className="grid md:grid-cols-4 gap-6 mb-12">
           {/* Coin Balance */}
-          <div className="bg-[#1e293b] border border-[#334155] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+          <div className="bg-[#141423] border border-[#2b2b42] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-[#94a3b8] text-sm">Anom Coin Balance</p>
-                <p className="text-3xl font-bold text-[#c4b5fd]">0 AC</p>
+                <p className="text-[#cccccc] text-sm">Anom Coin Balance</p>
+                <p className="text-3xl font-bold text-[#ff00c8]">0 AC</p>
               </div>
-              <Zap className="w-8 h-8 text-[#c4b5fd]" />
+              <Zap className="w-8 h-8 text-[#ff00c8]" />
             </div>
           </div>
 
           {/* Level */}
-          <div className="bg-[#1e293b] border border-[#334155] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+          <div className="bg-[#141423] border border-[#2b2b42] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-[#94a3b8] text-sm">Your Level</p>
-                <p className="text-3xl font-bold text-[#93c5fd]">1</p>
+                <p className="text-[#cccccc] text-sm">Your Level</p>
+                <p className="text-3xl font-bold text-[#00eaff]">1</p>
               </div>
-              <Sparkles className="w-8 h-8 text-[#93c5fd]" />
+              <Sparkles className="w-8 h-8 text-[#00eaff]" />
             </div>
           </div>
 
           {/* Achievements */}
-          <div className="bg-[#1e293b] border border-[#334155] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+          <div className="bg-[#141423] border border-[#2b2b42] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-[#94a3b8] text-sm">Achievements</p>
-                <p className="text-3xl font-bold text-[#c4b5fd]">0</p>
+                <p className="text-[#cccccc] text-sm">Achievements</p>
+                <p className="text-3xl font-bold text-[#ff00c8]">0</p>
               </div>
-              <Heart className="w-8 h-8 text-[#c4b5fd]" />
+              <Heart className="w-8 h-8 text-[#ff00c8]" />
             </div>
           </div>
 
           {/* Lounges */}
-          <div className="bg-[#1e293b] border border-[#334155] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+          <div className="bg-[#141423] border border-[#2b2b42] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-[#94a3b8] text-sm">Your Lounges</p>
-                <p className="text-3xl font-bold text-[#93c5fd]">0</p>
+                <p className="text-[#cccccc] text-sm">Your Lounges</p>
+                <p className="text-3xl font-bold text-[#00eaff]">0</p>
               </div>
-              <Users className="w-8 h-8 text-[#93c5fd]" />
+              <Users className="w-8 h-8 text-[#00eaff]" />
             </div>
           </div>
         </div>
 
         {/* Quick Actions */}
         <div className="grid md:grid-cols-2 gap-6">
-          <div className="bg-[#1e293b] border border-[#334155] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
-            <h3 className="text-xl font-bold text-[#c4b5fd] mb-4">Quick Actions</h3>
+          <div className="bg-[#141423] border border-[#2b2b42] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+            <h3 className="text-xl font-bold text-[#ff00c8] mb-4">Quick Actions</h3>
             <div className="space-y-3">
               <Button className="w-full btn-primary" onClick={() => navigate("/profile")}>
                 View Profile
@@ -366,9 +366,9 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="bg-[#1e293b] border border-[#334155] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
-            <h3 className="text-xl font-bold text-[#93c5fd] mb-4">Live from the Universe</h3>
-            <p className="text-[#94a3b8] text-sm">
+          <div className="bg-[#141423] border border-[#2b2b42] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(15, 23, 42, 0.22)'}}>
+            <h3 className="text-xl font-bold text-[#00eaff] mb-4">Live from the Universe</h3>
+            <p className="text-[#cccccc] text-sm">
               Check back soon for community highlights, memes, and universe updates!
             </p>
           </div>
