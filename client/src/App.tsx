@@ -24,6 +24,7 @@ import CollaborationStation from "./pages/CollaborationStation";
 import OwnerControlPanel from "./pages/OwnerControlPanel";
 import OwnerSettings from "./pages/OwnerSettings";
 import ColorCustomizer from "./components/ColorCustomizer";
+import CosmicWeb from "./components/CosmicWeb";
 import YouTubeManager from "./pages/YouTubeManager";
 import PaymentMerchManagement from "./pages/PaymentMerchManagement";
 import BusinessControlCenter from "./pages/BusinessControlCenter";
@@ -98,6 +99,7 @@ function App() {
               <Toaster />
               <ColorCustomizer />
               <AppRoutes />
+              <CosmicWeb />
               {isAuthenticated && <ChatWidget />}
             </TooltipProvider>
           </AmbientAudioProvider>
