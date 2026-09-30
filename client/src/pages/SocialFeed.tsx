@@ -76,7 +76,7 @@ export default function SocialFeed() {
     },
     {
       id: "5",
-      author: "Kids Corner Creator",
+      author: "Anom's Corner Creator",
       avatar: "🎨",
       content: "My kids just finished all the Pixel & Dot episodes! They're so excited about the coloring pages. Educational + fun! #KidsCorner #ParentWin",
       timestamp: "10 hours ago",
@@ -215,7 +215,7 @@ export default function SocialFeed() {
       <main className="max-w-4xl mx-auto px-6 py-8">
         {/* Reels Section */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold text-[#ff00c8] mb-6 flex items-center gap-2">
+          <h2 className="text-3xl font-bold text-[#d8ae55] mb-6 flex items-center gap-2">
             <Play className="w-6 h-6" />
             Featured Reels: Tater & Clifford Series
           </h2>
@@ -233,7 +233,7 @@ export default function SocialFeed() {
                 <div className="relative bg-gradient-to-br from-[#141423] to-[#0A0A10] aspect-video flex items-center justify-center overflow-hidden">
                   <div className="text-8xl group-hover:scale-110 transition-transform">{reel.thumbnail}</div>
                   <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors flex items-center justify-center">
-                    <Play className="w-16 h-16 text-[#ff00c8] opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <Play className="w-16 h-16 text-[#d8ae55] opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                   <div className="absolute bottom-2 right-2 bg-black/80 px-2 py-1 rounded text-xs text-[#00eaff] font-bold">
                     {reel.duration}
@@ -242,7 +242,7 @@ export default function SocialFeed() {
 
                 {/* Reel Info */}
                 <div className="p-4">
-                  <h3 className="font-bold text-[#ff00c8] mb-1 line-clamp-2">{reel.title}</h3>
+                  <h3 className="font-bold text-[#d8ae55] mb-1 line-clamp-2">{reel.title}</h3>
                   <p className="text-sm text-[#cccccc] mb-2">{reel.creator}</p>
                   <p className="text-sm text-[#00eaff] line-clamp-2 mb-3">{reel.description}</p>
                   <div className="flex items-center justify-between text-xs text-[#cccccc]">
@@ -334,11 +334,11 @@ export default function SocialFeed() {
               <div className="flex justify-around gap-2">
                 <Button
                   variant="ghost"
-                  className="flex-1 text-[#cccccc] hover:text-[#ff00c8] gap-2"
+                  className="flex-1 text-[#cccccc] hover:text-[#d8ae55] gap-2"
                   onClick={() => handleLike(post.id)}
                 >
                   <Heart
-                    className={`w-4 h-4 ${post.liked ? "fill-[#ff00c8] text-[#ff00c8]" : ""}`}
+                    className={`w-4 h-4 ${post.liked ? "fill-[#d8ae55] text-[#d8ae55]" : ""}`}
                   />
                   <span className="text-sm">{post.liked ? "Liked" : "Like"}</span>
                 </Button>

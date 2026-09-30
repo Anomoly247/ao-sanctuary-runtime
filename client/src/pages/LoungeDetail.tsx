@@ -147,7 +147,7 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
     );
   }
 
-  const themeColor = lounge.neonTheme === "cyan" ? "#00eaff" : lounge.neonTheme === "purple" ? "#d8ae55" : "#ff00c8";
+  const themeColor = lounge.neonTheme === "cyan" ? "#00eaff" : lounge.neonTheme === "purple" ? "#d8ae55" : "#d8ae55";
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0A0A10] to-[#141423]">
@@ -224,7 +224,7 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
               {members.map((member, idx) => (
                 <div key={idx} className="text-sm text-gray-300 p-2 bg-[#0A0A10] rounded">
                   {member.user?.name || 'Member'}
-                  {member.member?.role === 'owner' && <span className="text-[#ff00c8] ml-2 text-xs">(Owner)</span>}
+                  {member.member?.role === 'owner' && <span className="text-[#d8ae55] ml-2 text-xs">(Owner)</span>}
                 </div>
               ))}
             </div>
@@ -277,8 +277,8 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent className="bg-[#000000] border-[#08080f]">
-                          <SelectItem value="magenta" className="text-[#ff00c8]">
-                            Magenta
+                          <SelectItem value="magenta" className="text-[#d8ae55]">
+                            Badge Gold
                           </SelectItem>
                           <SelectItem value="cyan" className="text-[#00eaff]">
                             Cyan

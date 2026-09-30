@@ -44,7 +44,7 @@ export default function DotProfile() {
 
             <div className="flex justify-center gap-3 mb-6">
               <Badge className="bg-transparent border border-[#00eaff] text-[#00eaff] font-bold">Anom's Corner</Badge>
-              <Badge className="bg-[#08080f] text-[#ff00c8] font-bold">Main Character</Badge>
+              <Badge className="bg-[#08080f] text-[#d8ae55] font-bold">Main Character</Badge>
             </div>
 
             <p className="text-[#cccccc] text-lg max-w-xl mx-auto mb-8">
@@ -97,7 +97,7 @@ export default function DotProfile() {
             {/* Abilities */}
             <Card className="bg-[#000000] border border-[#08080f] p-6">
               <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                <Zap className="w-6 h-6" style={{ color: "#ff00c8" }} />
+                <Zap className="w-6 h-6" style={{ color: "#d8ae55" }} />
                 Exploratory Powers
               </h2>
               <div className="grid grid-cols-2 gap-4">
@@ -119,7 +119,7 @@ export default function DotProfile() {
                         className="h-full rounded-full"
                         style={{
                           width: `${ability.level}%`,
-                          background: "linear-gradient(90deg, #00eaff 0%, #ff00c8 100%)",
+                          background: "linear-gradient(90deg, #00eaff 0%, #d8ae55 100%)",
                         }}
                       />
                     </div>

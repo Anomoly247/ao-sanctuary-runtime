@@ -117,7 +117,7 @@ export default function ProfilePhotoManager() {
     <div className="space-y-6">
       {/* Upload Section */}
       <Card className="bg-[#000000] border-2 border-[#00eaff] p-6">
-        <h3 className="text-xl font-bold text-[#ff00c8] mb-4 flex items-center gap-2">
+        <h3 className="text-xl font-bold text-[#d8ae55] mb-4 flex items-center gap-2">
           <ImageIcon className="w-5 h-5" />
           Photo Library
         </h3>

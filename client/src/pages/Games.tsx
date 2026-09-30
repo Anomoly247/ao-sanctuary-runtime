@@ -6,6 +6,8 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/_core/hooks/useAuth";
+import { AO_ART, aoArtUrl } from "../../../shared/aoArt";
+import { useAOBridge } from "@/contexts/AOBridgeContext";
 
 // Trivia Game Component
 function TriviaGame({ onClose, onComplete }: { onClose: () => void; onComplete: (score: number) => void }) {
@@ -57,7 +59,7 @@ function TriviaGame({ onClose, onComplete }: { onClose: () => void; onComplete: 
     return (
       <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
         <Card className="bg-[#000000] border border-[#00eaff] p-8 max-w-md text-center">
-          <h2 className="text-2xl font-bold text-[#ff00c8] mb-4">Game Over!</h2>
+          <h2 className="text-2xl font-bold text-[#d8ae55] mb-4">Game Over!</h2>
           <p className="text-4xl font-bold text-[#00eaff] mb-6">{score} Points</p>
           <div className="flex gap-4">
             <Button
@@ -90,7 +92,7 @@ function TriviaGame({ onClose, onComplete }: { onClose: () => void; onComplete: 
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
       <Card className="bg-[#000000] border border-[#00eaff] p-8 max-w-2xl w-full mx-4">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold text-[#ff00c8]">Trivia Challenge</h2>
+          <h2 className="text-2xl font-bold text-[#d8ae55]">Trivia Challenge</h2>
           <Button variant="ghost" onClick={onClose} className="text-[#cccccc]">
             <X className="w-5 h-5" />
           </Button>
@@ -122,7 +124,7 @@ function TriviaGame({ onClose, onComplete }: { onClose: () => void; onComplete: 
           ))}
         </div>
 
-        <p className="text-center text-[#ff00c8] font-bold mt-6">Score: {score}</p>
+        <p className="text-center text-[#d8ae55] font-bold mt-6">Score: {score}</p>
       </Card>
     </div>
   );
@@ -180,7 +182,7 @@ function MemoryGame({ onClose, onComplete }: { onClose: () => void; onComplete: 
     return (
       <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
         <Card className="bg-[#000000] border border-[#00eaff] p-8 max-w-md text-center">
-          <h2 className="text-2xl font-bold text-[#ff00c8] mb-4">You Won!</h2>
+          <h2 className="text-2xl font-bold text-[#d8ae55] mb-4">You Won!</h2>
           <p className="text-4xl font-bold text-[#00eaff] mb-2">{100 - moves * 5} Points</p>
           <p className="text-[#cccccc] mb-6">Completed in {moves} moves</p>
           <Button
@@ -201,7 +203,7 @@ function MemoryGame({ onClose, onComplete }: { onClose: () => void; onComplete: 
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
       <Card className="bg-[#000000] border border-[#00eaff] p-8 max-w-md">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold text-[#ff00c8]">Memory Game</h2>
+          <h2 className="text-2xl font-bold text-[#d8ae55]">Memory Game</h2>
           <Button variant="ghost" onClick={onClose} className="text-[#cccccc]">
             <X className="w-5 h-5" />
           </Button>
@@ -212,7 +214,7 @@ function MemoryGame({ onClose, onComplete }: { onClose: () => void; onComplete: 
             <button
               key={idx}
               onClick={() => handleCardClick(idx)}
-              className="w-16 h-16 bg-gradient-to-br from-[#ff00c8] to-[#d8ae55] rounded-lg flex items-center justify-center text-2xl hover:scale-110 transition-transform"
+              className="w-16 h-16 bg-gradient-to-br from-[#d8ae55] to-[#d8ae55] rounded-lg flex items-center justify-center text-2xl hover:scale-110 transition-transform"
             >
               {card.flipped || card.matched ? card.emoji : "?"}
             </button>
@@ -263,7 +265,7 @@ function MoodMatcherGame({ onClose, onComplete }: { onClose: () => void; onCompl
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
       <Card className="bg-[#000000] border border-[#00eaff] p-8 max-w-md">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold text-[#ff00c8]">Mood Matcher</h2>
+          <h2 className="text-2xl font-bold text-[#d8ae55]">Mood Matcher</h2>
           <Button variant="ghost" onClick={onClose} className="text-[#cccccc]">
             <X className="w-5 h-5" />
           </Button>
@@ -284,7 +286,7 @@ function MoodMatcherGame({ onClose, onComplete }: { onClose: () => void; onCompl
           ))}
         </div>
 
-        <p className="text-center text-[#ff00c8] font-bold">Score: {score}</p>
+        <p className="text-center text-[#d8ae55] font-bold">Score: {score}</p>
       </Card>
     </div>
   );
@@ -293,8 +295,25 @@ function MoodMatcherGame({ onClose, onComplete }: { onClose: () => void; onCompl
 export default function Games() {
   const { isAuthenticated, loading } = useAuth();
   const [, navigate] = useLocation();
+  const bridge = useAOBridge();
   const [activeGame, setActiveGame] = useState<string | null>(null);
   const [gameScores, setGameScores] = useState<Record<string, number>>({});
+
+  const mountKey = bridge.mount.toLowerCase();
+  const activeMount = mountKey.includes("cyber")
+    ? AO_ART.mounts.cyber
+    : mountKey.includes("gold")
+      ? AO_ART.mounts.gold
+      : mountKey.includes("galaxy")
+        ? AO_ART.mounts.galaxy
+        : mountKey.includes("aurora")
+          ? AO_ART.mounts.aurora
+          : AO_ART.mounts.default;
+  const mountColorFilter = bridge.mountColor === "gold"
+    ? "hue-rotate(28deg) saturate(1.3)"
+    : bridge.mountColor === "pearl"
+      ? "grayscale(1) brightness(1.2)"
+      : "saturate(1.15)";
 
   const saveGameScore = trpc.games.saveScore.useMutation({
     onSuccess: (data) => {
@@ -374,13 +393,29 @@ export default function Games() {
             <Button variant="ghost" onClick={() => navigate("/")} className="text-[#cccccc]">
               ← Back
             </Button>
-            <h1 className="text-2xl font-bold text-info">Mini-Games Arcade</h1>
+            <h1 className="text-2xl font-bold text-info">Anom's Corner // Play Worlds</h1>
           </div>
         </div>
       </nav>
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-6 py-12">
+        <section className="ao-play-world-hero mb-10" style={{ backgroundImage: `linear-gradient(90deg, rgba(8,8,15,0.96), rgba(8,8,15,0.6)), url(${aoArtUrl('/backgrounds/05_moonlit_forest_spirit.jpg')})` }}>
+          <div className="ao-play-world-copy">
+            <p className="ao-world-kicker">PLAY WORLDS // BASIC BUILDS, BIG FUTURE</p>
+            <h2>Start with a small game. Grow a living world.</h2>
+            <p>These are the first playable prototypes: trivia, memory, and mood. Scores come from this session only until the shared reward ledger is connected.</p>
+          </div>
+          <div className="ao-mount-identity" aria-label={`${activeMount.label} identity mount with emotion emotes`}>
+            <span className="ao-mount-emote ao-mount-emote-1">{AO_ART.emotes[0]}</span>
+            <span className="ao-mount-emote ao-mount-emote-2">{AO_ART.emotes[1]}</span>
+            <span className="ao-mount-emote ao-mount-emote-3">{AO_ART.emotes[2]}</span>
+            <span className="ao-mount-emote ao-mount-emote-4">{AO_ART.emotes[3]}</span>
+            <img src={aoArtUrl(activeMount.art)} alt={`${activeMount.label} mount identity`} style={{ filter: mountColorFilter }} />
+            <p>{activeMount.label}</p>
+            <small>Identity mount · {bridge.houseName} · {bridge.mountColor}</small>
+          </div>
+        </section>
         {/* Stats Section */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           <Card
@@ -392,9 +427,9 @@ export default function Games() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[#cccccc] text-sm">Games Played</p>
-                <p className="text-3xl font-bold text-[#ff00c8]">{Object.keys(gameScores).length}</p>
+                <p className="text-3xl font-bold text-[#d8ae55]">{Object.keys(gameScores).length}</p>
               </div>
-              <Gamepad2 className="w-8 h-8 text-[#ff00c8] opacity-50" />
+              <Gamepad2 className="w-8 h-8 text-[#d8ae55] opacity-50" />
             </div>
           </Card>
 
@@ -449,7 +484,7 @@ export default function Games() {
                   <span className="text-xs px-2 py-1 bg-[#0A0A10] rounded text-[#cccccc]">
                     {game.difficulty}
                   </span>
-                  <span className="text-xs px-2 py-1 bg-[#0A0A10] rounded text-[#ff00c8] flex items-center gap-1">
+                  <span className="text-xs px-2 py-1 bg-[#0A0A10] rounded text-[#d8ae55] flex items-center gap-1">
                     <Zap className="w-3 h-3" />
                     {gameScores[game.id] || game.reward} pts
                   </span>
@@ -459,7 +494,7 @@ export default function Games() {
                   <div className="mb-4">
                     <p className="text-xs text-[#cccccc] mb-1">Best Score</p>
                     <p className="text-2xl font-bold text-[#00eaff] flex items-center gap-2">
-                      <Star className="w-5 h-5 text-[#ff00c8]" />
+                      <Star className="w-5 h-5 text-[#d8ae55]" />
                       {gameScores[game.id]}
                     </p>
                   </div>

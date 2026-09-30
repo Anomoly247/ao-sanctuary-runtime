@@ -10,28 +10,28 @@ interface ColorScheme {
 }
 
 const PRESET_SCHEMES: Record<string, ColorScheme> = {
-  "Neon Pink": {
-    primary: "#ff00c8",
+  "Badge Gold": {
+    primary: "#d8ae55",
     secondary: "#00eaff",
     accent: "#d8ae55",
   },
   "Neon Blue": {
     primary: "#00eaff",
-    secondary: "#ff00c8",
+    secondary: "#d8ae55",
     accent: "#d8ae55",
   },
-  "Badge Gold": {
+  "Gold Archive": {
     primary: "#d8ae55",
     secondary: "#00eaff",
-    accent: "#ff00c8",
+    accent: "#d8ae55",
   },
-  "Neon Green": {
-    primary: "#00ff88",
-    secondary: "#ff00c8",
+  "Cyan Signal": {
+    primary: "#00eaff",
+    secondary: "#d8ae55",
     accent: "#00eaff",
   },
-  "Neon Orange": {
-    primary: "#ff6600",
+  "Gold Signal": {
+    primary: "#d8ae55",
     secondary: "#00eaff",
     accent: "#d8ae55",
   },
@@ -39,7 +39,7 @@ const PRESET_SCHEMES: Record<string, ColorScheme> = {
 
 export default function ColorCustomizer() {
   const [colors, setColors] = useState<ColorScheme>({
-    primary: "#ff00c8",
+    primary: "#d8ae55",
     secondary: "#00eaff",
     accent: "#d8ae55",
   });
@@ -76,7 +76,7 @@ export default function ColorCustomizer() {
 
   const resetColors = () => {
     const defaultColors = {
-      primary: "#ff00c8",
+      primary: "#d8ae55",
       secondary: "#00eaff",
       accent: "#d8ae55",
     };
@@ -90,7 +90,7 @@ export default function ColorCustomizer() {
       {/* Floating Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-14 h-14 rounded-full bg-gradient-to-br from-[#ff00c8] to-[#00eaff] flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all hover:scale-110"
+        className="w-14 h-14 rounded-full bg-gradient-to-br from-[#d8ae55] to-[#00eaff] flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all hover:scale-110"
         title="Customize Colors"
       >
         <Palette className="w-6 h-6" />
@@ -101,7 +101,7 @@ export default function ColorCustomizer() {
         <Card className="absolute bottom-20 right-0 bg-[#000000] border border-[#08080f] p-6 w-80 shadow-2xl">
           <div className="space-y-4">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-bold text-[#ff00c8]">Theme Colors</h3>
+              <h3 className="text-lg font-bold text-[#d8ae55]">Theme Colors</h3>
               <button
                 onClick={resetColors}
                 className="p-1 hover:bg-[#08080f] rounded transition-colors"

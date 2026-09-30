@@ -54,7 +54,7 @@ export default function MembershipCard({
   };
 
   const getBorderColor = () => {
-    if (isCurrentTier) return "#ff00c8";
+    if (isCurrentTier) return "#d8ae55";
     if (featured) return getTierColor();
     return "#08080f";
   };

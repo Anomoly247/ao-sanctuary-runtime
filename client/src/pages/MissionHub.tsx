@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Heart, Users, Zap, Sparkles, Target, Gift } from "lucide-react";
+import { Heart, Users, Zap, Sparkles } from "lucide-react";
 import { useLocation } from "wouter";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { useState } from "react";
@@ -11,13 +11,6 @@ export default function MissionHub() {
   const [, navigate] = useLocation();
   const [showDonationModal, setShowDonationModal] = useState(false);
   const [donationAmount, setDonationAmount] = useState("25");
-
-  const impactMetrics = [
-    { label: "Lives Touched", value: "1,247", icon: Heart, color: "#ff00c8" },
-    { label: "Projects Completed", value: "89", icon: Target, color: "#00eaff" },
-    { label: "Community Members", value: "3,456", icon: Users, color: "#d8ae55" },
-    { label: "Total Donations", value: "$12,450", icon: Gift, color: "#ffd700" },
-  ];
 
   const missionPillars = [
     {
@@ -112,30 +105,14 @@ export default function MissionHub() {
 
       {/* Impact Metrics */}
       <section className="px-6 py-16 border-t border-[#08080f]">
-        <div className="max-w-7xl mx-auto">
-          <h3 className="text-3xl font-bold text-center mb-12 text-accent">
-            Our Impact in Numbers
-          </h3>
-          <div className="grid md:grid-cols-4 gap-6">
-            {impactMetrics.map((metric, idx) => {
-              const Icon = metric.icon;
-              return (
-                <Card
-                  key={idx}
-                  className="bg-[#000000] border border-[#08080f] p-6 text-center hover:border-[#00eaff] transition-colors"
-                >
-                  <Icon
-                    className="w-8 h-8 mx-auto mb-4"
-                    style={{ color: metric.color }}
-                  />
-                  <p className="text-4xl font-bold mb-2" style={{ color: metric.color }}>
-                    {metric.value}
-                  </p>
-                  <p className="text-[#cccccc]">{metric.label}</p>
-                </Card>
-              );
-            })}
-          </div>
+        <div className="max-w-3xl mx-auto">
+          <Card className="bg-[#000000] border border-[#d8ae55] p-8 text-center">
+            <Zap className="w-8 h-8 mx-auto mb-4 text-[#00eaff]" />
+            <h3 className="text-2xl font-bold text-[#d8ae55] mb-3">Impact ledger status</h3>
+            <p className="text-[#cccccc] leading-relaxed">
+              No impact totals are displayed here until they are backed by the shared AO ledger. This keeps the mission story honest: participation, completions, and donations will appear only when a live record exists.
+            </p>
+          </Card>
         </div>
       </section>
 
@@ -154,7 +131,7 @@ export default function MissionHub() {
                   className="bg-[#0A0A10] border border-[#08080f] p-8 hover:border-[#00eaff] transition-colors"
                 >
                   <Icon className="w-8 h-8 text-[#00eaff] mb-4" />
-                  <h4 className="text-xl font-bold text-[#ff00c8] mb-3">{pillar.title}</h4>
+                  <h4 className="text-xl font-bold text-[#d8ae55] mb-3">{pillar.title}</h4>
                   <p className="text-[#cccccc]">{pillar.description}</p>
                 </Card>
               );
@@ -179,7 +156,7 @@ export default function MissionHub() {
               </p>
               <ul className="space-y-3 mb-8">
                 <li className="flex gap-3">
-                  <span className="text-[#ff00c8]">✓</span>
+                  <span className="text-[#d8ae55]">✓</span>
                   <span className="text-[#cccccc]">Find and connect with creators aligned to your mission</span>
                 </li>
                 <li className="flex gap-3">
@@ -206,20 +183,19 @@ export default function MissionHub() {
               <div className="space-y-6">
                 <div className="bg-[#0A0A10] rounded-lg p-4 border border-[#08080f]">
                   <p className="text-[#00eaff] font-bold mb-2">Featured Project</p>
-                  <h4 className="text-xl font-bold text-[#ff00c8] mb-2">
+                  <h4 className="text-xl font-bold text-[#d8ae55] mb-2">
                     Ocean Cleanup Initiative
                   </h4>
                   <p className="text-[#cccccc] text-sm mb-4">
-                    Join 47 creators working to clean our oceans. 3 months in, 2,400 lbs of plastic removed.
+                    Featured projects will appear here after a live collaboration record is connected.
                   </p>
-                  <Button className="w-full btn-secondary" size="sm">
-                    Join Project
+                  <Button className="w-full btn-secondary" size="sm" onClick={() => navigate("/collaboration")}>
+                    Open Collaboration Station
                   </Button>
                 </div>
                 <div className="bg-[#0A0A10] rounded-lg p-4 border border-[#08080f]">
-                  <p className="text-[#ff00c8] font-bold mb-2">Active Creators</p>
-                  <p className="text-3xl font-bold text-[#00eaff]">1,247</p>
-                  <p className="text-[#cccccc] text-sm">Collaborating on social good</p>
+                  <p className="text-[#d8ae55] font-bold mb-2">Live creator signal</p>
+                  <p className="text-[#cccccc] text-sm">No aggregate creator count is shown until it is read from the live collaboration ledger.</p>
                 </div>
               </div>
             </Card>
@@ -233,29 +209,11 @@ export default function MissionHub() {
           <h3 className="text-3xl font-bold text-center mb-12 text-accent">
             How Your Donation Powers the Mission
           </h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            <Card className="bg-[#0A0A10] border border-[#08080f] p-6">
-              <div className="text-3xl font-bold text-[#ff00c8] mb-3">40%</div>
-              <p className="font-bold text-[#00eaff] mb-2">Platform Development</p>
-              <p className="text-[#cccccc] text-sm">
-                Building new features, improving infrastructure, and scaling the platform.
-              </p>
-            </Card>
-            <Card className="bg-[#0A0A10] border border-[#08080f] p-6">
-              <div className="text-3xl font-bold text-[#00eaff] mb-3">40%</div>
-              <p className="font-bold text-[#ff00c8] mb-2">Creator Support</p>
-              <p className="text-[#cccccc] text-sm">
-                Grants, tools, and resources for artists and visionaries launching projects.
-              </p>
-            </Card>
-            <Card className="bg-[#0A0A10] border border-[#08080f] p-6">
-              <div className="text-3xl font-bold text-[#d8ae55] mb-3">20%</div>
-              <p className="font-bold text-[#ffd700] mb-2">Social Good Initiatives</p>
-              <p className="text-[#cccccc] text-sm">
-                Direct funding for community projects and impact-driven collaborations.
-              </p>
-            </Card>
-          </div>
+          <Card className="bg-[#0A0A10] border border-[#08080f] p-6">
+            <p className="text-[#cccccc] leading-relaxed">
+              Donation routing is not active in this runtime. The allocation breakdown will be published here only when the connected financial and mission records are available.
+            </p>
+          </Card>
         </div>
       </section>
 
@@ -264,7 +222,7 @@ export default function MissionHub() {
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
           <Card className="bg-[#000000] border border-[#00eaff] w-full max-w-md">
             <div className="p-8">
-              <h3 className="text-2xl font-bold text-[#ff00c8] mb-6">Support Our Mission</h3>
+              <h3 className="text-2xl font-bold text-[#d8ae55] mb-6">Support Our Mission</h3>
               <p className="text-[#cccccc] mb-6">
                 Your donation fuels platform development, creator support, and real-world social good impact.
               </p>
@@ -276,7 +234,7 @@ export default function MissionHub() {
                     onClick={() => setDonationAmount(amount)}
                     className={`w-full p-3 rounded-lg border-2 transition-all font-bold ${
                       donationAmount === amount
-                        ? "border-[#00eaff] bg-transparent border border-[#00eaff] bg-[#00eaff]/10 text-[#ff00c8]"
+                        ? "border-[#00eaff] bg-transparent border border-[#00eaff] bg-[#00eaff]/10 text-[#d8ae55]"
                         : "border-[#08080f] bg-[#0A0A10] text-[#cccccc] hover:border-[#00eaff]"
                     }`}
                   >

@@ -32,7 +32,7 @@ describe("Profile Settings Persistence", () => {
   describe("loadProfileSettings", () => {
     it("should return default settings when localStorage is empty", () => {
       const settings = loadProfileSettings();
-      expect(settings.colors.primary).toBe("#ff00c8");
+      expect(settings.colors.primary).toBe("#d8ae55");
       expect(settings.colors.secondary).toBe("#00eaff");
       expect(settings.theme).toBe("dark");
       expect(settings.photos).toEqual([]);
@@ -58,10 +58,10 @@ describe("Profile Settings Persistence", () => {
   describe("saveProfileSettings", () => {
     it("should save settings to localStorage", () => {
       const settings: ProfileSettings = {
-        colors: { primary: "#ff00c8", secondary: "#00eaff", accent: "#ffd700" },
+        colors: { primary: "#d8ae55", secondary: "#00eaff", accent: "#ffd700" },
         theme: "dark",
         bio: "My bio",
-        nameColor: "#ff00c8",
+        nameColor: "#d8ae55",
         photos: [],
       };
 

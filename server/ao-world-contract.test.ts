@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   AO_LIBRARY_WORLD,
+  AO_MOUNT_CONTRACT,
   AO_SAFETY_LAYERS,
   AO_SOCIAL_GOOD_MISSIONS,
   AO_WORLD_AGE_TIERS,
@@ -30,6 +31,13 @@ describe("AO world contract", () => {
     expect(AO_LIBRARY_WORLD.mission).toContain("curiosity");
   });
 
+  it("keeps mounts as earned identity vessels", () => {
+    expect(AO_MOUNT_CONTRACT.role).toContain("identity vessel");
+    expect(AO_MOUNT_CONTRACT.purchase).toContain("earned Anom Coins");
+    expect(AO_MOUNT_CONTRACT.features).toContain("earned through play");
+    expect(AO_MOUNT_CONTRACT.expression).toContain("emotion emotes");
+  });
+
   it("keeps every world age-aware and every mission ledger-backed", () => {
     expect(Object.keys(AO_WORLD_AGE_TIERS)).toEqual(
       expect.arrayContaining(["sanctuary", "play", "archive", "creator", "library"]),
@@ -38,6 +46,11 @@ describe("AO world contract", () => {
       "welcome-to-ao",
       "play-with-purpose",
       "make-something-kind",
+    ]);
+    expect(AO_SOCIAL_GOOD_MISSIONS.map(mission => mission.badgeName)).toEqual([
+      "First Steps",
+      "Game Master",
+      "Family Hero",
     ]);
   });
 });

@@ -12,14 +12,14 @@ import IdentitySyncCard from "@/components/IdentitySyncCard";
 import { useAuth } from "@/_core/hooks/useAuth";
 
 const THEME_OPTIONS = [
-  { id: "magenta", name: "Neon Magenta", color: "#ff00c8", preview: "🌸" },
-  { id: "cyan", name: "Neon Cyan", color: "#00eaff", preview: "💎" },
+  { id: "magenta", name: "Badge Gold", color: "#d8ae55", preview: "🌸" },
+  { id: "cyan", name: "Cyan", color: "#00eaff", preview: "💎" },
   { id: "purple", name: "Badge Gold", color: "#d8ae55", preview: "👾" },
 ];
 
 const NAME_COLORS = [
   { id: "#ffffff", name: "White", color: "#ffffff" },
-  { id: "#ff00c8", name: "Magenta", color: "#ff00c8" },
+  { id: "#d8ae55", name: "Badge Gold", color: "#d8ae55" },
   { id: "#00eaff", name: "Cyan", color: "#00eaff" },
   { id: "#d8ae55", name: "Badge Gold", color: "#d8ae55" },
   { id: "#ffd700", name: "Gold (VIP)", color: "#ffd700" },
@@ -73,8 +73,8 @@ export default function Profile() {
       <div className="min-h-screen bg-gradient-to-br from-[#0A0A10] to-[#141423] flex items-center justify-center p-4">
         <Card className="border-2 border-[#00eaff] bg-[#0A0A10]/80 p-8 max-w-md">
           <div className="flex items-center gap-3 mb-4">
-            <AlertCircle className="w-6 h-6 text-[#ff00c8]" />
-            <h2 className="text-xl font-bold text-[#ff00c8]">Unable to Load Profile</h2>
+            <AlertCircle className="w-6 h-6 text-[#d8ae55]" />
+            <h2 className="text-xl font-bold text-[#d8ae55]">Unable to Load Profile</h2>
           </div>
           <p className="text-[#cccccc] text-sm mb-6">
             We're having trouble connecting to your profile data. This might be a temporary issue. Please try again later or contact support if the problem persists.
@@ -102,7 +102,7 @@ export default function Profile() {
     return (
       <div className="min-h-screen bg-[#0A0A10] text-[#00eaff] flex items-center justify-center">
         <Card className="border-2 border-[#00eaff] bg-[#0A0A10]/80 p-8">
-          <p className="text-[#ff00c8] mb-4">Please sign in to view your profile</p>
+          <p className="text-[#d8ae55] mb-4">Please sign in to view your profile</p>
           <Button onClick={() => navigate("/")} className="bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10">
             Go to Home
           </Button>
@@ -174,7 +174,7 @@ export default function Profile() {
       <div className="border-b border-[#08080f] bg-[#0A0A10]/95 backdrop-blur sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-4">
           <div className="flex justify-between items-center">
-            <h1 className="text-3xl font-bold text-[#ff00c8]">My Profile</h1>
+            <h1 className="text-3xl font-bold text-[#d8ae55]">My Profile</h1>
             <div className="flex gap-2">
               <Button variant="outline" onClick={() => navigate("/")} className="text-[#00eaff] border-[#00eaff] hover:bg-[#00eaff]/10">
                 ← Back to Home
@@ -198,7 +198,7 @@ export default function Profile() {
               onClick={() => setActiveTab(tab.id as any)}
               className={`px-4 py-2 rounded-lg border-2 font-bold transition-all ${
                 activeTab === tab.id
-                  ? "border-[#00eaff] bg-transparent border border-[#00eaff] bg-[#00eaff]/10 text-[#ff00c8]"
+                  ? "border-[#00eaff] bg-transparent border border-[#00eaff] bg-[#00eaff]/10 text-[#d8ae55]"
                   : "border-[#00eaff] bg-transparent text-[#00eaff] hover:bg-[#00eaff]/10"
               }`}
             >
@@ -215,9 +215,9 @@ export default function Profile() {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-[#cccccc] text-sm">Level</p>
-                    <p className="text-4xl font-bold text-[#ff00c8]">{profile?.level || 1}</p>
+                    <p className="text-4xl font-bold text-[#d8ae55]">{profile?.level || 1}</p>
                   </div>
-                  <Zap className="w-12 h-12 text-[#ff00c8] opacity-50" />
+                  <Zap className="w-12 h-12 text-[#d8ae55] opacity-50" />
                 </div>
               </Card>
 
@@ -233,7 +233,7 @@ export default function Profile() {
             </div>
 
             <Card className="bg-[#000000] border border-[#08080f] p-6">
-              <h3 className="text-xl font-bold text-[#ff00c8] mb-4">Bio</h3>
+              <h3 className="text-xl font-bold text-[#d8ae55] mb-4">Bio</h3>
               <p className="text-[#cccccc]">{profile?.bio || "No bio yet. Add one in the Customize tab!"}</p>
             </Card>
           </div>
@@ -243,7 +243,7 @@ export default function Profile() {
         {activeTab === "customize" && (
           <div className="space-y-6">
             <Card className="bg-[#000000] border border-[#08080f] p-6">
-              <h3 className="text-xl font-bold text-[#ff00c8] mb-4">Theme</h3>
+              <h3 className="text-xl font-bold text-[#d8ae55] mb-4">Theme</h3>
               <div className="grid grid-cols-3 gap-4">
                 {THEME_OPTIONS.map((theme) => (
                   <button
@@ -263,7 +263,7 @@ export default function Profile() {
             </Card>
 
             <Card className="bg-[#000000] border border-[#08080f] p-6">
-              <h3 className="text-xl font-bold text-[#ff00c8] mb-4">Name Color</h3>
+              <h3 className="text-xl font-bold text-[#d8ae55] mb-4">Name Color</h3>
               <div className="grid grid-cols-3 gap-4">
                 {NAME_COLORS.map((color) => (
                   <button
@@ -291,7 +291,7 @@ export default function Profile() {
         {activeTab === "settings" && (
           <div className="space-y-6">
             <Card className="bg-[#000000] border border-[#08080f] p-6">
-              <h3 className="text-xl font-bold text-[#ff00c8] mb-4">Edit Bio</h3>
+              <h3 className="text-xl font-bold text-[#d8ae55] mb-4">Edit Bio</h3>
               {isEditingProfile ? (
                 <div className="space-y-4">
                   <textarea
@@ -323,7 +323,7 @@ export default function Profile() {
         {activeTab === "share" && (
           <div className="space-y-6">
             <Card className="bg-[#000000] border border-[#08080f] p-6">
-              <h3 className="text-xl font-bold text-[#ff00c8] mb-4">Share Your Profile</h3>
+              <h3 className="text-xl font-bold text-[#d8ae55] mb-4">Share Your Profile</h3>
               <div className="space-y-4">
                 <div className="flex gap-2">
                   <Input

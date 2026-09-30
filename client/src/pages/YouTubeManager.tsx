@@ -56,7 +56,7 @@ export default function YouTubeManager() {
     },
     {
       id: 4,
-      title: "Kids Corner Adventures",
+      title: "Anom's Corner Adventures",
       description: "Fun educational content for kids",
       views: 0,
       likes: 0,
@@ -130,7 +130,7 @@ export default function YouTubeManager() {
     return (
       <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-center">
-          <AlertCircle className="w-16 h-16 mx-auto mb-4 text-[#ff00c8]" />
+          <AlertCircle className="w-16 h-16 mx-auto mb-4 text-[#d8ae55]" />
           <p className="text-[#00eaff] text-xl mb-4">Admin access required</p>
           <Button className="btn-primary" onClick={() => navigate("/")}>
             Back to Home
@@ -152,7 +152,7 @@ export default function YouTubeManager() {
             <h1 className="text-2xl font-bold text-info">YouTube Upload Manager</h1>
           </div>
           <div className="flex items-center gap-2">
-            <Play className="w-5 h-5 text-[#ff00c8]" />
+            <Play className="w-5 h-5 text-[#d8ae55]" />
             <span className="text-sm text-[#cccccc]">Connected to YouTube</span>
           </div>
         </div>
@@ -166,9 +166,9 @@ export default function YouTubeManager() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[#cccccc] text-sm">Subscribers</p>
-                <p className="text-3xl font-bold text-[#ff00c8]">{channelStats.subscribers.toLocaleString()}</p>
+                <p className="text-3xl font-bold text-[#d8ae55]">{channelStats.subscribers.toLocaleString()}</p>
               </div>
-              <Eye className="w-8 h-8 text-[#ff00c8] opacity-50" />
+              <Eye className="w-8 h-8 text-[#d8ae55] opacity-50" />
             </div>
           </Card>
 
@@ -228,7 +228,7 @@ export default function YouTubeManager() {
           <TabsContent value="upload" className="space-y-6">
             <Card className="bg-[#000000] border border-[#08080f] p-8">
               <div className="space-y-6">
-                <h3 className="text-xl font-bold text-[#ff00c8]">Upload New Video</h3>
+                <h3 className="text-xl font-bold text-[#d8ae55]">Upload New Video</h3>
 
                 {/* File Upload Area */}
                 <div className="border-2 border-dashed border-[#08080f] rounded-lg p-12 text-center hover:border-[#00eaff] transition-colors cursor-pointer">
@@ -286,7 +286,7 @@ export default function YouTubeManager() {
                     </div>
                     <div className="w-full bg-[#0A0A10] rounded-full h-2 border border-[#08080f]">
                       <div
-                        className="bg-gradient-to-r from-[#ff00c8] to-[#00eaff] h-full rounded-full transition-all"
+                        className="bg-gradient-to-r from-[#d8ae55] to-[#00eaff] h-full rounded-full transition-all"
                         style={{ width: `${uploadProgress}%` }}
                       />
                     </div>
@@ -318,7 +318,7 @@ export default function YouTubeManager() {
 
           {/* Video Library Tab */}
           <TabsContent value="library" className="space-y-6">
-            <h3 className="text-xl font-bold text-[#ff00c8]">Video Library</h3>
+            <h3 className="text-xl font-bold text-[#d8ae55]">Video Library</h3>
             <div className="grid md:grid-cols-2 gap-6">
               {videos.map((video) => (
                 <Card key={video.id} className="bg-[#000000] border border-[#08080f] overflow-hidden hover:border-[#00eaff] transition-colors">
@@ -336,7 +336,7 @@ export default function YouTubeManager() {
                       </div>
                       <div className="bg-[#0A0A10] p-2 rounded text-center">
                         <p className="text-[#cccccc] text-xs">Likes</p>
-                        <p className="text-[#ff00c8] font-bold">{video.likes}</p>
+                        <p className="text-[#d8ae55] font-bold">{video.likes}</p>
                       </div>
                       <div className="bg-[#0A0A10] p-2 rounded text-center">
                         <p className="text-[#cccccc] text-xs">Comments</p>
@@ -362,7 +362,7 @@ export default function YouTubeManager() {
 
           {/* Analytics Tab */}
           <TabsContent value="analytics" className="space-y-6">
-            <h3 className="text-xl font-bold text-[#ff00c8]">Channel Analytics</h3>
+            <h3 className="text-xl font-bold text-[#d8ae55]">Channel Analytics</h3>
             <Card className="bg-[#000000] border border-[#08080f] p-6">
               <div className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
@@ -390,7 +390,7 @@ export default function YouTubeManager() {
                         </div>
                         <div className="flex gap-4 text-sm">
                           <span className="text-[#cccccc]">{video.views} views</span>
-                          <span className="text-[#ff00c8]">{video.likes} likes</span>
+                          <span className="text-[#d8ae55]">{video.likes} likes</span>
                         </div>
                       </div>
                     ))}
@@ -402,7 +402,7 @@ export default function YouTubeManager() {
 
           {/* Settings Tab */}
           <TabsContent value="settings" className="space-y-6">
-            <h3 className="text-xl font-bold text-[#ff00c8]">YouTube Settings</h3>
+            <h3 className="text-xl font-bold text-[#d8ae55]">YouTube Settings</h3>
             <Card className="bg-[#000000] border border-[#08080f] p-6">
               <div className="space-y-6">
                 <div>

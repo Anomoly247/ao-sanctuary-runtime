@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import SignUpConnectors from "@/components/SignUpConnectors";
 import HomepageIntegration from "@/components/HomepageIntegration";
 import { trpc } from "@/lib/trpc";
-import { AO_LIBRARY_WORLD, AO_SOCIAL_GOOD_MISSIONS, AO_WORLD_AGE_TIERS, AO_WORLD_PRINCIPLES } from "../../../shared/aoWorldContract";
+import { AO_LIBRARY_WORLD, AO_SOCIAL_GOOD_MISSIONS, AO_WORLD_AGE_TIERS, AO_WORLD_PRINCIPLES, getAOBadgeRarity } from "../../../shared/aoWorldContract";
 
 export default function Home() {
   const { user, loading, isAuthenticated, logout } = useAuth();
@@ -40,6 +40,10 @@ export default function Home() {
     return '';
   });
   const [showBgMenu, setShowBgMenu] = useState(false);
+  const [guardianFilter, setGuardianFilter] = useState<boolean>(() => {
+    if (typeof window !== 'undefined') return localStorage.getItem('ao-guardian-filter') === 'on';
+    return false;
+  });
 
   if (loading) {
     return (
@@ -67,7 +71,7 @@ export default function Home() {
           <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div>
               <div className="mb-6 inline-block bg-transparent border border-[#00eaff] bg-[#00eaff]/10 border border-[#00eaff] rounded-lg px-4 py-2">
-                <p className="text-[#ff00c8] font-bold text-sm">🌍 Social Good First</p>
+                <p className="text-[#d8ae55] font-bold text-sm">🌍 Social Good First</p>
               </div>
               <h1 className="text-5xl font-bold mb-6">
                 <span className="text-accent">Identity</span>
@@ -94,7 +98,7 @@ export default function Home() {
         </section>
 
         {/* Mission Section */}
-        <section className="bg-gradient-to-r from-[#ff00c8]/10 to-[#00eaff]/10 border-t border-[#00eaff] px-6 py-16">
+        <section className="bg-gradient-to-r from-[#d8ae55]/10 to-[#00eaff]/10 border-t border-[#00eaff] px-6 py-16">
           <div className="max-w-7xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6">
               <span className="text-accent">Social Good</span>
@@ -121,7 +125,7 @@ export default function Home() {
             <div className="grid md:grid-cols-3 gap-8">
               {/* Feature 1 */}
               <div className="bg-[#000000] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
-                <Zap className="w-8 h-8 text-[#ff00c8] mb-4" />
+                <Zap className="w-8 h-8 text-[#d8ae55] mb-4" />
                 <h3 className="text-xl font-bold text-[#00eaff] mb-2">Anom Coin Economy</h3>
                 <p className="text-[#cccccc]">
                   Earn coins through social good actions, games, and community engagement. Spend them on profile decorations and exclusive lounges.
@@ -131,7 +135,7 @@ export default function Home() {
               {/* Feature 2 */}
               <div className="bg-[#000000] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
                 <Users className="w-8 h-8 text-[#00eaff] mb-4" />
-                <h3 className="text-xl font-bold text-[#ff00c8] mb-2">Private Lounges</h3>
+                <h3 className="text-xl font-bold text-[#d8ae55] mb-2">Private Lounges</h3>
                 <p className="text-[#cccccc]">
                   Create family, friend, and coworker lounges. Chat, share goals, and customize your space with visual themes.
                 </p>
@@ -139,7 +143,7 @@ export default function Home() {
 
               {/* Feature 3 */}
               <div className="bg-[#000000] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
-                <Gamepad2 className="w-8 h-8 text-[#ff00c8] mb-4" />
+                <Gamepad2 className="w-8 h-8 text-[#d8ae55] mb-4" />
                 <h3 className="text-xl font-bold text-[#00eaff] mb-2">Mini-Games</h3>
                 <p className="text-[#cccccc]">
                   Play Trivia, Memory, Mood Matcher, and Snack Vault Rush. Earn coins and climb the leaderboard.
@@ -149,7 +153,7 @@ export default function Home() {
               {/* Feature 4 */}
               <div className="bg-[#000000] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
                 <Heart className="w-8 h-8 text-[#00eaff] mb-4" />
-                <h3 className="text-xl font-bold text-[#ff00c8] mb-2">Kids Corner</h3>
+                <h3 className="text-xl font-bold text-[#d8ae55] mb-2">Anom's Corner</h3>
                 <p className="text-[#cccccc]">
                   A safe space for children to watch Pixel & Dot episodes, play Off-Grid Adventure, and color.
                 </p>
@@ -157,7 +161,7 @@ export default function Home() {
 
               {/* Feature 5 */}
               <div className="bg-[#000000] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
-                <Sparkles className="w-8 h-8 text-[#ff00c8] mb-4" />
+                <Sparkles className="w-8 h-8 text-[#d8ae55] mb-4" />
                 <h3 className="text-xl font-bold text-[#00eaff] mb-2">Profile Customization</h3>
                 <p className="text-[#cccccc]">
                   Apply visual themes, character badges, and mood glows to your profile. No coding required.
@@ -167,7 +171,7 @@ export default function Home() {
               {/* Feature 6 */}
               <div className="bg-[#000000] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
                 <ShoppingBag className="w-8 h-8 text-[#00eaff] mb-4" />
-                <h3 className="text-xl font-bold text-[#ff00c8] mb-2">Custom Merch</h3>
+                <h3 className="text-xl font-bold text-[#d8ae55] mb-2">Custom Merch</h3>
                 <p className="text-[#cccccc]">
                   Request your bespoke artwork. We create and fulfill it through our trusted partners.
                 </p>
@@ -225,6 +229,15 @@ export default function Home() {
     setShowBgMenu(false);
   };
 
+  const toggleGuardianFilter = () => {
+    setGuardianFilter(current => {
+      const next = !current;
+      localStorage.setItem('ao-guardian-filter', next ? 'on' : 'off');
+      toast.success(next ? 'Guardian view on: showing safer worlds' : 'Guardian view off: showing all worlds');
+      return next;
+    });
+  };
+
   const worldPortals = [
     {
       name: 'Sanctuary',
@@ -232,6 +245,7 @@ export default function Home() {
       detail: 'Lounges · Feed · Missions',
       description: 'Find your people and turn kindness into momentum.',
       ageTier: AO_WORLD_AGE_TIERS.sanctuary,
+      guardianSafe: true,
       path: '/mission-hub',
       tone: 'gold',
       icon: Heart,
@@ -240,9 +254,10 @@ export default function Home() {
     {
       name: 'Play Worlds',
       eyebrow: 'ARCADE SIGNAL',
-      detail: 'Games · Kids Corner',
+      detail: "Games · Anom's Corner",
       description: 'Play small, bright games that grow your signal.',
       ageTier: AO_WORLD_AGE_TIERS.play,
+      guardianSafe: true,
       path: '/games',
       tone: 'cyan',
       icon: Gamepad2,
@@ -254,6 +269,7 @@ export default function Home() {
       detail: 'Achievements · Merch',
       description: 'Collect the objects, colors, and memories you unlock.',
       ageTier: AO_WORLD_AGE_TIERS.archive,
+      guardianSafe: true,
       path: '/achievements',
       tone: 'gold',
       icon: Sparkles,
@@ -265,18 +281,18 @@ export default function Home() {
       detail: 'Collaboration · Profiles',
       description: 'Shape your identity through simple, joyful choices.',
       ageTier: AO_WORLD_AGE_TIERS.creator,
+      guardianSafe: false,
       path: '/collaboration',
       tone: 'cyan',
       icon: Users,
       delay: '0.6s',
     },
   ] as const;
+  const visibleWorldPortals = guardianFilter ? worldPortals.filter(world => world.guardianSafe) : worldPortals;
 
   const signals = [
-    { label: 'ANOM COINS', value: '0 AC', icon: Zap, tone: 'gold' },
     { label: 'LEVEL', value: String(profileData?.level || 1).padStart(2, '0'), icon: Sparkles, tone: 'cyan' },
     { label: 'BADGES', value: String(unlockedBadgeCount), icon: Heart, tone: 'gold' },
-    { label: 'LOUNGES', value: '0', icon: Users, tone: 'cyan' },
   ] as const;
 
   return (
@@ -348,11 +364,18 @@ export default function Home() {
             <div className="ao-world-hero-actions">
               <Button className="btn-primary" onClick={() => navigate('/mission-hub')}>Open Mission Hub</Button>
               <Button className="btn-secondary" onClick={() => navigate('/games')}>Enter Play Worlds</Button>
+              <Button type="button" className={`btn-outline ${guardianFilter ? 'ao-guardian-toggle-active' : ''}`} aria-pressed={guardianFilter} onClick={toggleGuardianFilter}>
+                <ShieldCheck className="h-4 w-4" />
+                {guardianFilter ? 'Guardian view on' : 'Guardian filter'}
+              </Button>
             </div>
+            <p className="ao-guardian-control-copy">
+              {guardianFilter ? 'Showing all-ages and kids + guardians worlds.' : 'Filter the map to age-appropriate worlds when exploring together.'}
+            </p>
             <p className="ao-world-caption">{AO_WORLD_PRINCIPLES.join(" · ")}</p>
           </div>
 
-          <div className="ao-world-map" role="group" aria-label="Four connected Anom worlds orbiting a shared sanctuary core">
+          <div className="ao-world-map" role="group" aria-label={`${visibleWorldPortals.length} connected Anom worlds orbiting a shared sanctuary core`}>
             <div className="ao-map-halo ao-map-halo-outer" />
             <div className="ao-map-halo ao-map-halo-inner" />
             <div className="ao-map-star ao-map-star-one" />
@@ -363,7 +386,7 @@ export default function Home() {
               <strong>AO</strong>
               <span className="ao-core-caption">one universe<br />many ways in</span>
             </div>
-            {worldPortals.map((world, index) => {
+            {visibleWorldPortals.map((world, index) => {
               const Icon = world.icon;
               return (
                 <button
@@ -417,9 +440,10 @@ export default function Home() {
               <span className="ao-identity-glow-label">YOUR GLOW</span>
             </div>
             <div className="ao-badge-dock">
-              {unlockedBadges.length > 0 ? unlockedBadges.map((badge) => (
-                <span className="ao-badge-chip" key={badge.id} title={badge.name}><Sparkles className="h-3 w-3" />{badge.name}</span>
-              )) : <span className="ao-badge-chip ao-badge-chip-empty"><Sparkles className="h-3 w-3" />First badge waiting</span>}
+              {unlockedBadges.length > 0 ? unlockedBadges.map((badge) => {
+                const rarity = getAOBadgeRarity(badge);
+                return <span className={`ao-badge-chip ao-badge-rarity-${rarity}`} key={badge.id} title={`${badge.name} · ${rarity}`}><Sparkles className="h-3 w-3" /><span>{badge.name}</span><small>{rarity}</small></span>;
+              }) : <span className="ao-badge-chip ao-badge-chip-empty"><Sparkles className="h-3 w-3" />First badge waiting</span>}
             </div>
           </div>
         </section>

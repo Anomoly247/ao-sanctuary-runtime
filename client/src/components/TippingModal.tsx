@@ -54,8 +54,8 @@ export default function TippingModal({ isOpen, onClose }: TippingModalProps) {
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-2">
-              <Heart className="w-6 h-6 text-[#ff00c8]" />
-              <h2 className="text-2xl font-bold text-[#ff00c8]">Support Anom Artsy</h2>
+              <Heart className="w-6 h-6 text-[#d8ae55]" />
+              <h2 className="text-2xl font-bold text-[#d8ae55]">Support Anom Artsy</h2>
             </div>
             <button
               onClick={onClose}
@@ -108,7 +108,7 @@ export default function TippingModal({ isOpen, onClose }: TippingModalProps) {
                   }}
                   className={`p-3 rounded-lg border-2 font-bold transition-colors ${
                     selectedAmount === amount
-                      ? "border-[#00eaff] bg-transparent border border-[#00eaff] bg-[#00eaff]/10 text-[#ff00c8]"
+                      ? "border-[#00eaff] bg-transparent border border-[#00eaff] bg-[#00eaff]/10 text-[#d8ae55]"
                       : "border-[#08080f] bg-[#0A0A10] text-[#cccccc] hover:border-[#00eaff]"
                   }`}
                 >

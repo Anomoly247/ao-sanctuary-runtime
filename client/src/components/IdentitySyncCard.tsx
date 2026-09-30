@@ -76,7 +76,7 @@ export default function IdentitySyncCard() {
 
   return (
     <Card className="bg-gradient-to-br from-[#141423] to-[#0A0A10] border-2 border-[#00eaff] p-6">
-      <h3 className="text-xl font-bold text-[#ff00c8] mb-4 flex items-center gap-2">
+      <h3 className="text-xl font-bold text-[#d8ae55] mb-4 flex items-center gap-2">
         <RefreshCw className="w-5 h-5" />
         Identity Sync
       </h3>

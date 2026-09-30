@@ -86,7 +86,7 @@ export default function AdminDashboard() {
     return (
       <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-center">
-          <AlertCircle className="w-16 h-16 mx-auto mb-4 text-[#ff00c8]" />
+          <AlertCircle className="w-16 h-16 mx-auto mb-4 text-[#d8ae55]" />
           <p className="text-[#00eaff] text-xl mb-4">Admin access required</p>
           <Button className="btn-primary" onClick={() => navigate("/")}>
             Back to Home
@@ -108,7 +108,7 @@ export default function AdminDashboard() {
             <h1 className="text-2xl font-bold text-accent">Admin Dashboard</h1>
           </div>
           <div className="flex gap-2">
-            <Button variant="outline" className="text-[#ff00c8] border-[#08080f] gap-2" onClick={() => navigate("/owner-settings")}>
+            <Button variant="outline" className="text-[#d8ae55] border-[#08080f] gap-2" onClick={() => navigate("/owner-settings")}>
               <Settings className="w-4 h-4" />
               Settings
             </Button>
@@ -124,9 +124,9 @@ export default function AdminDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[#cccccc] text-sm">Total Users</p>
-                <p className="text-3xl font-bold text-[#ff00c8]">{analytics?.totalUsers || 0}</p>
+                <p className="text-3xl font-bold text-[#d8ae55]">{analytics?.totalUsers || 0}</p>
               </div>
-              <Users className="w-8 h-8 text-[#ff00c8] opacity-50" />
+              <Users className="w-8 h-8 text-[#d8ae55] opacity-50" />
             </div>
           </Card>
 
@@ -208,28 +208,28 @@ export default function AdminDashboard() {
             </div>
 
             <Card className="bg-[#000000] border border-[#08080f] p-6">
-              <h3 className="text-xl font-bold text-[#ff00c8] mb-4">Content Moderation</h3>
+              <h3 className="text-xl font-bold text-[#d8ae55] mb-4">Content Moderation</h3>
               <div className="space-y-4">
                 <div className="flex items-center justify-between p-4 bg-[#0A0A10] rounded border border-[#08080f]">
                   <div>
                     <p className="text-[#00eaff] font-semibold">Social Feed Posts</p>
                     <p className="text-[#cccccc] text-sm">Monitor and moderate community posts</p>
                   </div>
-                  <Button variant="outline" className="text-[#ff00c8] border-[#08080f]">Review</Button>
+                  <Button variant="outline" className="text-[#d8ae55] border-[#08080f]">Review</Button>
                 </div>
                 <div className="flex items-center justify-between p-4 bg-[#0A0A10] rounded border border-[#08080f]">
                   <div>
                     <p className="text-[#00eaff] font-semibold">Lounge Messages</p>
                     <p className="text-[#cccccc] text-sm">Monitor lounge chat and conversations</p>
                   </div>
-                  <Button variant="outline" className="text-[#ff00c8] border-[#08080f]">Review</Button>
+                  <Button variant="outline" className="text-[#d8ae55] border-[#08080f]">Review</Button>
                 </div>
                 <div className="flex items-center justify-between p-4 bg-[#0A0A10] rounded border border-[#08080f]">
                   <div>
                     <p className="text-[#00eaff] font-semibold">User Profiles</p>
                     <p className="text-[#cccccc] text-sm">Review profile content and images</p>
                   </div>
-                  <Button variant="outline" className="text-[#ff00c8] border-[#08080f]">Review</Button>
+                  <Button variant="outline" className="text-[#d8ae55] border-[#08080f]">Review</Button>
                 </div>
               </div>
             </Card>
@@ -251,7 +251,7 @@ export default function AdminDashboard() {
             </div>
 
             <Card className="bg-[#000000] border border-[#08080f] p-6">
-              <h3 className="text-xl font-bold text-[#ff00c8] mb-4">User Management</h3>
+              <h3 className="text-xl font-bold text-[#d8ae55] mb-4">User Management</h3>
               <div className="space-y-2">
                 <p className="text-[#cccccc]">Total Users: {analytics?.totalUsers || 0}</p>
                 <p className="text-[#cccccc]">Active This Week: {(analytics as any)?.newMembersThisWeek || 0}</p>
@@ -262,7 +262,7 @@ export default function AdminDashboard() {
 
           {/* Merch Tab */}
           <TabsContent value="merch" className="space-y-6">
-            <h3 className="text-xl font-bold text-[#ff00c8]">Pending Merch Requests</h3>
+            <h3 className="text-xl font-bold text-[#d8ae55]">Pending Merch Requests</h3>
             {requestsLoading ? (
               <p className="text-[#cccccc]">Loading requests...</p>
             ) : (merchRequests || []).length === 0 ? (
@@ -303,7 +303,7 @@ export default function AdminDashboard() {
           {/* Reports Tab */}
           <TabsContent value="reports" className="space-y-6">
             <Card className="bg-[#000000] border border-[#08080f] p-6">
-              <h3 className="text-xl font-bold text-[#ff00c8] mb-4">Content Reports</h3>
+              <h3 className="text-xl font-bold text-[#d8ae55] mb-4">Content Reports</h3>
               <p className="text-[#cccccc]">No reports at this time.</p>
             </Card>
           </TabsContent>
@@ -312,7 +312,7 @@ export default function AdminDashboard() {
           <TabsContent value="analytics" className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
               <Card className="bg-[#000000] border border-[#08080f] p-6">
-                <h3 className="text-xl font-bold text-[#ff00c8] mb-4">Platform Growth</h3>
+                <h3 className="text-xl font-bold text-[#d8ae55] mb-4">Platform Growth</h3>
                 <div className="space-y-2">
                   <p className="text-[#00eaff]">Total Users: {analytics?.totalUsers || 0}</p>
                   <p className="text-[#00eaff]">New This Week: {(analytics as any)?.newMembersThisWeek || 0}</p>
@@ -321,7 +321,7 @@ export default function AdminDashboard() {
               </Card>
 
               <Card className="bg-[#000000] border border-[#08080f] p-6">
-                <h3 className="text-xl font-bold text-[#ff00c8] mb-4">Revenue Metrics</h3>
+                <h3 className="text-xl font-bold text-[#d8ae55] mb-4">Revenue Metrics</h3>
                 <div className="space-y-2">
                   <p className="text-[#00eaff]">Total Donations: ${(analytics as any)?.totalDonations || 0}</p>
                   <p className="text-[#00eaff]">Coins in Circulation: {(analytics as any)?.totalCoinSpent || 0}</p>

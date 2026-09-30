@@ -4,6 +4,7 @@ export type AOBridgeContextValue = {
   house: string;
   houseName: string;
   mount: string;
+  mountColor: string;
   returnUrl: string;
   source: string;
   mission: string;
@@ -11,13 +12,14 @@ export type AOBridgeContextValue = {
 };
 
 type AOBridgeApi = AOBridgeContextValue & {
-  decorateUrl: (rawUrl: string, options?: { houseAware?: boolean; returnUrl?: string; source?: string; mission?: string; eventId?: string }) => string;
+  decorateUrl: (rawUrl: string, options?: { houseAware?: boolean; returnUrl?: string; source?: string; mission?: string; eventId?: string; mountColor?: string }) => string;
 };
 
 const STORAGE = {
   house: "anom_selectedHouse",
   houseName: "anom_selectedHouseName",
   mount: "anom_selectedMount",
+  mountColor: "anom_selectedMountColor",
   returnUrl: "ao_return_url",
   source: "ao_source",
   mission: "ao_mission",
@@ -64,6 +66,7 @@ function readContext(): AOBridgeContextValue {
   const params = new URLSearchParams(window.location.search);
   const house = params.get("house") || readStorage(STORAGE.house, "1");
   const mount = params.get("mount") || readStorage(STORAGE.mount, "aurora");
+  const mountColor = params.get("mountColor") || readStorage(STORAGE.mountColor, "cyan");
   const returnUrl = safeReturn(params.get("return") || readStorage(STORAGE.returnUrl, FALLBACK_RETURN_URL));
   const source = params.get("source") || readStorage(STORAGE.source, "homeworld");
   const mission = params.get("mission") || readStorage(STORAGE.mission, "");
@@ -73,12 +76,13 @@ function readContext(): AOBridgeContextValue {
   writeStorage(STORAGE.house, house);
   writeStorage(STORAGE.houseName, houseName);
   writeStorage(STORAGE.mount, mount);
+  writeStorage(STORAGE.mountColor, mountColor);
   writeStorage(STORAGE.returnUrl, returnUrl);
   writeStorage(STORAGE.source, source);
   writeStorage(STORAGE.mission, mission);
   writeStorage(STORAGE.eventId, eventId);
 
-  return { house, houseName, mount, returnUrl, source, mission, eventId };
+  return { house, houseName, mount, mountColor, returnUrl, source, mission, eventId };
 }
 
 export function AOBridgeProvider({ children }: { children: React.ReactNode }) {
@@ -102,6 +106,7 @@ export function AOBridgeProvider({ children }: { children: React.ReactNode }) {
         const url = new URL(rawUrl, window.location.href);
         url.searchParams.set("house", context.house);
         url.searchParams.set("mount", context.mount);
+        url.searchParams.set("mountColor", options.mountColor || context.mountColor);
         url.searchParams.set("return", options.returnUrl || context.returnUrl || window.location.href);
         url.searchParams.set("source", options.source || context.source);
         if (options.mission || context.mission) url.searchParams.set("mission", options.mission || context.mission);

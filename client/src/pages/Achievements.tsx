@@ -1,6 +1,8 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
 import { Award, Star, Trophy, Heart } from "lucide-react";
+import { getAOBadgeRarity } from "../../../shared/aoWorldContract";
+import { aoArtUrl } from "../../../shared/aoArt";
 
 export default function Achievements() {
   const { user, isAuthenticated } = useAuth();
@@ -38,6 +40,15 @@ export default function Achievements() {
           <p className="text-[#cccccc]">Track your journey and unlock badges</p>
         </div>
 
+        <section className="ao-badge-archive-hero mb-8" style={{ backgroundImage: `linear-gradient(90deg, rgba(8,8,15,0.96), rgba(8,8,15,0.56)), url(${aoArtUrl('/backgrounds/09_emerald_moon_dragon_castle.jpg')})` }}>
+          <div>
+            <p className="ao-world-kicker">ARCHIVE WORLD // REAL ART, REAL UNLOCKS</p>
+            <h2>Badges are keepsakes from the worlds you enter.</h2>
+            <p>Rarity changes the frame, not the value of the person who earned it. The art collection grows as the connected game grows.</p>
+          </div>
+          <img src={aoArtUrl('/emblems/ao_collector_emblems_showcase.png')} alt="AO collector emblem artwork" />
+        </section>
+
         {/* Level Card */}
         <div
           className="rounded-lg border-2 border-[#00eaff] p-8 mb-8"
@@ -57,13 +68,13 @@ export default function Achievements() {
           <div>
             <div className="flex justify-between mb-2">
               <span className="text-[#cccccc] text-sm">Experience Points</span>
-              <span className="text-[#ff00c8] font-bold">
+              <span className="text-[#d8ae55] font-bold">
                 {xp} / {xpPerLevel}
               </span>
             </div>
             <div className="w-full h-4 bg-[#000000] rounded-full border border-[#cccccc] overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-[#ff00c8] to-[#00eaff]"
+                className="h-full bg-gradient-to-r from-[#d8ae55] to-[#00eaff]"
                 style={{ width: `${xpProgress}%`, transition: "width 0.3s ease" }}
               />
             </div>
@@ -72,7 +83,7 @@ export default function Achievements() {
 
         {/* Achievements Grid */}
         <div>
-          <h2 className="text-2xl font-bold text-[#ff00c8] mb-6">Achievements</h2>
+          <h2 className="text-2xl font-bold text-[#d8ae55] mb-6">Achievements</h2>
           {!allAchievements || allAchievements.length === 0 ? (
             <div
               className="rounded-lg border-2 border-[#cccccc] p-8 text-center"
@@ -86,6 +97,7 @@ export default function Achievements() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {allAchievements.map((achievement) => {
                 const isUnlocked = unlockedIds.has(achievement.id);
+                const rarity = getAOBadgeRarity(achievement);
                 return (
                   <div
                     key={achievement.id}
@@ -106,10 +118,15 @@ export default function Achievements() {
                         <p className="text-[#cccccc] text-sm">{achievement.description}</p>
                       </div>
                       {isUnlocked ? (
-                        <Award className="w-6 h-6 text-[#ff00c8] flex-shrink-0 ml-2" />
+                        <Award className="w-6 h-6 text-[#d8ae55] flex-shrink-0 ml-2" />
                       ) : (
                         <Star className="w-6 h-6 text-[#cccccc] flex-shrink-0 ml-2" />
                       )}
+                    </div>
+
+                    <div className={`ao-achievement-rarity ao-badge-rarity-${rarity}`}>
+                      <span>{rarity}</span>
+                      <span>{isUnlocked ? "UNLOCKED" : "LOCKED"}</span>
                     </div>
 
                     {isUnlocked && (
@@ -135,7 +152,7 @@ export default function Achievements() {
             <p className="text-[#cccccc] text-sm">Unlock badges by winning mini-games</p>
           </div>
           <div className="rounded-lg border-2 border-[#00eaff] p-6" style={{ boxShadow: "0 6px 18px rgba(0, 0, 0, 0.45)" }}>
-            <Star className="w-8 h-8 text-[#ff00c8] mb-3" />
+            <Star className="w-8 h-8 text-[#d8ae55] mb-3" />
             <h3 className="font-bold text-white mb-2">Milestones</h3>
             <p className="text-[#cccccc] text-sm">Reach level milestones and community goals</p>
           </div>

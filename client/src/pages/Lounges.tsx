@@ -97,7 +97,7 @@ export default function Lounges() {
             </DialogTrigger>
             <DialogContent className="bg-[#000000] border border-[#08080f]">
               <DialogHeader>
-                <DialogTitle className="text-[#ff00c8]">Create a New Lounge</DialogTitle>
+                <DialogTitle className="text-[#d8ae55]">Create a New Lounge</DialogTitle>
                 <DialogDescription className="text-[#cccccc]">
                   Create a private space for family, friends, or coworkers to connect.
                 </DialogDescription>
@@ -150,8 +150,8 @@ export default function Lounges() {
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="bg-[#000000] border-[#08080f]">
-                      <SelectItem value="magenta" className="text-[#ff00c8]">
-                        Magenta
+                      <SelectItem value="magenta" className="text-[#d8ae55]">
+                        Badge Gold
                       </SelectItem>
                       <SelectItem value="cyan" className="text-[#00eaff]">
                         Cyan
@@ -184,7 +184,7 @@ export default function Lounges() {
           </div>
         ) : myLounges.length === 0 ? (
           <div className="text-center py-12">
-            <Users className="w-16 h-16 mx-auto mb-4 text-[#ff00c8] opacity-50" />
+            <Users className="w-16 h-16 mx-auto mb-4 text-[#d8ae55] opacity-50" />
             <p className="text-[#cccccc] mb-6">No lounges yet. Create one to get started!</p>
             <Dialog open={isCreateOpen} onOpenChange={setIsCreateOpen}>
               <DialogTrigger asChild>
@@ -195,7 +195,7 @@ export default function Lounges() {
               </DialogTrigger>
               <DialogContent className="bg-[#000000] border border-[#08080f]">
                 <DialogHeader>
-                  <DialogTitle className="text-[#ff00c8]">Create a New Lounge</DialogTitle>
+                  <DialogTitle className="text-[#d8ae55]">Create a New Lounge</DialogTitle>
                   <DialogDescription className="text-[#cccccc]">
                     Create a private space for family, friends, or coworkers to connect.
                   </DialogDescription>
@@ -248,8 +248,8 @@ export default function Lounges() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent className="bg-[#000000] border-[#08080f]">
-                        <SelectItem value="magenta" className="text-[#ff00c8]">
-                          Magenta
+                        <SelectItem value="magenta" className="text-[#d8ae55]">
+                          Badge Gold
                         </SelectItem>
                         <SelectItem value="cyan" className="text-[#00eaff]">
                           Cyan
@@ -295,7 +295,7 @@ export default function Lounges() {
                       <h3 className="text-xl font-bold text-[#00eaff] mb-1">{lounge.name}</h3>
                       <p className="text-sm text-[#cccccc] capitalize">{lounge.type} Lounge</p>
                     </div>
-                    <Lock className="w-5 h-5 text-[#ff00c8]" />
+                    <Lock className="w-5 h-5 text-[#d8ae55]" />
                   </div>
 
                   {lounge.description && (

@@ -108,7 +108,7 @@ export default function MusicPlayer({ tracks, onTrackChange, compact = false }: 
             size="sm"
             variant="ghost"
             onClick={() => setShowShareModal(true)}
-            className="text-[#cccccc] hover:text-[#ff00c8]"
+            className="text-[#cccccc] hover:text-[#d8ae55]"
           >
             <Share2 className="w-4 h-4" />
           </Button>
@@ -132,7 +132,7 @@ export default function MusicPlayer({ tracks, onTrackChange, compact = false }: 
       <audio ref={audioRef} src={currentTrack.url} />
 
       <div className="flex items-center gap-4 mb-6">
-        <Music className="w-8 h-8 text-[#ff00c8]" />
+        <Music className="w-8 h-8 text-[#d8ae55]" />
         <div className="flex-1">
           <h4 className="text-lg font-bold text-[#00eaff]">{currentTrack.title}</h4>
           <p className="text-sm text-[#cccccc]">{currentTrack.artist}</p>
@@ -178,7 +178,7 @@ export default function MusicPlayer({ tracks, onTrackChange, compact = false }: 
           onChange={handleVolumeChange}
           className="flex-1 h-2 bg-[#08080f] rounded-lg appearance-none cursor-pointer"
           style={{
-            background: `linear-gradient(to right, #ff00c8 0%, #ff00c8 ${volume}%, #08080f ${volume}%, #08080f 100%)`,
+            background: `linear-gradient(to right, #d8ae55 0%, #d8ae55 ${volume}%, #08080f ${volume}%, #08080f 100%)`,
           }}
         />
         <span className="text-sm text-[#cccccc] w-8 text-right">{volume}%</span>
@@ -210,7 +210,7 @@ export default function MusicPlayer({ tracks, onTrackChange, compact = false }: 
           </div>
           <div className="col-span-2">
             <p className="text-[#cccccc] text-xs mb-1">License</p>
-            <p className="text-[#ff00c8] font-bold capitalize">{currentTrack.license}</p>
+            <p className="text-[#d8ae55] font-bold capitalize">{currentTrack.license}</p>
           </div>
         </div>
       </div>
@@ -234,7 +234,7 @@ export default function MusicPlayer({ tracks, onTrackChange, compact = false }: 
                   : "bg-[#0A0A10] border border-[#08080f] hover:border-[#00eaff]"
               }`}
             >
-              <p className={`text-sm font-bold ${idx === currentTrackIndex ? "text-[#ff00c8]" : "text-[#00eaff]"}`}>
+              <p className={`text-sm font-bold ${idx === currentTrackIndex ? "text-[#d8ae55]" : "text-[#00eaff]"}`}>
                 {track.title}
               </p>
               <p className="text-xs text-[#cccccc]">{track.artist}</p>

@@ -29,7 +29,7 @@ export default function MusicLibrary() {
       <nav className="border-b border-[#08080f] px-6 py-4 sticky top-0 bg-[#0A0A10]/95 backdrop-blur z-40">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <Music className="w-8 h-8 text-[#ff00c8]" />
+            <Music className="w-8 h-8 text-[#d8ae55]" />
             <h1 className="text-2xl font-bold text-accent">Music Library</h1>
           </div>
           <p className="text-[#cccccc]">Copyright-free music for lounges, profiles & more</p>
@@ -169,7 +169,7 @@ export default function MusicLibrary() {
                   <h3 className="font-bold text-[#00eaff] mb-4">How to Use</h3>
                   <ul className="space-y-3 text-sm text-[#cccccc]">
                     <li className="flex gap-2">
-                      <span className="text-[#ff00c8]">1.</span>
+                      <span className="text-[#d8ae55]">1.</span>
                       <span>Select a track from the list</span>
                     </li>
                     <li className="flex gap-2">
@@ -189,7 +189,7 @@ export default function MusicLibrary() {
 
                 {/* Track Details */}
                 <Card className="bg-[#000000] border border-[#00eaff] p-6">
-                  <h3 className="font-bold text-[#ff00c8] mb-4">Track Details</h3>
+                  <h3 className="font-bold text-[#d8ae55] mb-4">Track Details</h3>
                   <div className="space-y-3 text-sm">
                     <div>
                       <p className="text-[#cccccc] mb-1">URL</p>

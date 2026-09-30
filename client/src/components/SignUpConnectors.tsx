@@ -5,7 +5,7 @@ import { Chrome, Github, Mail } from "lucide-react";
 export default function SignUpConnectors() {
   return (
     <Card className="bg-[#000000] border border-[#08080f] p-8 max-w-md mx-auto">
-      <h3 className="text-2xl font-bold text-[#ff00c8] mb-6 text-center">
+      <h3 className="text-2xl font-bold text-[#d8ae55] mb-6 text-center">
         Join Anom Artsy
       </h3>
 

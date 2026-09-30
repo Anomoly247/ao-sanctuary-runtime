@@ -30,7 +30,7 @@ export default function Wallet() {
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-[#ff00c8] mb-2">Anom Coin Wallet</h1>
+          <h1 className="text-4xl font-bold text-[#d8ae55] mb-2">Anom Coin Wallet</h1>
           <p className="text-[#cccccc]">Manage your digital currency and track your earnings</p>
         </div>
 
@@ -44,10 +44,10 @@ export default function Wallet() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-[#cccccc] text-sm mb-2">Current Balance</p>
-              <p className="text-5xl font-bold text-[#ff00c8]">{balance}</p>
+              <p className="text-5xl font-bold text-[#d8ae55]">{balance}</p>
               <p className="text-[#00eaff] text-sm mt-2">Anom Coins</p>
             </div>
-            <Coins className="w-24 h-24 text-[#ff00c8] opacity-50" />
+            <Coins className="w-24 h-24 text-[#d8ae55] opacity-50" />
           </div>
         </div>
 
@@ -97,7 +97,7 @@ export default function Wallet() {
                     {transaction.type === "earn" ? (
                       <TrendingUp className="w-6 h-6 text-[#00eaff]" />
                     ) : (
-                      <TrendingDown className="w-6 h-6 text-[#ff00c8]" />
+                      <TrendingDown className="w-6 h-6 text-[#d8ae55]" />
                     )}
                     <div>
                       <p className="font-bold text-white capitalize">{transaction.reason}</p>
@@ -106,7 +106,7 @@ export default function Wallet() {
                       </p>
                     </div>
                   </div>
-                  <div className={`text-lg font-bold ${transaction.type === "earn" ? "text-[#00eaff]" : "text-[#ff00c8]"}`}>
+                  <div className={`text-lg font-bold ${transaction.type === "earn" ? "text-[#00eaff]" : "text-[#d8ae55]"}`}>
                     {transaction.type === "earn" ? "+" : "-"}
                     {transaction.amount}
                   </div>
@@ -122,7 +122,7 @@ export default function Wallet() {
           <ul className="space-y-3 text-[#cccccc]">
             <li className="flex items-start gap-3">
               <span className="text-[#00eaff] font-bold">•</span>
-              <span>Complete Kids Corner lessons and activities</span>
+              <span>Complete Anom's Corner lessons and activities</span>
             </li>
             <li className="flex items-start gap-3">
               <span className="text-[#00eaff] font-bold">•</span>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Heart, Users, Zap, Globe, Target, Sparkles, TrendingUp, Share2 } from "lucide-react";
+import { Sparkles, Share2 } from "lucide-react";
 import { toast } from "sonner";
 import { useAuth } from "@/_core/hooks/useAuth";
 
@@ -20,60 +20,11 @@ export default function MissionRally() {
     toast.success("Mission link copied! Share it with your network.");
   };
 
-  // Mock impact metrics
-  const impactMetrics = [
-    { label: "Lives Touched", value: "2,847", icon: Heart, color: "#ff00c8" },
-    { label: "Active Members", value: "1,240", icon: Users, color: "#00eaff" },
-    { label: "Projects Completed", value: "156", icon: Target, color: "#d8ae55" },
-    { label: "Global Reach", value: "42 Countries", icon: Globe, color: "#00ff88" },
-  ];
-
-  // Mock community stories
-  const stories = [
-    {
-      id: 1,
-      name: "Alex Chen",
-      title: "Built a coding school for underprivileged kids",
-      impact: "150 students trained",
-      avatar: "👨‍💻",
-    },
-    {
-      id: 2,
-      name: "Maria Santos",
-      title: "Organized community garden project",
-      impact: "500 lbs of fresh produce",
-      avatar: "🌱",
-    },
-    {
-      id: 3,
-      name: "James Wilson",
-      title: "Created mental health support network",
-      impact: "300+ people supported",
-      avatar: "💜",
-    },
-    {
-      id: 4,
-      name: "Priya Patel",
-      title: "Started women's tech mentorship",
-      impact: "75 women in tech careers",
-      avatar: "👩‍💼",
-    },
-  ];
-
-  // Mock leaderboard
-  const leaderboard = [
-    { rank: 1, name: "Alex Chen", impact: 2500, badge: "🥇" },
-    { rank: 2, name: "Maria Santos", impact: 2200, badge: "🥈" },
-    { rank: 3, name: "James Wilson", impact: 1950, badge: "🥉" },
-    { rank: 4, name: "Priya Patel", impact: 1800, badge: "⭐" },
-    { rank: 5, name: "You", impact: 450, badge: "🚀" },
-  ];
-
   return (
     <div className="min-h-screen bg-[#0A0A10] text-[#00eaff]">
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 px-6">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#ff00c8]/10 to-[#00eaff]/10 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#d8ae55]/10 to-[#00eaff]/10 pointer-events-none" />
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="text-center mb-12">
             <h1 className="text-5xl md:text-6xl font-bold mb-6 text-accent">
@@ -94,7 +45,7 @@ export default function MissionRally() {
               boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)',
             }}
           >
-            <h2 className="text-3xl font-bold text-[#ff00c8] mb-6">Our Mission</h2>
+            <h2 className="text-3xl font-bold text-[#d8ae55] mb-6">Our Mission</h2>
             <p className="text-lg text-[#00eaff] mb-6 leading-relaxed">
               Anom Artsy is more than a platform—it's a movement. We believe that your digital identity and physical impact are one and the same. By connecting your authentic self with meaningful action, we're building a world where social good isn't just a goal—it's a way of life.
             </p>
@@ -118,32 +69,14 @@ export default function MissionRally() {
         </div>
       </section>
 
-      {/* Impact Metrics */}
       <section className="py-16 px-6 bg-[#0A0A10]/50">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12 text-info">
-            Real Impact. Real Numbers.
-          </h2>
-          <div className="grid md:grid-cols-4 gap-6">
-            {impactMetrics.map((metric, idx) => {
-              const Icon = metric.icon;
-              return (
-                <Card
-                  key={idx}
-                  className="bg-[#000000] border border-[#08080f] p-6 text-center hover:scale-105 transition-transform"
-                  style={{
-                    boxShadow: `0 0 20px ${metric.color}40, 0 0 40px ${metric.color}20`,
-                  }}
-                >
-                  <Icon className="w-8 h-8 mx-auto mb-4" style={{ color: metric.color }} />
-                  <p className="text-3xl font-bold mb-2" style={{ color: metric.color }}>
-                    {metric.value}
-                  </p>
-                  <p className="text-[#cccccc]">{metric.label}</p>
-                </Card>
-              );
-            })}
-          </div>
+        <div className="max-w-3xl mx-auto">
+          <Card className="bg-[#000000] border border-[#d8ae55] p-8 text-center">
+            <h2 className="text-3xl font-bold mb-4 text-info">Live impact, when connected</h2>
+            <p className="text-[#cccccc] leading-relaxed">
+              This page does not invent totals, stories, or rankings. The shared AO ledger will publish verified participation here once the live mission records are available.
+            </p>
+          </Card>
         </div>
       </section>
 
@@ -191,7 +124,7 @@ export default function MissionRally() {
                 className="bg-[#000000] border border-[#08080f] p-6 hover:border-[#00eaff] transition-colors"
               >
                 <div className="text-4xl mb-4">{value.icon}</div>
-                <h3 className="text-xl font-bold text-[#ff00c8] mb-2">{value.title}</h3>
+                <h3 className="text-xl font-bold text-[#d8ae55] mb-2">{value.title}</h3>
                 <p className="text-[#cccccc]">{value.desc}</p>
               </Card>
             ))}
@@ -199,83 +132,8 @@ export default function MissionRally() {
         </div>
       </section>
 
-      {/* Community Stories */}
-      <section className="py-16 px-6 bg-[#0A0A10]/50">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12 text-info">
-            Community Stories
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {stories.map((story) => (
-              <Card
-                key={story.id}
-                className="bg-[#000000] border border-[#08080f] p-6 hover:border-[#00eaff] transition-colors"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="text-4xl">{story.avatar}</div>
-                  <div className="flex-1">
-                    <h3 className="text-lg font-bold text-[#ff00c8]">{story.name}</h3>
-                    <p className="text-[#00eaff] font-bold text-sm mb-2">{story.title}</p>
-                    <p className="text-[#cccccc] text-sm">
-                      <Sparkles className="w-4 h-4 inline mr-2" />
-                      Impact: {story.impact}
-                    </p>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Social Good Leaderboard */}
-      <section className="py-16 px-6">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12 text-accent">
-            Impact Leaderboard
-          </h2>
-          <Card className="bg-[#000000] border border-[#08080f] overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-[#08080f] bg-[#0A0A10]">
-                    <th className="px-6 py-4 text-left text-[#cccccc]">Rank</th>
-                    <th className="px-6 py-4 text-left text-[#cccccc]">Member</th>
-                    <th className="px-6 py-4 text-left text-[#cccccc]">Impact Score</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {leaderboard.map((entry) => (
-                    <tr
-                      key={entry.rank}
-                      className="border-b border-[#08080f] hover:bg-[#0A0A10] transition-colors"
-                    >
-                      <td className="px-6 py-4 text-[#ff00c8] font-bold">
-                        {entry.badge} #{entry.rank}
-                      </td>
-                      <td className="px-6 py-4 text-[#00eaff] font-bold">{entry.name}</td>
-                      <td className="px-6 py-4">
-                        <div className="flex items-center gap-2">
-                          <div className="w-32 bg-[#0A0A10] rounded-full h-2">
-                            <div
-                              className="bg-gradient-to-r from-[#ff00c8] to-[#00eaff] h-2 rounded-full"
-                              style={{ width: `${(entry.impact / 2500) * 100}%` }}
-                            />
-                          </div>
-                          <span className="text-[#cccccc] text-sm">{entry.impact}</span>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </Card>
-        </div>
-      </section>
-
       {/* Call to Action */}
-      <section className="py-20 px-6 bg-gradient-to-r from-[#ff00c8]/10 to-[#00eaff]/10">
+      <section className="py-20 px-6 bg-gradient-to-r from-[#d8ae55]/10 to-[#00eaff]/10">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-6 text-accent">
             Ready to Join the Movement?

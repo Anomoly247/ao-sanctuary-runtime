@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Play, Share2, Heart, Star, Zap } from "lucide-react";
 import { toast } from "sonner";
 import { trpc } from "@/lib/trpc";
@@ -12,8 +11,6 @@ interface Episode {
   videoId?: string;
   storageUrl?: string;
   duration: string;
-  views: number;
-  postedAt: string;
   description: string;
   featured?: boolean;
 }
@@ -24,8 +21,6 @@ const episodes: Episode[] = [
     title: "Pixel & Dot's Full Story | Anom's Corner",
     storageUrl: "/manus-storage/v8_pixel_dot_full_story_final_45228357.mp4",
     duration: "Full Story",
-    views: 1,
-    postedAt: "Today",
     description: "The complete Pixel & Dot story. Join these two characters on their epic journey through a neon-powered universe filled with mystery, wonder, and unforgettable moments. This is the definitive Anom's Corner experience.",
     featured: true,
   },
@@ -34,8 +29,6 @@ const episodes: Episode[] = [
     title: "Pixel & Dot's New Adventure | Anom's Corner",
     videoId: "0pBrQUqU0ig",
     duration: "1:50",
-    views: 18,
-    postedAt: "1 month ago",
     description: "Join Pixel and Dot on their first adventure in Anom's Corner! Discover their neon-powered world and the mysteries that await.",
   },
 ];
@@ -59,7 +52,7 @@ export default function AnomsCorner() {
         <div className="absolute inset-0 opacity-20">
           <div
             className="absolute top-0 left-1/4 w-96 h-96 rounded-full blur-3xl"
-            style={{ background: "radial-gradient(circle, #ff00c8 0%, transparent 70%)" }}
+            style={{ background: "radial-gradient(circle, #d8ae55 0%, transparent 70%)" }}
           />
           <div
             className="absolute bottom-0 right-1/4 w-96 h-96 rounded-full blur-3xl"
@@ -70,12 +63,12 @@ export default function AnomsCorner() {
         <div className="relative container mx-auto px-4">
           <div className="text-center mb-12">
             <h1 className="text-5xl md:text-6xl font-bold mb-4">
-              <span style={{ color: "#ff00c8" }}>Anom</span>
+              <span style={{ color: "#d8ae55" }}>Anom</span>
               <span style={{ color: "#00eaff" }}>'s</span>
               <span className="text-white"> Corner</span>
             </h1>
             <p className="text-xl text-[#cccccc] mb-6">
-              Digital Storybooks featuring <span style={{ color: "#ff00c8" }}>Pixel</span> & <span style={{ color: "#00eaff" }}>Dot</span>
+              Digital Storybooks featuring <span style={{ color: "#d8ae55" }}>Pixel</span> & <span style={{ color: "#00eaff" }}>Dot</span>
             </p>
             <p className="text-[#cccccc] max-w-2xl mx-auto">
               Step into a neon-powered universe where two characters navigate surreal landscapes, uncover mysteries, and create unforgettable moments.
@@ -88,9 +81,9 @@ export default function AnomsCorner() {
               <div
                 className="w-20 h-20 rounded-full mx-auto mb-3 flex items-center justify-center font-bold text-2xl border-2"
                 style={{
-                  borderColor: "#ff00c8",
-                  background: "linear-gradient(135deg, #ff00c820 0%, #ff00c810 100%)",
-                  color: "#ff00c8",
+                  borderColor: "#d8ae55",
+                  background: "linear-gradient(135deg, #d8ae5520 0%, #d8ae5510 100%)",
+                  color: "#d8ae55",
                 }}
               >
                 P
@@ -130,7 +123,6 @@ export default function AnomsCorner() {
                     <video
                       className="w-full h-auto"
                       controls
-                      autoPlay
                       style={{ maxHeight: "600px" }}
                     >
                       <source src={selectedEpisode.storageUrl} type="video/mp4" />
@@ -154,11 +146,7 @@ export default function AnomsCorner() {
               <div className="flex items-start justify-between mb-4">
                 <div>
                   <h2 className="text-2xl font-bold text-white mb-2">{selectedEpisode.title}</h2>
-                  <div className="flex items-center gap-4 text-sm text-[#cccccc]">
-                    <span>{selectedEpisode.views} views</span>
-                    <span>•</span>
-                    <span>{selectedEpisode.postedAt}</span>
-                  </div>
+                  <p className="text-sm text-[#cccccc]">Creature story archive</p>
                 </div>
               </div>
 
@@ -207,35 +195,16 @@ export default function AnomsCorner() {
               </div>
             </Card>
 
-            {/* Series Stats */}
-            <Card className="bg-[#000000] border border-[#08080f] p-6 mt-6">
-              <h3 className="text-lg font-bold text-white mb-4">Series Stats</h3>
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-[#cccccc] text-sm">Episodes</span>
-                  <span className="text-[#ff00c8] font-bold">{episodes.length}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-[#cccccc] text-sm">Total Views</span>
-                  <span className="text-[#00eaff] font-bold">{episodes.reduce((a, b) => a + b.views, 0)}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-[#cccccc] text-sm">Featured</span>
-                  <Badge className="bg-transparent border border-[#00eaff] text-[#00eaff]">New</Badge>
-                </div>
-              </div>
-            </Card>
-
             {/* Character Links */}
             <Card className="bg-[#000000] border border-[#08080f] p-6 mt-6">
               <h3 className="text-lg font-bold text-white mb-4">Meet the Characters</h3>
               <div className="space-y-2">
                 <Button
                   variant="outline"
-                  className="w-full justify-start border-[#00eaff] text-[#ff00c8] hover:bg-[#00eaff]/10"
+                  className="w-full justify-start border-[#00eaff] text-[#d8ae55] hover:bg-[#00eaff]/10"
                   onClick={() => window.location.href = "/characters/pixel"}
                 >
-                  <span style={{ color: "#ff00c8" }}>→</span> Pixel's Profile
+                  <span style={{ color: "#d8ae55" }}>→</span> Pixel's Profile
                 </Button>
                 <Button
                   variant="outline"

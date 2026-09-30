@@ -63,7 +63,7 @@ export default function PublicProfile() {
     return (
       <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-center">
-          <p className="text-[#ff00c8] text-xl mb-4">Profile not found</p>
+          <p className="text-[#d8ae55] text-xl mb-4">Profile not found</p>
           <Button className="btn-primary" onClick={() => navigate("/")}>
             Back to Home
           </Button>
@@ -100,11 +100,11 @@ export default function PublicProfile() {
         >
           <div className="flex items-start justify-between mb-6">
             <div className="flex items-center gap-6">
-              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#ff00c8] to-[#00eaff] flex items-center justify-center text-3xl">
+              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#d8ae55] to-[#00eaff] flex items-center justify-center text-3xl">
                 {profile.avatarUrl || "👤"}
               </div>
               <div>
-                <h2 className="text-3xl font-bold text-[#ff00c8] mb-2">{profile.name}</h2>
+                <h2 className="text-3xl font-bold text-[#d8ae55] mb-2">{profile.name}</h2>
                 <p className="text-[#cccccc] mb-4">{profile.bio || "No bio yet"}</p>
                 <div className="flex gap-4">
                   <Button
@@ -136,9 +136,9 @@ export default function PublicProfile() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[#cccccc] text-sm">Anom Coins</p>
-                <p className="text-3xl font-bold text-[#ff00c8]">{profile.coins || 0}</p>
+                <p className="text-3xl font-bold text-[#d8ae55]">{profile.coins || 0}</p>
               </div>
-              <Zap className="w-8 h-8 text-[#ff00c8] opacity-50" />
+              <Zap className="w-8 h-8 text-[#d8ae55] opacity-50" />
             </div>
           </Card>
 
@@ -248,20 +248,20 @@ export default function PublicProfile() {
             boxShadow: "0 6px 18px rgba(0, 0, 0, 0.45)",
           }}
         >
-          <h3 className="text-xl font-bold text-[#ff00c8] mb-4 flex items-center gap-2">
+          <h3 className="text-xl font-bold text-[#d8ae55] mb-4 flex items-center gap-2">
             <Shield className="w-5 h-5" />
             Themes
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="p-4 bg-gradient-to-br from-[#ff00c8] to-[#d8ae55] rounded-lg border-2 border-[#00eaff] text-center cursor-pointer hover:scale-105 transition-transform">
-              <p className="text-white font-bold">Magenta Dream</p>
+            <div className="p-4 bg-gradient-to-br from-[#d8ae55] to-[#d8ae55] rounded-lg border-2 border-[#00eaff] text-center cursor-pointer hover:scale-105 transition-transform">
+              <p className="text-white font-bold">Badge Gold Dream</p>
               <p className="text-white text-xs opacity-75">Active</p>
             </div>
             <div className="p-4 bg-gradient-to-br from-[#00eaff] to-[#0099ff] rounded-lg border border-[#08080f] text-center hover:border-[#00eaff] transition-colors cursor-pointer hover:scale-105">
               <p className="text-white font-bold">Cyan Wave</p>
               <p className="text-white text-xs opacity-75">Available</p>
             </div>
-            <div className="p-4 bg-gradient-to-br from-[#d8ae55] to-[#ff00c8] rounded-lg border border-[#08080f] text-center hover:border-[#d8ae55] transition-colors cursor-pointer hover:scale-105">
+            <div className="p-4 bg-gradient-to-br from-[#d8ae55] to-[#d8ae55] rounded-lg border border-[#08080f] text-center hover:border-[#d8ae55] transition-colors cursor-pointer hover:scale-105">
               <p className="text-white font-bold">Badge Gold</p>
               <p className="text-white text-xs opacity-75">Available</p>
             </div>

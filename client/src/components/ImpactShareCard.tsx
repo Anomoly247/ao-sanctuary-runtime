@@ -18,7 +18,7 @@ export default function ImpactShareCard({
   value,
   description,
   icon = <Heart className="w-8 h-8" />,
-  color = "#ff00c8",
+  color = "#d8ae55",
 }: ImpactShareCardProps) {
   const [showShareModal, setShowShareModal] = useState(false);
 
@@ -39,7 +39,7 @@ export default function ImpactShareCard({
             size="sm"
             variant="ghost"
             onClick={() => setShowShareModal(true)}
-            className="text-[#cccccc] hover:text-[#ff00c8]"
+            className="text-[#cccccc] hover:text-[#d8ae55]"
           >
             <Share2 className="w-4 h-4" />
           </Button>

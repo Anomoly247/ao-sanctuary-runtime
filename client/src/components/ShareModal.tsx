@@ -98,7 +98,7 @@ export default function ShareModal({
         <div className="p-8">
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-[#ff00c8]">Share</h2>
+            <h2 className="text-2xl font-bold text-[#d8ae55]">Share</h2>
             <button
               onClick={onClose}
               className="text-[#cccccc] hover:text-[#00eaff] transition-colors"

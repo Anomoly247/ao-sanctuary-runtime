@@ -1,4 +1,4 @@
-import { and, eq } from "drizzle-orm";
+import { and, eq, sql } from "drizzle-orm";
 import { TRPCError } from "@trpc/server";
 import { getDb, getOrCreateUserProfile } from "./db";
 import { achievements, coinTransactions, globalMissions, missionContributions, userAchievements, userProfiles } from "../drizzle/schema";
@@ -10,6 +10,7 @@ export const MISSION_CATALOG = [
     description: "Choose a house and take your first step into the connected universe.",
     reward: "25.00",
     achievementId: null,
+    badgeName: "First Steps",
   },
   {
     id: "play-with-purpose",
@@ -17,6 +18,7 @@ export const MISSION_CATALOG = [
     description: "Complete a connected game or creative activity from an AO destination.",
     reward: "50.00",
     achievementId: null,
+    badgeName: "Game Master",
   },
   {
     id: "make-something-kind",
@@ -24,6 +26,7 @@ export const MISSION_CATALOG = [
     description: "Create, share, or complete a kid-safe creative activity.",
     reward: "40.00",
     achievementId: null,
+    badgeName: "Family Hero",
   },
 ] as const;
 
@@ -124,19 +127,24 @@ export async function completeGlobalMission(input: {
       balanceAfter: newBalance,
     });
 
+    const catalogBadgeName = catalogMission(input.missionId)?.badgeName;
+    const badgeName = "badgeName" in mission ? mission.badgeName || catalogBadgeName : catalogBadgeName;
     let badgeAwarded = null;
-    if (mission.achievementId) {
-      const badge = await tx.select().from(achievements)
-        .where(eq(achievements.id, mission.achievementId)).limit(1);
+    if (mission.achievementId || badgeName) {
+      const badge = mission.achievementId
+        ? await tx.select().from(achievements).where(eq(achievements.id, mission.achievementId)).limit(1)
+        : await tx.select().from(achievements).where(sql`${achievements.name} = ${badgeName!}`).limit(1);
+      const achievementId = badge[0]?.id || mission.achievementId;
+      if (!achievementId) return { completed: true, duplicate: false, reward, balance: newBalance, badgeAwarded: null };
       const alreadyUnlocked = await tx.select().from(userAchievements)
         .where(and(
           eq(userAchievements.userId, input.userId),
-          eq(userAchievements.achievementId, mission.achievementId),
+          eq(userAchievements.achievementId, achievementId),
         )).limit(1);
       if (!alreadyUnlocked.length) {
         await tx.insert(userAchievements).values({
           userId: input.userId,
-          achievementId: mission.achievementId,
+          achievementId,
         });
       }
       badgeAwarded = badge[0] || null;

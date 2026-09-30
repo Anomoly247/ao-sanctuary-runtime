@@ -173,7 +173,7 @@ export default function BusinessControlCenter() {
     return (
       <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-center">
-          <AlertCircle className="w-16 h-16 mx-auto mb-4 text-[#ff00c8]" />
+          <AlertCircle className="w-16 h-16 mx-auto mb-4 text-[#d8ae55]" />
           <p className="text-[#00eaff] text-xl mb-4">Admin access required</p>
           <Button className="btn-primary" onClick={() => navigate("/")}>
             Back to Home
@@ -207,7 +207,7 @@ export default function BusinessControlCenter() {
         <div className="grid md:grid-cols-5 gap-4 mb-12">
           <Card className="bg-[#000000] border border-[#08080f] p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
             <p className="text-[#cccccc] text-xs">Monthly Revenue</p>
-            <p className="text-2xl font-bold text-[#ff00c8]">{metrics.monthlyRevenue}</p>
+            <p className="text-2xl font-bold text-[#d8ae55]">{metrics.monthlyRevenue}</p>
           </Card>
 
           <Card className="bg-[#000000] border border-[#08080f] p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
@@ -258,7 +258,7 @@ export default function BusinessControlCenter() {
 
           {/* Overview Tab */}
           <TabsContent value="overview" className="space-y-6">
-            <h3 className="text-xl font-bold text-[#ff00c8]">Business Dashboard</h3>
+            <h3 className="text-xl font-bold text-[#d8ae55]">Business Dashboard</h3>
             <div className="grid md:grid-cols-2 gap-6">
               <Card className="bg-[#000000] border border-[#08080f] p-6">
                 <h4 className="text-lg font-bold text-[#00eaff] mb-4">Quick Actions</h4>
@@ -304,7 +304,7 @@ export default function BusinessControlCenter() {
 
           {/* Security Tab */}
           <TabsContent value="security" className="space-y-6">
-            <h3 className="text-xl font-bold text-[#ff00c8]">Security Settings</h3>
+            <h3 className="text-xl font-bold text-[#d8ae55]">Security Settings</h3>
 
             {/* Two-Factor Authentication */}
             <Card className="bg-[#000000] border border-[#08080f] p-6">
@@ -313,7 +313,7 @@ export default function BusinessControlCenter() {
                   <h4 className="text-lg font-bold text-[#00eaff]">Two-Factor Authentication</h4>
                   <p className="text-sm text-[#cccccc] mt-1">Add an extra layer of security to your account</p>
                 </div>
-                <Lock className="w-6 h-6 text-[#ff00c8]" />
+                <Lock className="w-6 h-6 text-[#d8ae55]" />
               </div>
               <Button className="btn-secondary" onClick={handleEnableTwoFactor}>
                 Enable 2FA
@@ -332,7 +332,7 @@ export default function BusinessControlCenter() {
                       <p className="text-xs text-[#cccccc]">Last active: {session.lastActive}</p>
                     </div>
                     {session.status === "active" && (
-                      <Button size="sm" variant="outline" className="text-[#ff00c8] border-[#08080f]" onClick={() => handleLogoutSession(session.id)}>
+                      <Button size="sm" variant="outline" className="text-[#d8ae55] border-[#08080f]" onClick={() => handleLogoutSession(session.id)}>
                         <LogOut className="w-3 h-3 mr-1" />
                         Logout
                       </Button>
@@ -346,7 +346,7 @@ export default function BusinessControlCenter() {
           {/* Payments Tab */}
           <TabsContent value="payments" className="space-y-6">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl font-bold text-[#ff00c8]">Payment Credentials</h3>
+              <h3 className="text-xl font-bold text-[#d8ae55]">Payment Credentials</h3>
               <Button className="btn-primary" onClick={handleAddPaymentMethod}>
                 <Plus className="w-4 h-4 mr-2" />
                 Add Method
@@ -385,7 +385,7 @@ export default function BusinessControlCenter() {
                         <Lock className="w-3 h-3 mr-1" />
                         Rotate
                       </Button>
-                      <Button size="sm" variant="outline" className="text-[#ff00c8] border-[#08080f]">
+                      <Button size="sm" variant="outline" className="text-[#d8ae55] border-[#08080f]">
                         <Trash2 className="w-3 h-3 mr-1" />
                         Delete
                       </Button>
@@ -398,7 +398,7 @@ export default function BusinessControlCenter() {
 
           {/* Activity Tab */}
           <TabsContent value="activity" className="space-y-6">
-            <h3 className="text-xl font-bold text-[#ff00c8]">Activity Log</h3>
+            <h3 className="text-xl font-bold text-[#d8ae55]">Activity Log</h3>
             <div className="space-y-3">
               {activityLog.map((log) => (
                 <Card key={log.id} className="bg-[#000000] border border-[#08080f] p-4">
@@ -418,7 +418,7 @@ export default function BusinessControlCenter() {
 
           {/* Exports Tab */}
           <TabsContent value="exports" className="space-y-6">
-            <h3 className="text-xl font-bold text-[#ff00c8]">Data Exports</h3>
+            <h3 className="text-xl font-bold text-[#d8ae55]">Data Exports</h3>
             <div className="grid md:grid-cols-2 gap-6">
               <Card className="bg-[#000000] border border-[#08080f] p-6">
                 <h4 className="text-lg font-bold text-[#00eaff] mb-4">Financial Reports</h4>

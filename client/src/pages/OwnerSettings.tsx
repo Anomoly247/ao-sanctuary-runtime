@@ -36,7 +36,7 @@ export default function OwnerSettings() {
   const [formData, setFormData] = useState({
     siteName: "",
     siteDescription: "",
-    primaryColor: "#ff00c8",
+    primaryColor: "#d8ae55",
     secondaryColor: "#00eaff",
     accentColor: "#d8ae55",
     coinRewardPerAction: 10,
@@ -56,7 +56,7 @@ export default function OwnerSettings() {
       setFormData({
         siteName: settings.siteName || "Anom Artsy",
         siteDescription: settings.siteDescription || "",
-        primaryColor: settings.primaryColor || "#ff00c8",
+        primaryColor: settings.primaryColor || "#d8ae55",
         secondaryColor: settings.secondaryColor || "#00eaff",
         accentColor: settings.accentColor || "#d8ae55",
         coinRewardPerAction: settings.coinRewardPerAction || 10,
@@ -84,7 +84,7 @@ export default function OwnerSettings() {
     return (
       <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-center">
-          <p className="text-[#ff00c8] text-xl mb-4">Admin access required</p>
+          <p className="text-[#d8ae55] text-xl mb-4">Admin access required</p>
           <Button className="btn-primary" onClick={() => navigate("/")}>
             Back to Home
           </Button>
@@ -143,7 +143,7 @@ export default function OwnerSettings() {
           {/* General Tab */}
           <TabsContent value="general" className="space-y-6">
             <Card className="bg-[#000000] border border-[#08080f] p-8">
-              <h2 className="text-2xl font-bold text-[#ff00c8] mb-6">General Settings</h2>
+              <h2 className="text-2xl font-bold text-[#d8ae55] mb-6">General Settings</h2>
 
               <div className="space-y-6">
                 <div>
@@ -178,12 +178,12 @@ export default function OwnerSettings() {
           {/* Branding Tab */}
           <TabsContent value="branding" className="space-y-6">
             <Card className="bg-[#000000] border border-[#08080f] p-8">
-              <h2 className="text-2xl font-bold text-[#ff00c8] mb-6">Branding & Colors</h2>
+              <h2 className="text-2xl font-bold text-[#d8ae55] mb-6">Branding & Colors</h2>
 
               <div className="space-y-6">
                 <div className="grid md:grid-cols-3 gap-6">
                   <div>
-                    <label className="block text-[#00eaff] font-bold mb-2">Primary Color (Magenta)</label>
+                    <label className="block text-[#00eaff] font-bold mb-2">Primary Color (Badge Gold)</label>
                     <div className="flex gap-2">
                       <input
                         type="color"
@@ -248,7 +248,7 @@ export default function OwnerSettings() {
           {/* Economy Tab */}
           <TabsContent value="economy" className="space-y-6">
             <Card className="bg-[#000000] border border-[#08080f] p-8">
-              <h2 className="text-2xl font-bold text-[#ff00c8] mb-6">Economy Settings</h2>
+              <h2 className="text-2xl font-bold text-[#d8ae55] mb-6">Economy Settings</h2>
 
               <div className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
@@ -307,7 +307,7 @@ export default function OwnerSettings() {
           {/* Features Tab */}
           <TabsContent value="features" className="space-y-6">
             <Card className="bg-[#000000] border border-[#08080f] p-8">
-              <h2 className="text-2xl font-bold text-[#ff00c8] mb-6">Feature Toggles</h2>
+              <h2 className="text-2xl font-bold text-[#d8ae55] mb-6">Feature Toggles</h2>
 
               <div className="space-y-4 mb-6">
                 {[
@@ -315,7 +315,7 @@ export default function OwnerSettings() {
                   { key: "enableLounges", label: "Enable Private Lounges" },
                   { key: "enableGames", label: "Enable Mini-Games" },
                   { key: "enableCollaboration", label: "Enable Collaboration Station" },
-                  { key: "enableKidsCorner", label: "Enable Kids Corner" },
+                  { key: "enableKidsCorner", label: "Enable Anom's Corner" },
                 ].map((feature) => (
                   <label key={feature.key} className="flex items-center gap-3 cursor-pointer">
                     <input
@@ -347,7 +347,7 @@ export default function OwnerSettings() {
           {/* Audit Log Tab */}
           <TabsContent value="audit" className="space-y-6">
             <Card className="bg-[#000000] border border-[#08080f] p-8">
-              <h2 className="text-2xl font-bold text-[#ff00c8] mb-6">Admin Audit Log</h2>
+              <h2 className="text-2xl font-bold text-[#d8ae55] mb-6">Admin Audit Log</h2>
 
               <div className="space-y-3 max-h-96 overflow-y-auto">
                 {auditLog.length === 0 ? (

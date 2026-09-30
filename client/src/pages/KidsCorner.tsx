@@ -17,7 +17,7 @@ function VideoPlayer({ videoUrl, title, onClose }: { videoUrl: string; title: st
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
       <Card className="bg-[#000000] border border-[#00eaff] w-full max-w-2xl">
         <div className="p-6">
-          <h2 className="text-2xl font-bold text-[#ff00c8] mb-4">{title}</h2>
+          <h2 className="text-2xl font-bold text-[#d8ae55] mb-4">{title}</h2>
           <div className="aspect-video bg-[#0A0A10] rounded-lg overflow-hidden mb-4 relative">
             {isLoading && (
               <div className="absolute inset-0 flex items-center justify-center">
@@ -27,7 +27,7 @@ function VideoPlayer({ videoUrl, title, onClose }: { videoUrl: string; title: st
             {hasError && (
               <div className="absolute inset-0 flex items-center justify-center bg-[#0A0A10]">
                 <div className="text-center">
-                  <p className="text-[#ff00c8] mb-2">Unable to load video</p>
+                  <p className="text-[#d8ae55] mb-2">Unable to load video</p>
                   <p className="text-[#cccccc] text-sm">Please try again later</p>
                 </div>
               </div>
@@ -60,14 +60,14 @@ function VideoPlayer({ videoUrl, title, onClose }: { videoUrl: string; title: st
 
 // Coloring Page Component
 function ColoringPage({ onClose, onComplete }: { onClose: () => void; onComplete: () => void }) {
-  const [selectedColor, setSelectedColor] = useState("#ff00c8");
-  const colors = ["#ff00c8", "#00eaff", "#d8ae55", "#ffd60a", "#3a86ff", "#fb5607"];
+  const [selectedColor, setSelectedColor] = useState("#d8ae55");
+  const colors = ["#d8ae55", "#00eaff", "#d8ae55", "#ffd60a", "#3a86ff", "#fb5607"];
 
   return (
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
       <Card className="bg-[#000000] border border-[#00eaff] w-full max-w-2xl">
         <div className="p-6">
-          <h2 className="text-2xl font-bold text-[#ff00c8] mb-4">Pixel's Coloring Page</h2>
+          <h2 className="text-2xl font-bold text-[#d8ae55] mb-4">Pixel's Coloring Page</h2>
 
           {/* SVG Canvas */}
           <div className="bg-white rounded-lg p-4 mb-4">
@@ -150,7 +150,7 @@ function OffGridGame({ onClose, onComplete }: { onClose: () => void; onComplete:
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
       <Card className="bg-[#000000] border border-[#00eaff] w-full max-w-md">
         <div className="p-6">
-          <h2 className="text-2xl font-bold text-[#ff00c8] mb-2">Off-Grid Adventure</h2>
+          <h2 className="text-2xl font-bold text-[#d8ae55] mb-2">Off-Grid Adventure</h2>
           <p className="text-[#cccccc] mb-4">Level {level} / 3</p>
 
           {/* Game Area */}
@@ -177,7 +177,7 @@ function OffGridGame({ onClose, onComplete }: { onClose: () => void; onComplete:
                 🍄
               </button>
             </div>
-            <p className="text-[#ff00c8] font-bold text-xl">Score: {score}</p>
+            <p className="text-[#d8ae55] font-bold text-xl">Score: {score}</p>
           </div>
 
           {/* Buttons */}
@@ -223,7 +223,7 @@ export default function KidsCorner() {
   if (loading) {
     return (
       <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
-        <div className="text-[#00eaff] text-xl">Loading Kids Corner...</div>
+        <div className="text-[#00eaff] text-xl">Loading Anom's Corner...</div>
       </div>
     );
   }
@@ -232,7 +232,7 @@ export default function KidsCorner() {
     return (
       <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-center">
-          <p className="text-[#00eaff] text-xl mb-4">Please sign in to access Kids Corner</p>
+          <p className="text-[#00eaff] text-xl mb-4">Please sign in to access Anom's Corner</p>
           <Button className="btn-primary" onClick={() => navigate("/")}>
             Back to Home
           </Button>
@@ -319,7 +319,7 @@ export default function KidsCorner() {
             <Button variant="ghost" onClick={() => navigate("/")} className="text-[#cccccc]">
               ← Back
             </Button>
-            <h1 className="text-2xl font-bold text-accent">Kids Corner</h1>
+            <h1 className="text-2xl font-bold text-accent">Anom's Corner</h1>
           </div>
           <div className="text-sm text-[#cccccc]">
             {completedItems.length} / {videos.length + activities.length} completed
@@ -419,7 +419,7 @@ export default function KidsCorner() {
                   >
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex items-center gap-3">
-                        <div className="text-[#ff00c8]">{icon}</div>
+                        <div className="text-[#d8ae55]">{icon}</div>
                         <div>
                           <h3 className="text-lg font-bold text-[#00eaff]">{activity.title}</h3>
                           <p className="text-xs text-[#cccccc] mt-1">Ages {activity.ageRating}+</p>
@@ -470,14 +470,14 @@ export default function KidsCorner() {
         {/* Progress Summary */}
         {!contentLoading && (
           <div className="mt-12 bg-[#000000] border border-[#08080f] rounded-lg p-6">
-            <h3 className="text-xl font-bold text-[#ff00c8] mb-4">Your Progress</h3>
+            <h3 className="text-xl font-bold text-[#d8ae55] mb-4">Your Progress</h3>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="text-center">
                 <p className="text-3xl font-bold text-[#00eaff]">{completedItems.length}</p>
                 <p className="text-[#cccccc] text-sm">Items Completed</p>
               </div>
               <div className="text-center">
-                <p className="text-3xl font-bold text-[#ff00c8]">
+                <p className="text-3xl font-bold text-[#d8ae55]">
                   {Math.round((completedItems.length / (videos.length + activities.length)) * 100)}%
                 </p>
                 <p className="text-[#cccccc] text-sm">Completion Rate</p>

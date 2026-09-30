@@ -5,6 +5,7 @@
     house: "anom_selectedHouse",
     houseName: "anom_selectedHouseName",
     mount: "anom_selectedMount",
+    mountColor: "anom_selectedMountColor",
     returnUrl: "ao_return_url",
     source: "ao_source",
     mission: "ao_mission",
@@ -38,6 +39,7 @@
     var params = new URLSearchParams(window.location.search);
     var house = params.get("house") || read(STORAGE.house, "1");
     var mount = params.get("mount") || read(STORAGE.mount, "aurora");
+    var mountColor = params.get("mountColor") || read(STORAGE.mountColor, "cyan");
     var returnUrl = safeReturn(params.get("return") || read(STORAGE.returnUrl, "https://anomartsy.xyz/"));
     var source = params.get("source") || read(STORAGE.source, "homeworld");
     var mission = params.get("mission") || read(STORAGE.mission, "");
@@ -46,11 +48,12 @@
     write(STORAGE.house, house);
     write(STORAGE.houseName, houseName);
     write(STORAGE.mount, mount);
+    write(STORAGE.mountColor, mountColor);
     write(STORAGE.returnUrl, returnUrl);
     write(STORAGE.source, source);
     write(STORAGE.mission, mission);
     write(STORAGE.eventId, eventId);
-    return { house: house, houseName: houseName, mount: mount, returnUrl: returnUrl, source: source, mission: mission, eventId: eventId };
+    return { house: house, houseName: houseName, mount: mount, mountColor: mountColor, returnUrl: returnUrl, source: source, mission: mission, eventId: eventId };
   }
 
   function decorateUrl(rawUrl, extra) {
@@ -61,6 +64,7 @@
     if (values.houseAware !== false) {
       url.searchParams.set("house", values.house || current.house);
       url.searchParams.set("mount", values.mount || current.mount);
+      url.searchParams.set("mountColor", values.mountColor || current.mountColor);
       url.searchParams.set("return", values.returnUrl || current.returnUrl || window.location.href);
       url.searchParams.set("source", values.source || current.source);
       if (values.mission || current.mission) url.searchParams.set("mission", values.mission || current.mission);

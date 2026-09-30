@@ -74,7 +74,7 @@ export default function Admin() {
     return (
       <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-center">
-          <AlertCircle className="w-16 h-16 mx-auto mb-4 text-[#ff00c8]" />
+          <AlertCircle className="w-16 h-16 mx-auto mb-4 text-[#d8ae55]" />
           <p className="text-[#00eaff] text-xl mb-4">Admin access required</p>
           <Button className="btn-primary" onClick={() => navigate("/")}>
             Back to Home
@@ -95,19 +95,19 @@ export default function Admin() {
             </Button>
             <h1 className="text-2xl font-bold text-accent">Admin Dashboard</h1>
           </div>
-          <Button variant="outline" className="text-[#ff00c8] border-[#08080f] gap-2" onClick={() => navigate("/business-control")}>
+          <Button variant="outline" className="text-[#d8ae55] border-[#08080f] gap-2" onClick={() => navigate("/business-control")}>
             <Shield className="w-4 h-4" />
             Business Control
           </Button>
-          <Button variant="outline" className="text-[#ff00c8] border-[#08080f] gap-2" onClick={() => navigate("/youtube-manager")}>
+          <Button variant="outline" className="text-[#d8ae55] border-[#08080f] gap-2" onClick={() => navigate("/youtube-manager")}>
             <Play className="w-4 h-4" />
             YouTube
           </Button>
-          <Button variant="outline" className="text-[#ff00c8] border-[#08080f] gap-2" onClick={() => navigate("/payment-merch")}>
+          <Button variant="outline" className="text-[#d8ae55] border-[#08080f] gap-2" onClick={() => navigate("/payment-merch")}>
             <CreditCard className="w-4 h-4" />
             Payments
           </Button>
-          <Button variant="outline" className="text-[#ff00c8] border-[#08080f] gap-2" onClick={() => navigate("/owner-settings")}>
+          <Button variant="outline" className="text-[#d8ae55] border-[#08080f] gap-2" onClick={() => navigate("/owner-settings")}>
             <Settings className="w-4 h-4" />
             Settings
           </Button>
@@ -127,9 +127,9 @@ export default function Admin() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[#cccccc] text-sm">Total Users</p>
-                <p className="text-3xl font-bold text-[#ff00c8]">{analytics?.totalUsers || 0}</p>
+                <p className="text-3xl font-bold text-[#d8ae55]">{analytics?.totalUsers || 0}</p>
               </div>
-              <Users className="w-8 h-8 text-[#ff00c8] opacity-50" />
+              <Users className="w-8 h-8 text-[#d8ae55] opacity-50" />
             </div>
           </Card>
 
@@ -185,7 +185,7 @@ export default function Admin() {
 
           {/* Merch Tab */}
           <TabsContent value="merch" className="space-y-6">
-            <h3 className="text-xl font-bold text-[#ff00c8]">Pending Merch Requests</h3>
+            <h3 className="text-xl font-bold text-[#d8ae55]">Pending Merch Requests</h3>
             {requestsLoading ? (
               <p className="text-[#cccccc]">Loading requests...</p>
             ) : (merchRequests || []).length === 0 ? (
@@ -218,7 +218,7 @@ export default function Admin() {
                           </Button>
                           <Button
                             variant="outline"
-                            className="text-[#ff00c8] border-[#08080f] text-sm"
+                            className="text-[#d8ae55] border-[#08080f] text-sm"
                             onClick={() => handleRejectMerch(request.id.toString())}
                             disabled={rejectMutation.isPending}
                           >
@@ -245,7 +245,7 @@ export default function Admin() {
 
           {/* Users Tab */}
           <TabsContent value="users" className="space-y-6">
-            <h3 className="text-xl font-bold text-[#ff00c8]">User Management</h3>
+            <h3 className="text-xl font-bold text-[#d8ae55]">User Management</h3>
             <Card
               className="bg-[#000000] border border-[#08080f] p-6"
               style={{
@@ -258,7 +258,7 @@ export default function Admin() {
 
           {/* Analytics Tab */}
           <TabsContent value="analytics" className="space-y-6">
-            <h3 className="text-xl font-bold text-[#ff00c8]">Platform Analytics</h3>
+            <h3 className="text-xl font-bold text-[#d8ae55]">Platform Analytics</h3>
             <div className="grid md:grid-cols-2 gap-6">
               <Card
                 className="bg-[#000000] border border-[#08080f] p-6"
@@ -267,7 +267,7 @@ export default function Admin() {
                 }}
               >
                 <h4 className="text-lg font-bold text-[#00eaff] mb-4">Merch Requests</h4>
-                <p className="text-3xl font-bold text-[#ff00c8]">{analytics?.totalMerchRequests || 0}</p>
+                <p className="text-3xl font-bold text-[#d8ae55]">{analytics?.totalMerchRequests || 0}</p>
               </Card>
 
               <Card

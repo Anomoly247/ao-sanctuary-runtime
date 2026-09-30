@@ -51,14 +51,14 @@ export default function Merch() {
   const { data: designs = [] } = trpc.merch.getMyRequests.useQuery(undefined, { enabled: !!user });
 
   if (loading) {
-    return <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center text-[#ff00c8]">Loading...</div>;
+    return <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center text-[#d8ae55]">Loading...</div>;
   }
 
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <Card className="border-2 border-[#00eaff] bg-[#0A0A10]/80 p-8">
-          <p className="text-[#ff00c8] mb-4">Please sign in to access the merch shop</p>
+          <p className="text-[#d8ae55] mb-4">Please sign in to access the merch shop</p>
           <Button onClick={() => navigate("/")} className="bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10">
             Go to Home
           </Button>
@@ -170,7 +170,7 @@ export default function Merch() {
       {/* Header */}
       <div className="max-w-7xl mx-auto mb-8">
         <div className="flex items-center justify-between mb-4">
-          <h1 className="text-4xl font-bold text-[#ff00c8] flex items-center gap-3">
+          <h1 className="text-4xl font-bold text-[#d8ae55] flex items-center gap-3">
             <ShoppingBag className="w-10 h-10" />
             Anom Artsy Merch
           </h1>
@@ -195,7 +195,7 @@ export default function Merch() {
             onClick={() => setActiveTab(tab.id as any)}
             className={`px-4 py-2 rounded-lg border-2 font-bold transition-all ${
               activeTab === tab.id
-                ? "border-[#00eaff] bg-transparent border border-[#00eaff] bg-[#00eaff]/10 text-[#ff00c8]"
+                ? "border-[#00eaff] bg-transparent border border-[#00eaff] bg-[#00eaff]/10 text-[#d8ae55]"
                 : "border-[#00eaff] bg-transparent text-[#00eaff] hover:bg-[#00eaff]/10"
             }`}
           >
@@ -211,7 +211,7 @@ export default function Merch() {
             {AVAILABLE_MERCH.map((item) => (
               <Card key={item.id} className="border-2 border-[#00eaff] bg-[#0A0A10]/80 p-6 hover:border-[#00eaff] transition-all">
                 <div className="text-6xl mb-4">{item.image}</div>
-                <h3 className="text-xl font-bold text-[#ff00c8] mb-2">{item.name}</h3>
+                <h3 className="text-xl font-bold text-[#d8ae55] mb-2">{item.name}</h3>
                 <p className="text-2xl font-bold text-[#00eaff] mb-4">${item.price}</p>
                 <Button onClick={() => addToCart(item)} className="w-full bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold">
                   Add to Cart
@@ -239,15 +239,15 @@ export default function Merch() {
                       <div className="flex items-center gap-4">
                         <div className="text-4xl">{item.image}</div>
                         <div>
-                          <p className="font-bold text-[#ff00c8]">{item.name}</p>
+                          <p className="font-bold text-[#d8ae55]">{item.name}</p>
                           <p className="text-[#00eaff]">${item.price}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-4">
                         <div className="flex items-center gap-2">
-                          <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="px-2 py-1 bg-transparent border border-[#00eaff] bg-[#00eaff]/10 text-[#ff00c8] rounded">-</button>
+                          <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="px-2 py-1 bg-transparent border border-[#00eaff] bg-[#00eaff]/10 text-[#d8ae55] rounded">-</button>
                           <span className="text-white font-bold w-8 text-center">{item.quantity}</span>
-                          <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className="px-2 py-1 bg-transparent border border-[#00eaff] bg-[#00eaff]/10 text-[#ff00c8] rounded">+</button>
+                          <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className="px-2 py-1 bg-transparent border border-[#00eaff] bg-[#00eaff]/10 text-[#d8ae55] rounded">+</button>
                         </div>
                         <button onClick={() => removeFromCart(item.id)} className="p-2 text-red-500 hover:bg-red-500/20 rounded">
                           <Trash2 className="w-5 h-5" />
@@ -270,7 +270,7 @@ export default function Merch() {
                       </div>
                     ))}
                   </div>
-                  <div className="border-t border-[#00eaff]/20 mt-4 pt-4 flex justify-between text-xl font-bold text-[#ff00c8]">
+                  <div className="border-t border-[#00eaff]/20 mt-4 pt-4 flex justify-between text-xl font-bold text-[#d8ae55]">
                     <span>Total:</span>
                     <span>${cartTotal.toFixed(2)}</span>
                   </div>
@@ -284,7 +284,7 @@ export default function Merch() {
                   </DialogTrigger>
                   <DialogContent className="bg-[#0A0A10] border-2 border-[#00eaff]">
                     <DialogHeader>
-                      <DialogTitle className="text-[#ff00c8]">Checkout</DialogTitle>
+                      <DialogTitle className="text-[#d8ae55]">Checkout</DialogTitle>
                     </DialogHeader>
                     <div className="space-y-4">
                       <div>
@@ -327,7 +327,7 @@ export default function Merch() {
               </DialogTrigger>
               <DialogContent className="bg-[#0A0A10] border-2 border-[#00eaff]">
                 <DialogHeader>
-                  <DialogTitle className="text-[#ff00c8]">Submit Custom Merch Design</DialogTitle>
+                  <DialogTitle className="text-[#d8ae55]">Submit Custom Merch Design</DialogTitle>
                   <DialogDescription className="text-gray-400">Tell us your idea and we'll create it for you</DialogDescription>
                 </DialogHeader>
                 <div className="space-y-4">
@@ -365,7 +365,7 @@ export default function Merch() {
                 <Card key={design.id} className="border-2 border-[#00eaff] bg-[#0A0A10]/80 p-6">
                   <div className="flex items-start justify-between">
                     <div>
-                      <h3 className="text-xl font-bold text-[#ff00c8] mb-2">{design.title}</h3>
+                      <h3 className="text-xl font-bold text-[#d8ae55] mb-2">{design.title}</h3>
                       <p className="text-[#00eaff] mb-2">{design.description}</p>
                       <p className="text-gray-400 text-sm mb-4">{design.design}</p>
                       <p className={`text-sm font-bold ${getStatusColor(design.status)}`}>
@@ -393,7 +393,7 @@ export default function Merch() {
                 <Card key={order.id} className="border-2 border-[#00eaff] bg-[#0A0A10]/80 p-6">
                   <div className="flex items-start justify-between">
                     <div>
-                      <h3 className="text-xl font-bold text-[#ff00c8] mb-2">Order #{order.id.slice(0, 8)}</h3>
+                      <h3 className="text-xl font-bold text-[#d8ae55] mb-2">Order #{order.id.slice(0, 8)}</h3>
                       <p className="text-[#00eaff] mb-2">${(order.total / 100).toFixed(2)}</p>
                       <p className="text-gray-400 text-sm mb-2">Items: {order.items}</p>
                       <p className="text-gray-400 text-sm mb-4">Ordered: {new Date(order.createdAt).toLocaleDateString()}</p>

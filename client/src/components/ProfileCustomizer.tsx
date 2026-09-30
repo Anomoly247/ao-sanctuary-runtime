@@ -61,7 +61,7 @@ export default function ProfileCustomizer({
         <div className="p-6">
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-[#ff00c8]">Customize Profile</h2>
+            <h2 className="text-2xl font-bold text-[#d8ae55]">Customize Profile</h2>
             <button
               onClick={onClose}
               className="text-[#cccccc] hover:text-[#00eaff] transition-colors"
@@ -202,7 +202,7 @@ export default function ProfileCustomizer({
                       onClick={() => setProfileLayout(layout as any)}
                       className={`p-3 rounded-lg border-2 transition-colors capitalize font-bold ${
                         profileLayout === layout
-                          ? "border-[#00eaff] bg-transparent border border-[#00eaff] bg-[#00eaff]/10 text-[#ff00c8]"
+                          ? "border-[#00eaff] bg-transparent border border-[#00eaff] bg-[#00eaff]/10 text-[#d8ae55]"
                           : "border-[#08080f] bg-[#0A0A10] text-[#cccccc] hover:border-[#00eaff]"
                       }`}
                     >

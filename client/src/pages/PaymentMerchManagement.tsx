@@ -63,7 +63,7 @@ export default function PaymentMerchManagement() {
     return (
       <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <div className="text-center">
-          <AlertCircle className="w-16 h-16 mx-auto mb-4 text-[#ff00c8]" />
+          <AlertCircle className="w-16 h-16 mx-auto mb-4 text-[#d8ae55]" />
           <p className="text-[#00eaff] text-xl mb-4">Admin access required</p>
           <Button className="btn-primary" onClick={() => navigate("/")}>
             Back to Home
@@ -84,7 +84,7 @@ export default function PaymentMerchManagement() {
             </Button>
             <h1 className="text-2xl font-bold text-accent">Payment & Merch Management</h1>
           </div>
-          <Button variant="outline" className="text-[#ff00c8] border-[#08080f] gap-2" onClick={handleExportData}>
+          <Button variant="outline" className="text-[#d8ae55] border-[#08080f] gap-2" onClick={handleExportData}>
             <Download className="w-4 h-4" />
             Export Data
           </Button>
@@ -99,9 +99,9 @@ export default function PaymentMerchManagement() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[#cccccc] text-sm">VIP Revenue</p>
-                <p className="text-3xl font-bold text-[#ff00c8]">$21,770</p>
+                <p className="text-3xl font-bold text-[#d8ae55]">$21,770</p>
               </div>
-              <CreditCard className="w-8 h-8 text-[#ff00c8] opacity-50" />
+              <CreditCard className="w-8 h-8 text-[#d8ae55] opacity-50" />
             </div>
           </Card>
 
@@ -163,7 +163,7 @@ export default function PaymentMerchManagement() {
 
           {/* Overview Tab */}
           <TabsContent value="overview" className="space-y-6">
-            <h3 className="text-xl font-bold text-[#ff00c8]">Dashboard Overview</h3>
+            <h3 className="text-xl font-bold text-[#d8ae55]">Dashboard Overview</h3>
             <div className="grid md:grid-cols-2 gap-6">
               <Card className="bg-[#000000] border border-[#08080f] p-6">
                 <h4 className="text-lg font-bold text-[#00eaff] mb-4">Recent VIP Signups</h4>
@@ -174,7 +174,7 @@ export default function PaymentMerchManagement() {
                         <p className="text-[#00eaff] font-bold">{tx.user}</p>
                         <p className="text-xs text-[#cccccc]">{tx.tier}</p>
                       </div>
-                      <p className="text-[#ff00c8] font-bold">{tx.amount}</p>
+                      <p className="text-[#d8ae55] font-bold">{tx.amount}</p>
                     </div>
                   ))}
                 </div>
@@ -199,7 +199,7 @@ export default function PaymentMerchManagement() {
 
           {/* Payment Methods Tab */}
           <TabsContent value="payments" className="space-y-6">
-            <h3 className="text-xl font-bold text-[#ff00c8]">Payment Methods</h3>
+            <h3 className="text-xl font-bold text-[#d8ae55]">Payment Methods</h3>
             <div className="space-y-4">
               {paymentMethods.map((method) => (
                 <Card key={method.id} className="bg-[#000000] border border-[#08080f] p-6">
@@ -217,7 +217,7 @@ export default function PaymentMerchManagement() {
                         </div>
                         <div>
                           <p className="text-[#cccccc]">Revenue</p>
-                          <p className="text-[#ff00c8] font-bold">{method.revenue}</p>
+                          <p className="text-[#d8ae55] font-bold">{method.revenue}</p>
                         </div>
                       </div>
                     </div>
@@ -235,7 +235,7 @@ export default function PaymentMerchManagement() {
 
           {/* Transactions Tab */}
           <TabsContent value="transactions" className="space-y-6">
-            <h3 className="text-xl font-bold text-[#ff00c8]">VIP Subscription Transactions</h3>
+            <h3 className="text-xl font-bold text-[#d8ae55]">VIP Subscription Transactions</h3>
             <div className="space-y-4">
               {vipTransactions.map((tx) => (
                 <Card key={tx.id} className="bg-[#000000] border border-[#08080f] p-6">
@@ -249,7 +249,7 @@ export default function PaymentMerchManagement() {
                         </div>
                         <div>
                           <p className="text-[#cccccc]">Amount</p>
-                          <p className="text-[#ff00c8] font-bold">{tx.amount}</p>
+                          <p className="text-[#d8ae55] font-bold">{tx.amount}</p>
                         </div>
                         <div>
                           <p className="text-[#cccccc]">Method</p>
@@ -273,7 +273,7 @@ export default function PaymentMerchManagement() {
 
           {/* Merch Orders Tab */}
           <TabsContent value="merch" className="space-y-6">
-            <h3 className="text-xl font-bold text-[#ff00c8]">Merch Orders</h3>
+            <h3 className="text-xl font-bold text-[#d8ae55]">Merch Orders</h3>
             <div className="space-y-4">
               {merchOrders.map((order) => (
                 <Card key={order.id} className="bg-[#000000] border border-[#08080f] p-6">
@@ -287,7 +287,7 @@ export default function PaymentMerchManagement() {
                         </div>
                         <div>
                           <p className="text-[#cccccc]">Amount</p>
-                          <p className="text-[#ff00c8] font-bold">{order.amount}</p>
+                          <p className="text-[#d8ae55] font-bold">{order.amount}</p>
                         </div>
                         <div>
                           <p className="text-[#cccccc]">Status</p>
@@ -304,7 +304,7 @@ export default function PaymentMerchManagement() {
                         <Button className="btn-secondary text-sm" onClick={() => handleApproveMerch(order.id)}>
                           Approve
                         </Button>
-                        <Button variant="outline" className="text-[#ff00c8] border-[#08080f] text-sm" onClick={() => handleRejectMerch(order.id)}>
+                        <Button variant="outline" className="text-[#d8ae55] border-[#08080f] text-sm" onClick={() => handleRejectMerch(order.id)}>
                           Reject
                         </Button>
                       </div>
@@ -317,7 +317,7 @@ export default function PaymentMerchManagement() {
 
           {/* Settings Tab */}
           <TabsContent value="settings" className="space-y-6">
-            <h3 className="text-xl font-bold text-[#ff00c8]">Payment Settings</h3>
+            <h3 className="text-xl font-bold text-[#d8ae55]">Payment Settings</h3>
             <Card className="bg-[#000000] border border-[#08080f] p-6">
               <div className="space-y-6">
                 <div>

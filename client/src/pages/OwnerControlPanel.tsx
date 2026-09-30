@@ -44,9 +44,9 @@ export default function OwnerControlPanel() {
       <div className="min-h-screen bg-gradient-to-br from-[#0A0A10] to-[#141423] p-4 flex items-center justify-center">
         <Card className="border-2 border-[#00eaff] bg-[#0A0A10]/80 p-8 max-w-md">
           <div className="flex items-center justify-center mb-4">
-            <Lock className="w-12 h-12 text-[#ff00c8]" />
+            <Lock className="w-12 h-12 text-[#d8ae55]" />
           </div>
-          <h1 className="text-2xl font-bold text-center text-[#ff00c8] mb-4">Access Denied</h1>
+          <h1 className="text-2xl font-bold text-center text-[#d8ae55] mb-4">Access Denied</h1>
           <p className="text-center text-gray-300 mb-6">
             Only administrators can access the Owner Control Panel.
           </p>
@@ -104,7 +104,7 @@ export default function OwnerControlPanel() {
       {/* Header */}
       <div className="mb-8 flex items-center justify-between">
         <div>
-          <h1 className="text-4xl font-bold text-[#ff00c8] mb-2">Owner Control Panel</h1>
+          <h1 className="text-4xl font-bold text-[#d8ae55] mb-2">Owner Control Panel</h1>
           <p className="text-gray-400">Manage your Anom Artsy platform • Real-time stats</p>
         </div>
         <Button variant="outline" onClick={() => navigate('/')} className="text-[#00eaff] border-[#00eaff] hover:bg-[#00eaff]/10 flex items-center gap-2">
@@ -129,7 +129,7 @@ export default function OwnerControlPanel() {
               onClick={() => setActiveTab(tab.id)}
               className={`p-3 rounded-lg border-2 transition-all flex items-center justify-center gap-2 ${
                 activeTab === tab.id
-                  ? 'border-[#00eaff] bg-transparent border border-[#00eaff] bg-[#00eaff]/10 text-[#ff00c8]'
+                  ? 'border-[#00eaff] bg-transparent border border-[#00eaff] bg-[#00eaff]/10 text-[#d8ae55]'
                   : 'border-[#00eaff] bg-transparent text-[#00eaff] hover:bg-[#00eaff]/10'
               }`}
             >
@@ -146,7 +146,7 @@ export default function OwnerControlPanel() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             <Card className="border-2 border-[#00eaff] bg-[#0A0A10]/80 p-6">
               <div className="text-gray-400 text-sm mb-2">Total Users</div>
-              <div className="text-3xl font-bold text-[#ff00c8]">{stats?.totalUsers || 0}</div>
+              <div className="text-3xl font-bold text-[#d8ae55]">{stats?.totalUsers || 0}</div>
               <div className="text-green-400 text-xs mt-2">↑ {stats?.userGrowth || 0}% this month</div>
             </Card>
             <Card className="border-2 border-[#00eaff] bg-[#0A0A10]/80 p-6">
@@ -154,9 +154,9 @@ export default function OwnerControlPanel() {
               <div className="text-3xl font-bold text-[#00eaff]">{stats?.activeMembers || 0}</div>
               <div className="text-green-400 text-xs mt-2">↑ {stats?.activeGrowth || 0}% this week</div>
             </Card>
-            <Card className="border-2 border-[#a855f7] bg-[#0A0A10]/80 p-6">
+            <Card className="border-2 border-[#d8ae55] bg-[#0A0A10]/80 p-6">
               <div className="text-gray-400 text-sm mb-2">Revenue (This Month)</div>
-              <div className="text-3xl font-bold text-[#a855f7]">${stats?.monthlyRevenue || 0}</div>
+              <div className="text-3xl font-bold text-[#d8ae55]">${stats?.monthlyRevenue || 0}</div>
               <div className="text-green-400 text-xs mt-2">↑ {stats?.revenueGrowth || 0}% vs last month</div>
             </Card>
             <Card className="border-2 border-[#fbbf24] bg-[#0A0A10]/80 p-6">
@@ -172,9 +172,9 @@ export default function OwnerControlPanel() {
               <div className="text-gray-400 text-sm mb-2">Total Lounges</div>
               <div className="text-3xl font-bold text-[#00ff88]">{stats?.totalLounges || 0}</div>
             </Card>
-            <Card className="border-2 border-[#ff6b9d] bg-[#0A0A10]/80 p-6">
+            <Card className="border-2 border-[#00eaff] bg-[#0A0A10]/80 p-6">
               <div className="text-gray-400 text-sm mb-2">Merch Orders</div>
-              <div className="text-3xl font-bold text-[#ff6b9d]">{stats?.totalOrders || 0}</div>
+              <div className="text-3xl font-bold text-[#00eaff]">{stats?.totalOrders || 0}</div>
             </Card>
             <Card className="border-2 border-[#00d4ff] bg-[#0A0A10]/80 p-6">
               <div className="text-gray-400 text-sm mb-2">Achievements Unlocked</div>
@@ -187,7 +187,7 @@ export default function OwnerControlPanel() {
       {/* Users Tab */}
       {activeTab === 'users' && (
         <div>
-          <h2 className="text-2xl font-bold text-[#ff00c8] mb-4">Manage Users</h2>
+          <h2 className="text-2xl font-bold text-[#d8ae55] mb-4">Manage Users</h2>
           <Card className="border-2 border-[#00eaff] bg-[#0A0A10]/80 p-6">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
@@ -206,7 +206,7 @@ export default function OwnerControlPanel() {
                       <td className="py-2 text-gray-300">{u.id}</td>
                       <td className="py-2 text-gray-300">{u.name}</td>
                       <td className="py-2 text-gray-300">{u.email}</td>
-                      <td className="py-2"><span className="px-2 py-1 bg-transparent border border-[#00eaff] bg-[#00eaff]/10 text-[#ff00c8] rounded text-xs">{u.role}</span></td>
+                      <td className="py-2"><span className="px-2 py-1 bg-transparent border border-[#00eaff] bg-[#00eaff]/10 text-[#d8ae55] rounded text-xs">{u.role}</span></td>
                       <td className="py-2 text-gray-300">{new Date(u.createdAt).toLocaleDateString()}</td>
                     </tr>
                   ))}
@@ -220,11 +220,11 @@ export default function OwnerControlPanel() {
       {/* Events Tab */}
       {activeTab === 'events' && (
         <div>
-          <h2 className="text-2xl font-bold text-[#ff00c8] mb-4">Community Highlights & Events</h2>
+          <h2 className="text-2xl font-bold text-[#d8ae55] mb-4">Community Highlights & Events</h2>
           
           {/* Create Event Form */}
           <Card className="border-2 border-[#00eaff] bg-[#0A0A10]/80 p-6 mb-6">
-            <h3 className="text-xl font-bold text-[#ff00c8] mb-4 flex items-center gap-2">
+            <h3 className="text-xl font-bold text-[#d8ae55] mb-4 flex items-center gap-2">
               <Plus className="w-5 h-5" />
               Create New Event
             </h3>
@@ -285,7 +285,7 @@ export default function OwnerControlPanel() {
                 <Card key={event.id} className="border-2 border-[#00eaff] bg-[#0A0A10]/80 p-6">
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
-                      <h4 className="text-xl font-bold text-[#ff00c8] mb-2">{event.title}</h4>
+                      <h4 className="text-xl font-bold text-[#d8ae55] mb-2">{event.title}</h4>
                       <p className="text-gray-300 mb-2">{event.description}</p>
                       <p className="text-[#00eaff] text-sm">📅 {new Date(event.date).toLocaleString()}</p>
                     </div>
@@ -311,7 +311,7 @@ export default function OwnerControlPanel() {
       {/* Settings Tab */}
       {activeTab === 'settings' && (
         <div>
-          <h2 className="text-2xl font-bold text-[#ff00c8] mb-4">Platform Settings</h2>
+          <h2 className="text-2xl font-bold text-[#d8ae55] mb-4">Platform Settings</h2>
           <Card className="border-2 border-[#00eaff] bg-[#0A0A10]/80 p-6">
             <div className="space-y-6">
               <div>
@@ -375,7 +375,7 @@ export default function OwnerControlPanel() {
       {/* Features Tab */}
       {activeTab === 'features' && (
         <div>
-          <h2 className="text-2xl font-bold text-[#ff00c8] mb-4">Feature Management</h2>
+          <h2 className="text-2xl font-bold text-[#d8ae55] mb-4">Feature Management</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
               { name: 'Social Feed', status: 'active', icon: '📱' },
@@ -383,7 +383,7 @@ export default function OwnerControlPanel() {
               { name: 'Merch Shop', status: 'active', icon: '🛍️' },
               { name: 'Games', status: 'active', icon: '🎮' },
               { name: 'Music Platform', status: 'active', icon: '🎵' },
-              { name: 'Kids Corner', status: 'active', icon: '👶' },
+              { name: "Anom's Corner", status: 'active', icon: '👶' },
               { name: 'Collaborations', status: 'active', icon: '🤝' },
               { name: 'Achievements', status: 'active', icon: '🏆' },
             ].map((feature) => (
@@ -392,7 +392,7 @@ export default function OwnerControlPanel() {
                   <div className="flex items-center gap-3">
                     <span className="text-2xl">{feature.icon}</span>
                     <div>
-                      <p className="font-bold text-[#ff00c8]">{feature.name}</p>
+                      <p className="font-bold text-[#d8ae55]">{feature.name}</p>
                       <p className="text-xs text-gray-400">Status: {feature.status}</p>
                     </div>
                   </div>

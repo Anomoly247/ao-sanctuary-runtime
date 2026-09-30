@@ -98,7 +98,7 @@ export default function ImageUploader({
       <div className="space-y-4">
         {/* Header */}
         <div>
-          <h3 className="text-xl font-bold text-[#ff00c8] mb-2">{title}</h3>
+          <h3 className="text-xl font-bold text-[#d8ae55] mb-2">{title}</h3>
           <p className="text-sm text-[#cccccc]">{description}</p>
         </div>
 
@@ -155,8 +155,8 @@ export default function ImageUploader({
         {/* Error Message */}
         {error && (
           <div className="flex gap-2 p-3 bg-transparent border border-[#00eaff] bg-[#00eaff]/10 border border-[#00eaff] rounded-lg">
-            <AlertCircle className="w-5 h-5 text-[#ff00c8] flex-shrink-0" />
-            <p className="text-sm text-[#ff00c8]">{error}</p>
+            <AlertCircle className="w-5 h-5 text-[#d8ae55] flex-shrink-0" />
+            <p className="text-sm text-[#d8ae55]">{error}</p>
           </div>
         )}
 

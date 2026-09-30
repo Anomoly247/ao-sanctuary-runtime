@@ -33,8 +33,6 @@ interface Channel {
   id: number;
   name: string;
   type: "global" | "announcements" | "support" | "events" | "off_topic";
-  unread: number;
-  members: number;
 }
 
 export default function ChatWidget() {
@@ -46,13 +44,13 @@ export default function ChatWidget() {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Sample channels
+  // Channel names are navigation only; counts stay hidden until backed by live data.
   const channels: Channel[] = [
-    { id: 1, name: "global", type: "global", unread: 3, members: 2847 },
-    { id: 2, name: "announcements", type: "announcements", unread: 0, members: 2847 },
-    { id: 3, name: "support", type: "support", unread: 1, members: 1240 },
-    { id: 4, name: "events", type: "events", unread: 0, members: 892 },
-    { id: 5, name: "off-topic", type: "off_topic", unread: 5, members: 1560 },
+    { id: 1, name: "global", type: "global" },
+    { id: 2, name: "announcements", type: "announcements" },
+    { id: 3, name: "support", type: "support" },
+    { id: 4, name: "events", type: "events" },
+    { id: 5, name: "off-topic", type: "off_topic" },
   ];
 
   // Sample messages
@@ -124,7 +122,7 @@ export default function ChatWidget() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-r from-[#ff00c8] to-[#00eaff] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:scale-110 z-40 surface-shadow"
+          className="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-r from-[#d8ae55] to-[#00eaff] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:scale-110 z-40 surface-shadow"
           style={{
             boxShadow: "0 8px 24px rgba(15, 23, 42, 0.28)",
           }}
@@ -142,7 +140,7 @@ export default function ChatWidget() {
       {isOpen && (
         <Card className="fixed bottom-6 right-6 w-96 h-[600px] bg-[#000000] border border-[#08080f] rounded-lg shadow-2xl z-50 flex flex-col overflow-hidden" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
           {/* Header */}
-          <div className="bg-gradient-to-r from-[#ff00c8] to-[#00eaff] p-4 flex items-center justify-between">
+          <div className="bg-gradient-to-r from-[#d8ae55] to-[#00eaff] p-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <MessageCircle className="w-5 h-5 text-white" />
               <h3 className="text-white font-bold">Anom Universe Chat</h3>
@@ -163,7 +161,7 @@ export default function ChatWidget() {
               onClick={() => setActiveTab("channels")}
               className={`flex-1 py-2 px-4 text-sm font-bold flex items-center justify-center gap-2 ${
                 activeTab === "channels"
-                  ? "text-[#ff00c8] border-b-2 border-[#00eaff]"
+                  ? "text-[#d8ae55] border-b-2 border-[#00eaff]"
                   : "text-[#cccccc] hover:text-[#00eaff]"
               }`}
             >
@@ -174,7 +172,7 @@ export default function ChatWidget() {
               onClick={() => setActiveTab("dms")}
               className={`flex-1 py-2 px-4 text-sm font-bold flex items-center justify-center gap-2 ${
                 activeTab === "dms"
-                  ? "text-[#ff00c8] border-b-2 border-[#00eaff]"
+                  ? "text-[#d8ae55] border-b-2 border-[#00eaff]"
                   : "text-[#cccccc] hover:text-[#00eaff]"
               }`}
             >
@@ -200,20 +198,14 @@ export default function ChatWidget() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         {channel.type === "announcements" ? (
-                          <Lock className="w-4 h-4 text-[#ff00c8]" />
+                          <Lock className="w-4 h-4 text-[#d8ae55]" />
                         ) : (
                           <Hash className="w-4 h-4 text-[#00eaff]" />
                         )}
                         <div>
                           <p className="text-[#00eaff] font-bold text-sm">#{channel.name}</p>
-                          <p className="text-[#cccccc] text-xs">{channel.members} members</p>
                         </div>
                       </div>
-                      {channel.unread > 0 && (
-                        <span className="bg-red-500 text-white text-xs rounded-full px-2 py-1">
-                          {channel.unread}
-                        </span>
-                      )}
                     </div>
                   </button>
                 ))}
@@ -235,7 +227,7 @@ export default function ChatWidget() {
                   <div
                     className={`px-3 py-2 rounded-lg text-sm ${
                       msg.isOwn
-                        ? "bg-gradient-to-r from-[#ff00c8] to-[#d8ae55] text-white"
+                        ? "bg-gradient-to-r from-[#d8ae55] to-[#d8ae55] text-white"
                         : "bg-[#000000] text-[#00eaff] border border-[#08080f]"
                     }`}
                   >

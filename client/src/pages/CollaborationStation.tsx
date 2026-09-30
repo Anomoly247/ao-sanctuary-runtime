@@ -237,7 +237,7 @@ export default function CollaborationStation() {
                       <p className="text-sm text-[#cccccc] mb-4 line-clamp-2">{project.description}</p>
 
                       <div className="flex items-center justify-between mb-4">
-                        <span className="text-xs text-[#ff00c8] font-bold">+{project.coinRewardPerTask} coins/task</span>
+                        <span className="text-xs text-[#d8ae55] font-bold">+{project.coinRewardPerTask} coins/task</span>
                         <span className="text-xs text-[#cccccc]">Created by user #{project.creatorId}</span>
                       </div>
 
@@ -289,7 +289,7 @@ export default function CollaborationStation() {
                     <h3 className="text-lg font-bold text-[#00eaff] mb-2">{project.title}</h3>
                     <p className="text-sm text-[#cccccc] mb-4">{project.description}</p>
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-[#ff00c8]">+{project.coinRewardPerTask} coins/task</span>
+                      <span className="text-xs text-[#d8ae55]">+{project.coinRewardPerTask} coins/task</span>
                       <Button
                         size="sm"
                         className="btn-primary text-xs"
@@ -310,7 +310,7 @@ export default function CollaborationStation() {
           {/* Create Tab */}
           <TabsContent value="create">
             <Card className="bg-[#000000] border border-[#08080f] p-8 max-w-2xl">
-              <h2 className="text-2xl font-bold text-[#ff00c8] mb-6">Create Social Good Project</h2>
+              <h2 className="text-2xl font-bold text-[#d8ae55] mb-6">Create Social Good Project</h2>
 
               <div className="space-y-6">
                 <div>
@@ -379,7 +379,7 @@ export default function CollaborationStation() {
               <div className="p-6">
                 <div className="flex items-start justify-between mb-6">
                   <div>
-                    <h2 className="text-2xl font-bold text-[#ff00c8]">{projectDetails.title}</h2>
+                    <h2 className="text-2xl font-bold text-[#d8ae55]">{projectDetails.title}</h2>
                     <p className="text-[#cccccc] mt-1">Cause: {projectDetails.cause}</p>
                   </div>
                   <Button

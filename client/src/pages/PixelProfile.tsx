@@ -20,7 +20,7 @@ export default function PixelProfile() {
         <div className="absolute inset-0 opacity-30">
           <div
             className="absolute inset-0 blur-3xl"
-            style={{ background: "radial-gradient(circle at 50% 50%, #ff00c8 0%, transparent 70%)" }}
+            style={{ background: "radial-gradient(circle at 50% 50%, #d8ae55 0%, transparent 70%)" }}
           />
         </div>
 
@@ -30,9 +30,9 @@ export default function PixelProfile() {
             <div
               className="w-32 h-32 rounded-full mx-auto mb-6 flex items-center justify-center font-bold text-6xl border-4 mb-6"
               style={{
-                borderColor: "#ff00c8",
-                background: "linear-gradient(135deg, #ff00c840 0%, #ff00c820 100%)",
-                color: "#ff00c8",
+                borderColor: "#d8ae55",
+                background: "linear-gradient(135deg, #d8ae5540 0%, #d8ae5520 100%)",
+                color: "#d8ae55",
                 boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)',
               }}
             >
@@ -83,7 +83,7 @@ export default function PixelProfile() {
             {/* About */}
             <Card className="bg-[#000000] border border-[#08080f] p-6">
               <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                <Sparkles className="w-6 h-6" style={{ color: "#ff00c8" }} />
+                <Sparkles className="w-6 h-6" style={{ color: "#d8ae55" }} />
                 About Pixel
               </h2>
               <p className="text-[#cccccc] leading-relaxed mb-4">
@@ -119,7 +119,7 @@ export default function PixelProfile() {
                         className="h-full rounded-full"
                         style={{
                           width: `${ability.level}%`,
-                          background: "linear-gradient(90deg, #ff00c8 0%, #00eaff 100%)",
+                          background: "linear-gradient(90deg, #d8ae55 0%, #00eaff 100%)",
                         }}
                       />
                     </div>
@@ -137,15 +137,15 @@ export default function PixelProfile() {
               <div className="space-y-3">
                 <div className="flex justify-between">
                   <span className="text-[#cccccc]">Episodes</span>
-                  <span className="font-bold text-[#ff00c8]">1</span>
+                  <span className="font-bold text-[#d8ae55]">1</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#cccccc]">Appearances</span>
-                  <span className="font-bold text-[#ff00c8]">1</span>
+                  <span className="font-bold text-[#d8ae55]">1</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#cccccc]">Fan Likes</span>
-                  <span className="font-bold text-[#ff00c8]">18</span>
+                  <span className="font-bold text-[#d8ae55]">18</span>
                 </div>
               </div>
             </Card>
@@ -157,7 +157,7 @@ export default function PixelProfile() {
                 {["Creative", "Visionary", "Artistic", "Curious", "Imaginative"].map((trait) => (
                   <Badge
                     key={trait}
-                    className="bg-transparent border border-[#00eaff] bg-[#00eaff]/10 text-[#ff00c8] border border-[#00eaff]"
+                    className="bg-transparent border border-[#00eaff] bg-[#00eaff]/10 text-[#d8ae55] border border-[#00eaff]"
                   >
                     {trait}
                   </Badge>

@@ -110,7 +110,7 @@ export default function DecorationShowcase({
 
   return (
     <Card className="bg-[#000000] border border-[#08080f] p-6">
-      <h3 className="text-lg font-bold text-[#ff00c8] mb-6">{title}</h3>
+      <h3 className="text-lg font-bold text-[#d8ae55] mb-6">{title}</h3>
 
       <div className="space-y-6">
         {Object.entries(grouped).map(([category, items]) => (
