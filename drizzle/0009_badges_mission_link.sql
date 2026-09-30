@@ -1,4 +1,4 @@
-CREATE TABLE `achievements` (
+CREATE TABLE IF NOT EXISTS `achievements` (
   `id` int AUTO_INCREMENT NOT NULL,
   `name` varchar(100) NOT NULL,
   `description` text,
@@ -8,7 +8,7 @@ CREATE TABLE `achievements` (
   CONSTRAINT `achievements_id` PRIMARY KEY(`id`)
 );
 --> statement-breakpoint
-CREATE TABLE `user_achievements` (
+CREATE TABLE IF NOT EXISTS `user_achievements` (
   `id` int AUTO_INCREMENT NOT NULL,
   `user_id` int NOT NULL,
   `achievement_id` int NOT NULL,
@@ -17,4 +17,4 @@ CREATE TABLE `user_achievements` (
   CONSTRAINT `user_achievements_user_achievement` UNIQUE(`user_id`,`achievement_id`)
 );
 --> statement-breakpoint
-ALTER TABLE `global_missions` ADD COLUMN `achievement_id` int;
+ALTER TABLE `global_missions` ADD COLUMN IF NOT EXISTS `achievement_id` int;
