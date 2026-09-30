@@ -131,7 +131,7 @@ export default function IdentitySyncCard() {
               <Input
                 value={syncCode}
                 readOnly
-                className="bg-[#141423] border-[#00eaff] text-white font-mono text-xs"
+                className="bg-[#000000] border-[#00eaff] text-white font-mono text-xs"
               />
               <Button
                 onClick={handleCopySyncCode}

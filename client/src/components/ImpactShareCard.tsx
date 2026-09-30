@@ -30,7 +30,7 @@ export default function ImpactShareCard({
 
   return (
     <>
-      <Card className="bg-[#141423] border border-[#08080f] p-6 hover:border-[#00eaff] transition-colors group">
+      <Card className="bg-[#000000] border border-[#08080f] p-6 hover:border-[#00eaff] transition-colors group">
         <div className="flex items-start justify-between mb-4">
           <div style={{ color }} className="opacity-80 group-hover:opacity-100">
             {icon}

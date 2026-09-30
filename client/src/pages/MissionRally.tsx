@@ -89,7 +89,7 @@ export default function MissionRally() {
 
           {/* Mission Statement */}
           <Card
-            className="bg-[#141423] border-2 border-[#00eaff] p-12 mb-12 text-center"
+            className="bg-[#000000] border-2 border-[#00eaff] p-12 mb-12 text-center"
             style={{
               boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)',
             }}
@@ -130,7 +130,7 @@ export default function MissionRally() {
               return (
                 <Card
                   key={idx}
-                  className="bg-[#141423] border border-[#08080f] p-6 text-center hover:scale-105 transition-transform"
+                  className="bg-[#000000] border border-[#08080f] p-6 text-center hover:scale-105 transition-transform"
                   style={{
                     boxShadow: `0 0 20px ${metric.color}40, 0 0 40px ${metric.color}20`,
                   }}
@@ -188,7 +188,7 @@ export default function MissionRally() {
             ].map((value, idx) => (
               <Card
                 key={idx}
-                className="bg-[#141423] border border-[#08080f] p-6 hover:border-[#00eaff] transition-colors"
+                className="bg-[#000000] border border-[#08080f] p-6 hover:border-[#00eaff] transition-colors"
               >
                 <div className="text-4xl mb-4">{value.icon}</div>
                 <h3 className="text-xl font-bold text-[#ff00c8] mb-2">{value.title}</h3>
@@ -209,7 +209,7 @@ export default function MissionRally() {
             {stories.map((story) => (
               <Card
                 key={story.id}
-                className="bg-[#141423] border border-[#08080f] p-6 hover:border-[#00eaff] transition-colors"
+                className="bg-[#000000] border border-[#08080f] p-6 hover:border-[#00eaff] transition-colors"
               >
                 <div className="flex items-start gap-4">
                   <div className="text-4xl">{story.avatar}</div>
@@ -234,7 +234,7 @@ export default function MissionRally() {
           <h2 className="text-3xl font-bold text-center mb-12 text-accent">
             Impact Leaderboard
           </h2>
-          <Card className="bg-[#141423] border border-[#08080f] overflow-hidden">
+          <Card className="bg-[#000000] border border-[#08080f] overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>

@@ -223,7 +223,7 @@ export default function SocialFeed() {
             {reels.map((reel) => (
               <Card
                 key={reel.id}
-                className="bg-[#141423] border border-[#08080f] overflow-hidden hover:border-[#00eaff] transition-all cursor-pointer group"
+                className="bg-[#000000] border border-[#08080f] overflow-hidden hover:border-[#00eaff] transition-all cursor-pointer group"
                 style={{
                   boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
                 }}
@@ -270,7 +270,7 @@ export default function SocialFeed() {
 
         {/* Create Post Section */}
         <Card
-          className="bg-[#141423] border border-[#08080f] p-6 mb-8"
+          className="bg-[#000000] border border-[#08080f] p-6 mb-8"
           style={{
             boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
           }}
@@ -300,7 +300,7 @@ export default function SocialFeed() {
           {posts.map((post) => (
             <Card
               key={post.id}
-              className="bg-[#141423] border border-[#08080f] p-6 hover:border-[#00eaff] transition-colors"
+              className="bg-[#000000] border border-[#08080f] p-6 hover:border-[#00eaff] transition-colors"
               style={{
                 boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
               }}

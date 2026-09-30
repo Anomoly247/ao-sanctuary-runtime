@@ -211,7 +211,7 @@ export default function Profile() {
         {activeTab === "dashboard" && (
           <div className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
-              <Card className="bg-[#141423] border border-[#08080f] p-6">
+              <Card className="bg-[#000000] border border-[#08080f] p-6">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-[#cccccc] text-sm">Level</p>
@@ -221,7 +221,7 @@ export default function Profile() {
                 </div>
               </Card>
 
-              <Card className="bg-[#141423] border border-[#08080f] p-6">
+              <Card className="bg-[#000000] border border-[#08080f] p-6">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-[#cccccc] text-sm">Anom Coin Balance</p>
@@ -232,7 +232,7 @@ export default function Profile() {
               </Card>
             </div>
 
-            <Card className="bg-[#141423] border border-[#08080f] p-6">
+            <Card className="bg-[#000000] border border-[#08080f] p-6">
               <h3 className="text-xl font-bold text-[#ff00c8] mb-4">Bio</h3>
               <p className="text-[#cccccc]">{profile?.bio || "No bio yet. Add one in the Customize tab!"}</p>
             </Card>
@@ -242,7 +242,7 @@ export default function Profile() {
         {/* Customize Tab */}
         {activeTab === "customize" && (
           <div className="space-y-6">
-            <Card className="bg-[#141423] border border-[#08080f] p-6">
+            <Card className="bg-[#000000] border border-[#08080f] p-6">
               <h3 className="text-xl font-bold text-[#ff00c8] mb-4">Theme</h3>
               <div className="grid grid-cols-3 gap-4">
                 {THEME_OPTIONS.map((theme) => (
@@ -262,7 +262,7 @@ export default function Profile() {
               </div>
             </Card>
 
-            <Card className="bg-[#141423] border border-[#08080f] p-6">
+            <Card className="bg-[#000000] border border-[#08080f] p-6">
               <h3 className="text-xl font-bold text-[#ff00c8] mb-4">Name Color</h3>
               <div className="grid grid-cols-3 gap-4">
                 {NAME_COLORS.map((color) => (
@@ -290,7 +290,7 @@ export default function Profile() {
         {/* Settings Tab */}
         {activeTab === "settings" && (
           <div className="space-y-6">
-            <Card className="bg-[#141423] border border-[#08080f] p-6">
+            <Card className="bg-[#000000] border border-[#08080f] p-6">
               <h3 className="text-xl font-bold text-[#ff00c8] mb-4">Edit Bio</h3>
               {isEditingProfile ? (
                 <div className="space-y-4">
@@ -322,7 +322,7 @@ export default function Profile() {
         {/* Share Tab */}
         {activeTab === "share" && (
           <div className="space-y-6">
-            <Card className="bg-[#141423] border border-[#08080f] p-6">
+            <Card className="bg-[#000000] border border-[#08080f] p-6">
               <h3 className="text-xl font-bold text-[#ff00c8] mb-4">Share Your Profile</h3>
               <div className="space-y-4">
                 <div className="flex gap-2">

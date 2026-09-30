@@ -205,27 +205,27 @@ export default function BusinessControlCenter() {
       <main className="max-w-7xl mx-auto px-6 py-12">
         {/* Key Metrics */}
         <div className="grid md:grid-cols-5 gap-4 mb-12">
-          <Card className="bg-[#141423] border border-[#08080f] p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
+          <Card className="bg-[#000000] border border-[#08080f] p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
             <p className="text-[#cccccc] text-xs">Monthly Revenue</p>
             <p className="text-2xl font-bold text-[#ff00c8]">{metrics.monthlyRevenue}</p>
           </Card>
 
-          <Card className="bg-[#141423] border border-[#08080f] p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
+          <Card className="bg-[#000000] border border-[#08080f] p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
             <p className="text-[#cccccc] text-xs">Active Members</p>
             <p className="text-2xl font-bold text-[#00eaff]">{metrics.activeMembers}</p>
           </Card>
 
-          <Card className="bg-[#141423] border border-[#08080f] p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
+          <Card className="bg-[#000000] border border-[#08080f] p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
             <p className="text-[#cccccc] text-xs">VIP Subscribers</p>
             <p className="text-2xl font-bold text-[#d8ae55]">{metrics.vipSubscribers}</p>
           </Card>
 
-          <Card className="bg-[#141423] border border-[#08080f] p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
+          <Card className="bg-[#000000] border border-[#08080f] p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
             <p className="text-[#cccccc] text-xs">Pending Orders</p>
             <p className="text-2xl font-bold text-[#00eaff]">{metrics.pendingOrders}</p>
           </Card>
 
-          <Card className="bg-[#141423] border border-[#08080f] p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
+          <Card className="bg-[#000000] border border-[#08080f] p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
             <p className="text-[#cccccc] text-xs">System Health</p>
             <p className="text-2xl font-bold text-green-400">{metrics.systemHealth}</p>
           </Card>
@@ -233,7 +233,7 @@ export default function BusinessControlCenter() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="bg-[#141423] border border-[#08080f] mb-8">
+          <TabsList className="bg-[#000000] border border-[#08080f] mb-8">
             <TabsTrigger value="overview" className="text-[#00eaff]">
               <BarChart3 className="w-4 h-4 mr-2" />
               Overview
@@ -260,7 +260,7 @@ export default function BusinessControlCenter() {
           <TabsContent value="overview" className="space-y-6">
             <h3 className="text-xl font-bold text-[#ff00c8]">Business Dashboard</h3>
             <div className="grid md:grid-cols-2 gap-6">
-              <Card className="bg-[#141423] border border-[#08080f] p-6">
+              <Card className="bg-[#000000] border border-[#08080f] p-6">
                 <h4 className="text-lg font-bold text-[#00eaff] mb-4">Quick Actions</h4>
                 <div className="space-y-2">
                   <Button className="w-full btn-primary justify-start" onClick={() => navigate("/payment-merch")}>
@@ -278,7 +278,7 @@ export default function BusinessControlCenter() {
                 </div>
               </Card>
 
-              <Card className="bg-[#141423] border border-[#08080f] p-6">
+              <Card className="bg-[#000000] border border-[#08080f] p-6">
                 <h4 className="text-lg font-bold text-[#00eaff] mb-4">System Status</h4>
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
@@ -307,7 +307,7 @@ export default function BusinessControlCenter() {
             <h3 className="text-xl font-bold text-[#ff00c8]">Security Settings</h3>
 
             {/* Two-Factor Authentication */}
-            <Card className="bg-[#141423] border border-[#08080f] p-6">
+            <Card className="bg-[#000000] border border-[#08080f] p-6">
               <div className="flex items-center justify-between mb-4">
                 <div>
                   <h4 className="text-lg font-bold text-[#00eaff]">Two-Factor Authentication</h4>
@@ -321,7 +321,7 @@ export default function BusinessControlCenter() {
             </Card>
 
             {/* Active Sessions */}
-            <Card className="bg-[#141423] border border-[#08080f] p-6">
+            <Card className="bg-[#000000] border border-[#08080f] p-6">
               <h4 className="text-lg font-bold text-[#00eaff] mb-4">Active Sessions</h4>
               <div className="space-y-3">
                 {adminSessions.map((session) => (
@@ -355,7 +355,7 @@ export default function BusinessControlCenter() {
 
             <div className="space-y-4">
               {paymentCredentials.map((cred) => (
-                <Card key={cred.id} className="bg-[#141423] border border-[#08080f] p-6">
+                <Card key={cred.id} className="bg-[#000000] border border-[#08080f] p-6">
                   <div className="flex items-center justify-between">
                     <div className="flex-1">
                       <h4 className="text-lg font-bold text-[#00eaff]">{cred.name}</h4>
@@ -401,7 +401,7 @@ export default function BusinessControlCenter() {
             <h3 className="text-xl font-bold text-[#ff00c8]">Activity Log</h3>
             <div className="space-y-3">
               {activityLog.map((log) => (
-                <Card key={log.id} className="bg-[#141423] border border-[#08080f] p-4">
+                <Card key={log.id} className="bg-[#000000] border border-[#08080f] p-4">
                   <div className="flex items-center gap-4">
                     {log.status === "success" && <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />}
                     {log.status === "warning" && <AlertCircle className="w-5 h-5 text-yellow-500 flex-shrink-0" />}
@@ -420,7 +420,7 @@ export default function BusinessControlCenter() {
           <TabsContent value="exports" className="space-y-6">
             <h3 className="text-xl font-bold text-[#ff00c8]">Data Exports</h3>
             <div className="grid md:grid-cols-2 gap-6">
-              <Card className="bg-[#141423] border border-[#08080f] p-6">
+              <Card className="bg-[#000000] border border-[#08080f] p-6">
                 <h4 className="text-lg font-bold text-[#00eaff] mb-4">Financial Reports</h4>
                 <div className="space-y-2">
                   <Button className="w-full btn-primary justify-start" onClick={() => handleExportData("CSV")}>
@@ -438,7 +438,7 @@ export default function BusinessControlCenter() {
                 </div>
               </Card>
 
-              <Card className="bg-[#141423] border border-[#08080f] p-6">
+              <Card className="bg-[#000000] border border-[#08080f] p-6">
                 <h4 className="text-lg font-bold text-[#00eaff] mb-4">User Data</h4>
                 <div className="space-y-2">
                   <Button className="w-full btn-primary justify-start" onClick={() => handleExportData("CSV")}>

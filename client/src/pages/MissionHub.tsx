@@ -122,7 +122,7 @@ export default function MissionHub() {
               return (
                 <Card
                   key={idx}
-                  className="bg-[#141423] border border-[#08080f] p-6 text-center hover:border-[#00eaff] transition-colors"
+                  className="bg-[#000000] border border-[#08080f] p-6 text-center hover:border-[#00eaff] transition-colors"
                 >
                   <Icon
                     className="w-8 h-8 mx-auto mb-4"
@@ -140,7 +140,7 @@ export default function MissionHub() {
       </section>
 
       {/* Mission Pillars */}
-      <section className="px-6 py-16 bg-[#141423] border-t border-[#08080f]">
+      <section className="px-6 py-16 bg-[#000000] border-t border-[#08080f]">
         <div className="max-w-7xl mx-auto">
           <h3 className="text-3xl font-bold text-center mb-12 text-accent">
             Our Four Pillars
@@ -202,7 +202,7 @@ export default function MissionHub() {
                 Explore Collaboration Station
               </Button>
             </div>
-            <Card className="bg-[#141423] border border-[#00eaff] p-8">
+            <Card className="bg-[#000000] border border-[#00eaff] p-8">
               <div className="space-y-6">
                 <div className="bg-[#0A0A10] rounded-lg p-4 border border-[#08080f]">
                   <p className="text-[#00eaff] font-bold mb-2">Featured Project</p>
@@ -228,7 +228,7 @@ export default function MissionHub() {
       </section>
 
       {/* How Donations Work */}
-      <section className="px-6 py-16 bg-[#141423] border-t border-[#08080f]">
+      <section className="px-6 py-16 bg-[#000000] border-t border-[#08080f]">
         <div className="max-w-4xl mx-auto">
           <h3 className="text-3xl font-bold text-center mb-12 text-accent">
             How Your Donation Powers the Mission
@@ -262,7 +262,7 @@ export default function MissionHub() {
       {/* Donation Modal */}
       {showDonationModal && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-          <Card className="bg-[#141423] border border-[#00eaff] w-full max-w-md">
+          <Card className="bg-[#000000] border border-[#00eaff] w-full max-w-md">
             <div className="p-8">
               <h3 className="text-2xl font-bold text-[#ff00c8] mb-6">Support Our Mission</h3>
               <p className="text-[#cccccc] mb-6">

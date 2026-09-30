@@ -98,7 +98,7 @@ export default function ColorCustomizer() {
 
       {/* Customization Panel */}
       {isOpen && (
-        <Card className="absolute bottom-20 right-0 bg-[#141423] border border-[#08080f] p-6 w-80 shadow-2xl">
+        <Card className="absolute bottom-20 right-0 bg-[#000000] border border-[#08080f] p-6 w-80 shadow-2xl">
           <div className="space-y-4">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-bold text-[#ff00c8]">Theme Colors</h3>

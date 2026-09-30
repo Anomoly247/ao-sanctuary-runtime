@@ -202,7 +202,7 @@ export default function OwnerControlPanel() {
                 </thead>
                 <tbody>
                   {users.map((u: any) => (
-                    <tr key={u.id} className="border-b border-[#08080f] hover:bg-[#141423]">
+                    <tr key={u.id} className="border-b border-[#08080f] hover:bg-[#000000]">
                       <td className="py-2 text-gray-300">{u.id}</td>
                       <td className="py-2 text-gray-300">{u.name}</td>
                       <td className="py-2 text-gray-300">{u.email}</td>
@@ -235,7 +235,7 @@ export default function OwnerControlPanel() {
                   value={eventForm.title} 
                   onChange={(e) => setEventForm({ ...eventForm, title: e.target.value })}
                   placeholder="e.g., Tater & Clifford Episode Release"
-                  className="bg-[#141423] border-[#00eaff] text-white"
+                  className="bg-[#000000] border-[#00eaff] text-white"
                 />
               </div>
               <div>
@@ -244,7 +244,7 @@ export default function OwnerControlPanel() {
                   value={eventForm.description} 
                   onChange={(e) => setEventForm({ ...eventForm, description: e.target.value })}
                   placeholder="Describe the event..."
-                  className="bg-[#141423] border-[#00eaff] text-white"
+                  className="bg-[#000000] border-[#00eaff] text-white"
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
@@ -254,7 +254,7 @@ export default function OwnerControlPanel() {
                     type="datetime-local"
                     value={eventForm.date} 
                     onChange={(e) => setEventForm({ ...eventForm, date: e.target.value })}
-                    className="bg-[#141423] border-[#00eaff] text-white"
+                    className="bg-[#000000] border-[#00eaff] text-white"
                   />
                 </div>
                 <div>
@@ -263,7 +263,7 @@ export default function OwnerControlPanel() {
                     value={eventForm.imageUrl} 
                     onChange={(e) => setEventForm({ ...eventForm, imageUrl: e.target.value })}
                     placeholder="https://..."
-                    className="bg-[#141423] border-[#00eaff] text-white"
+                    className="bg-[#000000] border-[#00eaff] text-white"
                   />
                 </div>
               </div>
@@ -319,7 +319,7 @@ export default function OwnerControlPanel() {
                 <Input 
                   value={settings.siteName}
                   onChange={(e) => setSettings({ ...settings, siteName: e.target.value })}
-                  className="bg-[#141423] border-[#00eaff] text-white"
+                  className="bg-[#000000] border-[#00eaff] text-white"
                 />
               </div>
               <div>
@@ -327,7 +327,7 @@ export default function OwnerControlPanel() {
                 <Textarea 
                   value={settings.siteDescription}
                   onChange={(e) => setSettings({ ...settings, siteDescription: e.target.value })}
-                  className="bg-[#141423] border-[#00eaff] text-white"
+                  className="bg-[#000000] border-[#00eaff] text-white"
                 />
               </div>
               <div className="grid grid-cols-3 gap-4">
@@ -337,7 +337,7 @@ export default function OwnerControlPanel() {
                     type="number"
                     value={settings.maxCoinsPerDay}
                     onChange={(e) => setSettings({ ...settings, maxCoinsPerDay: parseInt(e.target.value) })}
-                    className="bg-[#141423] border-[#00eaff] text-white"
+                    className="bg-[#000000] border-[#00eaff] text-white"
                   />
                 </div>
                 <div>
@@ -346,7 +346,7 @@ export default function OwnerControlPanel() {
                     type="number"
                     value={settings.levelUpXP}
                     onChange={(e) => setSettings({ ...settings, levelUpXP: parseInt(e.target.value) })}
-                    className="bg-[#141423] border-[#00eaff] text-white"
+                    className="bg-[#000000] border-[#00eaff] text-white"
                   />
                 </div>
                 <div>
@@ -356,7 +356,7 @@ export default function OwnerControlPanel() {
                     step="0.1"
                     value={settings.achievementMultiplier}
                     onChange={(e) => setSettings({ ...settings, achievementMultiplier: parseFloat(e.target.value) })}
-                    className="bg-[#141423] border-[#00eaff] text-white"
+                    className="bg-[#000000] border-[#00eaff] text-white"
                   />
                 </div>
               </div>

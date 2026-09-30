@@ -61,7 +61,7 @@ export default function MembershipCard({
 
   return (
     <Card
-      className={`bg-[#141423] p-6 flex flex-col h-full transition-all ${
+      className={`bg-[#000000] p-6 flex flex-col h-full transition-all ${
         featured ? "ring-2 scale-105" : ""
       }`}
       style={{

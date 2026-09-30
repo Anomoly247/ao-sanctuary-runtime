@@ -289,13 +289,13 @@ export default function Merch() {
                     <div className="space-y-4">
                       <div>
                         <label className="block text-sm font-bold text-gray-300 mb-2">Email</label>
-                        <Input value={checkoutData.email} onChange={(e) => setCheckoutData({ ...checkoutData, email: e.target.value })} className="bg-[#141423] border-[#00eaff] text-white" />
+                        <Input value={checkoutData.email} onChange={(e) => setCheckoutData({ ...checkoutData, email: e.target.value })} className="bg-[#000000] border-[#00eaff] text-white" />
                       </div>
                       <div>
                         <label className="block text-sm font-bold text-gray-300 mb-2">Shipping Address</label>
-                        <Textarea value={checkoutData.address} onChange={(e) => setCheckoutData({ ...checkoutData, address: e.target.value })} placeholder="Street, City, State, ZIP" className="bg-[#141423] border-[#00eaff] text-white" />
+                        <Textarea value={checkoutData.address} onChange={(e) => setCheckoutData({ ...checkoutData, address: e.target.value })} placeholder="Street, City, State, ZIP" className="bg-[#000000] border-[#00eaff] text-white" />
                       </div>
-                      <div className="bg-[#141423] p-4 rounded border border-[#00eaff]/20">
+                      <div className="bg-[#000000] p-4 rounded border border-[#00eaff]/20">
                         <p className="text-[#00eaff] font-bold mb-2">Total: ${cartTotal.toFixed(2)}</p>
                         <p className="text-sm text-gray-400">You will be redirected to Stripe for secure payment</p>
                       </div>
@@ -333,15 +333,15 @@ export default function Merch() {
                 <div className="space-y-4">
                   <div>
                     <label className="block text-sm font-bold text-gray-300 mb-2">Design Title</label>
-                    <Input value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} placeholder="e.g., Neon Dragon T-Shirt" className="bg-[#141423] border-[#00eaff] text-white" />
+                    <Input value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} placeholder="e.g., Neon Dragon T-Shirt" className="bg-[#000000] border-[#00eaff] text-white" />
                   </div>
                   <div>
                     <label className="block text-sm font-bold text-gray-300 mb-2">Description</label>
-                    <Textarea value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} placeholder="Describe your design idea..." className="bg-[#141423] border-[#00eaff] text-white" />
+                    <Textarea value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} placeholder="Describe your design idea..." className="bg-[#000000] border-[#00eaff] text-white" />
                   </div>
                   <div>
                     <label className="block text-sm font-bold text-gray-300 mb-2">Design Details</label>
-                    <Textarea value={formData.design} onChange={(e) => setFormData({ ...formData, design: e.target.value })} placeholder="Colors, style, placement, etc..." className="bg-[#141423] border-[#00eaff] text-white" />
+                    <Textarea value={formData.design} onChange={(e) => setFormData({ ...formData, design: e.target.value })} placeholder="Colors, style, placement, etc..." className="bg-[#000000] border-[#00eaff] text-white" />
                   </div>
                   <Button 
                     onClick={handleSubmitDesign}

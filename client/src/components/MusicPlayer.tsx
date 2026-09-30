@@ -79,7 +79,7 @@ export default function MusicPlayer({ tracks, onTrackChange, compact = false }: 
 
   if (!currentTrack) {
     return (
-      <Card className="bg-[#141423] border border-[#08080f] p-4">
+      <Card className="bg-[#000000] border border-[#08080f] p-4">
         <p className="text-[#cccccc] text-center">No music available</p>
       </Card>
     );
@@ -128,7 +128,7 @@ export default function MusicPlayer({ tracks, onTrackChange, compact = false }: 
   }
 
   return (
-    <Card className="bg-[#141423] border border-[#00eaff] p-6">
+    <Card className="bg-[#000000] border border-[#00eaff] p-6">
       <audio ref={audioRef} src={currentTrack.url} />
 
       <div className="flex items-center gap-4 mb-6">

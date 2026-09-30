@@ -140,7 +140,7 @@ export default function ChatWidget() {
 
       {/* Chat Panel */}
       {isOpen && (
-        <Card className="fixed bottom-6 right-6 w-96 h-[600px] bg-[#141423] border border-[#08080f] rounded-lg shadow-2xl z-50 flex flex-col overflow-hidden" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
+        <Card className="fixed bottom-6 right-6 w-96 h-[600px] bg-[#000000] border border-[#08080f] rounded-lg shadow-2xl z-50 flex flex-col overflow-hidden" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
           {/* Header */}
           <div className="bg-gradient-to-r from-[#ff00c8] to-[#00eaff] p-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -236,7 +236,7 @@ export default function ChatWidget() {
                     className={`px-3 py-2 rounded-lg text-sm ${
                       msg.isOwn
                         ? "bg-gradient-to-r from-[#ff00c8] to-[#d8ae55] text-white"
-                        : "bg-[#141423] text-[#00eaff] border border-[#08080f]"
+                        : "bg-[#000000] text-[#00eaff] border border-[#08080f]"
                     }`}
                   >
                     {msg.content}
@@ -278,7 +278,7 @@ export default function ChatWidget() {
                   <Smile className="w-4 h-4" />
                 </Button>
                 {showEmojiPicker && (
-                  <div className="absolute bottom-12 right-0 bg-[#141423] border border-[#08080f] rounded-lg p-2 grid grid-cols-4 gap-1 w-40">
+                  <div className="absolute bottom-12 right-0 bg-[#000000] border border-[#08080f] rounded-lg p-2 grid grid-cols-4 gap-1 w-40">
                     {["👍", "❤️", "🎉", "🚀", "😂", "🔥", "✨", "🌟"].map((emoji) => (
                       <button
                         key={emoji}

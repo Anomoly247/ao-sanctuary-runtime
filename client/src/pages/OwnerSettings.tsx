@@ -117,7 +117,7 @@ export default function OwnerSettings() {
       {/* Main Content */}
       <main className="max-w-6xl mx-auto px-6 py-12">
         <Tabs defaultValue="general" className="w-full">
-          <TabsList className="bg-[#141423] border border-[#08080f] mb-8 grid grid-cols-5">
+          <TabsList className="bg-[#000000] border border-[#08080f] mb-8 grid grid-cols-5">
             <TabsTrigger value="general" className="text-[#00eaff]">
               <Settings className="w-4 h-4 mr-2" />
               General
@@ -142,7 +142,7 @@ export default function OwnerSettings() {
 
           {/* General Tab */}
           <TabsContent value="general" className="space-y-6">
-            <Card className="bg-[#141423] border border-[#08080f] p-8">
+            <Card className="bg-[#000000] border border-[#08080f] p-8">
               <h2 className="text-2xl font-bold text-[#ff00c8] mb-6">General Settings</h2>
 
               <div className="space-y-6">
@@ -177,7 +177,7 @@ export default function OwnerSettings() {
 
           {/* Branding Tab */}
           <TabsContent value="branding" className="space-y-6">
-            <Card className="bg-[#141423] border border-[#08080f] p-8">
+            <Card className="bg-[#000000] border border-[#08080f] p-8">
               <h2 className="text-2xl font-bold text-[#ff00c8] mb-6">Branding & Colors</h2>
 
               <div className="space-y-6">
@@ -247,7 +247,7 @@ export default function OwnerSettings() {
 
           {/* Economy Tab */}
           <TabsContent value="economy" className="space-y-6">
-            <Card className="bg-[#141423] border border-[#08080f] p-8">
+            <Card className="bg-[#000000] border border-[#08080f] p-8">
               <h2 className="text-2xl font-bold text-[#ff00c8] mb-6">Economy Settings</h2>
 
               <div className="space-y-6">
@@ -306,7 +306,7 @@ export default function OwnerSettings() {
 
           {/* Features Tab */}
           <TabsContent value="features" className="space-y-6">
-            <Card className="bg-[#141423] border border-[#08080f] p-8">
+            <Card className="bg-[#000000] border border-[#08080f] p-8">
               <h2 className="text-2xl font-bold text-[#ff00c8] mb-6">Feature Toggles</h2>
 
               <div className="space-y-4 mb-6">
@@ -346,7 +346,7 @@ export default function OwnerSettings() {
 
           {/* Audit Log Tab */}
           <TabsContent value="audit" className="space-y-6">
-            <Card className="bg-[#141423] border border-[#08080f] p-8">
+            <Card className="bg-[#000000] border border-[#08080f] p-8">
               <h2 className="text-2xl font-bold text-[#ff00c8] mb-6">Admin Audit Log</h2>
 
               <div className="space-y-3 max-h-96 overflow-y-auto">
@@ -370,7 +370,7 @@ export default function OwnerSettings() {
                         </span>
                       </div>
                       {entry.details && (
-                        <pre className="text-xs text-[#cccccc] bg-[#141423] p-2 rounded overflow-x-auto">
+                        <pre className="text-xs text-[#cccccc] bg-[#000000] p-2 rounded overflow-x-auto">
                           {JSON.stringify(entry.details, null, 2)}
                         </pre>
                       )}

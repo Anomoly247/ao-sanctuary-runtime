@@ -6,10 +6,19 @@ import { useState } from "react";
 import { toast } from "sonner";
 import SignUpConnectors from "@/components/SignUpConnectors";
 import HomepageIntegration from "@/components/HomepageIntegration";
+import { trpc } from "@/lib/trpc";
+import { AO_LIBRARY_WORLD, AO_WORLD_PRINCIPLES } from "../../../shared/aoWorldContract";
 
 export default function Home() {
   const { user, loading, isAuthenticated, logout } = useAuth();
   const [, navigate] = useLocation();
+  const { data: profileData } = trpc.profile.getMe.useQuery(undefined, { enabled: isAuthenticated });
+  const { data: allAchievements } = trpc.achievement.getAll.useQuery();
+  const { data: userAchievements } = trpc.achievement.getUserAchievements.useQuery(undefined, { enabled: isAuthenticated });
+  const unlockedIds = new Set(userAchievements?.map((achievement) => achievement.achievementId) || []);
+  const unlockedBadgeCount = (allAchievements || []).filter((achievement) => unlockedIds.has(achievement.id)).length;
+  const unlockedBadges = (allAchievements || []).filter((achievement) => unlockedIds.has(achievement.id)).slice(0, 4);
+  const glowColor = profileData?.nameColor || "#00eaff";
   const [backgroundUrl, setBackgroundUrl] = useState<string>(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('homepageBackground') || '';
@@ -90,14 +99,14 @@ export default function Home() {
         </section>
 
         {/* Features Section */}
-        <section className="bg-[#141423] border-t border-[#08080f] px-6 py-20">
+        <section className="bg-[#000000] border-t border-[#08080f] px-6 py-20">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-16 text-accent">
               What Awaits You
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
               {/* Feature 1 */}
-              <div className="bg-[#141423] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
+              <div className="bg-[#000000] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
                 <Zap className="w-8 h-8 text-[#ff00c8] mb-4" />
                 <h3 className="text-xl font-bold text-[#00eaff] mb-2">Anom Coin Economy</h3>
                 <p className="text-[#cccccc]">
@@ -106,7 +115,7 @@ export default function Home() {
               </div>
 
               {/* Feature 2 */}
-              <div className="bg-[#141423] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
+              <div className="bg-[#000000] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
                 <Users className="w-8 h-8 text-[#00eaff] mb-4" />
                 <h3 className="text-xl font-bold text-[#ff00c8] mb-2">Private Lounges</h3>
                 <p className="text-[#cccccc]">
@@ -115,7 +124,7 @@ export default function Home() {
               </div>
 
               {/* Feature 3 */}
-              <div className="bg-[#141423] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
+              <div className="bg-[#000000] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
                 <Gamepad2 className="w-8 h-8 text-[#ff00c8] mb-4" />
                 <h3 className="text-xl font-bold text-[#00eaff] mb-2">Mini-Games</h3>
                 <p className="text-[#cccccc]">
@@ -124,7 +133,7 @@ export default function Home() {
               </div>
 
               {/* Feature 4 */}
-              <div className="bg-[#141423] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
+              <div className="bg-[#000000] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
                 <Heart className="w-8 h-8 text-[#00eaff] mb-4" />
                 <h3 className="text-xl font-bold text-[#ff00c8] mb-2">Kids Corner</h3>
                 <p className="text-[#cccccc]">
@@ -133,7 +142,7 @@ export default function Home() {
               </div>
 
               {/* Feature 5 */}
-              <div className="bg-[#141423] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
+              <div className="bg-[#000000] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
                 <Sparkles className="w-8 h-8 text-[#ff00c8] mb-4" />
                 <h3 className="text-xl font-bold text-[#00eaff] mb-2">Profile Customization</h3>
                 <p className="text-[#cccccc]">
@@ -142,7 +151,7 @@ export default function Home() {
               </div>
 
               {/* Feature 6 */}
-              <div className="bg-[#141423] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
+              <div className="bg-[#000000] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
                 <ShoppingBag className="w-8 h-8 text-[#00eaff] mb-4" />
                 <h3 className="text-xl font-bold text-[#ff00c8] mb-2">Custom Merch</h3>
                 <p className="text-[#cccccc]">
@@ -202,10 +211,59 @@ export default function Home() {
     setShowBgMenu(false);
   };
 
-  // Authenticated Dashboard
+  const worldPortals = [
+    {
+      name: 'Sanctuary',
+      eyebrow: 'SOCIAL GOOD',
+      detail: 'Lounges · Feed · Missions',
+      description: 'Find your people and turn kindness into momentum.',
+      path: '/mission-hub',
+      tone: 'gold',
+      icon: Heart,
+      delay: '0s',
+    },
+    {
+      name: 'Play Worlds',
+      eyebrow: 'ARCADE SIGNAL',
+      detail: 'Games · Kids Corner',
+      description: 'Play small, bright games that grow your signal.',
+      path: '/games',
+      tone: 'cyan',
+      icon: Gamepad2,
+      delay: '0.2s',
+    },
+    {
+      name: 'Archive',
+      eyebrow: 'MOUNTS + BADGES',
+      detail: 'Achievements · Merch',
+      description: 'Collect the objects, colors, and memories you unlock.',
+      path: '/achievements',
+      tone: 'gold',
+      icon: Sparkles,
+      delay: '0.4s',
+    },
+    {
+      name: 'Creator Orbit',
+      eyebrow: 'MAKE TOGETHER',
+      detail: 'Collaboration · Profiles',
+      description: 'Shape your identity through simple, joyful choices.',
+      path: '/collaboration',
+      tone: 'cyan',
+      icon: Users,
+      delay: '0.6s',
+    },
+  ] as const;
+
+  const signals = [
+    { label: 'ANOM COINS', value: '0 AC', icon: Zap, tone: 'gold' },
+    { label: 'LEVEL', value: String(profileData?.level || 1).padStart(2, '0'), icon: Sparkles, tone: 'cyan' },
+    { label: 'BADGES', value: String(unlockedBadgeCount), icon: Heart, tone: 'gold' },
+    { label: 'LOUNGES', value: '0', icon: Users, tone: 'cyan' },
+  ] as const;
+
   return (
-    <div 
-      className="min-h-screen bg-[#0A0A10] text-[#00eaff]"
+    <div
+      className="ao-world-page min-h-screen bg-[#0A0A10] text-white"
       style={{
         backgroundImage: backgroundUrl.startsWith('linear-gradient') ? backgroundUrl : undefined,
         backgroundSize: 'cover',
@@ -214,7 +272,7 @@ export default function Home() {
       }}
     >
       {backgroundUrl && !backgroundUrl.startsWith('linear-gradient') && (
-        <div 
+        <div
           className="fixed inset-0 pointer-events-none z-0"
           style={{
             backgroundImage: `url(${backgroundUrl})`,
@@ -224,160 +282,154 @@ export default function Home() {
           }}
         />
       )}
-      {/* Navigation */}
-      <nav className="border-b border-[#08080f] px-6 py-4 sticky top-0 bg-[#0A0A10]/95 backdrop-blur">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="text-2xl font-bold text-accent">Anom Artsy</div>
-          <div className="flex items-center gap-4">
-            <span className="text-sm text-[#cccccc]">Welcome, {user?.name}</span>
+
+      <nav className="ao-world-nav sticky top-0 z-40">
+        <div className="ao-world-nav-inner">
+          <button type="button" className="ao-wordmark" onClick={() => navigate('/')}>ANOM ARTSY</button>
+          <div className="ao-world-nav-actions">
+            <span className="ao-nav-welcome">Welcome, {user?.name}</span>
             <div className="relative">
-              <Button 
-                onClick={() => setShowBgMenu(!showBgMenu)}
-                className="bg-transparent border border-[#00eaff] bg-[#00eaff]/20 hover:bg-transparent border border-[#00eaff] bg-[#00eaff]/30 text-[#00eaff] border border-[#00eaff]"
-                size="sm"
-              >
-                <Palette className="w-4 h-4 mr-2" />
+              <Button onClick={() => setShowBgMenu(!showBgMenu)} className="btn-outline" size="sm">
+                <Palette className="w-4 h-4" />
                 Background
               </Button>
               {showBgMenu && (
-                <div className="absolute right-0 mt-2 w-48 bg-[#141423] border border-[#08080f] rounded-lg p-4 shadow-lg z-50">
-                  <div className="space-y-2">
-                    <button
-                      onClick={() => handlePresetBackground('gradient1')}
-                      className="w-full text-left px-3 py-2 rounded hover:bg-[#08080f] text-[#00eaff] text-sm"
-                    >
-                      Magenta-Cyan
-                    </button>
-                    <button
-                      onClick={() => handlePresetBackground('gradient2')}
-                      className="w-full text-left px-3 py-2 rounded hover:bg-[#08080f] text-[#00eaff] text-sm"
-                    >
-                      Gold-Magenta
-                    </button>
-                    <button
-                      onClick={() => handlePresetBackground('gradient3')}
-                      className="w-full text-left px-3 py-2 rounded hover:bg-[#08080f] text-[#00eaff] text-sm"
-                    >
-                      Cyan-Green
-                    </button>
-                    <label className="w-full text-left px-3 py-2 rounded hover:bg-[#08080f] text-[#00eaff] text-sm cursor-pointer flex items-center">
-                      <Upload className="w-4 h-4 mr-2" />
-                      Upload Image
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleBackgroundUpload}
-                        className="hidden"
-                      />
-                    </label>
-                  </div>
+                <div className="ao-background-menu">
+                  <p className="ao-menu-kicker">CHOOSE A MOOD</p>
+                  <button type="button" onClick={() => handlePresetBackground('gradient1')}>Gold Aurora</button>
+                  <button type="button" onClick={() => handlePresetBackground('gradient2')}>Cyan Orbit</button>
+                  <button type="button" onClick={() => handlePresetBackground('gradient3')}>Garden Signal</button>
+                  <label>
+                    <Upload className="w-4 h-4" />
+                    Upload Image
+                    <input type="file" accept="image/*" onChange={handleBackgroundUpload} className="hidden" />
+                  </label>
                 </div>
               )}
             </div>
             {user?.role === 'admin' && (
-              <Button onClick={() => navigate('/owner')} className="bg-[#a855f7] hover:bg-[#a855f7]/80 text-white font-bold">
+              <Button onClick={() => navigate('/owner')} className="btn-primary font-bold" size="sm">
                 Owner Panel
               </Button>
             )}
-            <Button variant="outline" onClick={logout} className="text-[#ff00c8]">
+            <Button variant="outline" onClick={logout} className="text-[#00eaff]" size="sm">
               Sign Out
             </Button>
           </div>
         </div>
       </nav>
 
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-6 py-12">
-        <div className="grid md:grid-cols-4 gap-6 mb-12">
-          {/* Coin Balance */}
-          <div className="bg-[#141423] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-[#cccccc] text-sm">Anom Coin Balance</p>
-                <p className="text-3xl font-bold text-[#ff00c8]">0 AC</p>
-              </div>
-              <Zap className="w-8 h-8 text-[#ff00c8]" />
-            </div>
-          </div>
-
-          {/* Level */}
-          <div className="bg-[#141423] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-[#cccccc] text-sm">Your Level</p>
-                <p className="text-3xl font-bold text-[#00eaff]">1</p>
-              </div>
-              <Sparkles className="w-8 h-8 text-[#00eaff]" />
-            </div>
-          </div>
-
-          {/* Achievements */}
-          <div className="bg-[#141423] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-[#cccccc] text-sm">Achievements</p>
-                <p className="text-3xl font-bold text-[#ff00c8]">0</p>
-              </div>
-              <Heart className="w-8 h-8 text-[#ff00c8]" />
-            </div>
-          </div>
-
-          {/* Lounges */}
-          <div className="bg-[#141423] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-[#cccccc] text-sm">Your Lounges</p>
-                <p className="text-3xl font-bold text-[#00eaff]">0</p>
-              </div>
-              <Users className="w-8 h-8 text-[#00eaff]" />
-            </div>
-          </div>
-        </div>
-
-        {/* Quick Actions */}
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="bg-[#141423] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
-            <h3 className="text-xl font-bold text-[#ff00c8] mb-4">Quick Actions</h3>
-            <div className="space-y-3">
-              <Button className="w-full btn-primary" onClick={() => navigate("/profile")}>
-                View Profile
-              </Button>
-              <Button className="w-full btn-secondary" onClick={() => navigate("/lounges")}>
-                Browse Lounges
-              </Button>
-              <Button className="w-full btn-tertiary" onClick={() => navigate("/achievements")}>
-                View Achievements
-              </Button>
-              <Button className="w-full btn-primary" onClick={() => navigate("/kids-corner")}>
-                Kids Corner
-              </Button>
-              <Button className="w-full btn-secondary" onClick={() => navigate("/feed")}>
-                Social Feed
-              </Button>
-              <Button className="w-full btn-outline" onClick={() => navigate("/games")}>
-                Play Games
-              </Button>
-              <Button className="w-full btn-primary" onClick={() => navigate("/merch")}>
-                Custom Merch
-              </Button>
-              <Button className="w-full btn-secondary" onClick={() => navigate("/collaboration")}>
-                Collaboration Station
-              </Button>
-            </div>
-          </div>
-
-          <div className="bg-[#141423] border border-[#08080f] rounded-lg p-4" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
-            <h3 className="text-xl font-bold text-[#00eaff] mb-4">Live from the Universe</h3>
-            <p className="text-[#cccccc] text-sm">
-              Check back soon for community highlights, memes, and universe updates!
+      <main className="ao-world-main">
+        <section className="ao-world-hero" aria-labelledby="world-title">
+          <div className="ao-world-intro">
+            <p className="ao-world-kicker">AO SANCTUARY // LIVE WORLD MAP · AGE-AWARE · MODERATED</p>
+            <h1 id="world-title">Choose a world.<br /><span>Bring your signal.</span></h1>
+            <p className="ao-world-lede">
+              This is one social game with many worlds: build a whole identity online and in real life, speak in emotes, glow with your creativity, and earn progress by doing good together.
             </p>
+            <div className="ao-world-hero-actions">
+              <Button className="btn-primary" onClick={() => navigate('/mission-hub')}>Open Mission Hub</Button>
+              <Button className="btn-secondary" onClick={() => navigate('/games')}>Enter Play Worlds</Button>
+            </div>
+            <p className="ao-world-caption">{AO_WORLD_PRINCIPLES.join(" · ")}</p>
           </div>
-        </div>
 
-        {/* Homepage Integration */}
-        <div className="mt-12">
-          <HomepageIntegration />
-        </div>
+          <div className="ao-world-map" role="group" aria-label="Four connected Anom worlds orbiting a shared sanctuary core">
+            <div className="ao-map-halo ao-map-halo-outer" />
+            <div className="ao-map-halo ao-map-halo-inner" />
+            <div className="ao-map-star ao-map-star-one" />
+            <div className="ao-map-star ao-map-star-two" />
+            <div className="ao-map-star ao-map-star-three" />
+            <div className="ao-world-core">
+              <span className="ao-core-signal">LIVE SIGNAL</span>
+              <strong>AO</strong>
+              <span className="ao-core-caption">one universe<br />many ways in</span>
+            </div>
+            {worldPortals.map((world, index) => {
+              const Icon = world.icon;
+              return (
+                <button
+                  key={world.name}
+                  type="button"
+                  className={`ao-world-node ao-world-node-${index + 1} ao-world-node-${world.tone}`}
+                  style={{ animationDelay: world.delay }}
+                  onClick={() => navigate(world.path)}
+                  aria-label={`Enter ${world.name}: ${world.description}`}
+                >
+                  <span className="ao-world-node-icon"><Icon className="w-6 h-6" /></span>
+                  <span className="ao-world-node-eyebrow">{world.eyebrow}</span>
+                  <strong>{world.name}</strong>
+                  <span className="ao-world-node-detail">{world.detail}</span>
+                </button>
+              );
+            })}
+          </div>
+        </section>
+
+        <section className="ao-signal-strip" aria-label="Your current Anom signals">
+          <div className="ao-signal-strip-label">YOUR SIGNALS</div>
+          {signals.map((signal) => {
+            const Icon = signal.icon;
+            return (
+              <div className={`ao-signal ao-signal-${signal.tone}`} key={signal.label}>
+                <Icon className="w-4 h-4" />
+                <span className="ao-signal-label">{signal.label}</span>
+                <strong>{signal.value}</strong>
+              </div>
+            );
+          })}
+        </section>
+
+        <section className="ao-homeworld-identity" aria-labelledby="identity-title">
+          <div className="ao-identity-copy">
+            <p className="ao-world-kicker">HOMEWORLD IDENTITY // ONLINE ↔ REAL LIFE</p>
+            <h2 id="identity-title">Your profile is a world.</h2>
+            <p>Show the badges you earn, tune the glow you carry, and let your online choices point back to the person you are becoming offline.</p>
+            <div className="ao-identity-actions">
+              <Button type="button" className="btn-primary" onClick={() => navigate('/profile')}>Shape your glow</Button>
+              <Button type="button" className="btn-secondary" onClick={() => navigate('/achievements')}>Display badges</Button>
+            </div>
+          </div>
+          <div className="ao-identity-orbit" aria-label={`${unlockedBadgeCount} badges displayed on your Homeworld`}>
+            <div className="ao-identity-ring ao-identity-ring-one" />
+            <div className="ao-identity-ring ao-identity-ring-two" />
+            <div className="ao-identity-glow" style={{ borderColor: glowColor, boxShadow: `0 0 36px ${glowColor}66, inset 0 0 24px ${glowColor}22` }}>
+              <span className="ao-identity-initial">{user?.name?.charAt(0).toUpperCase() || 'A'}</span>
+              <span className="ao-identity-glow-label">YOUR GLOW</span>
+            </div>
+            <div className="ao-badge-dock">
+              {unlockedBadges.length > 0 ? unlockedBadges.map((badge) => (
+                <span className="ao-badge-chip" key={badge.id} title={badge.name}><Sparkles className="h-3 w-3" />{badge.name}</span>
+              )) : <span className="ao-badge-chip ao-badge-chip-empty"><Sparkles className="h-3 w-3" />First badge waiting</span>}
+            </div>
+          </div>
+        </section>
+
+        <section className="ao-world-gates" aria-labelledby="gate-title">
+          <div className="ao-section-heading">
+            <div>
+              <p className="ao-world-kicker">OPEN GATES</p>
+              <h2 id="gate-title">The universe is wider than one screen.</h2>
+            </div>
+            <p>Choose a doorway and let the next experience carry your identity forward.</p>
+          </div>
+          <div className="ao-gate-line">
+            <button type="button" className="ao-gate ao-gate-gold" onClick={() => navigate('/profile')}>
+              <span className="ao-gate-index">01</span><span><strong>Identity Garden</strong><small>Profile · badges · colors</small></span><span className="ao-gate-arrow">↗</span>
+            </button>
+            <button type="button" className="ao-gate ao-gate-cyan" onClick={() => navigate('/feed')}>
+              <span className="ao-gate-index">02</span><span><strong>Community Current</strong><small>Feed · lounges · shared goals</small></span><span className="ao-gate-arrow">↗</span>
+            </button>
+            <button type="button" className="ao-gate ao-gate-gold" onClick={() => navigate('/merch')}>
+              <span className="ao-gate-index">03</span><span><strong>Object Lab</strong><small>Merch · mounts · visual rewards</small></span><span className="ao-gate-arrow">↗</span>
+            </button>
+            <button type="button" className="ao-gate ao-gate-cyan" onClick={() => navigate(AO_LIBRARY_WORLD.path)}>
+              <span className="ao-gate-index">04</span><span><strong>{AO_LIBRARY_WORLD.label}</strong><small>{AO_LIBRARY_WORLD.subtitle}</small></span><span className="ao-gate-arrow">↗</span>
+            </button>
+          </div>
+        </section>
+
+        <HomepageIntegration />
       </main>
     </div>
   );

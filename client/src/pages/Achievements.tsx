@@ -61,7 +61,7 @@ export default function Achievements() {
                 {xp} / {xpPerLevel}
               </span>
             </div>
-            <div className="w-full h-4 bg-[#141423] rounded-full border border-[#cccccc] overflow-hidden">
+            <div className="w-full h-4 bg-[#000000] rounded-full border border-[#cccccc] overflow-hidden">
               <div
                 className="h-full bg-gradient-to-r from-[#ff00c8] to-[#00eaff]"
                 style={{ width: `${xpProgress}%`, transition: "width 0.3s ease" }}
@@ -91,7 +91,7 @@ export default function Achievements() {
                     key={achievement.id}
                     className={`rounded-lg border-2 p-6 transition-all ${
                       isUnlocked
-                        ? "border-[#00eaff] bg-[#141423]"
+                        ? "border-[#00eaff] bg-[#000000]"
                         : "border-[#cccccc] bg-[#0A0A10] opacity-60"
                     }`}
                     style={{

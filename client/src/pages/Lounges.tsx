@@ -95,7 +95,7 @@ export default function Lounges() {
                 Create Lounge
               </Button>
             </DialogTrigger>
-            <DialogContent className="bg-[#141423] border border-[#08080f]">
+            <DialogContent className="bg-[#000000] border border-[#08080f]">
               <DialogHeader>
                 <DialogTitle className="text-[#ff00c8]">Create a New Lounge</DialogTitle>
                 <DialogDescription className="text-[#cccccc]">
@@ -119,7 +119,7 @@ export default function Lounges() {
                     <SelectTrigger className="bg-[#0A0A10] border-[#08080f] text-[#00eaff]">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent className="bg-[#141423] border-[#08080f]">
+                    <SelectContent className="bg-[#000000] border-[#08080f]">
                       <SelectItem value="family" className="text-[#00eaff]">
                         👨‍👩‍👧‍👦 Family
                       </SelectItem>
@@ -149,7 +149,7 @@ export default function Lounges() {
                     <SelectTrigger className="bg-[#0A0A10] border-[#08080f] text-[#00eaff]">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent className="bg-[#141423] border-[#08080f]">
+                    <SelectContent className="bg-[#000000] border-[#08080f]">
                       <SelectItem value="magenta" className="text-[#ff00c8]">
                         Magenta
                       </SelectItem>
@@ -193,7 +193,7 @@ export default function Lounges() {
                   Create Your First Lounge
                 </Button>
               </DialogTrigger>
-              <DialogContent className="bg-[#141423] border border-[#08080f]">
+              <DialogContent className="bg-[#000000] border border-[#08080f]">
                 <DialogHeader>
                   <DialogTitle className="text-[#ff00c8]">Create a New Lounge</DialogTitle>
                   <DialogDescription className="text-[#cccccc]">
@@ -217,7 +217,7 @@ export default function Lounges() {
                       <SelectTrigger className="bg-[#0A0A10] border-[#08080f] text-[#00eaff]">
                         <SelectValue />
                       </SelectTrigger>
-                      <SelectContent className="bg-[#141423] border-[#08080f]">
+                      <SelectContent className="bg-[#000000] border-[#08080f]">
                         <SelectItem value="family" className="text-[#00eaff]">
                           👨‍👩‍👧‍👦 Family
                         </SelectItem>
@@ -247,7 +247,7 @@ export default function Lounges() {
                       <SelectTrigger className="bg-[#0A0A10] border-[#08080f] text-[#00eaff]">
                         <SelectValue />
                       </SelectTrigger>
-                      <SelectContent className="bg-[#141423] border-[#08080f]">
+                      <SelectContent className="bg-[#000000] border-[#08080f]">
                         <SelectItem value="magenta" className="text-[#ff00c8]">
                           Magenta
                         </SelectItem>
@@ -279,7 +279,7 @@ export default function Lounges() {
               return (
                 <Card
                   key={lounge.id}
-                  className="bg-[#141423] border border-[#08080f] p-6 cursor-pointer hover:border-[#00eaff] transition-colors"
+                  className="bg-[#000000] border border-[#08080f] p-6 cursor-pointer hover:border-[#00eaff] transition-colors"
                   onClick={() => navigate(`/lounges/${lounge.id}`)}
                   style={{
                     boxShadow:

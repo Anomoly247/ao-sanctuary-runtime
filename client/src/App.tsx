@@ -30,6 +30,7 @@ import MissionRally from "./pages/MissionRally";
 import MissionHub from "./pages/MissionHub";
 import GlobalMissions from "./pages/GlobalMissions";
 import MusicLibrary from "./pages/MusicLibrary";
+import LibraryWorld from "./pages/LibraryWorld";
 import AnomsCorner from "./pages/AnomsCorner";
 import PixelProfile from "./pages/PixelProfile";
 import DotProfile from "./pages/DotProfile";
@@ -64,6 +65,7 @@ const AppRoutes = () => {
       <Route path="/mission" component={MissionRally} />
       <Route path="/mission-hub" component={MissionHub} />
       <Route path="/missions" component={GlobalMissions} />
+      <Route path="/library" component={LibraryWorld} />
       <Route path="/music-library" component={MusicLibrary} />
       <Route path="/owner" component={OwnerControlPanel} />
       <Route path="/404" component={NotFound} />

@@ -95,7 +95,7 @@ export default function PaymentMerchManagement() {
       <main className="max-w-7xl mx-auto px-6 py-12">
         {/* Revenue Overview */}
         <div className="grid md:grid-cols-4 gap-6 mb-12">
-          <Card className="bg-[#141423] border border-[#08080f] p-6" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
+          <Card className="bg-[#000000] border border-[#08080f] p-6" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[#cccccc] text-sm">VIP Revenue</p>
@@ -105,7 +105,7 @@ export default function PaymentMerchManagement() {
             </div>
           </Card>
 
-          <Card className="bg-[#141423] border border-[#08080f] p-6" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
+          <Card className="bg-[#000000] border border-[#08080f] p-6" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[#cccccc] text-sm">Merch Sales</p>
@@ -115,7 +115,7 @@ export default function PaymentMerchManagement() {
             </div>
           </Card>
 
-          <Card className="bg-[#141423] border border-[#08080f] p-6" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
+          <Card className="bg-[#000000] border border-[#08080f] p-6" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[#cccccc] text-sm">Total Revenue</p>
@@ -125,7 +125,7 @@ export default function PaymentMerchManagement() {
             </div>
           </Card>
 
-          <Card className="bg-[#141423] border border-[#08080f] p-6" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
+          <Card className="bg-[#000000] border border-[#08080f] p-6" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[#cccccc] text-sm">Active VIP Members</p>
@@ -138,7 +138,7 @@ export default function PaymentMerchManagement() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="bg-[#141423] border border-[#08080f] mb-8">
+          <TabsList className="bg-[#000000] border border-[#08080f] mb-8">
             <TabsTrigger value="overview" className="text-[#00eaff]">
               <CreditCard className="w-4 h-4 mr-2" />
               Overview
@@ -165,7 +165,7 @@ export default function PaymentMerchManagement() {
           <TabsContent value="overview" className="space-y-6">
             <h3 className="text-xl font-bold text-[#ff00c8]">Dashboard Overview</h3>
             <div className="grid md:grid-cols-2 gap-6">
-              <Card className="bg-[#141423] border border-[#08080f] p-6">
+              <Card className="bg-[#000000] border border-[#08080f] p-6">
                 <h4 className="text-lg font-bold text-[#00eaff] mb-4">Recent VIP Signups</h4>
                 <div className="space-y-3">
                   {vipTransactions.slice(0, 3).map((tx) => (
@@ -180,7 +180,7 @@ export default function PaymentMerchManagement() {
                 </div>
               </Card>
 
-              <Card className="bg-[#141423] border border-[#08080f] p-6">
+              <Card className="bg-[#000000] border border-[#08080f] p-6">
                 <h4 className="text-lg font-bold text-[#00eaff] mb-4">Pending Merch Orders</h4>
                 <div className="space-y-3">
                   {merchOrders.filter(o => o.status === "pending_approval").map((order) => (
@@ -202,7 +202,7 @@ export default function PaymentMerchManagement() {
             <h3 className="text-xl font-bold text-[#ff00c8]">Payment Methods</h3>
             <div className="space-y-4">
               {paymentMethods.map((method) => (
-                <Card key={method.id} className="bg-[#141423] border border-[#08080f] p-6">
+                <Card key={method.id} className="bg-[#000000] border border-[#08080f] p-6">
                   <div className="flex items-center justify-between">
                     <div className="flex-1">
                       <h4 className="text-lg font-bold text-[#00eaff]">{method.type}</h4>
@@ -238,7 +238,7 @@ export default function PaymentMerchManagement() {
             <h3 className="text-xl font-bold text-[#ff00c8]">VIP Subscription Transactions</h3>
             <div className="space-y-4">
               {vipTransactions.map((tx) => (
-                <Card key={tx.id} className="bg-[#141423] border border-[#08080f] p-6">
+                <Card key={tx.id} className="bg-[#000000] border border-[#08080f] p-6">
                   <div className="flex items-center justify-between">
                     <div>
                       <h4 className="text-lg font-bold text-[#00eaff]">{tx.user}</h4>
@@ -276,7 +276,7 @@ export default function PaymentMerchManagement() {
             <h3 className="text-xl font-bold text-[#ff00c8]">Merch Orders</h3>
             <div className="space-y-4">
               {merchOrders.map((order) => (
-                <Card key={order.id} className="bg-[#141423] border border-[#08080f] p-6">
+                <Card key={order.id} className="bg-[#000000] border border-[#08080f] p-6">
                   <div className="flex items-center justify-between">
                     <div className="flex-1">
                       <h4 className="text-lg font-bold text-[#00eaff]">{order.design}</h4>
@@ -318,7 +318,7 @@ export default function PaymentMerchManagement() {
           {/* Settings Tab */}
           <TabsContent value="settings" className="space-y-6">
             <h3 className="text-xl font-bold text-[#ff00c8]">Payment Settings</h3>
-            <Card className="bg-[#141423] border border-[#08080f] p-6">
+            <Card className="bg-[#000000] border border-[#08080f] p-6">
               <div className="space-y-6">
                 <div>
                   <label className="block text-[#00eaff] font-bold mb-2">Stripe API Key</label>

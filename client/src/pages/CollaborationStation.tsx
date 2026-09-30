@@ -192,7 +192,7 @@ export default function CollaborationStation() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-6 py-12">
         <Tabs defaultValue="discover" className="w-full">
-          <TabsList className="bg-[#141423] border border-[#08080f] mb-8">
+          <TabsList className="bg-[#000000] border border-[#08080f] mb-8">
             <TabsTrigger value="discover" className="text-[#00eaff]">
               <TrendingUp className="w-4 h-4 mr-2" />
               Discover Projects
@@ -220,7 +220,7 @@ export default function CollaborationStation() {
                   return (
                     <Card
                       key={project.id}
-                      className="bg-[#141423] border border-[#08080f] p-6 hover:border-[#00eaff] transition-colors cursor-pointer"
+                      className="bg-[#000000] border border-[#08080f] p-6 hover:border-[#00eaff] transition-colors cursor-pointer"
                       onClick={() => setSelectedProject(project.id)}
                       style={{
                         boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
@@ -280,7 +280,7 @@ export default function CollaborationStation() {
                 {myProjects.map((project) => (
                   <Card
                     key={project.id}
-                    className="bg-[#141423] border border-[#00eaff] p-6 cursor-pointer hover:border-[#00eaff] transition-colors"
+                    className="bg-[#000000] border border-[#00eaff] p-6 cursor-pointer hover:border-[#00eaff] transition-colors"
                     onClick={() => setSelectedProject(project.id)}
                     style={{
                       boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
@@ -309,7 +309,7 @@ export default function CollaborationStation() {
 
           {/* Create Tab */}
           <TabsContent value="create">
-            <Card className="bg-[#141423] border border-[#08080f] p-8 max-w-2xl">
+            <Card className="bg-[#000000] border border-[#08080f] p-8 max-w-2xl">
               <h2 className="text-2xl font-bold text-[#ff00c8] mb-6">Create Social Good Project</h2>
 
               <div className="space-y-6">
@@ -375,7 +375,7 @@ export default function CollaborationStation() {
         {/* Project Details Modal */}
         {selectedProject && projectDetails && (
           <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-            <Card className="bg-[#141423] border border-[#00eaff] w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <Card className="bg-[#000000] border border-[#00eaff] w-full max-w-2xl max-h-[90vh] overflow-y-auto">
               <div className="p-6">
                 <div className="flex items-start justify-between mb-6">
                   <div>

@@ -54,7 +54,7 @@ export default function DecorationShowcase({
 
   if (decorations.length === 0) {
     return (
-      <Card className="bg-[#141423] border border-[#08080f] p-6 text-center">
+      <Card className="bg-[#000000] border border-[#08080f] p-6 text-center">
         <Sparkles className="w-8 h-8 text-[#cccccc] mx-auto mb-3" />
         <p className="text-[#cccccc]">No decorations yet. Earn them through gameplay and social good actions!</p>
       </Card>
@@ -109,7 +109,7 @@ export default function DecorationShowcase({
   );
 
   return (
-    <Card className="bg-[#141423] border border-[#08080f] p-6">
+    <Card className="bg-[#000000] border border-[#08080f] p-6">
       <h3 className="text-lg font-bold text-[#ff00c8] mb-6">{title}</h3>
 
       <div className="space-y-6">

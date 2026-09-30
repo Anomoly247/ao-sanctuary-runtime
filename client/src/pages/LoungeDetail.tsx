@@ -152,7 +152,7 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0A0A10] to-[#141423]">
       {/* Header */}
-      <div className="bg-[#141423] border-b-2" style={{ borderColor: themeColor }} >
+      <div className="bg-[#000000] border-b-2" style={{ borderColor: themeColor }} >
         <div className="max-w-7xl mx-auto flex justify-between items-center p-4">
           <div>
             <h1 className="text-3xl font-bold" style={{ color: themeColor }}>
@@ -170,7 +170,7 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
       <div className="max-w-7xl mx-auto p-4 grid grid-cols-1 lg:grid-cols-4 gap-6">
         {/* Chat Area */}
         <div className="lg:col-span-3 space-y-4">
-          <Card className="bg-[#141423] border-2 h-96 flex flex-col" style={{ borderColor: themeColor }}>
+          <Card className="bg-[#000000] border-2 h-96 flex flex-col" style={{ borderColor: themeColor }}>
             <ScrollArea ref={scrollRef} className="flex-1 p-4">
               <div className="space-y-3">
                 {messages.length === 0 ? (
@@ -197,7 +197,7 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
               onChange={(e) => setMessageInput(e.target.value)}
               onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
               placeholder="Type a message..."
-              className="bg-[#141423] border-2 text-white"
+              className="bg-[#000000] border-2 text-white"
               style={{ borderColor: themeColor }}
             />
             <Button
@@ -215,7 +215,7 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
         {/* Sidebar */}
         <div className="space-y-4">
           {/* Members */}
-          <Card className="bg-[#141423] border-2 border-[#00eaff] p-4">
+          <Card className="bg-[#000000] border-2 border-[#00eaff] p-4">
             <h3 className="text-lg font-bold text-[#00eaff] mb-4 flex items-center gap-2">
               <Users className="w-5 h-5" />
               Members ({members.length})
@@ -231,7 +231,7 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
           </Card>
 
           {/* Settings */}
-          <Card className="bg-[#141423] border-2 p-4" style={{ borderColor: themeColor }}>
+          <Card className="bg-[#000000] border-2 p-4" style={{ borderColor: themeColor }}>
             <h3 className="text-lg font-bold mb-4 flex items-center gap-2" style={{ color: themeColor }}>
               <Settings className="w-5 h-5" />
               Lounge Settings
@@ -243,7 +243,7 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
                     Customize Lounge
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="bg-[#141423] border-2" style={{ borderColor: themeColor }}>
+                <DialogContent className="bg-[#000000] border-2" style={{ borderColor: themeColor }}>
                   <DialogHeader>
                     <DialogTitle style={{ color: themeColor }}>Customize Lounge</DialogTitle>
                     <DialogDescription className="text-[#cccccc]">
@@ -276,7 +276,7 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
                         <SelectTrigger className="bg-[#0A0A10] border-[#08080f] text-[#00eaff]">
                           <SelectValue />
                         </SelectTrigger>
-                        <SelectContent className="bg-[#141423] border-[#08080f]">
+                        <SelectContent className="bg-[#000000] border-[#08080f]">
                           <SelectItem value="magenta" className="text-[#ff00c8]">
                             Magenta
                           </SelectItem>
@@ -308,7 +308,7 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
                     Invite Members
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="bg-[#141423] border-2 border-[#00eaff]">
+                <DialogContent className="bg-[#000000] border-2 border-[#00eaff]">
                   <DialogHeader>
                     <DialogTitle className="text-[#00eaff]">Invite Members</DialogTitle>
                     <DialogDescription className="text-[#cccccc]">

@@ -162,7 +162,7 @@ export default function YouTubeManager() {
       <main className="max-w-7xl mx-auto px-6 py-12">
         {/* Channel Statistics */}
         <div className="grid md:grid-cols-4 gap-6 mb-12">
-          <Card className="bg-[#141423] border border-[#08080f] p-6" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
+          <Card className="bg-[#000000] border border-[#08080f] p-6" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[#cccccc] text-sm">Subscribers</p>
@@ -172,7 +172,7 @@ export default function YouTubeManager() {
             </div>
           </Card>
 
-          <Card className="bg-[#141423] border border-[#08080f] p-6" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
+          <Card className="bg-[#000000] border border-[#08080f] p-6" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[#cccccc] text-sm">Total Views</p>
@@ -182,7 +182,7 @@ export default function YouTubeManager() {
             </div>
           </Card>
 
-          <Card className="bg-[#141423] border border-[#08080f] p-6" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
+          <Card className="bg-[#000000] border border-[#08080f] p-6" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[#cccccc] text-sm">Total Videos</p>
@@ -192,7 +192,7 @@ export default function YouTubeManager() {
             </div>
           </Card>
 
-          <Card className="bg-[#141423] border border-[#08080f] p-6" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
+          <Card className="bg-[#000000] border border-[#08080f] p-6" style={{boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)'}}>
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[#cccccc] text-sm">Avg Engagement</p>
@@ -205,7 +205,7 @@ export default function YouTubeManager() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="bg-[#141423] border border-[#08080f] mb-8">
+          <TabsList className="bg-[#000000] border border-[#08080f] mb-8">
             <TabsTrigger value="upload" className="text-[#00eaff]">
               <Upload className="w-4 h-4 mr-2" />
               Upload Video
@@ -226,7 +226,7 @@ export default function YouTubeManager() {
 
           {/* Upload Tab */}
           <TabsContent value="upload" className="space-y-6">
-            <Card className="bg-[#141423] border border-[#08080f] p-8">
+            <Card className="bg-[#000000] border border-[#08080f] p-8">
               <div className="space-y-6">
                 <h3 className="text-xl font-bold text-[#ff00c8]">Upload New Video</h3>
 
@@ -321,7 +321,7 @@ export default function YouTubeManager() {
             <h3 className="text-xl font-bold text-[#ff00c8]">Video Library</h3>
             <div className="grid md:grid-cols-2 gap-6">
               {videos.map((video) => (
-                <Card key={video.id} className="bg-[#141423] border border-[#08080f] overflow-hidden hover:border-[#00eaff] transition-colors">
+                <Card key={video.id} className="bg-[#000000] border border-[#08080f] overflow-hidden hover:border-[#00eaff] transition-colors">
                   <img src={video.thumbnail} alt={video.title} className="w-full h-40 object-cover" />
                   <div className="p-4 space-y-3">
                     <div>
@@ -363,7 +363,7 @@ export default function YouTubeManager() {
           {/* Analytics Tab */}
           <TabsContent value="analytics" className="space-y-6">
             <h3 className="text-xl font-bold text-[#ff00c8]">Channel Analytics</h3>
-            <Card className="bg-[#141423] border border-[#08080f] p-6">
+            <Card className="bg-[#000000] border border-[#08080f] p-6">
               <div className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
@@ -403,7 +403,7 @@ export default function YouTubeManager() {
           {/* Settings Tab */}
           <TabsContent value="settings" className="space-y-6">
             <h3 className="text-xl font-bold text-[#ff00c8]">YouTube Settings</h3>
-            <Card className="bg-[#141423] border border-[#08080f] p-6">
+            <Card className="bg-[#000000] border border-[#08080f] p-6">
               <div className="space-y-6">
                 <div>
                   <label className="block text-[#00eaff] font-bold mb-2">Channel Name</label>

@@ -81,7 +81,7 @@ export default function DotProfile() {
           {/* Main Content */}
           <div className="md:col-span-2 space-y-6">
             {/* About */}
-            <Card className="bg-[#141423] border border-[#08080f] p-6">
+            <Card className="bg-[#000000] border border-[#08080f] p-6">
               <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
                 <Sparkles className="w-6 h-6" style={{ color: "#00eaff" }} />
                 About Dot
@@ -95,7 +95,7 @@ export default function DotProfile() {
             </Card>
 
             {/* Abilities */}
-            <Card className="bg-[#141423] border border-[#08080f] p-6">
+            <Card className="bg-[#000000] border border-[#08080f] p-6">
               <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
                 <Zap className="w-6 h-6" style={{ color: "#ff00c8" }} />
                 Exploratory Powers
@@ -132,7 +132,7 @@ export default function DotProfile() {
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Stats */}
-            <Card className="bg-[#141423] border border-[#08080f] p-6">
+            <Card className="bg-[#000000] border border-[#08080f] p-6">
               <h3 className="text-lg font-bold text-white mb-4">Character Stats</h3>
               <div className="space-y-3">
                 <div className="flex justify-between">
@@ -151,7 +151,7 @@ export default function DotProfile() {
             </Card>
 
             {/* Traits */}
-            <Card className="bg-[#141423] border border-[#08080f] p-6">
+            <Card className="bg-[#000000] border border-[#08080f] p-6">
               <h3 className="text-lg font-bold text-white mb-4">Character Traits</h3>
               <div className="flex flex-wrap gap-2">
                 {["Adventurous", "Curious", "Energetic", "Observant", "Friendly"].map((trait) => (
@@ -166,7 +166,7 @@ export default function DotProfile() {
             </Card>
 
             {/* Related */}
-            <Card className="bg-[#141423] border border-[#08080f] p-6">
+            <Card className="bg-[#000000] border border-[#08080f] p-6">
               <h3 className="text-lg font-bold text-white mb-4">Related</h3>
               <div className="space-y-2">
                 <Button className="w-full bg-[#08080f] text-[#cccccc] hover:bg-[#3a3f4e] justify-start">

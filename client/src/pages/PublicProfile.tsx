@@ -93,7 +93,7 @@ export default function PublicProfile() {
       <main className="max-w-4xl mx-auto px-6 py-12">
         {/* Profile Header */}
         <Card
-          className="bg-[#141423] border border-[#08080f] p-8 mb-8"
+          className="bg-[#000000] border border-[#08080f] p-8 mb-8"
           style={{
             boxShadow: "0 8px 24px rgba(15, 23, 42, 0.28)",
           }}
@@ -128,7 +128,7 @@ export default function PublicProfile() {
         {/* Stats Grid */}
         <div className="grid md:grid-cols-3 gap-6 mb-8">
           <Card
-            className="bg-[#141423] border border-[#08080f] p-6"
+            className="bg-[#000000] border border-[#08080f] p-6"
             style={{
               boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
             }}
@@ -143,7 +143,7 @@ export default function PublicProfile() {
           </Card>
 
           <Card
-            className="bg-[#141423] border border-[#08080f] p-6"
+            className="bg-[#000000] border border-[#08080f] p-6"
             style={{
               boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
             }}
@@ -158,7 +158,7 @@ export default function PublicProfile() {
           </Card>
 
           <Card
-            className="bg-[#141423] border border-[#08080f] p-6"
+            className="bg-[#000000] border border-[#08080f] p-6"
             style={{
               boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
             }}
@@ -176,7 +176,7 @@ export default function PublicProfile() {
         {/* Achievements Section */}
         {achievements && achievements.length > 0 && (
           <Card
-            className="bg-[#141423] border border-[#08080f] p-6 mb-8"
+            className="bg-[#000000] border border-[#08080f] p-6 mb-8"
             style={{
               boxShadow: "0 6px 18px rgba(0, 0, 0, 0.45)",
             }}
@@ -200,7 +200,7 @@ export default function PublicProfile() {
         {/* Decorations & Cosmetics Section */}
         {decorations && decorations.length > 0 && (
           <Card
-            className="bg-[#141423] border border-[#08080f] p-6 mb-8"
+            className="bg-[#000000] border border-[#08080f] p-6 mb-8"
             style={{
               boxShadow: "0 6px 18px rgba(0, 0, 0, 0.45)",
             }}
@@ -223,7 +223,7 @@ export default function PublicProfile() {
 
         {/* Mood Glows Section */}
         <Card
-          className="bg-[#141423] border border-[#08080f] p-6 mb-8"
+          className="bg-[#000000] border border-[#08080f] p-6 mb-8"
           style={{
             boxShadow: "0 6px 18px rgba(0, 0, 0, 0.45)",
           }}
@@ -243,7 +243,7 @@ export default function PublicProfile() {
 
         {/* Themes Section */}
         <Card
-          className="bg-[#141423] border border-[#08080f] p-6 mb-8"
+          className="bg-[#000000] border border-[#08080f] p-6 mb-8"
           style={{
             boxShadow: "0 6px 18px rgba(0, 0, 0, 0.45)",
           }}

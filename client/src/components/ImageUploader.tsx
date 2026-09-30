@@ -94,7 +94,7 @@ export default function ImageUploader({
   };
 
   return (
-    <Card className="bg-[#141423] border border-[#00eaff] p-6 w-full max-w-md">
+    <Card className="bg-[#000000] border border-[#00eaff] p-6 w-full max-w-md">
       <div className="space-y-4">
         {/* Header */}
         <div>

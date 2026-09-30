@@ -41,7 +41,7 @@ export default function MusicLibrary() {
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-6">
             {/* Search & Filters */}
-            <Card className="bg-[#141423] border border-[#08080f] p-6">
+            <Card className="bg-[#000000] border border-[#08080f] p-6">
               <div className="space-y-4">
                 {/* Search Bar */}
                 <div className="relative">
@@ -117,7 +117,7 @@ export default function MusicLibrary() {
                   <Card
                     key={track.id}
                     onClick={() => setSelectedTrack(track)}
-                    className={`bg-[#141423] border-2 p-4 cursor-pointer transition-all ${
+                    className={`bg-[#000000] border-2 p-4 cursor-pointer transition-all ${
                       selectedTrack?.id === track.id
                         ? "border-[#00eaff] bg-transparent border border-[#00eaff] bg-[#00eaff]/10"
                         : "border-[#08080f] hover:border-[#00eaff]"
@@ -147,7 +147,7 @@ export default function MusicLibrary() {
                   </Card>
                 ))
               ) : (
-                <Card className="bg-[#141423] border border-[#08080f] p-8 text-center">
+                <Card className="bg-[#000000] border border-[#08080f] p-8 text-center">
                   <p className="text-[#cccccc]">No tracks found matching your criteria</p>
                 </Card>
               )}
@@ -165,7 +165,7 @@ export default function MusicLibrary() {
                 />
 
                 {/* Usage Guide */}
-                <Card className="bg-[#141423] border border-[#08080f] p-6">
+                <Card className="bg-[#000000] border border-[#08080f] p-6">
                   <h3 className="font-bold text-[#00eaff] mb-4">How to Use</h3>
                   <ul className="space-y-3 text-sm text-[#cccccc]">
                     <li className="flex gap-2">
@@ -188,7 +188,7 @@ export default function MusicLibrary() {
                 </Card>
 
                 {/* Track Details */}
-                <Card className="bg-[#141423] border border-[#00eaff] p-6">
+                <Card className="bg-[#000000] border border-[#00eaff] p-6">
                   <h3 className="font-bold text-[#ff00c8] mb-4">Track Details</h3>
                   <div className="space-y-3 text-sm">
                     <div>
@@ -215,7 +215,7 @@ export default function MusicLibrary() {
                 </Card>
               </>
             ) : (
-              <Card className="bg-[#141423] border border-[#08080f] p-6 text-center">
+              <Card className="bg-[#000000] border border-[#08080f] p-6 text-center">
                 <Music className="w-8 h-8 text-[#cccccc] mx-auto mb-4" />
                 <p className="text-[#cccccc]">Select a track to preview and get details</p>
               </Card>

@@ -56,7 +56,7 @@ function TriviaGame({ onClose, onComplete }: { onClose: () => void; onComplete: 
   if (gameOver) {
     return (
       <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-        <Card className="bg-[#141423] border border-[#00eaff] p-8 max-w-md text-center">
+        <Card className="bg-[#000000] border border-[#00eaff] p-8 max-w-md text-center">
           <h2 className="text-2xl font-bold text-[#ff00c8] mb-4">Game Over!</h2>
           <p className="text-4xl font-bold text-[#00eaff] mb-6">{score} Points</p>
           <div className="flex gap-4">
@@ -88,7 +88,7 @@ function TriviaGame({ onClose, onComplete }: { onClose: () => void; onComplete: 
 
   return (
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-      <Card className="bg-[#141423] border border-[#00eaff] p-8 max-w-2xl w-full mx-4">
+      <Card className="bg-[#000000] border border-[#00eaff] p-8 max-w-2xl w-full mx-4">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold text-[#ff00c8]">Trivia Challenge</h2>
           <Button variant="ghost" onClick={onClose} className="text-[#cccccc]">
@@ -179,7 +179,7 @@ function MemoryGame({ onClose, onComplete }: { onClose: () => void; onComplete: 
   if (gameOver) {
     return (
       <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-        <Card className="bg-[#141423] border border-[#00eaff] p-8 max-w-md text-center">
+        <Card className="bg-[#000000] border border-[#00eaff] p-8 max-w-md text-center">
           <h2 className="text-2xl font-bold text-[#ff00c8] mb-4">You Won!</h2>
           <p className="text-4xl font-bold text-[#00eaff] mb-2">{100 - moves * 5} Points</p>
           <p className="text-[#cccccc] mb-6">Completed in {moves} moves</p>
@@ -199,7 +199,7 @@ function MemoryGame({ onClose, onComplete }: { onClose: () => void; onComplete: 
 
   return (
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-      <Card className="bg-[#141423] border border-[#00eaff] p-8 max-w-md">
+      <Card className="bg-[#000000] border border-[#00eaff] p-8 max-w-md">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold text-[#ff00c8]">Memory Game</h2>
           <Button variant="ghost" onClick={onClose} className="text-[#cccccc]">
@@ -261,7 +261,7 @@ function MoodMatcherGame({ onClose, onComplete }: { onClose: () => void; onCompl
 
   return (
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-      <Card className="bg-[#141423] border border-[#00eaff] p-8 max-w-md">
+      <Card className="bg-[#000000] border border-[#00eaff] p-8 max-w-md">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold text-[#ff00c8]">Mood Matcher</h2>
           <Button variant="ghost" onClick={onClose} className="text-[#cccccc]">
@@ -384,7 +384,7 @@ export default function Games() {
         {/* Stats Section */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           <Card
-            className="bg-[#141423] border border-[#08080f] p-6"
+            className="bg-[#000000] border border-[#08080f] p-6"
             style={{
               boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
             }}
@@ -399,7 +399,7 @@ export default function Games() {
           </Card>
 
           <Card
-            className="bg-[#141423] border border-[#08080f] p-6"
+            className="bg-[#000000] border border-[#08080f] p-6"
             style={{
               boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
             }}
@@ -414,7 +414,7 @@ export default function Games() {
           </Card>
 
           <Card
-            className="bg-[#141423] border border-[#08080f] p-6"
+            className="bg-[#000000] border border-[#08080f] p-6"
             style={{
               boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
             }}
@@ -436,7 +436,7 @@ export default function Games() {
             return (
               <Card
                 key={game.id}
-                className="bg-[#141423] border border-[#08080f] p-6 hover:border-[#00eaff] transition-colors"
+                className="bg-[#000000] border border-[#08080f] p-6 hover:border-[#00eaff] transition-colors"
                 style={{
                   boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
                 }}

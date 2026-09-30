@@ -116,7 +116,7 @@ export default function ProfilePhotoManager() {
   return (
     <div className="space-y-6">
       {/* Upload Section */}
-      <Card className="bg-[#141423] border-2 border-[#00eaff] p-6">
+      <Card className="bg-[#000000] border-2 border-[#00eaff] p-6">
         <h3 className="text-xl font-bold text-[#ff00c8] mb-4 flex items-center gap-2">
           <ImageIcon className="w-5 h-5" />
           Photo Library
@@ -219,7 +219,7 @@ export default function ProfilePhotoManager() {
       </Card>
 
       {/* Sharing & Export Section */}
-      <Card className="bg-[#141423] border-2 border-[#00eaff] p-6">
+      <Card className="bg-[#000000] border-2 border-[#00eaff] p-6">
         <h3 className="text-xl font-bold text-[#00eaff] mb-4 flex items-center gap-2">
           <Share2 className="w-5 h-5" />
           Share & Sync

@@ -119,7 +119,7 @@ export default function Admin() {
         {/* Stats Grid */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           <Card
-            className="bg-[#141423] border border-[#08080f] p-6"
+            className="bg-[#000000] border border-[#08080f] p-6"
             style={{
               boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
             }}
@@ -134,7 +134,7 @@ export default function Admin() {
           </Card>
 
           <Card
-            className="bg-[#141423] border border-[#08080f] p-6"
+            className="bg-[#000000] border border-[#08080f] p-6"
             style={{
               boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
             }}
@@ -150,7 +150,7 @@ export default function Admin() {
           </Card>
 
           <Card
-            className="bg-[#141423] border border-[#08080f] p-6"
+            className="bg-[#000000] border border-[#08080f] p-6"
             style={{
               boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
             }}
@@ -168,7 +168,7 @@ export default function Admin() {
 
         {/* Tabs */}
         <Tabs defaultValue="merch" className="w-full">
-          <TabsList className="bg-[#141423] border border-[#08080f] mb-8">
+          <TabsList className="bg-[#000000] border border-[#08080f] mb-8">
             <TabsTrigger value="merch" className="text-[#00eaff]">
               <ShoppingBag className="w-4 h-4 mr-2" />
               Merch Requests
@@ -195,7 +195,7 @@ export default function Admin() {
               {(merchRequests || []).map((request: any) => (
                 <Card
                   key={request.id}
-                  className="bg-[#141423] border border-[#08080f] p-6"
+                  className="bg-[#000000] border border-[#08080f] p-6"
                   style={{
                     boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
                   }}
@@ -247,7 +247,7 @@ export default function Admin() {
           <TabsContent value="users" className="space-y-6">
             <h3 className="text-xl font-bold text-[#ff00c8]">User Management</h3>
             <Card
-              className="bg-[#141423] border border-[#08080f] p-6"
+              className="bg-[#000000] border border-[#08080f] p-6"
               style={{
                 boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
               }}
@@ -261,7 +261,7 @@ export default function Admin() {
             <h3 className="text-xl font-bold text-[#ff00c8]">Platform Analytics</h3>
             <div className="grid md:grid-cols-2 gap-6">
               <Card
-                className="bg-[#141423] border border-[#08080f] p-6"
+                className="bg-[#000000] border border-[#08080f] p-6"
                 style={{
                   boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
                 }}
@@ -271,7 +271,7 @@ export default function Admin() {
               </Card>
 
               <Card
-                className="bg-[#141423] border border-[#08080f] p-6"
+                className="bg-[#000000] border border-[#08080f] p-6"
                 style={{
                   boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
                 }}

@@ -94,7 +94,7 @@ export default function ShareModal({
 
   return (
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-      <Card className="bg-[#141423] border border-[#00eaff] w-full max-w-md">
+      <Card className="bg-[#000000] border border-[#00eaff] w-full max-w-md">
         <div className="p-8">
           {/* Header */}
           <div className="flex items-center justify-between mb-6">

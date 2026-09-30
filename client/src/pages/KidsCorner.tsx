@@ -15,7 +15,7 @@ function VideoPlayer({ videoUrl, title, onClose }: { videoUrl: string; title: st
 
   return (
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-      <Card className="bg-[#141423] border border-[#00eaff] w-full max-w-2xl">
+      <Card className="bg-[#000000] border border-[#00eaff] w-full max-w-2xl">
         <div className="p-6">
           <h2 className="text-2xl font-bold text-[#ff00c8] mb-4">{title}</h2>
           <div className="aspect-video bg-[#0A0A10] rounded-lg overflow-hidden mb-4 relative">
@@ -65,7 +65,7 @@ function ColoringPage({ onClose, onComplete }: { onClose: () => void; onComplete
 
   return (
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-      <Card className="bg-[#141423] border border-[#00eaff] w-full max-w-2xl">
+      <Card className="bg-[#000000] border border-[#00eaff] w-full max-w-2xl">
         <div className="p-6">
           <h2 className="text-2xl font-bold text-[#ff00c8] mb-4">Pixel's Coloring Page</h2>
 
@@ -148,7 +148,7 @@ function OffGridGame({ onClose, onComplete }: { onClose: () => void; onComplete:
 
   return (
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-      <Card className="bg-[#141423] border border-[#00eaff] w-full max-w-md">
+      <Card className="bg-[#000000] border border-[#00eaff] w-full max-w-md">
         <div className="p-6">
           <h2 className="text-2xl font-bold text-[#ff00c8] mb-2">Off-Grid Adventure</h2>
           <p className="text-[#cccccc] mb-4">Level {level} / 3</p>
@@ -160,19 +160,19 @@ function OffGridGame({ onClose, onComplete }: { onClose: () => void; onComplete:
             <div className="grid grid-cols-3 gap-2 mb-4">
               <button
                 onClick={handleCollectResource}
-                className="p-4 bg-[#141423] border border-[#08080f] rounded hover:border-[#00eaff] transition-colors text-2xl"
+                className="p-4 bg-[#000000] border border-[#08080f] rounded hover:border-[#00eaff] transition-colors text-2xl"
               >
                 🌿
               </button>
               <button
                 onClick={handleCollectResource}
-                className="p-4 bg-[#141423] border border-[#08080f] rounded hover:border-[#00eaff] transition-colors text-2xl"
+                className="p-4 bg-[#000000] border border-[#08080f] rounded hover:border-[#00eaff] transition-colors text-2xl"
               >
                 💧
               </button>
               <button
                 onClick={handleCollectResource}
-                className="p-4 bg-[#141423] border border-[#08080f] rounded hover:border-[#00eaff] transition-colors text-2xl"
+                className="p-4 bg-[#000000] border border-[#08080f] rounded hover:border-[#00eaff] transition-colors text-2xl"
               >
                 🍄
               </button>
@@ -330,7 +330,7 @@ export default function KidsCorner() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-6 py-12">
         <Tabs defaultValue="videos" className="w-full">
-          <TabsList className="bg-[#141423] border border-[#08080f] mb-8">
+          <TabsList className="bg-[#000000] border border-[#08080f] mb-8">
             <TabsTrigger value="videos" className="text-[#00eaff]">
               <Play className="w-4 h-4 mr-2" />
               Pixel & Dot Videos
@@ -354,7 +354,7 @@ export default function KidsCorner() {
                   return (
                     <Card
                       key={video.id}
-                      className="bg-[#141423] border border-[#08080f] p-6 hover:border-[#00eaff] transition-colors"
+                      className="bg-[#000000] border border-[#08080f] p-6 hover:border-[#00eaff] transition-colors"
                       style={{
                         boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
                       }}
@@ -412,7 +412,7 @@ export default function KidsCorner() {
                 return (
                   <Card
                     key={activity.id}
-                    className="bg-[#141423] border border-[#08080f] p-6 hover:border-[#00eaff] transition-colors"
+                    className="bg-[#000000] border border-[#08080f] p-6 hover:border-[#00eaff] transition-colors"
                     style={{
                       boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
                     }}
@@ -469,7 +469,7 @@ export default function KidsCorner() {
 
         {/* Progress Summary */}
         {!contentLoading && (
-          <div className="mt-12 bg-[#141423] border border-[#08080f] rounded-lg p-6">
+          <div className="mt-12 bg-[#000000] border border-[#08080f] rounded-lg p-6">
             <h3 className="text-xl font-bold text-[#ff00c8] mb-4">Your Progress</h3>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="text-center">

@@ -122,7 +122,7 @@ export default function AnomsCorner() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Video Player */}
           <div className="lg:col-span-2">
-            <Card className="bg-[#141423] border border-[#08080f] overflow-hidden p-6">
+            <Card className="bg-[#000000] border border-[#08080f] overflow-hidden p-6">
               {/* Featured Video Player */}
               <div className="mb-6">
                 <div className="relative w-full bg-black rounded-lg overflow-hidden border border-[#08080f]">
@@ -187,7 +187,7 @@ export default function AnomsCorner() {
 
           {/* Sidebar - Episode List */}
           <div>
-            <Card className="bg-[#141423] border border-[#08080f] p-6">
+            <Card className="bg-[#000000] border border-[#08080f] p-6">
               <h3 className="text-xl font-bold text-white mb-4">Episodes</h3>
               <div className="space-y-3">
                 {episodes.map((episode) => (
@@ -208,7 +208,7 @@ export default function AnomsCorner() {
             </Card>
 
             {/* Series Stats */}
-            <Card className="bg-[#141423] border border-[#08080f] p-6 mt-6">
+            <Card className="bg-[#000000] border border-[#08080f] p-6 mt-6">
               <h3 className="text-lg font-bold text-white mb-4">Series Stats</h3>
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
@@ -227,7 +227,7 @@ export default function AnomsCorner() {
             </Card>
 
             {/* Character Links */}
-            <Card className="bg-[#141423] border border-[#08080f] p-6 mt-6">
+            <Card className="bg-[#000000] border border-[#08080f] p-6 mt-6">
               <h3 className="text-lg font-bold text-white mb-4">Meet the Characters</h3>
               <div className="space-y-2">
                 <Button
