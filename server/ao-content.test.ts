@@ -6,6 +6,8 @@ describe("AO content registry", () => {
     expect(DEFAULT_CONTENT_CONFIG.channels.find((channel) => channel.platform === "youtube")?.url).toBe("https://www.youtube.com/@anomoriginals");
     expect(DEFAULT_CONTENT_CONFIG.channels.find((channel) => channel.platform === "facebook")?.url).toBe("https://www.facebook.com/anomoriginals");
     expect(DEFAULT_CONTENT_CONFIG.channels.find((channel) => channel.platform === "substack")?.url).toBe("https://anomorig.substack.com/");
+    expect(DEFAULT_CONTENT_CONFIG.channels.find((channel) => channel.platform === "spreadshop")?.url).toBe("https://anomoriginals.myspreadshop.com/");
+    expect(DEFAULT_CONTENT_CONFIG.offers.find((offer) => offer.id === "spreadshop-ao-collection")?.url).toBe("https://anomoriginals.myspreadshop.com/");
   });
 
   it("turns supported YouTube URLs into safe embed URLs", () => {

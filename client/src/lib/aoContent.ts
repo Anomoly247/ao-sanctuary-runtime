@@ -85,11 +85,11 @@ export const DEFAULT_CONTENT_CONFIG: AOContentConfig = {
     { platform: "instagram", label: "Instagram", url: "", status: "needs-link", note: "Art drops, emotes, and short-form motion" },
     { platform: "linkedin", label: "LinkedIn", url: "", status: "needs-link", note: "Design services and professional work" },
     { platform: "substack", label: "Substack publication", url: "https://anomorig.substack.com/", status: "ready", note: "Long-form lore, lessons, and behind the scenes" },
-    { platform: "spreadshop", label: "Spreadshop", url: "", status: "needs-link", note: "Official products and collections" },
+    { platform: "spreadshop", label: "Spreadshop", url: "https://anomoriginals.myspreadshop.com/", status: "ready", note: "Official products and collections" },
   ],
   socialPosts: [],
   offers: [
-    { id: "spreadshop-ao-collection", title: "AO Originals collection", type: "spreadshop", url: "", description: "Wearable art and world signals from the Archive.", status: "featured" },
+    { id: "spreadshop-ao-collection", title: "AO Originals collection", type: "spreadshop", url: "https://anomoriginals.myspreadshop.com/", description: "Wearable art and world signals from the Archive.", status: "featured" },
     { id: "custom-world-design", title: "Custom world and identity design", type: "service", url: "", description: "Design a living identity space, character system, or creative world for a client.", status: "featured" },
   ],
 };
@@ -102,9 +102,18 @@ export function readAOContentConfig(): AOContentConfig {
     const parsed = JSON.parse(stored) as Partial<AOContentConfig>;
     return {
       entries: parsed.entries?.length ? parsed.entries : DEFAULT_CONTENT_CONFIG.entries,
-      channels: parsed.channels?.length ? parsed.channels : DEFAULT_CONTENT_CONFIG.channels,
+      channels: DEFAULT_CONTENT_CONFIG.channels.map((fallback) => {
+        const saved = parsed.channels?.find((channel) => channel.platform === fallback.platform);
+        if (!saved) return fallback;
+        const url = saved.url || fallback.url;
+        return { ...fallback, ...saved, url, status: url ? "ready" : saved.status };
+      }),
       socialPosts: parsed.socialPosts || DEFAULT_CONTENT_CONFIG.socialPosts,
-      offers: parsed.offers?.length ? parsed.offers : DEFAULT_CONTENT_CONFIG.offers,
+      offers: DEFAULT_CONTENT_CONFIG.offers.map((fallback) => {
+        const saved = parsed.offers?.find((offer) => offer.id === fallback.id);
+        if (!saved) return fallback;
+        return { ...fallback, ...saved, url: saved.url || fallback.url };
+      }),
     };
   } catch {
     return DEFAULT_CONTENT_CONFIG;
