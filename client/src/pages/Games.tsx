@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Gamepad2, Trophy, Zap, Star, X } from "lucide-react";
 import { useLocation } from "wouter";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/_core/hooks/useAuth";
@@ -298,6 +298,14 @@ export default function Games() {
   const bridge = useAOBridge();
   const [activeGame, setActiveGame] = useState<string | null>(null);
   const [gameScores, setGameScores] = useState<Record<string, number>>({});
+  const [anomCoins, setAnomCoins] = useState<number>(() => {
+    if (typeof window === "undefined") return 0;
+    return Number(window.localStorage.getItem("ao_guest_anom_coins") || 0);
+  });
+
+  useEffect(() => {
+    window.localStorage.setItem("ao_guest_anom_coins", String(anomCoins));
+  }, [anomCoins]);
 
   const mountKey = bridge.mount.toLowerCase();
   const activeMount = mountKey.includes("cyber")
@@ -357,8 +365,13 @@ export default function Games() {
   const handleGameComplete = (gameId: string, score: number) => {
     setGameScores({ ...gameScores, [gameId]: score });
     setActiveGame(null);
-    // Save the game score to the backend and award coins
-    saveGameScore.mutate({ gameId, score });
+    const coinsEarned = Math.max(10, Math.round(score / 2));
+    setAnomCoins((current) => current + coinsEarned);
+    if (isAuthenticated) {
+      saveGameScore.mutate({ gameId, score });
+    } else {
+      toast.success(`+${coinsEarned} Anom Coins earned. Your guest wallet is saved on this device.`);
+    }
   };
 
   if (loading) {
@@ -368,21 +381,6 @@ export default function Games() {
       </div>
     );
   }
-
-  if (!isAuthenticated) {
-    return (
-      <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
-        <div className="text-center">
-          <p className="text-[#00eaff] text-xl mb-4">Please sign in to play games</p>
-          <Button className="btn-primary" onClick={() => navigate("/")}>
-            Back to Home
-          </Button>
-        </div>
-      </div>
-    );
-  }
-
-  const totalRewards = Object.values(gameScores).reduce((a, b) => a + b, 0);
 
   return (
     <div className="min-h-screen bg-[#0A0A10] text-[#00eaff]">
@@ -441,11 +439,12 @@ export default function Games() {
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-[#cccccc] text-sm">Total Points</p>
-                <p className="text-3xl font-bold text-[#00eaff]">{totalRewards}</p>
+                <p className="text-[#cccccc] text-sm">Anom Coins</p>
+                <p className="text-3xl font-bold text-[#00eaff]">{anomCoins}</p>
               </div>
               <Zap className="w-8 h-8 text-[#00eaff] opacity-50" />
             </div>
+            <p className="text-xs text-[#cccccc] mt-2">Anom Coins · game currency</p>
           </Card>
 
           <Card

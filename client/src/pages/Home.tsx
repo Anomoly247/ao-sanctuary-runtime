@@ -60,8 +60,8 @@ export default function Home() {
         <nav className="border-b border-[#08080f] px-6 py-4">
           <div className="max-w-7xl mx-auto flex justify-between items-center">
             <div className="text-2xl font-bold text-accent">Anom Artsy</div>
-            <a href="/api/auth/google">
-              <Button className="btn-primary">Sign In</Button>
+            <a href="/games">
+              <Button className="btn-primary">Enter Free</Button>
             </a>
           </div>
         </nav>
@@ -81,9 +81,9 @@ export default function Home() {
                 Join the Anom Artsy community — a neon-lit sanctuary where family comes first, creativity thrives, and your identity matters. Every interaction drives real-world social good impact.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <a href="/api/auth/google">
+                <a href="/games">
                   <Button className="btn-secondary text-lg py-6 px-8">
-                    Enter the Universe
+                    Enter the Universe Free
                   </Button>
                 </a>
                 <a href="/mission-hub">
@@ -91,6 +91,18 @@ export default function Home() {
                     💜 Support Our Mission
                   </Button>
                 </a>
+              </div>
+              <div className="mt-8 rounded-lg border border-[#d8ae55]/50 bg-[#000000]/40 p-4">
+                <p className="text-[#d8ae55] font-bold mb-3">FREE TO JOIN // THE DOOR IS OPEN</p>
+                <div className="flex flex-wrap gap-2 text-sm">
+                  <a className="btn-secondary px-3 py-2 rounded" href="/games">Play Worlds</a>
+                  <a className="btn-secondary px-3 py-2 rounded" href="/anoms-corner">Anom&apos;s Corner</a>
+                  <a className="btn-secondary px-3 py-2 rounded" href="/mission-hub">Mission Hub</a>
+                  <a className="btn-secondary px-3 py-2 rounded" href="/missions">Global Missions</a>
+                  <a className="btn-secondary px-3 py-2 rounded" href="/library">Library World</a>
+                  <a className="btn-secondary px-3 py-2 rounded" href="/music-library">Beat Lab</a>
+                </div>
+                <p className="text-[#cccccc] text-sm mt-3">Play and explore as a guest. Account login is optional for saving identity and ledger rewards.</p>
               </div>
             </div>
             <SignUpConnectors />

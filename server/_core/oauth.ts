@@ -26,7 +26,7 @@ export function registerOAuthRoutes(app: Express) {
     const protocol = req.header("x-forwarded-proto") ?? req.protocol;
     const redirectUri = `${protocol}://${req.get("host")}/api/oauth/callback`;
     const state = Buffer.from(redirectUri).toString("base64");
-    const loginUrl = new URL("/app-auth", ENV.oAuthServerUrl);
+    const loginUrl = new URL("/app-auth", ENV.oAuthPortalUrl);
     loginUrl.searchParams.set("appId", ENV.appId);
     loginUrl.searchParams.set("redirectUri", redirectUri);
     loginUrl.searchParams.set("state", state);
