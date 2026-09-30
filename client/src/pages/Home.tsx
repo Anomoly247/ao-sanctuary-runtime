@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Zap, Users, Gamepad2, Heart, Sparkles, ShoppingBag, Upload, Palette } from "lucide-react";
+import { Zap, Users, Gamepad2, Heart, Sparkles, ShoppingBag, Upload, Palette, Check, Target, ShieldCheck } from "lucide-react";
 import { useLocation } from "wouter";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { useState } from "react";
@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import SignUpConnectors from "@/components/SignUpConnectors";
 import HomepageIntegration from "@/components/HomepageIntegration";
 import { trpc } from "@/lib/trpc";
-import { AO_LIBRARY_WORLD, AO_WORLD_PRINCIPLES } from "../../../shared/aoWorldContract";
+import { AO_LIBRARY_WORLD, AO_SOCIAL_GOOD_MISSIONS, AO_WORLD_AGE_TIERS, AO_WORLD_PRINCIPLES } from "../../../shared/aoWorldContract";
 
 export default function Home() {
   const { user, loading, isAuthenticated, logout } = useAuth();
@@ -15,9 +15,23 @@ export default function Home() {
   const { data: profileData } = trpc.profile.getMe.useQuery(undefined, { enabled: isAuthenticated });
   const { data: allAchievements } = trpc.achievement.getAll.useQuery();
   const { data: userAchievements } = trpc.achievement.getUserAchievements.useQuery(undefined, { enabled: isAuthenticated });
+  const { data: missions } = trpc.missions.list.useQuery();
+  const { data: missionStatus } = trpc.missions.status.useQuery(undefined, { enabled: isAuthenticated, retry: false });
   const unlockedIds = new Set(userAchievements?.map((achievement) => achievement.achievementId) || []);
   const unlockedBadgeCount = (allAchievements || []).filter((achievement) => unlockedIds.has(achievement.id)).length;
   const unlockedBadges = (allAchievements || []).filter((achievement) => unlockedIds.has(achievement.id)).slice(0, 4);
+  const completedMissionIds = new Set((missionStatus || []).map((item) => item.missionId));
+  const missionCount = missions?.length || AO_SOCIAL_GOOD_MISSIONS.length;
+  const completedMissionCount = missions?.filter((mission) => completedMissionIds.has(mission.id)).length || 0;
+  const missionPercent = missionCount ? Math.round((completedMissionCount / missionCount) * 100) : 0;
+  const homeMissions = missions?.length
+    ? missions
+    : AO_SOCIAL_GOOD_MISSIONS.map((mission) => ({
+      ...mission,
+      name: mission.label,
+      description: mission.cue,
+      reward: "0.00",
+    }));
   const glowColor = profileData?.nameColor || "#00eaff";
   const [backgroundUrl, setBackgroundUrl] = useState<string>(() => {
     if (typeof window !== 'undefined') {
@@ -217,6 +231,7 @@ export default function Home() {
       eyebrow: 'SOCIAL GOOD',
       detail: 'Lounges · Feed · Missions',
       description: 'Find your people and turn kindness into momentum.',
+      ageTier: AO_WORLD_AGE_TIERS.sanctuary,
       path: '/mission-hub',
       tone: 'gold',
       icon: Heart,
@@ -227,6 +242,7 @@ export default function Home() {
       eyebrow: 'ARCADE SIGNAL',
       detail: 'Games · Kids Corner',
       description: 'Play small, bright games that grow your signal.',
+      ageTier: AO_WORLD_AGE_TIERS.play,
       path: '/games',
       tone: 'cyan',
       icon: Gamepad2,
@@ -237,6 +253,7 @@ export default function Home() {
       eyebrow: 'MOUNTS + BADGES',
       detail: 'Achievements · Merch',
       description: 'Collect the objects, colors, and memories you unlock.',
+      ageTier: AO_WORLD_AGE_TIERS.archive,
       path: '/achievements',
       tone: 'gold',
       icon: Sparkles,
@@ -247,6 +264,7 @@ export default function Home() {
       eyebrow: 'MAKE TOGETHER',
       detail: 'Collaboration · Profiles',
       description: 'Shape your identity through simple, joyful choices.',
+      ageTier: AO_WORLD_AGE_TIERS.creator,
       path: '/collaboration',
       tone: 'cyan',
       icon: Users,
@@ -360,6 +378,7 @@ export default function Home() {
                   <span className="ao-world-node-eyebrow">{world.eyebrow}</span>
                   <strong>{world.name}</strong>
                   <span className="ao-world-node-detail">{world.detail}</span>
+                  <span className="ao-world-node-age"><ShieldCheck className="h-3 w-3" />{world.ageTier}</span>
                 </button>
               );
             })}
@@ -402,6 +421,40 @@ export default function Home() {
                 <span className="ao-badge-chip" key={badge.id} title={badge.name}><Sparkles className="h-3 w-3" />{badge.name}</span>
               )) : <span className="ao-badge-chip ao-badge-chip-empty"><Sparkles className="h-3 w-3" />First badge waiting</span>}
             </div>
+          </div>
+        </section>
+
+        <section className="ao-mission-rail" aria-labelledby="mission-rail-title">
+          <div className="ao-section-heading">
+            <div>
+              <p className="ao-world-kicker">SOCIAL GOOD // SHARED PROGRESS</p>
+              <h2 id="mission-rail-title">Kindness is playable.</h2>
+            </div>
+            <div className="ao-mission-progress-summary">
+              <span>{completedMissionCount}/{missionCount} signals recorded</span>
+              <div className="ao-mission-progress" aria-label={`${missionPercent}% of social-good missions recorded`} role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={missionPercent}>
+                <span style={{ width: `${missionPercent}%` }} />
+              </div>
+            </div>
+          </div>
+          <p className="ao-mission-rail-lede">Small actions become a shared reward loop: arrive, make, play, and leave the next person with more room to glow.</p>
+          <div className="ao-mission-grid">
+            {homeMissions.map((mission, index) => {
+              const metadata = AO_SOCIAL_GOOD_MISSIONS.find(item => item.id === mission.id);
+              const isDone = completedMissionIds.has(mission.id);
+              return (
+                <article className={`ao-mission-card ${isDone ? 'ao-mission-card-done' : ''}`} key={mission.id}>
+                  <div className="ao-mission-card-topline"><span>0{index + 1}</span><span>{isDone ? 'RECORDED' : 'OPEN SIGNAL'}</span></div>
+                  <div className="ao-mission-card-icon"><Target className="h-5 w-5" /></div>
+                  <h3>{metadata?.label || mission.name}</h3>
+                  <p>{metadata?.cue || mission.description}</p>
+                  <div className="ao-mission-card-footer">
+                    <span>{isDone ? <><Check className="h-3 w-3" /> Complete</> : `+${mission.reward} AC`}</span>
+                    <Button type="button" className="btn-link" onClick={() => navigate(`/mission-hub?mission=${encodeURIComponent(mission.id)}`)}>{isDone ? 'View' : 'Enter'}</Button>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </section>
 

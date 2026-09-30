@@ -19,3 +19,17 @@ export const AO_LIBRARY_WORLD = {
   subtitle: "Research · videos · hidden lessons",
   mission: "Turn curiosity into a shared quest.",
 } as const;
+
+export const AO_WORLD_AGE_TIERS = {
+  sanctuary: "ALL AGES",
+  play: "KIDS + GUARDIANS",
+  archive: "ALL AGES",
+  creator: "GUARDIAN GUIDED",
+  library: "AGE-AWARE",
+} as const;
+
+export const AO_SOCIAL_GOOD_MISSIONS = [
+  { id: "welcome-to-ao", label: "Arrive with intention", cue: "Choose a house and enter together." },
+  { id: "play-with-purpose", label: "Play with purpose", cue: "Complete a connected creative activity." },
+  { id: "make-something-kind", label: "Make something kind", cue: "Create, share, or encourage safely." },
+] as const;
