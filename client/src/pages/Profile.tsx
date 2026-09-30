@@ -21,7 +21,6 @@ const NAME_COLORS = [
   { id: "#ffffff", name: "White", color: "#ffffff" },
   { id: "#d8ae55", name: "Badge Gold", color: "#d8ae55" },
   { id: "#00eaff", name: "Cyan", color: "#00eaff" },
-  { id: "#d8ae55", name: "Badge Gold", color: "#d8ae55" },
   { id: "#ffd700", name: "Gold (VIP)", color: "#ffd700" },
   { id: "#c0c0c0", name: "Silver (VIP Max)", color: "#c0c0c0" },
 ];
