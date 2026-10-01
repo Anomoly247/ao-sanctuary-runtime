@@ -63,12 +63,13 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
   const [volume, setVolumeState] = useState(readVolume);
   const [soundscape, setSoundscapeState] = useState<Soundscape>(readSoundscape);
   const [isActive, setIsActive] = useState(false);
+  const [audioError, setAudioError] = useState<string | null>(null);
   const audioRef = useRef<AudioState | null>(null);
 
   const updateMaster = useCallback((nextVolume: number, nextEnabled: boolean) => {
     const audio = audioRef.current;
     if (!audio) return;
-    const target = nextEnabled ? nextVolume * 0.11 : 0;
+    const target = nextEnabled ? nextVolume * 0.28 : 0;
     audio.master.gain.cancelScheduledValues(audio.context.currentTime);
     audio.master.gain.setTargetAtTime(target, audio.context.currentTime, 0.3);
   }, []);
@@ -91,14 +92,18 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
     setIsActive(false);
   }, []);
 
-  const startAudio = useCallback((selectedSoundscape: Soundscape) => {
+  const startAudio = useCallback((selectedSoundscape: Soundscape, nextEnabled = enabled, nextVolume = volume) => {
     if (audioRef.current || typeof window === "undefined") return;
     const AudioContextClass = window.AudioContext || (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-    if (!AudioContextClass) return;
+    if (!AudioContextClass) {
+      setAudioError("This browser does not support ambient sound.");
+      return;
+    }
 
     const context = new AudioContextClass();
+    void context.resume().catch(() => setAudioError("Tap Ambient on to allow Sanctuary sound."));
     const master = context.createGain();
-    master.gain.value = enabled ? volume * 0.11 : 0;
+    master.gain.value = nextEnabled ? nextVolume * 0.28 : 0;
     master.connect(context.destination);
     const nodes: AudioNode[] = [];
     const timers: number[] = [];
@@ -170,10 +175,20 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
     timers.push(window.setInterval(playInstrumentNote, selectedSoundscape === "still-water" ? 8600 : selectedSoundscape === "soft-lantern" ? 5200 : 6800));
 
     audioRef.current = { context, master, nodes, timers };
+    setAudioError(null);
     setIsActive(true);
   }, [enabled, volume]);
 
-  const activate = useCallback(() => startAudio(soundscape), [soundscape, startAudio]);
+  const activate = useCallback(() => {
+    const nextVolume = volume > 0 ? volume : 0.22;
+    if (volume === 0) {
+      setVolumeState(nextVolume);
+      window.localStorage.setItem(VOLUME_KEY, String(nextVolume));
+    }
+    setEnabled(true);
+    window.localStorage.setItem(ENABLED_KEY, "true");
+    startAudio(soundscape, true, nextVolume);
+  }, [soundscape, startAudio, volume]);
 
   const toggleEnabled = useCallback(() => {
     if (!audioRef.current) {
@@ -193,7 +208,8 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
     setVolumeState(next);
     window.localStorage.setItem(VOLUME_KEY, String(next));
     updateMaster(next, enabled);
-  }, [enabled, updateMaster]);
+    if (next > 0 && enabled && !audioRef.current) startAudio(soundscape, true, next);
+  }, [enabled, soundscape, startAudio, updateMaster]);
 
   const setSoundscape = useCallback((next: Soundscape) => {
     setSoundscapeState(next);
@@ -214,7 +230,7 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const onFirstInteraction = () => {
-      activate();
+      if (enabled && volume > 0) activate();
       window.removeEventListener("pointerdown", onFirstInteraction);
       window.removeEventListener("keydown", onFirstInteraction);
     };
@@ -224,7 +240,7 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
       window.removeEventListener("pointerdown", onFirstInteraction);
       window.removeEventListener("keydown", onFirstInteraction);
     };
-  }, [activate]);
+  }, [activate, enabled, volume]);
 
   useEffect(() => stopAudio, [stopAudio]);
 
@@ -234,7 +250,7 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
     <AmbientAudioContext.Provider value={value}>
       {children}
       <div className="ao-ambient-control" aria-label="Ambient Sanctuary sound controls">
-        {!isActive && <span className="ao-ambient-hint">Click anywhere to hear Sanctuary</span>}
+        {!isActive && <span className="ao-ambient-hint" role="status">{audioError ?? (volume === 0 ? "Raise volume to hear Sanctuary" : "Click anywhere to hear Sanctuary")}</span>}
         <button type="button" className="ao-ambient-toggle" onClick={toggleEnabled} aria-pressed={enabled}>
           {enabled ? "Ambient on" : "Ambient off"}
         </button>
