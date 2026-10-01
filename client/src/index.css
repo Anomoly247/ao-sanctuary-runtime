@@ -1631,3 +1631,79 @@ a[href]{color:#4da3ff!important;text-decoration-color:rgba(77,163,255,.72);text-
 
 .ao-admin-world-button{gap:.42rem;color:#d8ae55!important;border:1px solid rgba(216,174,85,.45)!important;background:rgba(216,174,85,.06)!important}.ao-admin-world-button:hover,.ao-admin-world-button:focus-visible{color:#f0dfae!important;border-color:#d8ae55!important;background:rgba(216,174,85,.14)!important}
 @media(max-width:560px){.ao-admin-world-button{font-size:.72rem;padding-inline:.65rem}.ao-admin-world-button svg{display:none}}
+
+/* Vibrant, accessible authentication door */
+.ao-auth-shell {
+  background:
+    radial-gradient(circle at 14% 18%, rgba(255, 184, 107, 0.16), transparent 30%),
+    radial-gradient(circle at 84% 16%, rgba(85, 230, 255, 0.16), transparent 28%),
+    radial-gradient(circle at 62% 84%, rgba(154, 255, 208, 0.10), transparent 32%),
+    #090a13;
+}
+.ao-auth-shell > nav {
+  background: rgba(9, 10, 19, 0.72);
+  border-bottom-color: rgba(85, 230, 255, 0.35);
+  box-shadow: 0 12px 42px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(18px);
+}
+.ao-auth-shell .btn-primary {
+  border-color: #ffca6b;
+  color: #ffca6b;
+}
+.ao-auth-shell .btn-primary:hover,
+.ao-auth-shell .btn-primary:focus-visible {
+  background: rgba(255, 202, 107, 0.16);
+  border-color: #ffe1a6;
+  color: #fff4dc;
+}
+.ao-auth-shell .btn-secondary {
+  border-color: #55e6ff;
+  color: #55e6ff;
+}
+.ao-auth-shell .btn-secondary:hover,
+.ao-auth-shell .btn-secondary:focus-visible {
+  background: rgba(85, 230, 255, 0.14);
+  border-color: #b2f5ff;
+  color: #edfdff;
+}
+.ao-auth-status {
+  min-height: 2rem;
+  margin-top: 0.65rem;
+}
+.ao-auth-status-info,
+.ao-auth-status-error {
+  align-items: flex-start;
+  display: flex;
+  gap: 0.5rem;
+  margin: 0;
+  max-width: 42rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: 0.8rem;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+.ao-auth-status-info {
+  background: rgba(85, 230, 255, 0.09);
+  border: 1px solid rgba(85, 230, 255, 0.32);
+  color: #b2f5ff;
+}
+.ao-auth-status-error {
+  background: rgba(255, 122, 102, 0.12);
+  border: 1px solid rgba(255, 160, 139, 0.54);
+  color: #ffd0c5;
+}
+.ao-auth-shell .ao-auth-status svg {
+  flex: 0 0 auto;
+  margin-top: 0.1rem;
+}
+.ao-auth-shell .mt-8.rounded-lg {
+  background: linear-gradient(135deg, rgba(255, 202, 107, 0.12), rgba(85, 230, 255, 0.08));
+  border-color: rgba(255, 202, 107, 0.62);
+  box-shadow: 0 18px 52px rgba(0, 0, 0, 0.24);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ao-auth-status-info svg,
+  .ao-auth-shell .animate-spin {
+    animation: none !important;
+  }
+}

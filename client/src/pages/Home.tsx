@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { Zap, Users, Gamepad2, Heart, Sparkles, ShoppingBag, Upload, Palette, Check, Target, ShieldCheck } from "lucide-react";
+import { Zap, Users, Gamepad2, Heart, Sparkles, ShoppingBag, Upload, Palette, Check, Target, ShieldCheck, AlertCircle, LoaderCircle, LogIn } from "lucide-react";
 import { useLocation } from "wouter";
 import { useAuth } from "@/_core/hooks/useAuth";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import ExternalWebDoor from "@/components/ExternalWebDoor";
 import HomepageIntegration from "@/components/HomepageIntegration";
@@ -40,10 +40,27 @@ export default function Home() {
     return '';
   });
   const [showBgMenu, setShowBgMenu] = useState(false);
+  const [loginPending, setLoginPending] = useState(false);
+  const [loginError, setLoginError] = useState<string | null>(null);
+  const loginTimer = useRef<number | null>(null);
   const [guardianFilter, setGuardianFilter] = useState<boolean>(() => {
     if (typeof window !== 'undefined') return localStorage.getItem('ao-guardian-filter') === 'on';
     return false;
   });
+
+  useEffect(() => () => {
+    if (loginTimer.current) window.clearTimeout(loginTimer.current);
+  }, []);
+
+  const handleSignIn = () => {
+    setLoginPending(true);
+    setLoginError(null);
+    loginTimer.current = window.setTimeout(() => {
+      setLoginPending(false);
+      setLoginError("The sign-in service did not open. You can continue as a guest and keep exploring without an account.");
+    }, 8000);
+    window.location.assign("/api/auth/google");
+  };
 
   if (loading) {
     return (
@@ -55,14 +72,12 @@ export default function Home() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#0A0A10] text-[#00eaff] flex flex-col">
+      <div className="ao-auth-shell min-h-screen text-[#00eaff] flex flex-col">
         {/* Navigation */}
         <nav className="border-b border-[#08080f] px-6 py-4">
           <div className="max-w-7xl mx-auto flex justify-between items-center">
             <div className="text-2xl font-bold text-accent">Anom Artsy</div>
-            <a href="/games">
-              <Button className="btn-primary">Enter Free</Button>
-            </a>
+            <Button className="btn-primary" onClick={() => navigate("/games")}>Continue as Guest</Button>
           </div>
         </nav>
 
@@ -81,16 +96,21 @@ export default function Home() {
                 Enter a living sanctuary where family comes first, creativity thrives, and your identity matters. Every interaction can move real-world social good forward.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <a href="/games">
-                  <Button className="btn-secondary text-lg py-6 px-8">
-                    Enter the Universe Free
-                  </Button>
-                </a>
+                <Button className="btn-secondary text-lg py-6 px-8" onClick={() => navigate("/games")}>
+                  Continue as Guest
+                </Button>
+                <Button className="btn-primary text-lg py-6 px-8" onClick={handleSignIn} disabled={loginPending}>
+                  {loginPending ? <><LoaderCircle className="mr-2 h-5 w-5 animate-spin" aria-hidden="true" />Opening sign-in…</> : <><LogIn className="mr-2 h-5 w-5" aria-hidden="true" />Sign in to save progress</>}
+                </Button>
                 <a href="/mission-hub">
                   <Button className="bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold text-lg py-6 px-8">
                     💜 Support Our Mission
                   </Button>
                 </a>
+              </div>
+              <div className="ao-auth-status" aria-live="polite">
+                {loginPending && <p className="ao-auth-status-info"><LoaderCircle className="h-4 w-4 animate-spin" aria-hidden="true" /> Connecting you to the secure sign-in portal…</p>}
+                {loginError && <p className="ao-auth-status-error" role="alert"><AlertCircle className="h-4 w-4" aria-hidden="true" /> {loginError}</p>}
               </div>
               <div className="mt-8 rounded-lg border border-[#d8ae55]/50 bg-[#000000]/40 p-4">
                 <p className="text-[#d8ae55] font-bold mb-3">FREE TO JOIN // THE DOOR IS OPEN</p>
