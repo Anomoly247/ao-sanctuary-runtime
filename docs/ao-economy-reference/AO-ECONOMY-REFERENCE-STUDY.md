@@ -509,3 +509,111 @@ Living interface: staggered timing, orbit mechanics, glass over void
 ```
 
 That is a strong foundation for the AO Universe Bible and for the next implementation pass.
+
+
+## Complete lore compendium: source-of-truth findings
+
+The complete compendium is the most authoritative package received so far. It adds exact names, implementation references, operational status, and a practical weekly content rhythm.
+
+### Canonical name origin
+
+The compendium confirms that **Anom** intentionally comes from “Anomoly,” always spelled with an O. The concept is that what does not fit is not an error but a pattern waiting to be understood. **Oly** comes from “Olly Olly Oxen Free,” the call that means hiding is over and everyone can come home free.
+
+That gives **Anom Oly** a meaningful role beyond being a chatbot name: it is the voice of the universe’s invitation out of isolation. This is strong canon and should be preserved in onboarding, but it should not force every interface to speak in a mascot voice. Use Anom Oly for guidance, welcome, reflection, and safety explanations; keep system errors direct and unambiguous.
+
+### The 12-division operational map
+
+The compendium provides the clearest current status map:
+
+| Status | Divisions |
+|---|---|
+| Live / cyan | Sanctuary, Pixel & Dot, Digital Store |
+| In build / magenta signal | Arcade / District B, Kids Corner, YouTube, Digital Systems, Color Space, Brand Kit |
+| Planned / gold | Anomoly AI, Payments, IP & Brand |
+
+This is useful because the map becomes an honest product roadmap rather than decorative lore. The status colors should remain semantic: cyan means available, gold means planned/prestige, and magenta means in-build signal. For the everyday UI, the current gold/cyan calm remains preferable; the magenta state should be readable without becoming a hot-magenta action color.
+
+### Prototype code versus production contract
+
+The compendium includes a useful prototype implementation:
+
+- `localStorage` key: `ao_coin_balance`
+- `ao-coin-update` browser event
+- game rewards for Trivia, Memory, Mood Logger, Clicker Tycoon, and Coin-Hunt
+- `ao_mount` selection and three-house selection
+
+This is valuable for guest-mode prototyping and cross-page UI synchronization, but it is **not sufficient as the production economy**. Local storage can be edited, duplicated, or cleared. The production path should therefore be:
+
+```text
+prototype local wallet → authenticated server ledger → idempotent reward event → cross-domain bridge projection
+```
+
+Guest players can still use local balances for exploration, but the UI must clearly label them as **session/local progress** until account linking and server settlement exist.
+
+### Exact mount roster
+
+The compendium stabilizes the first five-mount roster:
+
+| Mount | Role | Reference cost |
+|---|---|---:|
+| Rainbow Unicorn | Speed | 500 AC |
+| Armored Light Pegasus | Scout | 650 AC |
+| Armored Dark Pegasus | Tank | 800 AC |
+| White Unicorn | Healer | 950 AC |
+| Cosmic Dragon | Legendary Flight | 1,200 AC |
+
+These should be treated as reference values for the Mount Vault, not final economy commitments. The role labels are excellent as **cooperative navigation identities**. Their first implementation should communicate route flavor, movement feel, and emote language before introducing hard advantages.
+
+The coloring loop is especially important: “Paint Your Ridables!” can award a modest pending reward and, after review, connect a child’s approved artwork to the corresponding mount identity. This is the most emotionally distinctive contribution loop in the entire package.
+
+### Five-tier safety gates
+
+The compendium adds concrete learning gates that make the age tiers implementable:
+
+- **Sprouts, 5–8:** preset avatars, reactions only, guardian approval.
+- **Explorers, 9–12:** emote recognition and S.T.O.P. method before chat access.
+- **Builders, 13–15:** Link Detective and scam/debugging safety gates; real-time filters and whitelisted links.
+- **Architects, 16–17:** leadership and showcase tools; parent co-sign for paid commissions.
+- **Guardians, 18+:** moderation, stewardship, and governance tools.
+
+This is better than age-gating by page alone. A single world can expose different capabilities by tier. The capability matrix should govern chat, links, uploads, public visibility, commissions, rewards, and guardian review—not just which route appears in the map.
+
+The phrase **“confidence, not surveillance”** is an important product constraint. Guardians should see growth and safety signals, not raw keystrokes or invasive behavioral logs.
+
+### Weekly hub-and-spoke rhythm
+
+The enterprise SOP gives the AO ecosystem a practical content operating cadence:
+
+- Monday: create one or two Mood Patch memes.
+- Tuesday: publish a native Chronicle on the Homeworld.
+- Wednesday: batch-upload approved images to the stock shop.
+- Thursday: film a YouTube walkthrough or story video.
+- Friday: cross-promote products and connected destinations.
+
+This should remain an internal production rhythm, not a player obligation. It creates a content pipeline where art leads, the Homeworld gives meaning, video explains the journey, and the Archive/commerce destinations provide optional extensions.
+
+### Important architecture conflict resolved
+
+The compendium’s `AO-GAMES-SPEC.md` says “ONE REPO, ONE COIN.” We should preserve the **one coin** principle but not interpret the historical code-pack’s “one repo” as a requirement to merge the live sites. The established project decision remains:
+
+- separate deployments for Homeworld, Sanctuary, Originals, and Archive;
+- one shared economy contract and ledger;
+- explicit AO bridge parameters for identity and return paths;
+- domain-specific ownership of content and safety surfaces.
+
+That gives us the benefits of one universe without creating one fragile deployment.
+
+## New priority decision
+
+The compendium makes the next implementation target clear: build a **canonical AO contract package** before adding more decorative worlds.
+
+It should include:
+
+1. `AO_DESTINATIONS` — the 12 divisions and operational status.
+2. `AO_AGE_TIERS` — the five capability tiers and safety gates.
+3. `AO_MOUNTS` — the five reference mounts, roles, and unlock requirements.
+4. `AO_REWARD_EVENTS` — game, mission, care, creative, approval, spend, and travel events.
+5. `AO_BRIDGE_STATE` — house, mount, emote, return URL, and safe projected balances.
+6. `AO_MOTION_TOKENS` — breathing, orbit, pulse-ring, offset, and reduced-motion rules.
+
+This contract package becomes the bridge between NotebookLM/Gemini canon, the managed Sanctuary runtime, and the separate connected sites.

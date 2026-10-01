@@ -1,0 +1,77 @@
+### **1\. Foundational Vision &amp; Origin of "Anom Oly"**
+
+The entire universe is built upon a single baseline sentence:
+
+&gt; **"Our identity is wired into us — online and off. We speak in emotes and glow. We do good"**[1].
+
+* **Anom (from** **Anomoly** **, always spelled with an O):** Represents the core belief that **what doesn't fit is not an error, but a new pattern waiting to be understood**[1][5]. It reflects the founder's experience balancing many real-world roles—mother of six, business owner, 24/7 hospice caregiver, community moderator, artist, and coder—without flattening herself into a flat box[1].
+* **Oly (from** **"Olly Olly Oxen Free"** **/** **"Oly Oly All Come Free"** **):** Originates from the classic call at the end of hide-and-seek: *"Come out, come out, wherever you are. Nobody gets tagged. The round is over. Everybody comes home free"*[1]. It serves as the universal signal that ends digital isolation and hiding[7].
+* **The AI Companion:** The platform's AI companion, **Anom Oly**, is simply this full name spoken out loud[5][6].
+
+---
+
+### ⚡ **2\. The Three Foundational Truths**
+
+1. **Identity is Wired In:** Your profile is not a static form you fill out; it is a living circuit that you actively grow through positive play, missions, personal creativity, and community care[3]. Visually, a glowing **circuit-web** weaves across the night sky, making identity the literal current that keeps the universe lit and alive[3].
+2. **We Speak in Emotes and Glow:** Human feeling is the native language[3]. Aerial **travel animals** wear floating non-verbal emote symbols (e.g., happy, puzzled, cautious, heart glyphs) to express feelings in real time without text noise or vocabulary barriers[18]. Visual **glow** communicates personal presence and mood against trademark near-black backgrounds[15].
+3. **We Do Good:** Movement and access cannot be bought with traditional money; passage across celestial portals is earned through creativity, positive play, and community care[3].
+
+---
+
+### 🎨 **3\. AO ALIVE Living Design Standard**
+
+* **The Principle:** *"Alive is not a color. It's the timing"*[28].
+* **Staggered Breathing Loops:** UI elements pulse organically on non-synchronized periods so they never pulse together: **House 1** (3.2s), **House 2** (3.6s), **House 3** (3.9s), **House 4** (4.1s), **AO Logo Pulse** (2.6s), and **Orbit Periods** (3.8s, 4s, 6s, 7s)[28].
+* **Palette Anchors:** **Electric Cyan (** **#00eaff** **)**, **Hot Magenta (** **#ff00c8** **)**, and **Celestial Gold (** **#d8ae55** **)**, set against **Void Ground (** **#04040a** **/** **#0A0A10** **)**[32].
+* **Three-Color Pulse Ring:** Hero elements feature a 3-tier stacked glow ring (18px Cyan, 36px Magenta, 54px Gold)[31].
+* **Typography:** **Space Mono** (display/headlines), **Inter** (body/UI), and **JetBrains Mono** with wide letter-spacing (`0.2em–0.3em`) for technical HUD metrics[29].
+
+---
+
+### 🛰️ **4\. Constellation Mapping &amp; The 12 Live Divisions**
+
+The homepage map at **anomartsy.xyz** rings 12 live divisions around a central **AO Core Seal** joined by curving Bezier threads[39]:
+
+* **Active / Live Now (Cyan** **#00eaff** **\- 3 Divisions):** **Sanctuary** (home base, living profiles, lounges, vault), **Pixel &amp; Dot** (family stories inside Anom's Corner), and **Digital Store**[41].
+* **In Build (Magenta** **#ff00c8** **\- 6 Divisions):** **Arcade** (District B Arcade), **Kids Corner** (coloring studio), **YouTube** (`@anomoriginals`), **Digital Systems**, **Color Space**, and **Brand Kit**[41].
+* **Planned (Gold** **#d8ae55** **\- 3 Divisions):** **Anomoly AI**, **Payments**, and **IP &amp; Brand**[42].
+
+---
+
+### 🪙 **5\. ONE COIN Economy &amp; Codebase Architecture**
+
+Managed via `app/backend/coins.js`, all arcade minigames feed a single `localStorage` balance (`ao_coin_balance`) and dispatch `ao-coin-update` events to sync UI metrics in real time[47]:
+
+* **Game Payouts:** Trivia (+15 AC)[49], Memory (+20 AC)[49], Mood Logger (+10 AC)[49], Clicker Tycoon (+5 AC per 10 clicks)[49], and the Zelda-style *Coin-Hunt* top-down explorer (+25 AC for "good" actions / +5 AC for standard pickups)[49].
+* **Squad Pick (** **app/backend/houses.js** **):** **Ember Squad** (`#FF2E9A`, speed buff), **Tide Squad** (`#00F0FF`, heal buff), and **Verdant Squad** (`#C6FF00`, tank buff)[48].
+
+---
+
+### 🐉 **6\. Ridable Mount Progression &amp; Coloring Loop**
+
+Aerial flying companions serve as the single thread tying together children's coloring, the coin economy, non-verbal emote language, and portal transit[23]:
+
+* **Rainbow Unicorn:** Speed Mount (Speed / Cost: 500 Coins)[47].
+* **Armored Light Pegasus:** Scout Mount (Speed / Cost: 650 Coins)[47].
+* **Armored Dark Pegasus:** Tank Mount (Speed / Cost: 800 Coins)[47].
+* **White Unicorn:** Healer Mount (Speed / Cost: 950 Coins)[47].
+* **Cosmic Dragon:** Legendary Flight Mount (Speed / Cost: 1200 Coins)[47].
+* **Printable Coloring Sanctuary:** In Anom's Corner, children color printable pages ("Paint Your Ridables!") and upload them to earn rewards (+5 coins per page, +25 for contest entry), unlocking that exact mount in the explorer[57].
+
+---
+
+### 🛡️ **7\. Guardians, Characters &amp; Five Age Safety Tiers**
+
+* **Sentinel Guardians:** **Tater &amp; Clifford** (House 2) serve as K9 Security (Tater, 8lb Chipin in TATER SECURITY cap/vest) and Executive Leadership (Clifford, 20lb orange tabby in LOGISTICS DIR vest &amp; gold BOSS chain), giving the universe its warmth and jokes[66]. **Pixel &amp; Dot** (House 1) star in family stories teaching emotional intelligence, courage, and belonging[71].
+* **Five Age Tiers ("Independent feel, monitored safety"):** **Sprouts** (5–8, Color &amp; Watch)[76][77], **Explorers** (9–12, Learn &amp; Help; must pass emote recognition &amp; S.T.O.P. method before chat)[76], **Builders** (13–15, Create &amp; Teach; real-time AI filters, whitelisted links; requires *Link Detective* &amp; *Spot the Scam* safety gates)[76], **Architects** (16–17, Lead &amp; Showcase)[76][77], and **Guardians** (18+, Protect &amp; Foster)[76][77].
+* **Optimistic-UI Moderation:** Children see their posts instantly on their local client while background checks route to the Guardian Queue (&lt;2h approval) so they never experience rejection[81].
+
+---
+
+### 🌐 **8\. Dual-Domain Ecosystem &amp; Enterprise SOP**
+
+* **anomartsy.xyz** **:** Primary celestial homeworld, 12-division constellation map, member Sanctuary, and native Chronicles[40].
+* **anomarsty.lol** **:** Dedicated Anomoly Archive shop, digital asset downloads, Mood Patch meme archives, and merchandise funnels[40].
+* **Weekly Hub &amp; Spoke Rhythm:** Create Mood Patch memes (Monday) → Publish Chronicles (Tuesday) → Upload to Shutterstock Shop ID 1970316 (Wednesday) → Film YouTube walkthrough on `@anomoriginals` (Thursday) → Cross-promote to Spreadshop (`anomoriginals`) and `anomarsty.lol` (Friday)[88].
+
+---
