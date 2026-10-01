@@ -304,3 +304,124 @@ The trust deck changes the order of operations slightly:
 6. **Optimistic UI standard:** every age-sensitive action gives immediate humane feedback while review happens invisibly and safely.
 
 The Architecture of Trust deck confirms the central design direction: **identity, safety, economy, and motion are not separate features in AO. They are one operating system for the universe.**
+
+
+## Living Design System Playbook: the visual operating standard
+
+The **AO Living Design System Playbook** is the most implementation-ready visual reference so far. It resolves a common risk in the other decks: mistaking color intensity for life. Its central statement is exactly right:
+
+> **Alive is not a color. It is the timing.**
+
+### Core visual decisions
+
+| System layer | Playbook direction | Implementation thought |
+|---|---|---|
+| Canvas | Near-black void | Keep the deep space ground visible; do not flatten it into a generic solid dashboard background. |
+| Primary accents | Cyan `#00eaff`, gold `#d8ae55` | Use these for everyday navigation, identity, reward, and focus states. |
+| Signal accent | Magenta `#ff00c8` | Keep as a rare portal/alert/celebration signal, not a primary surface or default action color. |
+| Typography | Space Mono display, Inter body, JetBrains Mono technical/HUD | This gives AO a readable body layer with a distinct orbital-console identity. |
+| Containers | Frosted glass over the void | Use a restrained blur and a thin edge rather than opaque dashboard boxes. |
+
+The Playbook explicitly says the palette is a starting point rather than a cage and warns against pure `#00ffff` and `#ff00ff`. That supports the project’s current rejection of hot-magenta primary UI while preserving magenta as a controlled part of the canon.
+
+### Glass container recipe
+
+The deck gives a practical surface recipe:
+
+```css
+background: linear-gradient(
+  135deg,
+  rgba(255, 255, 255, 0.12),
+  rgba(255, 255, 255, 0.04)
+);
+backdrop-filter: blur(18px);
+border: 1px solid rgba(255, 255, 255, 0.18);
+border-radius: 16px; /* up to 24px for larger shells */
+```
+
+The recommended depth steps—8px, 10px, 18px, 22px, and 24px—are useful as a small shadow token scale. This is better than giving every card a large glowing shadow. The raised surface should float above the universe, not erase it.
+
+### Ambient breath: measurable and restrained
+
+The Playbook tightens the earlier staggered-motion rule:
+
+- Maximum ambient scale shift: **5%**.
+- Motion should be nearly imperceptible on its own.
+- The effect should read as breathing, not bouncing.
+- Never synchronize neighboring elements.
+- Use stable periods and deliberate offsets; never use uncontrolled randomness.
+
+The shown keyframe is simple and appropriate:
+
+```css
+@keyframes ao-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+```
+
+The deck also recommends offsets such as `0.2s`, `0.4s`, and `0.6s` when elements share a period. My stronger project rule is: **prefer distinct periods first; use offsets as a second layer** so grouped components do not become synchronized by accident.
+
+### House breathing matrix
+
+The four-house example maps the living effect directly onto AO identity:
+
+- Pixel & Dot Farm — `3.2s`
+- Clifford & Tater Security — `3.6s`
+- Mood Buddies — `3.9s`
+- Sassy Patrol Guardians — `4.1s`
+
+This is excellent because the timing is attached to **meaningful world identities**, not arbitrary decorative cards. The implementation should use named CSS custom properties or data attributes so the association remains legible:
+
+```css
+[data-house="pixel-dot"] { --ao-breathe-period: 3.2s; }
+[data-house="clifford-tater"] { --ao-breathe-period: 3.6s; }
+[data-house="mood-buddies"] { --ao-breathe-period: 3.9s; }
+[data-house="sassy-patrol"] { --ao-breathe-period: 4.1s; }
+```
+
+### Orbital motion and upright identity
+
+The Playbook moves from breathing to navigation with a clean orbital model:
+
+- Inner mount: radius `46px`, period `3.8s`.
+- Moon: radius `54px`, period `4s`.
+- Outer mount: radius `84px`, period `6s`.
+- Hub mount: center, period `7s`.
+
+These values are useful visual references, but the deck itself warns against standard 3s/4s repetition. For production, I would vary the periods slightly—especially when multiple rings appear on the same page—and keep the 3.8/4/6/7 values as a reference composition rather than a universal global token.
+
+The most valuable technical rule is the **counter-rotation trick**:
+
+```css
+@keyframes ao-orbit {
+  from { transform: rotate(0deg) translateX(84px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(84px) rotate(-360deg); }
+}
+```
+
+The negative final rotation keeps a mount upright while its orbit path rotates. This is the correct foundation for making the player’s mount travel around a world hub without spinning the artwork into an unreadable blur.
+
+### Signature three-color pulse ring
+
+The deck identifies a three-color pulse ring as AO’s signature visual:
+
+- Inner cyan ring: tight, approximately `18px` spread.
+- Middle magenta ring: medium, approximately `36px` spread.
+- Outer gold ring: wide, approximately `54px` spread.
+
+This is a strong hero treatment, but the Playbook correctly says to use it **strictly on hero elements and flight reticles**, not everywhere. For the current calmer UI direction, I would let the middle ring shift toward a restrained coral/magenta signal on normal pages and reserve full hot-magenta intensity for portal activation, rare mount unlocks, and major celebrations.
+
+## Practical effect on the current Sanctuary build
+
+The current Sanctuary should not be redesigned again from scratch. The correct move is to turn this Playbook into a token layer over the existing world-map foundation:
+
+1. Replace broad one-size-fits-all breathing styles with named periods and house/world assignments.
+2. Cap ambient scale movement at 5% and audit every animated element for layout movement.
+3. Add `data-house` or `data-world` attributes to identity orbit elements.
+4. Implement counter-rotating orbit wrappers for mounts and emotes.
+5. Standardize glass shells around the 16–24px radius and 18px blur range.
+6. Keep gold/cyan as primary interaction colors; apply magenta only to defined signal states.
+7. Add a reduced-motion mode that removes orbital movement and replaces it with static focus/selection states.
+
+The Playbook is not just a mood board. It is the first reference that can become a **testable visual contract**.
