@@ -215,3 +215,92 @@ My strongest recommendation is to preserve this hierarchy:
 > **Care creates Glow. Play and approved creation create Anom Coins. Anom Coins build worlds and unlock identity. Identity opens deeper forms of contribution.**
 
 That is the idea worth building around.
+
+
+## Architecture of Trust: the new critical layer
+
+The newly supplied **Architecture of Trust** deck sharpens the references from a good economy concept into a production architecture. Its strongest thesis is:
+
+> **Safety is architecture, not overhead.**
+
+That means age-aware access, guardian review, contribution rewards, optimistic UI, and domain routing must be designed as one system rather than added independently.
+
+### Independence ladder
+
+The deck proposes a clear developmental progression:
+
+| Tier | Ages | Independence direction | Safety boundary shown |
+|---|---:|---|---|
+| Sprouts | 5–8 | Color, watch, and react | Guardian-approved reactions only; no chat, DMs, or links. |
+| Explorers | 9–12 | Learn and help | Limited creative showcases, AI spot-checking, public lounges. |
+| Builders | 13–15 | Create and teach | Video posting, mentoring, whitelisted links, real-time flagging. |
+| Architects | 16–17 | Lead and showcase | Events and commissions with guardian co-sign where required. |
+| Guardians | 18+ | Protect and foster | Full moderation and stewardship tooling. |
+
+This is more precise than a single on/off guardian filter. My recommendation is to keep the existing guardian toggle as the simple control, but implement it over a canonical **age-tier capability matrix**.
+
+### Optimistic UI with a guardian queue
+
+One of the best ideas in the deck is separating the player’s immediate experience from the platform’s safety resolution:
+
+1. The child or guest receives immediate local confirmation: “Your action was received.”
+2. The system marks the global action as pending when review is needed.
+3. Guardian or moderation systems resolve the network state.
+4. The wallet, mission, and public visibility synchronize only when eligible.
+
+This avoids making young users stare at surveillance or moderation machinery while still enforcing real safeguards. It also maps cleanly to the reward ledger:
+
+```text
+local action → local feedback → pending reward → review/guardian queue → ledger settlement
+```
+
+The important distinction is that **local feedback is not the same as settled currency**. The UI should say “received,” “pending,” or “approved” rather than awarding spendable Anom Coins before eligibility is confirmed.
+
+### One Coin Economy clarified
+
+The deck makes the “one coin” direction explicit: all games feed one unified vault, and the player cannot buy their way across the universe. This is a strong product rule and should become the public economy promise.
+
+The dual-domain references do not need to create a dual-spendable-currency system. We can keep:
+
+- **Anom Coins:** one unified, spendable earned currency.
+- **Glow / propulsion state:** a non-purchasable social-energy or movement state that can be displayed separately without competing with the coin balance.
+
+The deck’s example values—Trivia +15, Memory +20, good action +25, Cosmic Dragon 1,200—should remain **balancing fixtures**, not hardcoded promises, until the authoritative ledger and anti-farming rules are implemented.
+
+### Dual-domain architecture
+
+The deck describes a useful separation:
+
+- **Homeworld domain:** identity, community, optimistic UI, guardian queue, and core gameplay.
+- **Archive/commerce domain:** catalog, digital assets, offers, and transactional surfaces.
+- **Domain bridge:** carries approved identity and token state without merging the deployments.
+
+That matches the project’s established direction: do not collapse every site into one deployment. Instead, keep deliberate bridges and explicit ownership of responsibilities. The deck’s named domain examples should be treated as an architectural reference; the final live domain registry still needs to remain the project source of truth.
+
+### Visual standard reconciliation
+
+The deck’s design standard is consistent with the already chosen AO foundation:
+
+- Void background and luminous cyan/gold structure.
+- Glass-like panels with restrained blur and thin translucent borders.
+- Technical mono labels paired with readable display/body typography.
+- Staggered motion periods of 3.2s, 3.6s, 3.9s, and 4.1s.
+
+It also shows hot magenta as a primary accent. That is visually effective in diagrams, but it conflicts with the project’s sustained-play requirement that hot magenta not dominate the interface. My recommendation remains:
+
+- Keep **cyan + gold** as the everyday interaction system.
+- Use a **coral/magenta-family signal** only for rare portal energy, pending review, or celebration states.
+- Never use it as the default fill for large controls or long reading surfaces.
+
+## Updated implementation priority
+
+The trust deck changes the order of operations slightly:
+
+1. **Canonical capability matrix:** encode the five age tiers, guardian states, and route capabilities.
+2. **Reward state machine:** distinguish local feedback, pending review, approved reward, rejected action, and settled wallet balance.
+3. **Unified Anom Coin vault:** one append-only ledger across games and connected domains.
+4. **Mount Vault:** unlocks draw from settled coins only; previews never spend.
+5. **Domain bridge:** pass identity context and approved token state, never raw privileged moderation data.
+6. **Optimistic UI standard:** every age-sensitive action gives immediate humane feedback while review happens invisibly and safely.
+
+The Architecture of Trust deck confirms the central design direction: **identity, safety, economy, and motion are not separate features in AO. They are one operating system for the universe.**
