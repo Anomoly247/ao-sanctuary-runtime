@@ -617,3 +617,55 @@ It should include:
 6. `AO_MOTION_TOKENS` — breathing, orbit, pulse-ring, offset, and reduced-motion rules.
 
 This contract package becomes the bridge between NotebookLM/Gemini canon, the managed Sanctuary runtime, and the separate connected sites.
+
+
+## Newly attached sources: integration script and kid-optimized hub
+
+### Integration script: confirmed operating model, with one caution
+
+The **AO Universe Integration Architecture** script is consistent with the established product boundary:
+
+- Homeworld is the navigation and identity surface.
+- Sanctuary is the authenticated mission and reward-ledger authority.
+- Originals is the discovery, directory, and story layer.
+- Games, Arcade, Beat Lab, House 3, Archive, and future worlds remain distinct destinations.
+- The shared bridge carries `house`, `mount`, `return`, and `source`; mission-aware flows add `mission` and `event`.
+- `event` remains the idempotency key; it is not merely an analytics label.
+
+This is a strong canonical explanation for the architecture and should be retained as the presentation/source-of-truth narrative. Its claims about completed live-domain verification and exact deployment state should be treated as **historical verification claims** until rerun against the current deployments. The script itself is documentation, not a health check.
+
+### Master Hub 5–7: strong child-mode interaction pattern, not yet a safety contract
+
+The supplied `Master-Hub-5-7-Kid-Optimized.html` is a large compiled React artifact for a gentle **Moonberry Farm** hub. Its strongest product ideas are:
+
+- a central safe home (“Home Farm”) with emotionally legible world nodes;
+- large rounded controls and generous touch targets;
+- a friendly “Helper” interaction;
+- a visible “Grown-Ups” entry point;
+- low-pressure stories and choices rather than a feed or leaderboard;
+- sleeping/resting world states that create return rhythm;
+- child-facing copy such as “You are safe” and simple activity labels.
+
+It should be treated as a **visual and interaction reference**, not copied directly into the production safety layer. The artifact contains a `Grown-Ups` toggle and parent-oriented language, but the compiled surface does not by itself demonstrate authenticated guardian approval, an age-tier capability matrix, safe external-link handling, moderation queues, or server-authoritative reward eligibility.
+
+The visual tokens also conflict with the current AO decision: the artifact includes purple, fluorescent green, hot pink, and bright yellow utility colors. For AO Sanctuary, preserve the interaction grammar—large controls, calm helper, central home, simple stories—and remap the presentation to the approved Void / cyan / badge-gold system. Do not import its color tokens wholesale.
+
+### Reconciled implementation decisions
+
+1. **Use the integration script as the architecture narrative**, while validating deployment claims independently.
+2. **Use the kid hub as a child-experience reference**, not as proof of safety compliance.
+3. Add a canonical capability matrix for Sprouts 5–8 before exposing any child-facing contribution, chat, link, or reward flow.
+4. Make the “Grown-Ups” surface a guardian entry point with explicit review/approval states, not a cosmetic toggle.
+5. Keep child-facing worlds free of ordinary outbound links, public DMs, raw balances, and unreviewed uploads.
+6. Preserve safe return and the AO bridge, but only project the minimum context needed for the destination.
+7. Remap the hub’s visual language to calm AO cyan and gold; reserve stronger signal colors for semantic status, not primary controls.
+
+### Source inventory update
+
+The newly attached materials are archived under `assets/`:
+
+- `ao-universe-integration-architecture-script.pdf`
+- `Master-Hub-5-7-Kid-Optimized.html`
+- refreshed copies of `The_Living_Celestial_Blueprint-1.pdf` and `The_Architecture_of_Independence.pdf`
+
+These sources strengthen the AO canon, but they do not change the core decision: **separate deployments, shared bridge, centralized ledger authority, age-aware capabilities, and care-oriented interaction design.**
