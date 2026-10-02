@@ -17,6 +17,7 @@ type AmbientAudioContextValue = {
 type AudioState = {
   context: AudioContext;
   master: GainNode;
+  element: HTMLAudioElement;
   nodes: AudioNode[];
   timers: number[];
 };
@@ -25,6 +26,11 @@ const AmbientAudioContext = createContext<AmbientAudioContextValue | null>(null)
 const ENABLED_KEY = "ao_ambient_enabled";
 const VOLUME_KEY = "ao_ambient_volume";
 const SOUNDSCAPE_KEY = "ao_ambient_soundscape";
+const AMBIENT_SOURCES: Record<Soundscape, string> = {
+  "still-water": "/manus-storage/ao-ambient-minimal_dd7f1b9b.mp3",
+  "night-garden": "/manus-storage/ao-ambient-sanctuary_209ee8e9.mp3",
+  "soft-lantern": "/manus-storage/ao-ambient-sanctuary_209ee8e9.mp3",
+};
 
 export const SOUNDSCAPES: Array<{ value: Soundscape; label: string; detail: string }> = [
   { value: "still-water", label: "Still Water", detail: "soft drone + distant bells" },
@@ -86,6 +92,9 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
       }
       node.disconnect();
     });
+    audio.element.pause();
+    audio.element.removeAttribute("src");
+    audio.element.load();
     audio.master.disconnect();
     void audio.context.close();
     audioRef.current = null;
@@ -101,83 +110,36 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
     }
 
     const context = new AudioContextClass();
-    void context.resume().catch(() => setAudioError("Tap Ambient on to allow Sanctuary sound."));
     const master = context.createGain();
-    master.gain.value = nextEnabled ? nextVolume * 0.28 : 0;
-    master.connect(context.destination);
-    const nodes: AudioNode[] = [];
-    const timers: number[] = [];
-
-    const low = context.createOscillator();
-    low.type = selectedSoundscape === "soft-lantern" ? "triangle" : "sine";
-    low.frequency.value = selectedSoundscape === "still-water" ? 82.41 : selectedSoundscape === "night-garden" ? 98 : 110;
-    const lowGain = context.createGain();
-    lowGain.gain.value = 0.22;
-    low.connect(lowGain).connect(master);
-    nodes.push(low, lowGain);
-
-    const breath = context.createOscillator();
-    breath.type = "sine";
-    breath.frequency.value = 0.055;
-    const breathGain = context.createGain();
-    breathGain.gain.value = selectedSoundscape === "still-water" ? 12 : 8;
-    breath.connect(breathGain).connect(low.frequency);
-    nodes.push(breath, breathGain);
-
-    const high = context.createOscillator();
-    high.type = "sine";
-    high.frequency.value = selectedSoundscape === "soft-lantern" ? 164.81 : 146.83;
-    const highGain = context.createGain();
-    highGain.gain.value = 0.045;
-    high.connect(highGain).connect(master);
-    nodes.push(high, highGain);
-
-    const noise = context.createBufferSource();
-    noise.buffer = makeNoiseBuffer(context, 3, selectedSoundscape === "still-water" ? 0.09 : 0.045);
-    noise.loop = true;
-    const noiseFilter = context.createBiquadFilter();
-    noiseFilter.type = "lowpass";
-    noiseFilter.frequency.value = selectedSoundscape === "still-water" ? 280 : 520;
-    const noiseGain = context.createGain();
-    noiseGain.gain.value = selectedSoundscape === "still-water" ? 0.045 : 0.022;
-    noise.connect(noiseFilter).connect(noiseGain).connect(master);
-    nodes.push(noise, noiseFilter, noiseGain);
-
-    const noteSets: Record<Soundscape, number[]> = {
-      "still-water": [261.63, 329.63, 392, 523.25],
-      "night-garden": [220, 261.63, 329.63, 392, 493.88],
-      "soft-lantern": [196, 246.94, 293.66, 369.99, 440],
-    };
-    const notes = noteSets[selectedSoundscape];
-    let noteIndex = 0;
-    const playInstrumentNote = () => {
-      const now = context.currentTime;
-      const oscillator = context.createOscillator();
-      oscillator.type = selectedSoundscape === "soft-lantern" ? "sine" : "triangle";
-      oscillator.frequency.value = notes[noteIndex % notes.length] * (noteIndex % 5 === 4 ? 2 : 1);
-      const noteGain = context.createGain();
-      noteGain.gain.setValueAtTime(0.0001, now);
-      noteGain.gain.exponentialRampToValueAtTime(selectedSoundscape === "still-water" ? 0.035 : 0.052, now + 0.08);
-      noteGain.gain.exponentialRampToValueAtTime(0.0001, now + (selectedSoundscape === "soft-lantern" ? 3.4 : 2.6));
-      oscillator.connect(noteGain).connect(master);
-      oscillator.start(now);
-      oscillator.stop(now + 3.6);
-      nodes.push(oscillator, noteGain);
-      noteIndex += selectedSoundscape === "night-garden" ? 2 : 1;
-    };
-
-    low.start();
-    high.start();
-    breath.start();
-    noise.start();
-    nodes.push(low, high, breath, noise);
-    playInstrumentNote();
-    timers.push(window.setInterval(playInstrumentNote, selectedSoundscape === "still-water" ? 8600 : selectedSoundscape === "soft-lantern" ? 5200 : 6800));
-
-    audioRef.current = { context, master, nodes, timers };
-    setAudioError(null);
-    setIsActive(true);
-  }, [enabled, volume]);
+    master.gain.value = nextEnabled ? nextVolume * 0.92 : 0;
+    const bassEq = context.createBiquadFilter();
+    bassEq.type = "lowshelf";
+    bassEq.frequency.value = 170;
+    bassEq.gain.value = 5.5;
+    const trebleEq = context.createBiquadFilter();
+    trebleEq.type = "highshelf";
+    trebleEq.frequency.value = 2400;
+    trebleEq.gain.value = 4.5;
+    master.connect(bassEq).connect(trebleEq).connect(context.destination);
+    const element = new Audio(AMBIENT_SOURCES[selectedSoundscape]);
+    element.loop = true;
+    element.preload = "auto";
+    element.volume = 1;
+    element.setAttribute("aria-hidden", "true");
+    const source = context.createMediaElementSource(element);
+    source.connect(master);
+    audioRef.current = { context, master, element, nodes: [source, bassEq, trebleEq], timers: [] };
+    void context.resume()
+      .then(() => element.play())
+      .then(() => {
+        setAudioError(null);
+        setIsActive(true);
+      })
+      .catch(() => {
+        setAudioError("Tap Ambient on to allow Sanctuary sound.");
+        stopAudio();
+      });
+  }, [enabled, stopAudio, volume]);
 
   const activate = useCallback(() => {
     const nextVolume = volume > 0 ? volume : 0.22;
