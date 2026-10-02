@@ -28,10 +28,11 @@ const AmbientAudioContext = createContext<AmbientAudioContextValue | null>(null)
 const ENABLED_KEY = "ao_ambient_enabled";
 const VOLUME_KEY = "ao_ambient_volume";
 const SOUNDSCAPE_KEY = "ao_ambient_soundscape";
+const ORIGINALS_AUDIO_BASE = "https://anomoriginals.lol/manus-storage";
 const AMBIENT_SOURCES: Record<Soundscape, string> = {
-  "still-water": "/manus-storage/ao-ambient-minimal_dd7f1b9b.mp3",
-  "night-garden": "/manus-storage/ao-ambient-sanctuary_209ee8e9.mp3",
-  "soft-lantern": "/manus-storage/ao-ambient-sanctuary_209ee8e9.mp3",
+  "still-water": `${ORIGINALS_AUDIO_BASE}/ao-ambient-minimal_dd7f1b9b.mp3`,
+  "night-garden": `${ORIGINALS_AUDIO_BASE}/ao-ambient-sanctuary_209ee8e9.mp3`,
+  "soft-lantern": `${ORIGINALS_AUDIO_BASE}/ao-ambient-sanctuary_209ee8e9.mp3`,
 };
 
 export const SOUNDSCAPES: Array<{ value: Soundscape; label: string; detail: string }> = [
@@ -78,7 +79,7 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
   const updateMaster = useCallback((nextVolume: number, nextEnabled: boolean) => {
     const audio = audioRef.current;
     if (!audio) return;
-    const target = nextEnabled ? nextVolume * 0.28 : 0;
+    const target = nextEnabled ? nextVolume * 0.92 : 0;
     audio.master.gain.cancelScheduledValues(audio.context.currentTime);
     audio.master.gain.setTargetAtTime(target, audio.context.currentTime, 0.3);
   }, []);
@@ -129,7 +130,9 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
     analyser.fftSize = 64;
     analyser.smoothingTimeConstant = 0.78;
     master.connect(bassEq).connect(trebleEq).connect(analyser).connect(context.destination);
-    const element = new Audio(AMBIENT_SOURCES[selectedSoundscape]);
+    const element = new Audio();
+    element.crossOrigin = "anonymous";
+    element.src = AMBIENT_SOURCES[selectedSoundscape];
     element.loop = true;
     element.preload = "auto";
     element.volume = 1;
@@ -160,8 +163,11 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
         setAudioError(null);
         setIsActive(true);
       })
-      .catch(() => {
-        setAudioError("Tap Ambient on to allow Sanctuary sound.");
+      .catch((error: unknown) => {
+        const message = error instanceof DOMException && error.name === "NotAllowedError"
+          ? "Tap Ambient on to allow Sanctuary sound."
+          : "The AO soundtrack could not load. Try Ambient on again.";
+        setAudioError(message);
         stopAudio();
       });
   }, [enabled, stopAudio, volume]);
@@ -178,7 +184,8 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
   }, [soundscape, startAudio, volume]);
 
   const toggleEnabled = useCallback(() => {
-    if (!audioRef.current) {
+    if (!audioRef.current || !isActive) {
+      stopAudio();
       activate();
       return;
     }
@@ -188,7 +195,7 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
       updateMaster(volume, next);
       return next;
     });
-  }, [activate, updateMaster, volume]);
+  }, [activate, isActive, stopAudio, updateMaster, volume]);
 
   const setVolume = useCallback((nextValue: number) => {
     const next = Math.min(1, Math.max(0, nextValue));
@@ -215,20 +222,6 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
     window.localStorage.setItem(VOLUME_KEY, String(volume));
   }, [volume]);
 
-  useEffect(() => {
-    const onFirstInteraction = () => {
-      if (enabled && volume > 0) activate();
-      window.removeEventListener("pointerdown", onFirstInteraction);
-      window.removeEventListener("keydown", onFirstInteraction);
-    };
-    window.addEventListener("pointerdown", onFirstInteraction, { once: true, passive: true });
-    window.addEventListener("keydown", onFirstInteraction, { once: true });
-    return () => {
-      window.removeEventListener("pointerdown", onFirstInteraction);
-      window.removeEventListener("keydown", onFirstInteraction);
-    };
-  }, [activate, enabled, volume]);
-
   useEffect(() => stopAudio, [stopAudio]);
 
   const value = useMemo(() => ({ enabled, isActive, volume, soundscape, activate, toggleEnabled, setVolume, setSoundscape }), [activate, enabled, isActive, setSoundscape, setVolume, soundscape, toggleEnabled, volume]);
@@ -237,7 +230,7 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
     <AmbientAudioContext.Provider value={value}>
       {children}
       <div className="ao-ambient-control" aria-label="Ambient Sanctuary sound controls">
-        {!isActive && <span className="ao-ambient-hint" role="status">{audioError ?? (volume === 0 ? "Raise volume to hear Sanctuary" : "Click anywhere to hear Sanctuary")}</span>}
+        {!isActive && <span className="ao-ambient-hint" role="status">{audioError ?? (volume === 0 ? "Raise volume to hear Sanctuary" : "Press Ambient on to hear the soundtrack")}</span>}
         <div className="ao-audio-equalizer" role="img" aria-label={isActive ? "Ambient soundtrack equalizer responding to playback" : "Ambient soundtrack equalizer idle"} data-active={isActive}>
           {equalizerBars.map((height, index) => <span key={index} style={{ "--ao-eq-height": `${height * 100}%` } as CSSProperties} aria-hidden="true" />)}
         </div>

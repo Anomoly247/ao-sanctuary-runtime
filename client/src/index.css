@@ -1504,48 +1504,83 @@
 /* Site-wide ambient audio controls */
 .ao-ambient-control {
   position: fixed;
-  right: 1rem;
-  bottom: 1rem;
+  right: 1.25rem;
+  bottom: 1.25rem;
   z-index: 50;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto minmax(150px, 1fr) auto;
   align-items: center;
-  gap: 0.55rem;
-  padding: 0.45rem 0.6rem;
-  border: 1px solid rgba(216, 174, 85, 0.46);
-  border-radius: 999px;
-  background: rgba(10, 10, 16, 0.9);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.34);
+  gap: 0.7rem;
+  width: min(100% - 2.5rem, 590px);
+  padding: 0.7rem 0.8rem;
+  border: 1px solid rgba(0, 234, 255, 0.34);
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(10, 10, 16, 0.96), rgba(16, 23, 30, 0.92));
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(16px);
+}
+.ao-ambient-control::before {
+  content: "AO SOUNDTRACK";
+  grid-column: 1 / -1;
+  color: rgba(0, 234, 255, 0.72);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
 }
 
 .ao-ambient-toggle {
-  border: 0;
-  background: transparent;
+  min-height: 34px;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid rgba(216, 174, 85, 0.58);
+  border-radius: 9px;
+  background: rgba(216, 174, 85, 0.08);
   color: #d8ae55;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.7rem;
   letter-spacing: 0.05em;
   cursor: pointer;
+  transition: background 160ms ease-out, border-color 160ms ease-out, transform 160ms ease-out;
+}
+.ao-ambient-toggle:hover,
+.ao-ambient-toggle:focus-visible {
+  border-color: #d8ae55;
+  background: rgba(216, 174, 85, 0.18);
+}
+.ao-ambient-toggle:active {
+  transform: scale(0.97);
 }
 
+.ao-ambient-soundscape,
 .ao-ambient-volume {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  color: rgba(255, 255, 255, 0.62);
+  color: rgba(255, 255, 255, 0.72);
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.62rem;
 }
 
+.ao-ambient-soundscape select {
+  min-height: 34px;
+  max-width: 132px;
+  padding: 0 0.5rem;
+  border: 1px solid rgba(0, 234, 255, 0.35);
+  border-radius: 8px;
+  color: #e8f8f8;
+  background: rgba(0, 234, 255, 0.06);
+  font: inherit;
+}
+
 .ao-ambient-volume input {
   accent-color: #d8ae55;
-  width: 76px;
+  width: 100px;
 }
 
 .ao-ambient-hint {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.65rem;
-  white-space: nowrap;
+  grid-column: 1 / -1;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.68rem;
+  line-height: 1.35;
 }
 
 /* Baba Yaga forest palette: brighter moss, moonlight, and warm lantern color */
@@ -1578,10 +1613,15 @@
 
 @media (max-width: 680px) {
   .ao-ambient-control {
-    right: 0.65rem;
-    bottom: 0.65rem;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    grid-template-columns: auto auto 1fr;
+    width: min(100% - 1.5rem, 440px);
+    gap: 0.5rem;
   }
-  .ao-ambient-hint { display: none; }
+  .ao-ambient-hint { display: block; }
+  .ao-ambient-volume { grid-column: 1 / -1; justify-content: space-between; }
+  .ao-ambient-volume input { flex: 1; width: auto; }
 }
 
 
