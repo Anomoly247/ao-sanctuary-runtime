@@ -669,3 +669,40 @@ The newly attached materials are archived under `assets/`:
 - refreshed copies of `The_Living_Celestial_Blueprint-1.pdf` and `The_Architecture_of_Independence.pdf`
 
 These sources strengthen the AO canon, but they do not change the core decision: **separate deployments, shared bridge, centralized ledger authority, age-aware capabilities, and care-oriented interaction design.**
+
+## AO Alive production export: migration audit
+
+The attached `aoalive-production-export.zip` is a separate full-stack package named `ao-living-universe@1.0.0`. It contains 189 source files across client, server, shared, and Drizzle layers, including a broader route surface than the current managed Sanctuary runtime. It is preserved as a reference package outside the project source tree at `/home/ubuntu/aoalive-production-reference/` and is **not** a direct replacement.
+
+### Valuable production candidates
+
+- `MasterMap.tsx` plus `data/masterMap.ts` provide an accessible SVG map pattern with keyboard activation, semantic labels, a live console, and dedicated regression tests.
+- `AgeVerification.tsx` and `SafetyGatekeeper.tsx` express a concrete flow for age tier selection, guardian-consent requests, S.T.O.P. pauses, emote-first communication, and protected chat unlocks.
+- `AnomsCorner.tsx` is a strong content pattern for a static, guided reflection: no account creation, no saved answers, no scoring, and no AI collection. This is appropriate for a safe introductory Anom’s Corner experience.
+- `universe.ts` is a useful broad destination registry with explicit status, availability, route, external-route, and description fields.
+- `EconomyPersistence.tsx` shows the desired UX shape for hydrating a signed-in wallet, but its persistence rules require hardening before production use.
+- The export includes focused tests for audio, browser safety, economy persistence, library world, Master Map, universe registry, and Stripe boundaries. These are useful as test-pattern references.
+
+### Migration boundaries that must be preserved
+
+1. **Age tiers:** the export compresses the model into four tiers—Sprout 5–8, Explorer 9–12, Builder 13–17, Architect 18+. The current AO canon has five tiers, including Builders 13–15, Architects 16–17, and Guardians 18+. Do not replace the five-tier capability matrix with this compressed model.
+2. **Guardian verification:** the export allows a user-entered birth year and selected tier, then records guardian details. Its own copy says the workflow is pending legal review. Treat it as a draft UX/procedure shape, not verified age assurance or production consent.
+3. **Economy authority:** the export uses Zustand/local persistence and hydrates with `Math.max(local, server)`. That can preserve or inflate a locally edited balance. The server ledger must remain authoritative; local state can only be a guest projection or optimistic view, never a settlement source.
+4. **Reward idempotency:** client-side `claimed` IDs are useful for interaction feedback but cannot provide security. Every reward event must be validated and idempotently settled server-side with actor, event, source, and policy context.
+5. **Palette:** `shared/aoConstants.ts` retains `#ff00c8` as a named primary palette value, and the Master Map uses magenta as a dynamic-boundary tone. AO’s approved current presentation is calm Void, cyan, and badge gold; any dynamic signal should be semantic and restrained, never a hot-magenta primary action.
+6. **Mount economy:** the export’s three rare mounts and costs conflict with the reconciled five-mount reference roster and costs. Treat those values as historical prototype data, not current commitments.
+7. **Route ownership:** the export contains a large single-runtime route surface. The established architecture remains separate deployments with deliberate links and bridge context. Migrate contracts and selected components—not the entire route tree.
+
+### Recommended extraction order
+
+If implementation resumes from this export, extract in this order:
+
+1. canonical registry and route-contract ideas;
+2. static Anom’s Corner reflection content;
+3. Master Map accessibility structure;
+4. safety-gate copy and state-machine shape;
+5. guardian approval data model after legal/product review;
+6. economy events only after server-ledger reconciliation;
+7. visual tokens last, remapped to current AO design tokens.
+
+This keeps the strongest parts of the production export while avoiding a second economy, a second age model, and a second deployment architecture.
