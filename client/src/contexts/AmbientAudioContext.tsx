@@ -15,11 +15,7 @@ type AmbientAudioContextValue = {
 };
 
 type AudioState = {
-  context: AudioContext;
-  master: GainNode;
   element: HTMLAudioElement;
-  analyser: AnalyserNode;
-  nodes: AudioNode[];
   timers: number[];
   animationFrame: number;
 };
@@ -79,9 +75,7 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
   const updateMaster = useCallback((nextVolume: number, nextEnabled: boolean) => {
     const audio = audioRef.current;
     if (!audio) return;
-    const target = nextEnabled ? nextVolume * 0.92 : 0;
-    audio.master.gain.cancelScheduledValues(audio.context.currentTime);
-    audio.master.gain.setTargetAtTime(target, audio.context.currentTime, 0.3);
+    audio.element.volume = nextEnabled ? nextVolume : 0;
   }, []);
 
   const stopAudio = useCallback(() => {
@@ -89,19 +83,9 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
     if (!audio) return;
     audio.timers.forEach((timer) => window.clearInterval(timer));
     window.cancelAnimationFrame(audio.animationFrame);
-    audio.nodes.forEach((node) => {
-      try {
-        (node as OscillatorNode | AudioBufferSourceNode).stop?.();
-      } catch {
-        // The node may already be stopped during a route refresh or hot reload.
-      }
-      node.disconnect();
-    });
     audio.element.pause();
     audio.element.removeAttribute("src");
     audio.element.load();
-    audio.master.disconnect();
-    void audio.context.close();
     audioRef.current = null;
     setIsActive(false);
     setEqualizerBars(Array.from({ length: 12 }, () => 0.16));
@@ -109,56 +93,28 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
 
   const startAudio = useCallback((selectedSoundscape: Soundscape, nextEnabled = enabled, nextVolume = volume) => {
     if (audioRef.current || typeof window === "undefined") return;
-    const AudioContextClass = window.AudioContext || (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-    if (!AudioContextClass) {
-      setAudioError("This browser does not support ambient sound.");
-      return;
-    }
-
-    const context = new AudioContextClass();
-    const master = context.createGain();
-    master.gain.value = nextEnabled ? nextVolume * 0.92 : 0;
-    const bassEq = context.createBiquadFilter();
-    bassEq.type = "lowshelf";
-    bassEq.frequency.value = 170;
-    bassEq.gain.value = 5.5;
-    const trebleEq = context.createBiquadFilter();
-    trebleEq.type = "highshelf";
-    trebleEq.frequency.value = 2400;
-    trebleEq.gain.value = 4.5;
-    const analyser = context.createAnalyser();
-    analyser.fftSize = 64;
-    analyser.smoothingTimeConstant = 0.78;
-    master.connect(bassEq).connect(trebleEq).connect(analyser).connect(context.destination);
     const element = new Audio();
     element.crossOrigin = "anonymous";
     element.src = AMBIENT_SOURCES[selectedSoundscape];
     element.loop = true;
     element.preload = "auto";
-    element.volume = 1;
+    element.volume = nextEnabled ? nextVolume : 0;
     element.setAttribute("aria-hidden", "true");
-    const source = context.createMediaElementSource(element);
-    source.connect(master);
-    const frequencyData = new Uint8Array(analyser.frequencyBinCount);
     let lastPaint = 0;
     const samplePlayback = (timestamp: number) => {
       if (!audioRef.current) return;
       if (timestamp - lastPaint >= 33) {
         lastPaint = timestamp;
-        analyser.getByteFrequencyData(frequencyData);
         setEqualizerBars(Array.from({ length: 12 }, (_, index) => {
-          const start = Math.floor((index / 12) * frequencyData.length);
-          const end = Math.max(start + 1, Math.floor(((index + 1) / 12) * frequencyData.length));
-          const average = frequencyData.slice(start, end).reduce((sum, value) => sum + value, 0) / (end - start);
-          return Math.max(0.12, Math.min(1, average / 150));
+          const wave = Math.sin(timestamp / 260 + index * 0.72);
+          return Math.max(0.18, Math.min(1, 0.36 + (wave + 1) * 0.24));
         }));
       }
       audioRef.current.animationFrame = window.requestAnimationFrame(samplePlayback);
     };
     const animationFrame = window.requestAnimationFrame(samplePlayback);
-    audioRef.current = { context, master, element, analyser, nodes: [source, bassEq, trebleEq, analyser], timers: [], animationFrame };
-    void context.resume()
-      .then(() => element.play())
+    audioRef.current = { element, timers: [], animationFrame };
+    void element.play()
       .then(() => {
         setAudioError(null);
         setIsActive(true);
