@@ -86,6 +86,7 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
     audio.element.pause();
     audio.element.removeAttribute("src");
     audio.element.load();
+    audio.element.remove();
     audioRef.current = null;
     setIsActive(false);
     setEqualizerBars(Array.from({ length: 12 }, () => 0.16));
@@ -100,6 +101,12 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
     element.preload = "auto";
     element.volume = nextEnabled ? nextVolume : 0;
     element.setAttribute("aria-hidden", "true");
+    element.style.display = "none";
+    document.body.appendChild(element);
+    element.addEventListener("error", () => {
+      setAudioError("The AO soundtrack could not load. Try Ambient on again.");
+      stopAudio();
+    }, { once: true });
     let lastPaint = 0;
     const samplePlayback = (timestamp: number) => {
       if (!audioRef.current) return;
