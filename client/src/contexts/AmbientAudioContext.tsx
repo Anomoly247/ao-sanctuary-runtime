@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 type Soundscape = "still-water" | "night-garden" | "soft-lantern";
 
@@ -18,8 +18,10 @@ type AudioState = {
   context: AudioContext;
   master: GainNode;
   element: HTMLAudioElement;
+  analyser: AnalyserNode;
   nodes: AudioNode[];
   timers: number[];
+  animationFrame: number;
 };
 
 const AmbientAudioContext = createContext<AmbientAudioContextValue | null>(null);
@@ -70,6 +72,7 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
   const [soundscape, setSoundscapeState] = useState<Soundscape>(readSoundscape);
   const [isActive, setIsActive] = useState(false);
   const [audioError, setAudioError] = useState<string | null>(null);
+  const [equalizerBars, setEqualizerBars] = useState<number[]>(() => Array.from({ length: 12 }, () => 0.16));
   const audioRef = useRef<AudioState | null>(null);
 
   const updateMaster = useCallback((nextVolume: number, nextEnabled: boolean) => {
@@ -84,6 +87,7 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
     const audio = audioRef.current;
     if (!audio) return;
     audio.timers.forEach((timer) => window.clearInterval(timer));
+    window.cancelAnimationFrame(audio.animationFrame);
     audio.nodes.forEach((node) => {
       try {
         (node as OscillatorNode | AudioBufferSourceNode).stop?.();
@@ -99,6 +103,7 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
     void audio.context.close();
     audioRef.current = null;
     setIsActive(false);
+    setEqualizerBars(Array.from({ length: 12 }, () => 0.16));
   }, []);
 
   const startAudio = useCallback((selectedSoundscape: Soundscape, nextEnabled = enabled, nextVolume = volume) => {
@@ -120,7 +125,10 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
     trebleEq.type = "highshelf";
     trebleEq.frequency.value = 2400;
     trebleEq.gain.value = 4.5;
-    master.connect(bassEq).connect(trebleEq).connect(context.destination);
+    const analyser = context.createAnalyser();
+    analyser.fftSize = 64;
+    analyser.smoothingTimeConstant = 0.78;
+    master.connect(bassEq).connect(trebleEq).connect(analyser).connect(context.destination);
     const element = new Audio(AMBIENT_SOURCES[selectedSoundscape]);
     element.loop = true;
     element.preload = "auto";
@@ -128,7 +136,24 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
     element.setAttribute("aria-hidden", "true");
     const source = context.createMediaElementSource(element);
     source.connect(master);
-    audioRef.current = { context, master, element, nodes: [source, bassEq, trebleEq], timers: [] };
+    const frequencyData = new Uint8Array(analyser.frequencyBinCount);
+    let lastPaint = 0;
+    const samplePlayback = (timestamp: number) => {
+      if (!audioRef.current) return;
+      if (timestamp - lastPaint >= 33) {
+        lastPaint = timestamp;
+        analyser.getByteFrequencyData(frequencyData);
+        setEqualizerBars(Array.from({ length: 12 }, (_, index) => {
+          const start = Math.floor((index / 12) * frequencyData.length);
+          const end = Math.max(start + 1, Math.floor(((index + 1) / 12) * frequencyData.length));
+          const average = frequencyData.slice(start, end).reduce((sum, value) => sum + value, 0) / (end - start);
+          return Math.max(0.12, Math.min(1, average / 150));
+        }));
+      }
+      audioRef.current.animationFrame = window.requestAnimationFrame(samplePlayback);
+    };
+    const animationFrame = window.requestAnimationFrame(samplePlayback);
+    audioRef.current = { context, master, element, analyser, nodes: [source, bassEq, trebleEq, analyser], timers: [], animationFrame };
     void context.resume()
       .then(() => element.play())
       .then(() => {
@@ -213,6 +238,9 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
       {children}
       <div className="ao-ambient-control" aria-label="Ambient Sanctuary sound controls">
         {!isActive && <span className="ao-ambient-hint" role="status">{audioError ?? (volume === 0 ? "Raise volume to hear Sanctuary" : "Click anywhere to hear Sanctuary")}</span>}
+        <div className="ao-audio-equalizer" role="img" aria-label={isActive ? "Ambient soundtrack equalizer responding to playback" : "Ambient soundtrack equalizer idle"} data-active={isActive}>
+          {equalizerBars.map((height, index) => <span key={index} style={{ "--ao-eq-height": `${height * 100}%` } as CSSProperties} aria-hidden="true" />)}
+        </div>
         <button type="button" className="ao-ambient-toggle" onClick={toggleEnabled} aria-pressed={enabled}>
           {enabled ? "Ambient on" : "Ambient off"}
         </button>
