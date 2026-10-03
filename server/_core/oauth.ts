@@ -5,6 +5,12 @@ import { getSessionCookieOptions } from "./cookies";
 import { ENV } from "./env";
 import { sdk } from "./sdk";
 
+export function buildOAuthRedirectUri({ protocol, requestHost, publicAppOrigin }: { protocol: string; requestHost: string; publicAppOrigin: string }) {
+  const isLocalRequest = /^(localhost|127\.0\.0\.1)(:\d+)?$/i.test(requestHost);
+  const redirectOrigin = isLocalRequest ? `${protocol}://${requestHost}` : publicAppOrigin;
+  return `${redirectOrigin.replace(/\/$/, "")}/api/oauth/callback`;
+}
+
 function getQueryParam(req: Request, key: string): string | undefined {
   const value = req.query[key];
   return typeof value === "string" ? value : undefined;
@@ -25,9 +31,7 @@ export function registerOAuthRoutes(app: Express) {
 
     const protocol = req.header("x-forwarded-proto") ?? req.protocol;
     const requestHost = req.get("host") ?? "";
-    const isLocalRequest = /^(localhost|127\.0\.0\.1)(:\d+)?$/i.test(requestHost);
-    const redirectOrigin = isLocalRequest ? `${protocol}://${requestHost}` : ENV.publicAppOrigin;
-    const redirectUri = `${redirectOrigin.replace(/\/$/, "")}/api/oauth/callback`;
+    const redirectUri = buildOAuthRedirectUri({ protocol, requestHost, publicAppOrigin: ENV.publicAppOrigin });
     const state = Buffer.from(redirectUri).toString("base64");
     const loginUrl = new URL("/app-auth", ENV.oAuthPortalUrl);
     loginUrl.searchParams.set("appId", ENV.appId);
