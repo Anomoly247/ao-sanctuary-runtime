@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { DEFAULT_CONTENT_CONFIG, DEFAULT_SOCIAL_FALLBACK_MESSAGE, getPlatformLabel, getSocialPostPlatform, getYouTubeEmbedUrl, isEmbedReadySocialUrl } from "../client/src/lib/aoContent";
+import { DEFAULT_CONTENT_CONFIG, DEFAULT_SOCIAL_FALLBACK_MESSAGE, getPlatformLabel, getSocialPostPlatform, getYouTubeEmbedUrl, isEmbedReadySocialUrl, readSocialAnalytics } from "../client/src/lib/aoContent";
 
 describe("AO content registry", () => {
   it("ships the provided YouTube and Substack destinations", () => {
@@ -29,5 +29,9 @@ describe("AO content registry", () => {
     expect(getSocialPostPlatform("https://www.instagram.com/p/C0ffee123/")) .toBe("instagram");
     expect(isEmbedReadySocialUrl("https://www.facebook.com/anomoriginals", "facebook")).toBe(false);
     expect(isEmbedReadySocialUrl("https://www.instagram.com/p/C0ffee123/", "instagram")).toBe(true);
+  });
+
+  it("returns an empty telemetry map during server rendering", () => {
+    expect(readSocialAnalytics()).toEqual({});
   });
 });

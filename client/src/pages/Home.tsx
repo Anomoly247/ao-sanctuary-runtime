@@ -73,6 +73,7 @@ export default function Home() {
   if (!isAuthenticated) {
     return (
       <div className="ao-auth-shell min-h-screen text-[#00eaff] flex flex-col">
+        {loginPending && <div className="ao-oauth-loading" role="status" aria-live="polite"><div className="ao-oauth-loading-orbit"><span className="ao-oauth-loading-core">AO</span><span className="ao-oauth-loading-ring ao-oauth-loading-ring-one" /><span className="ao-oauth-loading-ring ao-oauth-loading-ring-two" /></div><p className="ao-oauth-loading-kicker">SECURE SIGNAL // AUTHENTICATING</p><h2>Opening your Sanctuary door.</h2><p>Connecting your identity to the living universe…</p></div>}
         {/* Navigation */}
         <nav className="border-b border-[#08080f] px-6 py-4">
           <div className="max-w-7xl mx-auto flex justify-between items-center">

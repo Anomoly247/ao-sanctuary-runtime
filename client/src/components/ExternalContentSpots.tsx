@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ArrowUpRight, Facebook, Instagram, Linkedin, Play, Video } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ContentEntry, getPlatformLabel, getYouTubeEmbedUrl, isEmbedReadySocialUrl, PlatformChannel, readAOContentConfig, SocialPost } from "@/lib/aoContent";
+import { ContentEntry, getPlatformLabel, getYouTubeEmbedUrl, isEmbedReadySocialUrl, PlatformChannel, readAOContentConfig, recordSocialEngagement, SocialPost } from "@/lib/aoContent";
 
 function PlatformIcon({ platform }: { platform: string }) {
   if (platform === "facebook") return <Facebook className="h-4 w-4" />;
@@ -54,12 +54,16 @@ export function useSocialEmbedScripts(posts: SocialPost[]) {
   }, [signature]);
 }
 
-export function SocialPostEmbed({ post, profileChannels = [] }: { post: SocialPost; profileChannels?: PlatformChannel[] }) {
+export function SocialPostEmbed({ post, profileChannels = [], trackEngagement = true }: { post: SocialPost; profileChannels?: PlatformChannel[]; trackEngagement?: boolean }) {
   useSocialEmbedScripts([post]);
+  useEffect(() => {
+    if (trackEngagement) recordSocialEngagement(post.id, "impressions");
+  }, [post.id, trackEngagement]);
   const valid = isEmbedReadySocialUrl(post.url, post.platform);
-  if (!valid) return <article className="ao-social-post-fallback"><div className="ao-social-post-fallback-icon">{post.platform === "facebook" ? <Facebook className="h-5 w-5" /> : <Instagram className="h-5 w-5" />}</div><div><span className="ao-external-eyebrow">{post.platform} signal</span><h4>{post.title}</h4><p>{post.fallbackMessage || post.caption}</p><div className="ao-social-fallback-links">{profileChannels.filter((channel) => ["facebook", "instagram", "youtube"].includes(channel.platform) && channel.url).map((channel) => <a href={channel.url} target="_blank" rel="noreferrer" key={channel.platform}>Visit {getPlatformLabel(channel.platform)} <ArrowUpRight className="inline h-3 w-3" /></a>)}</div>{post.url && <a href={post.url} target="_blank" rel="noreferrer">Open source post <ArrowUpRight className="inline h-3 w-3" /></a>}</div></article>;
-  if (post.platform === "facebook") return <article className="ao-social-post-card"><div className="fb-post" data-href={post.url} data-width="500" data-show-text="true" data-lazy="true" /><div className="ao-social-post-copy"><h4>{post.title}</h4>{post.caption && <p>{post.caption}</p>}<a href={post.url} target="_blank" rel="noreferrer">Open on Facebook <ArrowUpRight className="inline h-3 w-3" /></a></div></article>;
-  return <article className="ao-social-post-card"><blockquote className="instagram-media" data-instgrm-permalink={post.url} data-instgrm-version="14"><a href={post.url} target="_blank" rel="noreferrer">View this post on Instagram</a></blockquote><div className="ao-social-post-copy"><h4>{post.title}</h4>{post.caption && <p>{post.caption}</p>}<a href={post.url} target="_blank" rel="noreferrer">Open on Instagram <ArrowUpRight className="inline h-3 w-3" /></a></div></article>;
+  const trackClick = () => { if (trackEngagement) recordSocialEngagement(post.id, "clicks"); };
+  if (!valid) return <article className="ao-social-post-fallback"><div className="ao-social-post-fallback-icon">{post.platform === "facebook" ? <Facebook className="h-5 w-5" /> : <Instagram className="h-5 w-5" />}</div><div><span className="ao-external-eyebrow">{post.platform} signal</span><h4>{post.title}</h4><p>{post.fallbackMessage || post.caption}</p><div className="ao-social-fallback-links">{profileChannels.filter((channel) => ["facebook", "instagram", "youtube"].includes(channel.platform) && channel.url).map((channel) => <a href={channel.url} target="_blank" rel="noreferrer" key={channel.platform} onClick={trackClick}>Visit {getPlatformLabel(channel.platform)} <ArrowUpRight className="inline h-3 w-3" /></a>)}</div>{post.url && <a href={post.url} target="_blank" rel="noreferrer" onClick={trackClick}>Open source post <ArrowUpRight className="inline h-3 w-3" /></a>}</div></article>;
+  if (post.platform === "facebook") return <article className="ao-social-post-card"><div className="fb-post" data-href={post.url} data-width="500" data-show-text="true" data-lazy="true" /><div className="ao-social-post-copy"><h4>{post.title}</h4>{post.caption && <p>{post.caption}</p>}<a href={post.url} target="_blank" rel="noreferrer" onClick={trackClick}>Open on Facebook <ArrowUpRight className="inline h-3 w-3" /></a></div></article>;
+  return <article className="ao-social-post-card"><blockquote className="instagram-media" data-instgrm-permalink={post.url} data-instgrm-version="14"><a href={post.url} target="_blank" rel="noreferrer" onClick={trackClick}>View this post on Instagram</a></blockquote><div className="ao-social-post-copy"><h4>{post.title}</h4>{post.caption && <p>{post.caption}</p>}<a href={post.url} target="_blank" rel="noreferrer" onClick={trackClick}>Open on Instagram <ArrowUpRight className="inline h-3 w-3" /></a></div></article>;
 }
 
 function SocialPostCollection({ posts, channels }: { posts: SocialPost[]; channels: PlatformChannel[] }) {

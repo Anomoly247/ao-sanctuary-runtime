@@ -35,6 +35,8 @@ export type SocialPost = {
   featured: boolean;
 };
 
+export type SocialAnalytics = Record<string, { impressions: number; clicks: number }>;
+
 export type ShopOffer = {
   id: string;
   title: string;
@@ -52,6 +54,7 @@ export type AOContentConfig = {
 };
 
 export const AO_CONTENT_STORAGE_KEY = "ao-admin-content-v1";
+export const AO_SOCIAL_ANALYTICS_STORAGE_KEY = "ao-social-analytics-v1";
 export const DEFAULT_SOCIAL_FALLBACK_MESSAGE = "This post is resting outside the Sanctuary right now. Follow the main AO social channels for the newest signal.";
 
 export const DEFAULT_CONTENT_CONFIG: AOContentConfig = {
@@ -124,6 +127,24 @@ export function readAOContentConfig(): AOContentConfig {
 
 export function writeAOContentConfig(config: AOContentConfig) {
   if (typeof window !== "undefined") window.localStorage.setItem(AO_CONTENT_STORAGE_KEY, JSON.stringify(config));
+}
+
+export function readSocialAnalytics(): SocialAnalytics {
+  if (typeof window === "undefined") return {};
+  try {
+    const parsed = JSON.parse(window.localStorage.getItem(AO_SOCIAL_ANALYTICS_STORAGE_KEY) || "{}");
+    return parsed && typeof parsed === "object" ? parsed as SocialAnalytics : {};
+  } catch {
+    return {};
+  }
+}
+
+export function recordSocialEngagement(postId: string, event: "impressions" | "clicks") {
+  if (typeof window === "undefined") return;
+  const current = readSocialAnalytics();
+  const next = current[postId] || { impressions: 0, clicks: 0 };
+  next[event] += 1;
+  window.localStorage.setItem(AO_SOCIAL_ANALYTICS_STORAGE_KEY, JSON.stringify({ ...current, [postId]: next }));
 }
 
 export function getYouTubeEmbedUrl(url: string) {
