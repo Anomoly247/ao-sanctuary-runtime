@@ -35,7 +35,9 @@ export type SocialPost = {
   featured: boolean;
 };
 
-export type SocialAnalytics = Record<string, { impressions: number; clicks: number }>;
+export type SocialEngagementEvent = { type: "impressions" | "clicks"; at: number };
+export type SocialAnalyticsRecord = { impressions: number; clicks: number; events: SocialEngagementEvent[] };
+export type SocialAnalytics = Record<string, SocialAnalyticsRecord>;
 
 export type ShopOffer = {
   id: string;
@@ -133,7 +135,15 @@ export function readSocialAnalytics(): SocialAnalytics {
   if (typeof window === "undefined") return {};
   try {
     const parsed = JSON.parse(window.localStorage.getItem(AO_SOCIAL_ANALYTICS_STORAGE_KEY) || "{}");
-    return parsed && typeof parsed === "object" ? parsed as SocialAnalytics : {};
+    if (!parsed || typeof parsed !== "object") return {};
+    return Object.fromEntries(Object.entries(parsed).map(([postId, value]) => {
+      const record = value as Partial<SocialAnalyticsRecord>;
+      return [postId, {
+        impressions: Number(record.impressions) || 0,
+        clicks: Number(record.clicks) || 0,
+        events: Array.isArray(record.events) ? record.events.filter((event): event is SocialEngagementEvent => (event?.type === "impressions" || event?.type === "clicks") && Number.isFinite(event.at)) : [],
+      }];
+    }));
   } catch {
     return {};
   }
@@ -142,8 +152,9 @@ export function readSocialAnalytics(): SocialAnalytics {
 export function recordSocialEngagement(postId: string, event: "impressions" | "clicks") {
   if (typeof window === "undefined") return;
   const current = readSocialAnalytics();
-  const next = current[postId] || { impressions: 0, clicks: 0 };
+  const next = current[postId] || { impressions: 0, clicks: 0, events: [] };
   next[event] += 1;
+  next.events.push({ type: event, at: Date.now() });
   window.localStorage.setItem(AO_SOCIAL_ANALYTICS_STORAGE_KEY, JSON.stringify({ ...current, [postId]: next }));
 }
 
