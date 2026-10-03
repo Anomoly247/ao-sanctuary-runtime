@@ -24,7 +24,10 @@ export function registerOAuthRoutes(app: Express) {
     }
 
     const protocol = req.header("x-forwarded-proto") ?? req.protocol;
-    const redirectUri = `${protocol}://${req.get("host")}/api/oauth/callback`;
+    const requestHost = req.get("host") ?? "";
+    const isLocalRequest = /^(localhost|127\.0\.0\.1)(:\d+)?$/i.test(requestHost);
+    const redirectOrigin = isLocalRequest ? `${protocol}://${requestHost}` : ENV.publicAppOrigin;
+    const redirectUri = `${redirectOrigin.replace(/\/$/, "")}/api/oauth/callback`;
     const state = Buffer.from(redirectUri).toString("base64");
     const loginUrl = new URL("/app-auth", ENV.oAuthPortalUrl);
     loginUrl.searchParams.set("appId", ENV.appId);
