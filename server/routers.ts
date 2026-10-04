@@ -6,6 +6,7 @@ import { membershipRouter } from "./membership.procedures";
 import { settingsRouter } from "./settings.procedures";
 import { gamesRouter } from "./games.procedures";
 import { missionsRouter } from "./missions.procedures";
+import { metaRouter } from "./meta.procedures";
 import { publicProcedure, router, protectedProcedure } from "./_core/trpc";
 import { getOrCreateUserProfile, getDecorationPackages, updateUserProfile, getCoinBalance, addCoinTransaction, getCoinTransactionHistory, addXP, getAchievements, getUserAchievements, unlockAchievement, createLounge, getUserLounges, getLounge, getLoungeMembersWithUsers, addLoungeMember, removeLoungeMember, addLoungeMessage, getLoungeMessages, updateLounge, getKidsContent, trackKidsProgress, getUserKidsProgress } from "./db";
 import { z } from "zod";
@@ -17,6 +18,7 @@ export const appRouter = router({
   settings: settingsRouter,
   games: gamesRouter,
   missions: missionsRouter,
+  meta: metaRouter,
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
     logout: publicProcedure.mutation(({ ctx }) => {
