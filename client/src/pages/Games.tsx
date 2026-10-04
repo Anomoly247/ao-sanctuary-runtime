@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Gamepad2, Trophy, Zap, Star, X } from "lucide-react";
+import { BookOpen, Gamepad2, Globe2, Heart, Music2, ShoppingBag, Star, Trophy, Users, X, Zap } from "lucide-react";
 import { useLocation } from "wouter";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -8,6 +8,17 @@ import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { AO_ART, aoArtUrl } from "../../../shared/aoArt";
 import { useAOBridge } from "@/contexts/AOBridgeContext";
+
+const worlds = [
+  { id: "sanctuary", label: "Sanctuary", eyebrow: "SAFE HOME WORLD", tier: "ALL AGES", path: "/", icon: Heart, description: "The calm center: lounges, missions, signals, and the shared safe call.", cta: "Return to Sanctuary", tone: "gold" },
+  { id: "creator", label: "Creator Orbit", eyebrow: "MAKE TOGETHER", tier: "GUARDIAN GUIDED", path: "/collaboration", icon: Users, description: "Build, collaborate, and turn creative work into a kind action.", cta: "Make together", tone: "cyan" },
+  { id: "play", label: "Play Worlds", eyebrow: "ARCADE SIGNAL", tier: "KIDS + GUARDIANS", path: "/games", icon: Gamepad2, description: "Retro-inspired games, living mounts, and story pockets like Baba Yaga’s Hut.", cta: "You are here", tone: "cyan" },
+  { id: "library", label: "Library World", eyebrow: "HIDDEN LESSONS", tier: "AGE-AWARE", path: "/library", icon: BookOpen, description: "Videos, research trails, and curiosity quests that connect online life to real life.", cta: "Open Library", tone: "gold" },
+  { id: "archive", label: "Archive", eyebrow: "MOUNTS + BADGES", tier: "ALL AGES", path: "/merch", icon: ShoppingBag, description: "Keep earned glow, mounts, achievements, and the objects that remember your journey.", cta: "Visit Archive", tone: "gold" },
+  { id: "anoms-corner", label: "Anom’s Corner", eyebrow: "THE CREATOR’S SIGNAL", tier: "COMMUNITY", path: "/anoms-corner", icon: Globe2, description: "A living window for stories, social posts, videos, and the next strange idea.", cta: "Enter the Corner", tone: "cyan" },
+  { id: "missions", label: "Mission Hub", eyebrow: "PLAY WITH PURPOSE", tier: "ALL AGES", path: "/mission-hub", icon: Trophy, description: "Small connected actions that turn kindness, learning, and collaboration into progress.", cta: "Choose a mission", tone: "gold" },
+  { id: "music", label: "Sound Garden", eyebrow: "AMBIENT SIGNAL", tier: "ALL AGES", path: "/music-library", icon: Music2, description: "Instrumentals and quiet soundscapes for moving through the universe at your own pace.", cta: "Listen inward", tone: "cyan" },
+] as const;
 
 // Trivia Game Component
 function TriviaGame({ onClose, onComplete }: { onClose: () => void; onComplete: (score: number) => void }) {
@@ -400,11 +411,11 @@ export default function Games() {
       <main className="max-w-7xl mx-auto px-6 py-12">
         <section className="ao-play-world-hero mb-10" style={{ backgroundImage: `linear-gradient(90deg, rgba(8,8,15,0.96), rgba(8,8,15,0.6)), url(${aoArtUrl('/backgrounds/05_moonlit_forest_spirit.jpg')})` }}>
           <div className="ao-play-world-copy">
-            <p className="ao-world-kicker">PLAY WORLDS // BASIC BUILDS, BIG FUTURE</p>
-            <h2>Start with a small game. Grow a living world.</h2>
-            <p>These are the first playable prototypes: trivia, memory, and mood. Scores come from this session only until the shared reward ledger is connected.</p>
-            <Button className="btn-primary mt-5" onClick={() => navigate("/games/baba-yaga")}>
-              Enter Baba Yaga’s Hut
+            <p className="ao-world-kicker">AO UNIVERSE // ONE CONSTELLATION, MANY DOORS</p>
+            <h2>Every world is part of the journey.</h2>
+            <p>Play Worlds is not only a game corner. It is the map of the connected Sanctuary: a place to choose a world, carry your identity, and return with something that matters.</p>
+            <Button className="btn-primary mt-5" onClick={() => navigate("/")}>
+              Return to the live signal
             </Button>
           </div>
           <div className="ao-mount-identity" aria-label={`${activeMount.label} identity mount with emotion emotes`}>
@@ -415,6 +426,36 @@ export default function Games() {
             <img src={aoArtUrl(activeMount.art)} alt={`${activeMount.label} mount identity`} style={{ filter: mountColorFilter }} />
             <p>{activeMount.label}</p>
             <small>Identity mount · {bridge.houseName} · {bridge.mountColor}</small>
+          </div>
+        </section>
+        <section className="ao-world-directory mb-12" aria-labelledby="world-directory-title">
+          <div className="ao-world-directory-heading">
+            <div>
+              <p className="ao-world-kicker">THE WHOLE CONSTELLATION</p>
+              <h2 id="world-directory-title">Choose your next doorway.</h2>
+              <p>Worlds orbit the Sanctuary home signal. Games, learning, making, music, missions, and archive objects are different ways into the same safe universe.</p>
+            </div>
+            <span className="ao-analytics-local-note">{worlds.length} connected worlds</span>
+          </div>
+          <div className="ao-world-directory-grid">
+            {worlds.map((world) => {
+              const Icon = world.icon;
+              const isCurrent = world.path === "/games";
+              return (
+                <Card key={world.id} className={`ao-world-door ao-world-door-${world.tone} ${isCurrent ? "is-current" : ""}`}>
+                  <div className="ao-world-door-orbit"><Icon className="h-5 w-5" /></div>
+                  <div className="ao-world-door-copy">
+                    <span className="ao-external-eyebrow">{world.eyebrow}</span>
+                    <h3>{world.label}</h3>
+                    <p>{world.description}</p>
+                    <small>{world.tier}</small>
+                  </div>
+                  <Button className="btn-secondary" onClick={() => !isCurrent && navigate(world.path)} disabled={isCurrent}>
+                    {world.cta}
+                  </Button>
+                </Card>
+              );
+            })}
           </div>
         </section>
         {/* Stats Section */}
