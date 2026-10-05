@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Play, Share2, Heart, Star, Zap } from "lucide-react";
@@ -21,6 +21,7 @@ const episodes: Episode[] = [
     id: "1",
     title: "Pixel & Dot's Full Story | Anom's Corner",
     storageUrl: "/manus-storage/v8_pixel_dot_full_story_final_45228357.mp4",
+    videoId: "0pBrQUqU0ig",
     duration: "Full Story",
     description: "The complete Pixel & Dot story. Join these two characters on their epic journey through a signal-lit universe filled with mystery, wonder, and unforgettable moments. This is the definitive Anom's Corner experience.",
     featured: true,
@@ -37,6 +38,11 @@ const episodes: Episode[] = [
 export default function AnomsCorner() {
   const [selectedEpisode, setSelectedEpisode] = useState<Episode>(episodes[0]);
   const [liked, setLiked] = useState(false);
+  const [mediaError, setMediaError] = useState(false);
+
+  useEffect(() => {
+    setMediaError(false);
+  }, [selectedEpisode.id]);
 
   const handleShare = () => {
     const url = selectedEpisode.storageUrl 
@@ -120,16 +126,17 @@ export default function AnomsCorner() {
               {/* Featured Video Player */}
               <div className="mb-6">
                 <div className="relative w-full bg-black rounded-lg overflow-hidden border border-[#08080f]">
-                  {selectedEpisode.storageUrl ? (
+                  {selectedEpisode.storageUrl && !mediaError ? (
                     <video
                       className="w-full h-auto"
                       controls
                       style={{ maxHeight: "600px" }}
+                      onError={() => setMediaError(true)}
                     >
                       <source src={selectedEpisode.storageUrl} type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
-                  ) : (
+                  ) : selectedEpisode.videoId ? (
                     <div className="relative w-full bg-black rounded-lg overflow-hidden" style={{ paddingBottom: "56.25%" }}>
                       <iframe
                         className="absolute inset-0 w-full h-full"
@@ -138,6 +145,10 @@ export default function AnomsCorner() {
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                       />
+                    </div>
+                  ) : (
+                    <div className="flex min-h-56 items-center justify-center p-8 text-center text-[#cccccc]" role="status">
+                      This story video is temporarily unavailable. Please check back soon.
                     </div>
                   )}
                 </div>
