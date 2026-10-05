@@ -11,6 +11,8 @@ interface Episode {
   title: string;
   videoId?: string;
   storageUrl?: string;
+  premiere?: boolean;
+  channelUrl?: string;
   duration: string;
   description: string;
   featured?: boolean;
@@ -18,16 +20,16 @@ interface Episode {
 
 const episodes: Episode[] = [
   {
-    id: "1",
-    title: "Pixel & Dot's Full Story | Anom's Corner",
-    storageUrl: "/manus-storage/v8_pixel_dot_full_story_final_45228357.mp4",
-    videoId: "0pBrQUqU0ig",
-    duration: "Full Story",
-    description: "The complete Pixel & Dot story. Join these two characters on their epic journey through a signal-lit universe filled with mystery, wonder, and unforgettable moments. This is the definitive Anom's Corner experience.",
+    id: "premiere-room",
+    title: "AO Premiere Room | Anom Originals",
+    premiere: true,
+    channelUrl: "https://www.youtube.com/@anomoriginals",
+    duration: "New premieres",
+    description: "A dedicated doorway for new premieres, creator thoughts, character signals, and the next story moving through Anom’s Corner.",
     featured: true,
   },
   {
-    id: "2",
+    id: "pixel-dot-adventure",
     title: "Pixel & Dot's New Adventure | Anom's Corner",
     videoId: "0pBrQUqU0ig",
     duration: "1:50",
@@ -45,9 +47,9 @@ export default function AnomsCorner() {
   }, [selectedEpisode.id]);
 
   const handleShare = () => {
-    const url = selectedEpisode.storageUrl 
+    const url = selectedEpisode.channelUrl ?? (selectedEpisode.storageUrl 
       ? `${window.location.origin}${selectedEpisode.storageUrl}`
-      : `https://www.youtube.com/watch?v=${selectedEpisode.videoId}`;
+      : `https://www.youtube.com/watch?v=${selectedEpisode.videoId}`);
     navigator.clipboard.writeText(url);
     toast.success("Episode link copied to clipboard!");
   };
@@ -126,7 +128,19 @@ export default function AnomsCorner() {
               {/* Featured Video Player */}
               <div className="mb-6">
                 <div className="relative w-full bg-black rounded-lg overflow-hidden border border-[#08080f]">
-                  {selectedEpisode.storageUrl && !mediaError ? (
+                  {selectedEpisode.premiere ? (
+                    <div className="ao-premiere-room flex min-h-72 flex-col items-center justify-center gap-4 p-8 text-center" role="region" aria-label="AO Premiere Room">
+                      <div className="ao-premiere-room-orbit" aria-hidden="true"><Play className="h-8 w-8" /></div>
+                      <div>
+                        <p className="ao-world-kicker">ANOM ORIGINALS // PREMIERE DOOR</p>
+                        <h3 className="mt-2 text-2xl font-bold text-white">The next signal starts here.</h3>
+                        <p className="mx-auto mt-2 max-w-md text-sm text-[#cccccc]">Premieres, character thoughts, and new worlds will land in this room as the AO universe grows.</p>
+                      </div>
+                      <a className="btn-primary inline-flex items-center gap-2 rounded-full px-5 py-3" href={selectedEpisode.channelUrl} target="_blank" rel="noreferrer">
+                        Visit the Anom Originals YouTube channel <Share2 className="h-4 w-4" />
+                      </a>
+                    </div>
+                  ) : selectedEpisode.storageUrl && !mediaError ? (
                     <video
                       className="w-full h-auto"
                       controls

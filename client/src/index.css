@@ -1933,3 +1933,27 @@ html { scroll-behavior: smooth; }
   .ao-world-search,
   .ao-world-filter { transition: none; }
 }
+
+
+.ao-premiere-room {
+  min-height: 420px;
+  background:
+    radial-gradient(circle at 50% 32%, rgba(0, 234, 255, 0.18), transparent 22%),
+    radial-gradient(circle at 50% 62%, rgba(216, 174, 85, 0.12), transparent 34%),
+    linear-gradient(145deg, rgba(20, 20, 35, 0.96), rgba(4, 4, 10, 0.98));
+}
+.ao-premiere-room-orbit {
+  align-items: center;
+  border: 1px solid rgba(216, 174, 85, 0.72);
+  border-radius: 50%;
+  color: #00eaff;
+  display: flex;
+  height: 84px;
+  justify-content: center;
+  box-shadow: 0 0 0 12px rgba(0, 234, 255, 0.05), 0 0 42px rgba(0, 234, 255, 0.22), inset 0 0 28px rgba(216, 174, 85, 0.15);
+  animation: aoSignalBreath 4.8s ease-in-out infinite;
+  width: 84px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ao-premiere-room-orbit { animation: none; }
+}
