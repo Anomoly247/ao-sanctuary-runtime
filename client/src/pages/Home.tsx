@@ -328,6 +328,10 @@ export default function Home() {
     { label: 'BADGES', value: String(unlockedBadgeCount), icon: Heart, tone: 'gold' },
   ] as const;
 
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   return (
     <div
       className="ao-world-page min-h-screen bg-[#0A0A10] text-white"
@@ -353,6 +357,11 @@ export default function Home() {
       <nav className="ao-world-nav sticky top-0 z-40">
         <div className="ao-world-nav-inner">
           <button type="button" className="ao-wordmark" onClick={() => navigate('/')}>ANOM ARTSY</button>
+          <div className="ao-world-nav-links" aria-label="Homeworld sections">
+            <button type="button" onClick={() => scrollToSection('world-map')}>World map</button>
+            <button type="button" onClick={() => scrollToSection('mission-rail')}>Missions</button>
+            <button type="button" onClick={() => scrollToSection('world-gates')}>Open gates</button>
+          </div>
           <div className="ao-world-nav-actions">
             <span className="ao-nav-welcome">Welcome, {user?.name}</span>
             <div className="relative">
@@ -408,7 +417,7 @@ export default function Home() {
             <p className="ao-world-caption">{AO_WORLD_PRINCIPLES.join(" · ")}</p>
           </div>
 
-          <div className="ao-world-map" role="group" aria-label={`${visibleWorldPortals.length} connected Anom worlds orbiting a shared sanctuary core`}>
+          <div id="world-map" className="ao-world-map" role="group" aria-label={`${visibleWorldPortals.length} connected Anom worlds orbiting a shared sanctuary core`}>
             <div className="ao-map-halo ao-map-halo-outer" />
             <div className="ao-map-halo ao-map-halo-inner" />
             <div className="ao-map-live-ripple ao-map-live-ripple-one" aria-hidden="true" />
@@ -493,7 +502,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="ao-mission-rail" aria-labelledby="mission-rail-title">
+        <section id="mission-rail" className="ao-mission-rail" aria-labelledby="mission-rail-title">
           <div className="ao-section-heading">
             <div>
               <p className="ao-world-kicker">SOCIAL GOOD // SHARED PROGRESS</p>
@@ -527,7 +536,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="ao-world-gates" aria-labelledby="gate-title">
+        <section id="world-gates" className="ao-world-gates" aria-labelledby="gate-title">
           <div className="ao-section-heading">
             <div>
               <p className="ao-world-kicker">OPEN GATES</p>

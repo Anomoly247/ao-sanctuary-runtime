@@ -2,16 +2,19 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useRef, use
 import type { CSSProperties, ReactNode } from "react";
 
 type Soundscape = "still-water" | "night-garden" | "soft-lantern";
+export type EqualizerTheme = "aurora" | "golden-hour" | "cyan-pulse" | "quiet-line";
 
 type AmbientAudioContextValue = {
   enabled: boolean;
   isActive: boolean;
   volume: number;
   soundscape: Soundscape;
+  equalizerTheme: EqualizerTheme;
   activate: () => void;
   toggleEnabled: () => void;
   setVolume: (value: number) => void;
   setSoundscape: (value: Soundscape) => void;
+  setEqualizerTheme: (value: EqualizerTheme) => void;
 };
 
 type AudioState = {
@@ -24,6 +27,7 @@ const AmbientAudioContext = createContext<AmbientAudioContextValue | null>(null)
 const ENABLED_KEY = "ao_ambient_enabled";
 const VOLUME_KEY = "ao_ambient_volume";
 const SOUNDSCAPE_KEY = "ao_ambient_soundscape";
+const EQUALIZER_THEME_KEY = "ao_equalizer_theme";
 const ORIGINALS_AUDIO_BASE = "https://anomoriginals.lol/manus-storage";
 const AMBIENT_SOURCES: Record<Soundscape, string> = {
   "still-water": `${ORIGINALS_AUDIO_BASE}/ao-ambient-minimal_dd7f1b9b.mp3`,
@@ -35,6 +39,13 @@ export const SOUNDSCAPES: Array<{ value: Soundscape; label: string; detail: stri
   { value: "still-water", label: "Still Water", detail: "soft drone + distant bells" },
   { value: "night-garden", label: "Night Garden", detail: "warm pad + gentle harp tones" },
   { value: "soft-lantern", label: "Soft Lantern", detail: "low glow + quiet piano notes" },
+];
+
+export const EQUALIZER_THEMES: Array<{ value: EqualizerTheme; label: string; detail: string }> = [
+  { value: "aurora", label: "Aurora", detail: "cyan + gold constellation" },
+  { value: "golden-hour", label: "Golden Hour", detail: "warm reward signal" },
+  { value: "cyan-pulse", label: "Cyan Pulse", detail: "cool live signal" },
+  { value: "quiet-line", label: "Quiet Line", detail: "low-contrast focus mode" },
 ];
 
 function readEnabled() {
@@ -54,6 +65,12 @@ function readSoundscape(): Soundscape {
   return stored === "still-water" || stored === "soft-lantern" ? stored : "night-garden";
 }
 
+function readEqualizerTheme(): EqualizerTheme {
+  if (typeof window === "undefined") return "aurora";
+  const stored = window.localStorage.getItem(EQUALIZER_THEME_KEY);
+  return stored === "golden-hour" || stored === "cyan-pulse" || stored === "quiet-line" ? stored : "aurora";
+}
+
 function makeNoiseBuffer(context: AudioContext, seconds: number, amount: number) {
   const buffer = context.createBuffer(1, context.sampleRate * seconds, context.sampleRate);
   const data = buffer.getChannelData(0);
@@ -67,6 +84,7 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
   const [enabled, setEnabled] = useState(readEnabled);
   const [volume, setVolumeState] = useState(readVolume);
   const [soundscape, setSoundscapeState] = useState<Soundscape>(readSoundscape);
+  const [equalizerTheme, setEqualizerThemeState] = useState<EqualizerTheme>(readEqualizerTheme);
   const [isActive, setIsActive] = useState(false);
   const [audioError, setAudioError] = useState<string | null>(null);
   const [equalizerBars, setEqualizerBars] = useState<number[]>(() => Array.from({ length: 12 }, () => 0.16));
@@ -177,6 +195,11 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
     }
   }, [startAudio, stopAudio]);
 
+  const setEqualizerTheme = useCallback((next: EqualizerTheme) => {
+    setEqualizerThemeState(next);
+    window.localStorage.setItem(EQUALIZER_THEME_KEY, next);
+  }, []);
+
   useEffect(() => {
     window.localStorage.setItem(ENABLED_KEY, String(enabled));
   }, [enabled]);
@@ -187,14 +210,14 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => stopAudio, [stopAudio]);
 
-  const value = useMemo(() => ({ enabled, isActive, volume, soundscape, activate, toggleEnabled, setVolume, setSoundscape }), [activate, enabled, isActive, setSoundscape, setVolume, soundscape, toggleEnabled, volume]);
+  const value = useMemo(() => ({ enabled, isActive, volume, soundscape, equalizerTheme, activate, toggleEnabled, setVolume, setSoundscape, setEqualizerTheme }), [activate, enabled, equalizerTheme, isActive, setEqualizerTheme, setSoundscape, setVolume, soundscape, toggleEnabled, volume]);
 
   return (
     <AmbientAudioContext.Provider value={value}>
       {children}
       <div className="ao-ambient-control" aria-label="Ambient Sanctuary sound controls">
         {!isActive && <span className="ao-ambient-hint" role="status">{audioError ?? (volume === 0 ? "Raise volume to hear Sanctuary" : "Press Ambient on to hear the soundtrack")}</span>}
-        <div className="ao-audio-equalizer" role="img" aria-label={isActive ? "Ambient soundtrack equalizer responding to playback" : "Ambient soundtrack equalizer idle"} data-active={isActive}>
+        <div className="ao-audio-equalizer" role="img" aria-label={`${EQUALIZER_THEMES.find((theme) => theme.value === equalizerTheme)?.label} equalizer, ${isActive ? "responding to playback" : "idle"}`} data-active={isActive} data-theme={equalizerTheme}>
           {equalizerBars.map((height, index) => <span key={index} style={{ "--ao-eq-height": `${height * 100}%` } as CSSProperties} aria-hidden="true" />)}
         </div>
         <button type="button" className="ao-ambient-toggle" onClick={toggleEnabled} aria-pressed={enabled}>
@@ -204,6 +227,12 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
           <span>Sound</span>
           <select value={soundscape} onChange={(event) => setSoundscape(event.target.value as Soundscape)} aria-label="Ambient soundscape">
             {SOUNDSCAPES.map((option) => <option value={option.value} key={option.value}>{option.label}</option>)}
+          </select>
+        </label>
+        <label className="ao-ambient-theme">
+          <span>Visual</span>
+          <select value={equalizerTheme} onChange={(event) => setEqualizerTheme(event.target.value as EqualizerTheme)} aria-label="Equalizer visual theme">
+            {EQUALIZER_THEMES.map((option) => <option value={option.value} key={option.value}>{option.label}</option>)}
           </select>
         </label>
         <label className="ao-ambient-volume">

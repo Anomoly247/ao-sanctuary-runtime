@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { BookOpen, Gamepad2, Globe2, Heart, Music2, ShoppingBag, Star, Trophy, Users, X, Zap } from "lucide-react";
+import { BookOpen, Filter, Gamepad2, Globe2, Heart, Music2, Search, ShoppingBag, Star, Trophy, Users, X, Zap } from "lucide-react";
 import { useLocation } from "wouter";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -10,14 +10,14 @@ import { AO_ART, aoArtUrl } from "../../../shared/aoArt";
 import { useAOBridge } from "@/contexts/AOBridgeContext";
 
 const worlds = [
-  { id: "sanctuary", label: "Sanctuary", eyebrow: "SAFE HOME WORLD", tier: "ALL AGES", path: "/", icon: Heart, description: "The calm center: lounges, missions, signals, and the shared safe call.", cta: "Return to Sanctuary", tone: "gold" },
-  { id: "creator", label: "Creator Orbit", eyebrow: "MAKE TOGETHER", tier: "GUARDIAN GUIDED", path: "/collaboration", icon: Users, description: "Build, collaborate, and turn creative work into a kind action.", cta: "Make together", tone: "cyan" },
-  { id: "play", label: "Play Worlds", eyebrow: "ARCADE SIGNAL", tier: "KIDS + GUARDIANS", path: "/games", icon: Gamepad2, description: "Retro-inspired games, living mounts, and story pockets like Baba Yaga’s Hut.", cta: "You are here", tone: "cyan" },
-  { id: "library", label: "Library World", eyebrow: "HIDDEN LESSONS", tier: "AGE-AWARE", path: "/library", icon: BookOpen, description: "Videos, research trails, and curiosity quests that connect online life to real life.", cta: "Open Library", tone: "gold" },
-  { id: "archive", label: "Archive", eyebrow: "MOUNTS + BADGES", tier: "ALL AGES", path: "/merch", icon: ShoppingBag, description: "Keep earned glow, mounts, achievements, and the objects that remember your journey.", cta: "Visit Archive", tone: "gold" },
-  { id: "anoms-corner", label: "Anom’s Corner", eyebrow: "THE CREATOR’S SIGNAL", tier: "COMMUNITY", path: "/anoms-corner", icon: Globe2, description: "A living window for stories, social posts, videos, and the next strange idea.", cta: "Enter the Corner", tone: "cyan" },
-  { id: "missions", label: "Mission Hub", eyebrow: "PLAY WITH PURPOSE", tier: "ALL AGES", path: "/mission-hub", icon: Trophy, description: "Small connected actions that turn kindness, learning, and collaboration into progress.", cta: "Choose a mission", tone: "gold" },
-  { id: "music", label: "Sound Garden", eyebrow: "AMBIENT SIGNAL", tier: "ALL AGES", path: "/music-library", icon: Music2, description: "Instrumentals and quiet soundscapes for moving through the universe at your own pace.", cta: "Listen inward", tone: "cyan" },
+  { id: "sanctuary", label: "Sanctuary", eyebrow: "SAFE HOME WORLD", tier: "ALL AGES", category: "governance", path: "/", icon: Heart, description: "The calm center: lounges, missions, signals, and the shared safe call.", cta: "Return to Sanctuary", tone: "gold" },
+  { id: "creator", label: "Creator Orbit", eyebrow: "MAKE TOGETHER", tier: "GUARDIAN GUIDED", category: "creative", path: "/collaboration", icon: Users, description: "Build, collaborate, and turn creative work into a kind action.", cta: "Make together", tone: "cyan" },
+  { id: "play", label: "Play Worlds", eyebrow: "ARCADE SIGNAL", tier: "KIDS + GUARDIANS", category: "play", path: "/games", icon: Gamepad2, description: "Retro-inspired games, living mounts, and story pockets like Baba Yaga’s Hut.", cta: "You are here", tone: "cyan" },
+  { id: "library", label: "Library World", eyebrow: "HIDDEN LESSONS", tier: "AGE-AWARE", category: "education", path: "/library", icon: BookOpen, description: "Videos, research trails, and curiosity quests that connect online life to real life.", cta: "Open Library", tone: "gold" },
+  { id: "archive", label: "Archive", eyebrow: "MOUNTS + BADGES", tier: "ALL AGES", category: "rewards", path: "/merch", icon: ShoppingBag, description: "Keep earned glow, mounts, achievements, and the objects that remember your journey.", cta: "Visit Archive", tone: "gold" },
+  { id: "anoms-corner", label: "Anom’s Corner", eyebrow: "THE CREATOR’S SIGNAL", tier: "COMMUNITY", category: "education", path: "/anoms-corner", icon: Globe2, description: "A living window for stories, social posts, videos, and the next strange idea.", cta: "Enter the Corner", tone: "cyan" },
+  { id: "missions", label: "Mission Hub", eyebrow: "PLAY WITH PURPOSE", tier: "ALL AGES", category: "social", path: "/mission-hub", icon: Trophy, description: "Small connected actions that turn kindness, learning, and collaboration into progress.", cta: "Choose a mission", tone: "gold" },
+  { id: "music", label: "Sound Garden", eyebrow: "AMBIENT SIGNAL", tier: "ALL AGES", category: "audio", path: "/music-library", icon: Music2, description: "Instrumentals and quiet soundscapes for moving through the universe at your own pace.", cta: "Listen inward", tone: "cyan" },
 ] as const;
 
 // Trivia Game Component
@@ -313,6 +313,8 @@ export default function Games() {
     if (typeof window === "undefined") return 0;
     return Number(window.localStorage.getItem("ao_guest_anom_coins") || 0);
   });
+  const [worldQuery, setWorldQuery] = useState("");
+  const [worldCategory, setWorldCategory] = useState("all");
 
   useEffect(() => {
     window.localStorage.setItem("ao_guest_anom_coins", String(anomCoins));
@@ -372,6 +374,13 @@ export default function Games() {
       component: MoodMatcherGame,
     },
   ];
+
+  const filteredWorlds = worlds.filter((world) => {
+    const query = worldQuery.trim().toLowerCase();
+    const matchesQuery = !query || [world.label, world.eyebrow, world.description, world.tier, world.category].some((value) => value.toLowerCase().includes(query));
+    const matchesCategory = worldCategory === "all" || world.category === worldCategory;
+    return matchesQuery && matchesCategory;
+  });
 
   const handleGameComplete = (gameId: string, score: number) => {
     setGameScores({ ...gameScores, [gameId]: score });
@@ -435,10 +444,34 @@ export default function Games() {
               <h2 id="world-directory-title">Choose your next doorway.</h2>
               <p>Worlds orbit the Sanctuary home signal. Games, learning, making, music, missions, and archive objects are different ways into the same safe universe.</p>
             </div>
-            <span className="ao-analytics-local-note">{worlds.length} connected worlds</span>
+            <span className="ao-analytics-local-note">{filteredWorlds.length} of {worlds.length} connected worlds</span>
           </div>
+          <div className="ao-world-directory-tools" role="search" aria-label="Find a connected AO world">
+            <label className="ao-world-search">
+              <Search className="h-4 w-4" aria-hidden="true" />
+              <span className="sr-only">Search worlds</span>
+              <input value={worldQuery} onChange={(event) => setWorldQuery(event.target.value)} placeholder="Search education, governance, missions…" type="search" />
+            </label>
+            <label className="ao-world-filter">
+              <Filter className="h-4 w-4" aria-hidden="true" />
+              <span className="sr-only">Filter worlds by category</span>
+              <select value={worldCategory} onChange={(event) => setWorldCategory(event.target.value)} aria-label="Filter worlds by category">
+                <option value="all">All pathways</option>
+                <option value="education">Education & stories</option>
+                <option value="governance">Governance & safety</option>
+                <option value="play">Play worlds</option>
+                <option value="creative">Creative making</option>
+                <option value="social">Social good</option>
+                <option value="audio">Sound garden</option>
+                <option value="rewards">Rewards & archive</option>
+              </select>
+            </label>
+          </div>
+          <p className="ao-world-directory-status" role="status" aria-live="polite">
+            {filteredWorlds.length ? `Showing ${filteredWorlds.length} world${filteredWorlds.length === 1 ? "" : "s"}.` : "No worlds match that signal. Try another search or pathway."}
+          </p>
           <div className="ao-world-directory-grid">
-            {worlds.map((world) => {
+            {filteredWorlds.map((world) => {
               const Icon = world.icon;
               const isCurrent = world.path === "/games";
               return (
