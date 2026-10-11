@@ -142,4 +142,13 @@ export const AO_SOURCE_REGISTRY: readonly AOSourceRegistryEntry[] = [
     ageTier: "OWNER ONLY",
     ownerNote: "Adopts privacy and SEL principles; does not adopt hot-magenta primary styling or a fixed AC-to-dollar exchange rate.",
   },
+  {
+    id: "definitive-master-build-specification",
+    title: "AO Universe Definitive Master Build Specification",
+    provenance: "User-provided pasted_content_6.txt; SHA-256 retained in the private reference archive",
+    destination: "Shared Houses, Guardian tiers, timing, visual, Sentinel, and staged economy contracts",
+    migrationStatus: "mapped",
+    ageTier: "OWNER ONLY",
+    ownerNote: "Primary product specification; cash conversion, spendable economy, and automated enforcement remain gated for separate approval.",
+  },
 ] as const;

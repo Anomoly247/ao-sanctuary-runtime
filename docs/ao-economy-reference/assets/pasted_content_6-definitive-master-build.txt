@@ -1,0 +1,227 @@
+AO UNIVERSE: DEFINITIVE MASTER BUILD SPECIFICATION
+
+1. FOUNDATIONAL VISION & SYSTEM MANDATES
+
+Executive Summary
+
+The AO Universe is a vertically integrated creative and technology conglomerate designed as a self-sustaining ecosystem. Built on the philosophy of "Everything Connected. Everything Designed. Everything AO," the platform functions as a "town in space" where identity is wired into the architecture. It rejects extractive web models, prioritizing digital identity protection and rewarding human connection.
+
+The One Sentence Vision:
+
+"Our identity is wired into us — online and off. We speak in emotes and glow. We do good."
+
+Core Truths
+
+* Identity is Wired In: Identity runs through the system like a circuit. A user’s profile is earned and grown through contribution; it is the current that powers the sky.
+* Language of Emotes and Glow: We speak in feeling. Emotes represent the internal state of the traveler, while "the glow" signals presence and authenticity.
+* Architecture of Altruism: We do good. Movement through the universe is fueled by positive play, social good, and community care rather than simple monetary extraction.
+
+The 12-Division Business Structure
+
+Category	Core Function	Operational Status
+Pixel & Dot	Creative Studio: Graphic design, branding, digital art.	Active
+Kids Corner	Children's Brand: Educational content, toys, media.	Active
+Color Space	Art & Design Lab: Color theory and design education.	Active
+Identity Shop	Brand Agency: Full brand identity systems.	Active
+Lounges	Experience & Community: Digital co-working and events.	Development
+Off Grid	Sustainability & Lifestyle: Eco-merchandise and education.	Active
+YouTube	Content Engine: Multi-channel monetization platform.	Active
+Anomoly AI	Artificial Intelligence: Custom SaaS and automation tools.	Active
+Security Team	Cybersecurity: Brand protection and IP monitoring.	Active
+Brand Kit	Brand Systems: Pre-built templates and asset packs.	Active
+Merch Systems	Merchandise Engine: Fulfillment and custom design.	Active
+Payment Infrastructure	FinTech Layer: Revenue routing and wallet systems.	Development
+
+2. AO ALIVE: LIVING DESIGN STANDARD
+
+The Timing Axiom
+
+The foundational mandate for all AO visual interfaces is: "Alive is not a color. It's the timing." The system prioritizes organic, biological motion over mechanical pulsing.
+
+Staggered Motion Physics
+
+Ambient UI elements must never share an animation period.
+
+* Constraint: 5% maximum scale | 6px maximum translation.
+* Mandate: Elements must read as biological breathing, not "bouncing."
+
+House / Element	Loop Period	Motion Mechanism	System Function
+House 1	3.2s	scale(1.00) to scale(1.05)	Pastoral breathing idle
+House 2	3.6s	scale(1.05) [0.2s offset]	Security pulse idle
+House 3	3.9s	scale(1.05) [0.4s offset]	Emotional vibe check idle
+House 4	4.1s	scale(1.05) [0.6s offset]	Arcade neon breathing
+Inner Mount Orbit	3.8s	rotate(360deg) translateX(46px)	Celestial transit loop
+Moon Orbit	4.0s	rotate(360deg) translateX(54px)	Luminescent orbital path
+Outer Mount Orbit	6.0s	rotate(360deg) translateX(84px)	Counter-rotating transit
+Hub Mount Orbit	7.0s	rotate(360deg) counter-rotated	Deep space flight
+
+Official Color Palette (Constellation Status)
+
+Token Name	Hex Code	Operational Role
+AO Cyan	#00eaff	Active / Live Now: Sanctuary and Store focus.
+AO Magenta	#ff00c8	In Build: Arcade, Kids Corner, and AI.
+AO Gold	#d8ae55	Planned / Prestige: High-tier status and rules.
+Void	#0A0A10	UI Ground: Standard background for panels.
+True Black	#000000	Canvas Ground: Backdrop for 5:7 collectible cards.
+
+Strict Prohibitions
+
+* Banned Tokens: Pure Cyan (#00ffff), Pure Magenta (#ff00ff), and Pure Purple (#8000FF).
+* Forbidden Typography: Candara, Calibri, and Consolas (Banned for "office document" aesthetics).
+
+Typography Hierarchy
+
+* Display / Headlines: Space Mono / Space Grotesk
+* Body / UI Text: Inter
+* Technical / HUD: JetBrains Mono (Letter-spacing: 0.2em–0.3em)
+
+Glassmorphism Surface Spec
+
+background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+backdrop-filter: blur(18px);
+-webkit-backdrop-filter: blur(18px);
+border: 1px solid rgba(255,255,255,0.18);
+border-radius: 16px to 24px;
+
+
+3. THE GLOW ECONOMY: CODE & LOGIC
+
+ONE COIN Economy Wiring
+
+const AO_COIN_KEY = 'ao_coin_balance';
+export const Coin = {
+  get: () => parseInt(localStorage.getItem(AO_COIN_KEY) || '0', 10),
+  add: (n) => {
+    const v = Coin.get() + n;
+    localStorage.setItem(AO_COIN_KEY, String(v));
+    window.dispatchEvent(new CustomEvent('ao-coin-update', {detail: v}));
+    return v;
+  },
+  spend: (n) => {
+    if (Coin.get() < n) return false;
+    return Coin.add(-n);
+  }
+};
+
+
+10:1 Glow-Swap Logic
+
+Glow Points (GP) represent engagement; Anomcoin (AC) represents premium utility.
+
+* Ratio: 10 GP = 1 AC.
+* Tier Requirement: "Apprentice" status (201+ GP) required.
+* UI Mandate: The "Initialize Glow-Swap" button must remain disabled if glow_points < 201.
+* Endpoint: POST /api/v1/vault/convert (Minimum 100 GP to initiate transaction).
+
+SQL Database Schemas
+
+1. wallets Table | Column | Type | Description | | :--- | :--- | :--- | | node_id | UUID (PK) | Unique Identity Node ID. | | glow_points | BIGINT | Engagement-based balance. | | anomcoin | DECIMAL | Premium utility balance. | | cash_balance | DECIMAL | Internal balance for direct purchases. | | membership_tier | ENUM | 'Explorer' or 'Architect'. | | sponsor_id | UUID (FK) | Referral tracker. | | last_glow_at | TIMESTAMP | Tracking engagement velocity. |
+
+2. ledger_entries Table | Column | Type | Description | | :--- | :--- | :--- | | entry_id | UUID (PK) | Unique transaction ID. | | node_id | UUID (FK) | Reference to wallet. | | asset_type | ENUM | 'GP', 'AC', or 'CASH'. | | amount | DECIMAL | Value added or deducted. | | activity_type | VARCHAR | e.g., 'Glow_Swap', 'Referral'. | | created_at | TIMESTAMP | Real-time record of action. |
+
+4. CREATURE MOUNT PROFILES & GAME ASSETS
+
+Ridable Profiles
+
+The universe tracks 9 distinct ridable profiles used for celestial transit:
+
+1. Cosmic Dragon: Speed 1200 | Class: FLIGHT (Legendary)
+2. White Unicorn: Speed 950 | Class: HEALER
+3. Dark Pegasus: Speed 800 | Class: TANK
+4. Light Pegasus: Speed 650 | Class: SCOUT
+5. Rainbow Unicorn: Speed 500 | Class: SPEED
+6. Rainbow Owl: Flight 700 | Class: WISDOM (from Neon Icon inventory)
+7. Neon Dragon: Speed 1100 | Class: ELITE (from Background Engine inventory)
+8. Emerald Moon Dragon: Speed 1000 | Class: GUARDIAN
+9. Starlit Mushroom Guardian: Speed 400 | Class: PASTORAL
+
+House Squad Selection
+
+* Ember: Color #FF2E9A | Buff: Speed
+* Tide: Color #00F0FF | Buff: Heal
+* Verdant: Color #C6FF00 | Buff: Tank
+
+5. SENTINEL AI: SECURITY & GOVERNANCE
+
+The Sentinel Code
+
+1. Strictly SFW: Zero tolerance for adult content/profanity.
+2. Identity Guard: No impersonation or asset theft.
+3. No Toxicity: Bullying triggers immediate action.
+4. Mood-First Respect: Respect the expressive weight of Identity Nodes.
+
+Violation Enforcement: Immediate post-removal and a 24-hour "Dim" (mute) duration.
+
+Sentinel Alert Matrix
+
+Trigger Level	AI Automated Action	Ambassador Manual Action
+SFW Violation	Removal & Upload Block.	Review Shadow Queue; issue warning.
+Predatory Pattern	Flag account; mute DMs.	Initiate Vetting or Node suspension.
+IP/Identity Theft	Flag asset for review.	Verify ownership via Security audit.
+
+Architecture of Altruism
+
+Ambassadors are rewarded via status, not cash:
+
+* High-Glow Signatures: Neon Cyan name with Magenta shadow override.
+* "The Guardian" Status: Legacy badge on Identity Node.
+* Exclusive Emotes: Access to the Sentinel Library.
+
+6. FRONTEND HTML/CSS/JS ARCHITECTURE
+
+Monorepo Structure (anom-artsy-rebuild)
+
+* /pages: index.html, gallery.html, sanctuary.html.
+* /app/games-arcade: trivia.js, coin-hunt.js, memory.js.
+* /app/backend: coins.js, houses.js.
+
+CSS Keyframe Specifications
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(84px) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(84px) rotate(-360deg); }
+}
+
+/* Three-Color Signature Pulse Ring */
+@keyframes pulseRing {
+  0%, 100% {
+    box-shadow: 0 0 18px rgba(0,234,255,0.6), 
+                0 0 36px rgba(255,0,200,0.35),
+                0 0 54px rgba(216,174,85,0.2); 
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(0,234,255,0.9), 
+                0 0 52px rgba(255,0,200,0.55),
+                0 0 78px rgba(216,174,85,0.3);
+  }
+}
+
+/* Accessibility Override Mandate */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; }
+}
+
+
+7. STRATEGIC ROADMAP & OPERATIONS
+
+5-Phase Roadmap
+
+1. Phase 1 (Q2 2026): Foundation: Legal structure activation (Anom Originals DBA); 10 core divisions activated.
+2. Phase 2 (End 2026): Scale: Launch 3 AI SaaS products; $350,000 revenue target. Reach 100k YouTube subscribers.
+3. Phase 3 (Q3 2027): Expansion: Launch Lounges digital community (500+ members); close 250k–500k Seed Round. Reach $1M ARR.
+4. Phase 4 (2028): Enterprise: Raise 2M–5M Series A; launch Payment Infrastructure SaaS.
+5. Phase 5 (2029+): Dominance: International expansion; target $10M ARR; evaluate IPO/Strategic Exit.
+
+Asset Inventory & S3 Structure
+
+* /backgrounds: Neon-dragon, starfields, laser grids.
+* /posters: Snack heists, Meme Queen, 500+ finished assets.
+* /icons: Rainbow owl, Wisdom owl, Game On arcade.
+* /banners: Neon gears mandalas, floral flourishes.
+* /cards: Halloween, Lucky, and Holiday card builder templates.
+* /books: 82+ sources for the Library and Ghost Reader lore.

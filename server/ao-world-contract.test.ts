@@ -1,8 +1,14 @@
 import { describe, expect, it } from "vitest";
 import {
   AO_LIBRARY_WORLD,
+  AO_COLOR_CONTRACT,
+  AO_ECONOMY_CONTRACT,
+  AO_GUARDIAN_TIERS,
+  AO_HOUSES,
+  AO_LIVING_TIMING,
   AO_MOUNT_CONTRACT,
   AO_SAFETY_LAYERS,
+  AO_SENTINEL_RULES,
   AO_SOCIAL_GOOD_MISSIONS,
   AO_WORLD_AGE_TIERS,
   AO_WORLD_PRINCIPLES,
@@ -52,5 +58,22 @@ describe("AO world contract", () => {
       "Game Master",
       "Family Hero",
     ]);
+  });
+
+  it("keeps the four Houses and Guardian mentor loop explicit", () => {
+    expect(AO_HOUSES.map(house => house.id)).toEqual(["house-1", "house-2", "house-3", "house-4"]);
+    expect(AO_HOUSES[0].anchorWorld).toBe("Moonberry Farm");
+    expect(AO_GUARDIAN_TIERS.map(tier => tier.shortCode)).toEqual(["H", "K", "B", "G", "U"]);
+    expect(AO_GUARDIAN_TIERS.at(-1)?.mentorTarget).toBe("Helper");
+  });
+
+  it("keeps living motion subtle and economy conversion gated", () => {
+    expect(AO_LIVING_TIMING.maxScale).toBe(1.05);
+    expect(AO_LIVING_TIMING.maxTranslationPx).toBe(6);
+    expect(AO_COLOR_CONTRACT.canvas).toBe("#000000");
+    expect(AO_COLOR_CONTRACT.restrictedRole).toContain("never primary");
+    expect(AO_ECONOMY_CONTRACT.glowPointsToAnomCoin).toBe(10);
+    expect(AO_ECONOMY_CONTRACT.cashConversion).toBe("not enabled");
+    expect(AO_SENTINEL_RULES).toContain("reviewable moderation with an audit path");
   });
 });
