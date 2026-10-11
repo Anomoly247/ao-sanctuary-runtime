@@ -133,4 +133,13 @@ export const AO_SOURCE_REGISTRY: readonly AOSourceRegistryEntry[] = [
     ageTier: "OWNER ONLY",
     ownerNote: "Supporting reference only; demo balances and shop prices are not live data or approved economy rules.",
   },
+  {
+    id: "sel-architecture-reference",
+    title: "AO SEL Architecture lesson",
+    provenance: "User-provided pasted_content_5.txt; SHA-256 retained in the private reference archive",
+    destination: "Non-extractive architecture, four-house contract, and Guardian-tier review",
+    migrationStatus: "review",
+    ageTier: "OWNER ONLY",
+    ownerNote: "Adopts privacy and SEL principles; does not adopt hot-magenta primary styling or a fixed AC-to-dollar exchange rate.",
+  },
 ] as const;
