@@ -8,11 +8,13 @@ import { ExternalContentSpots } from "@/components/ExternalContentSpots";
 
 interface Episode {
   id: string;
+  character: string;
   title: string;
   videoId?: string;
   storageUrl?: string;
   premiere?: boolean;
   channelUrl?: string;
+  accent: "gold" | "cyan";
   duration: string;
   description: string;
   featured?: boolean;
@@ -21,19 +23,41 @@ interface Episode {
 const episodes: Episode[] = [
   {
     id: "premiere-room",
+    character: "AO Universe",
     title: "AO Premiere Room | Anom Originals",
     premiere: true,
     channelUrl: "https://www.youtube.com/@anomoriginals",
+    accent: "gold",
     duration: "New premieres",
     description: "A dedicated doorway for new premieres, creator thoughts, character signals, and the next story moving through Anom’s Corner.",
     featured: true,
   },
   {
     id: "pixel-dot-adventure",
+    character: "Pixel & Dot",
     title: "Pixel & Dot's New Adventure | Anom's Corner",
     videoId: "0pBrQUqU0ig",
+    accent: "cyan",
     duration: "1:50",
     description: "Join Pixel and Dot on their first adventure in Anom's Corner! Discover their signal-lit world and the mysteries that await.",
+  },
+  {
+    id: "tater-premiere",
+    character: "Tater",
+    title: "Tater // Character Premiere Slot",
+    channelUrl: "https://www.youtube.com/@anomoriginals",
+    accent: "gold",
+    duration: "Channel premiere",
+    description: "A dedicated home for Tater’s cooking, curiosity, and warm-hearted field notes. The slot opens the channel until a verified episode URL is published.",
+  },
+  {
+    id: "clifford-premiere",
+    character: "Clifford",
+    title: "Clifford // Character Premiere Slot",
+    channelUrl: "https://www.youtube.com/@anomoriginals",
+    accent: "cyan",
+    duration: "Channel premiere",
+    description: "A dedicated home for Clifford’s comedy, protection signals, and thoughts from the wild edge. The slot opens the channel until a verified episode URL is published.",
   },
 ];
 
@@ -77,44 +101,34 @@ export default function AnomsCorner() {
               <span className="text-white"> Corner</span>
             </h1>
             <p className="text-xl text-[#cccccc] mb-6">
-              Digital Storybooks featuring <span style={{ color: "#d8ae55" }}>Pixel</span> & <span style={{ color: "#00eaff" }}>Dot</span>
+              Character stories, creator thoughts, and premieres from across the AO Universe
             </p>
             <p className="text-[#cccccc] max-w-2xl mx-auto">
-              Step into a living universe where two characters navigate surreal landscapes, uncover mysteries, and create unforgettable moments.
+              Step into a living universe where every character gets a voice, a signal, and a place to return to.
             </p>
           </div>
 
           {/* Character Badges */}
-          <div className="flex justify-center gap-6 mb-12">
-            <div className="text-center">
+          <div className="ao-character-signal-grid mb-12" aria-label="Anom’s Corner character signals">
+            {[
+              { label: "Pixel", detail: "The Creator", color: "#d8ae55" },
+              { label: "Dot", detail: "The Explorer", color: "#00eaff" },
+              { label: "Tater", detail: "The Scout", color: "#d8ae55" },
+              { label: "Clifford", detail: "The Protector", color: "#00eaff" },
+            ].map((character) => <div className="text-center" key={character.label}>
               <div
                 className="w-20 h-20 rounded-full mx-auto mb-3 flex items-center justify-center font-bold text-2xl border-2"
                 style={{
-                  borderColor: "#d8ae55",
-                  background: "linear-gradient(135deg, #d8ae5520 0%, #d8ae5510 100%)",
-                  color: "#d8ae55",
+                  borderColor: character.color,
+                  background: `linear-gradient(135deg, ${character.color}20 0%, ${character.color}10 100%)`,
+                  color: character.color,
                 }}
               >
-                P
+                {character.label[0]}
               </div>
-              <p className="font-bold text-white">Pixel</p>
-              <p className="text-sm text-[#cccccc]">The Creator</p>
-            </div>
-
-            <div className="text-center">
-              <div
-                className="w-20 h-20 rounded-full mx-auto mb-3 flex items-center justify-center font-bold text-2xl border-2"
-                style={{
-                  borderColor: "#00eaff",
-                  background: "linear-gradient(135deg, #00eaff20 0%, #00eaff10 100%)",
-                  color: "#00eaff",
-                }}
-              >
-                D
-              </div>
-              <p className="font-bold text-white">Dot</p>
-              <p className="text-sm text-[#cccccc]">The Explorer</p>
-            </div>
+              <p className="font-bold text-white">{character.label}</p>
+              <p className="text-sm text-[#cccccc]">{character.detail}</p>
+            </div>)}
           </div>
         </div>
       </div>
@@ -159,6 +173,15 @@ export default function AnomsCorner() {
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                       />
+                    </div>
+                  ) : selectedEpisode.channelUrl ? (
+                    <div className={`ao-character-door ao-character-door-${selectedEpisode.accent} flex min-h-72 flex-col items-center justify-center gap-4 p-8 text-center`} role="region" aria-label={`${selectedEpisode.character} character premiere slot`}>
+                      <p className="ao-world-kicker">{selectedEpisode.character.toUpperCase()} // CHARACTER SIGNAL</p>
+                      <h3 className="text-2xl font-bold text-white">This character has a room here.</h3>
+                      <p className="max-w-md text-sm text-[#cccccc]">The verified episode link will appear when the premiere is published. Until then, visit the channel for the latest real release.</p>
+                      <a className="btn-secondary inline-flex items-center gap-2 rounded-full px-5 py-3" href={selectedEpisode.channelUrl} target="_blank" rel="noreferrer">
+                        Open Anom Originals channel <Share2 className="h-4 w-4" />
+                      </a>
                     </div>
                   ) : (
                     <div className="flex min-h-56 items-center justify-center p-8 text-center text-[#cccccc]" role="status">
@@ -214,6 +237,7 @@ export default function AnomsCorner() {
                         : "border-[#08080f] bg-[#0A0A10] hover:border-[#00eaff]"
                     }`}
                   >
+                    <p className="text-[0.68rem] uppercase tracking-[0.18em] text-[#d8ae55]">{episode.character}</p>
                     <p className="font-semibold text-white text-sm mb-1">{episode.title}</p>
                     <p className="text-xs text-[#cccccc]">{episode.duration}</p>
                   </button>

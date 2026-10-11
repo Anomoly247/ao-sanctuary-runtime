@@ -11,6 +11,7 @@ type AmbientAudioContextValue = {
   soundscape: Soundscape;
   equalizerTheme: EqualizerTheme;
   activate: () => void;
+  activateFallback: () => void;
   toggleEnabled: () => void;
   setVolume: (value: number) => void;
   setSoundscape: (value: Soundscape) => void;
@@ -18,7 +19,10 @@ type AmbientAudioContextValue = {
 };
 
 type AudioState = {
-  element: HTMLAudioElement;
+  element?: HTMLAudioElement;
+  context?: AudioContext;
+  nodes?: OscillatorNode[];
+  fallbackGain?: GainNode;
   timers: number[];
   animationFrame: number;
 };
@@ -93,7 +97,8 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
   const updateMaster = useCallback((nextVolume: number, nextEnabled: boolean) => {
     const audio = audioRef.current;
     if (!audio) return;
-    audio.element.volume = nextEnabled ? nextVolume : 0;
+    if (audio.element) audio.element.volume = nextEnabled ? nextVolume : 0;
+    if (audio.fallbackGain) audio.fallbackGain.gain.value = nextEnabled ? nextVolume * 0.18 : 0;
   }, []);
 
   const stopAudio = useCallback(() => {
@@ -101,14 +106,50 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
     if (!audio) return;
     audio.timers.forEach((timer) => window.clearInterval(timer));
     window.cancelAnimationFrame(audio.animationFrame);
-    audio.element.pause();
-    audio.element.removeAttribute("src");
-    audio.element.load();
-    audio.element.remove();
+    audio.element?.pause();
+    audio.element?.removeAttribute("src");
+    audio.element?.load();
+    audio.element?.remove();
+    audio.nodes?.forEach((node) => {
+      try { node.stop(); } catch { /* already stopped */ }
+      node.disconnect();
+    });
+    void audio.context?.close();
     audioRef.current = null;
     setIsActive(false);
     setEqualizerBars(Array.from({ length: 12 }, () => 0.16));
   }, []);
+
+  const startBrowserFallback = useCallback((nextVolume = volume) => {
+    if (audioRef.current || typeof window === "undefined" || !window.AudioContext) return;
+    const context = new window.AudioContext();
+    const fallbackGain = context.createGain();
+    fallbackGain.gain.value = nextVolume * 0.18;
+    fallbackGain.connect(context.destination);
+    const frequencies = [174.61, 261.63, 349.23];
+    const nodes = frequencies.map((frequency, index) => {
+      const node = context.createOscillator();
+      node.type = index === 1 ? "triangle" : "sine";
+      node.frequency.value = frequency;
+      node.detune.value = index === 2 ? 4 : 0;
+      node.connect(fallbackGain);
+      node.start();
+      return node;
+    });
+    let lastPaint = 0;
+    const sampleFallback = (timestamp: number) => {
+      if (!audioRef.current) return;
+      if (timestamp - lastPaint >= 33) {
+        lastPaint = timestamp;
+        setEqualizerBars(Array.from({ length: 12 }, (_, index) => Math.max(0.18, 0.42 + Math.sin(timestamp / 360 + index * 0.68) * 0.2)));
+      }
+      audioRef.current.animationFrame = window.requestAnimationFrame(sampleFallback);
+    };
+    audioRef.current = { context, nodes, fallbackGain, timers: [], animationFrame: window.requestAnimationFrame(sampleFallback) };
+    setAudioError("Using the browser fallback tone. You can keep exploring while the soundtrack reconnects.");
+    setIsActive(true);
+    void context.resume();
+  }, [volume]);
 
   const startAudio = useCallback((selectedSoundscape: Soundscape, nextEnabled = enabled, nextVolume = volume) => {
     if (audioRef.current || typeof window === "undefined") return;
@@ -122,7 +163,7 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
     element.style.display = "none";
     document.body.appendChild(element);
     element.addEventListener("error", () => {
-      setAudioError("The AO soundtrack could not load. Try Ambient on again.");
+      setAudioError("The external soundtrack could not load. Use the browser fallback tone.");
       stopAudio();
     }, { once: true });
     let lastPaint = 0;
@@ -148,7 +189,9 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
         const message = error instanceof DOMException && error.name === "NotAllowedError"
           ? "Tap Ambient on to allow Sanctuary sound."
           : "The AO soundtrack could not load. Try Ambient on again.";
-        setAudioError(message);
+        setAudioError(message === "Tap Ambient on to allow Sanctuary sound."
+          ? message
+          : "The external soundtrack could not load. Use the browser fallback tone.");
         stopAudio();
       });
   }, [enabled, stopAudio, volume]);
@@ -163,6 +206,17 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
     window.localStorage.setItem(ENABLED_KEY, "true");
     startAudio(soundscape, true, nextVolume);
   }, [soundscape, startAudio, volume]);
+
+  const activateFallback = useCallback(() => {
+    const nextVolume = volume > 0 ? volume : 0.22;
+    if (volume === 0) {
+      setVolumeState(nextVolume);
+      window.localStorage.setItem(VOLUME_KEY, String(nextVolume));
+    }
+    setEnabled(true);
+    window.localStorage.setItem(ENABLED_KEY, "true");
+    startBrowserFallback(nextVolume);
+  }, [startBrowserFallback, volume]);
 
   const toggleEnabled = useCallback(() => {
     if (!audioRef.current || !isActive) {
@@ -210,13 +264,14 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => stopAudio, [stopAudio]);
 
-  const value = useMemo(() => ({ enabled, isActive, volume, soundscape, equalizerTheme, activate, toggleEnabled, setVolume, setSoundscape, setEqualizerTheme }), [activate, enabled, equalizerTheme, isActive, setEqualizerTheme, setSoundscape, setVolume, soundscape, toggleEnabled, volume]);
+  const value = useMemo(() => ({ enabled, isActive, volume, soundscape, equalizerTheme, activate, activateFallback, toggleEnabled, setVolume, setSoundscape, setEqualizerTheme }), [activate, activateFallback, enabled, equalizerTheme, isActive, setEqualizerTheme, setSoundscape, setVolume, soundscape, toggleEnabled, volume]);
 
   return (
     <AmbientAudioContext.Provider value={value}>
       {children}
       <div className="ao-ambient-control" aria-label="Ambient Sanctuary sound controls">
         {!isActive && <span className="ao-ambient-hint" role="status">{audioError ?? (volume === 0 ? "Raise volume to hear Sanctuary" : "Press Ambient on to hear the soundtrack")}</span>}
+        {!isActive && audioError && <button type="button" className="ao-ambient-fallback" onClick={activateFallback}>Use browser fallback</button>}
         <div className="ao-audio-equalizer" role="img" aria-label={`${EQUALIZER_THEMES.find((theme) => theme.value === equalizerTheme)?.label} equalizer, ${isActive ? "responding to playback" : "idle"}`} data-active={isActive} data-theme={equalizerTheme}>
           {equalizerBars.map((height, index) => <span key={index} style={{ "--ao-eq-height": `${height * 100}%` } as CSSProperties} aria-hidden="true" />)}
         </div>

@@ -1957,3 +1957,35 @@ html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) {
   .ao-premiere-room-orbit { animation: none; }
 }
+
+
+.ao-character-signal-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  max-width: 760px;
+  margin-inline: auto;
+}
+.ao-character-door {
+  background: radial-gradient(circle at 50% 30%, rgba(0, 234, 255, 0.12), transparent 28%), linear-gradient(145deg, rgba(20, 20, 35, 0.96), rgba(4, 4, 10, 0.98));
+}
+.ao-character-door-gold { border-top: 1px solid rgba(216, 174, 85, 0.62); }
+.ao-character-door-cyan { border-top: 1px solid rgba(0, 234, 255, 0.62); }
+.ao-ambient-fallback {
+  min-height: 2.25rem;
+  border: 1px solid rgba(216, 174, 85, 0.72);
+  border-radius: 999px;
+  padding: 0.45rem 0.8rem;
+  color: #f6f0e4;
+  background: rgba(216, 174, 85, 0.1);
+  font-size: 0.72rem;
+  transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 160ms ease;
+}
+.ao-ambient-fallback:hover { background: rgba(216, 174, 85, 0.2); }
+.ao-ambient-fallback:active { transform: scale(0.97); }
+@media (max-width: 640px) {
+  .ao-character-signal-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ao-ambient-fallback { transition: none; }
+}
