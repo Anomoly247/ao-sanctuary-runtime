@@ -124,4 +124,13 @@ export const AO_SOURCE_REGISTRY: readonly AOSourceRegistryEntry[] = [
     ageTier: "AGE-AWARE",
     ownerNote: "Rights, captions, thumbnail, and publication destination must be confirmed before upload.",
   },
+  {
+    id: "master-anom-hub-react-artifact",
+    title: "Master Anom Hub React Artifact",
+    provenance: "User-provided pasted_content_4.txt; SHA-256 retained in the private reference archive",
+    destination: "Four-house contract, guardian tiers, destination registry, and prototype economy review",
+    migrationStatus: "review",
+    ageTier: "OWNER ONLY",
+    ownerNote: "Supporting reference only; demo balances and shop prices are not live data or approved economy rules.",
+  },
 ] as const;

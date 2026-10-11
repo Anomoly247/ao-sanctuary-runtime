@@ -1,0 +1,213 @@
+React Artifact
+
+MASTER ANOM HUB
+
+Click a breathing circle to play
+
+ANOM Coin 240 A O
+
+GP 120
+
+HELPER 
+
+LEDGER SHOP
+
+# MASTER ANOM HUB
+
+FOUR HOUSES • REAL PNGS • PLAYABLE OVERLAYS • 800x600 CANVAS 
+
+MOONBERRY
+
+A O FARM 
+
+HOUSE 1 • GRATITUDE
+
+Pixel &amp; Dot Farm Duo
+
+HOUSE 2 • COURAGE
+
+Tater + Clifford Vault
+
+HOUSE 3 • EMPATHY
+
+Mood Buddies Duo
+
+HOUSE 4 • BOUNDARIES
+
+Sassy Patrol • Troll Crush
+
+150 STARS • 15 NODES • 22 TRAVELERS • DIAMOND CONSTELLATION • CLICK CIRCLE TO PLAY
+
+SANCTUARY SHOP
+
+Themes 50-150AO • Boosts • Mounts • Paint
+
+THEMES
+
+Void #0A0A10 • FREE Midnight Blue • 50AO Nebula Purple • 90AO Aurora Teal • 150AO
+
+BOOSTS
+
+Hoverboard
+
+• Speed +30% 50AO Stealth
+
+• Guard evade 75AO Water
+
+• Auto water 60AO Kindness
+
+• Heal +50% 100AO
+
+MOUNTS 75-200AO 
+
+Rainbow 75AO 
+
+Unicorn 200AO
+
+PAINT YOUR RIDABLES
+
+GROWTH NOTES • FEELINGS JOURNAL
+
+Today: Planted 3 moonberries, thanked Earth, felt grounded. Watered with unicorn help.
+
+Gratitude: Tater waited for me at vault door. Clifford bark made me brave.
+
+Mood: Sad cloud became yellow sun after LISTEN + HUG. Shared joy Q.
+
+GUARDIANS TIER TREE • 5 TIERS
+
+H
+
+Helper
+
+K
+
+Kind
+
+B
+
+Brave
+
+G
+
+Guardian
+
+U
+
+Ultra
+
+Mentor Loop ↗ Helper helps Kind, Kind helps Brave → Ultra guides Helper ↺
+
+LEDGER • ANOM COIN TRANSACTIONS
+
+localStorage anom\_coin\_balance anom\_transactions • live updates
+
+AMOUNT TYPE SOURCE BAL AFTER
+
++50 EARN Welcome bonus 240
+
+\-20 SPEND Mount preview 220
+
+SQUAD SELECTOR • real images 
+
+[AO UNIVERSE](https://www.google.com/url?sa=E&amp;q=https%3A%2F%2Fanomartsy.xyz%2F)
+
+[PLAY GAMES](https://www.google.com/url?sa=E&amp;q=https%3A%2F%2Fanomartsy.xyz%2Fgames%2F) [BEAT LAB](https://www.google.com/url?sa=E&amp;q=https%3A%2F%2Fanomartsy.xyz%2Fbeatlab%2F) DESTINATIONS
+
+AO UNIVERSE // DESTINATION REGISTRY
+
+## Choose your next signal
+
+HOUSE 1 • Pixel &amp; Dot • MOUNT aurora
+
+×
+
+ALL PLAY WORLDS CREATE SOCIAL
+
+IDENTITY LIVE
+
+### House Select
+
+Choose your house, mount, and starting signal.
+
+same-domain [ENTER ↗](https://www.google.com/url?sa=E&amp;q=https%3A%2F%2Fanomartsy.xyz%2Fhouse3%2F%3Fhouse%3D1%26mount%3Daurora%26return%3Dhttps%253A%252F%252Fanomartsy.xyz%252F%26source%3Dhomeworld)
+
+PLAY LIVE
+
+### Games Hub
+
+The shared AO game launcher with local progress.
+
+same-domain [ENTER ↗](https://www.google.com/url?sa=E&amp;q=https%3A%2F%2Fanomartsy.xyz%2Fgames%2F%3Fhouse%3D1%26mount%3Daurora%26return%3Dhttps%253A%252F%252Fanomartsy.xyz%252F%26source%3Dhomeworld)
+
+PLAY LIVE
+
+### Arcade
+
+Fast-play arcade experiences and playful experiments.
+
+same-domain [ENTER ↗](https://www.google.com/url?sa=E&amp;q=https%3A%2F%2Fanomartsy.xyz%2Farcade%2F%3Fhouse%3D1%26mount%3Daurora%26return%3Dhttps%253A%252F%252Fanomartsy.xyz%252F%26source%3Dhomeworld)
+
+CREATE LIVE
+
+### Beat Lab
+
+Make and explore the AO sound layer.
+
+same-domain [ENTER ↗](https://www.google.com/url?sa=E&amp;q=https%3A%2F%2Fanomartsy.xyz%2Fbeatlab%2F%3Fhouse%3D1%26mount%3Daurora%26return%3Dhttps%253A%252F%252Fanomartsy.xyz%252F%26source%3Dhomeworld)
+
+SOCIAL PREVIEW
+
+### AO Sanctuary
+
+The full-stack social sanctuary frontend preview.
+
+separate-app [ENTER ↗](https://www.google.com/url?sa=E&amp;q=https%3A%2F%2Fanomoly247.github.io%2Fanom-social-sanctuary%2F%3Fhouse%3D1%26mount%3Daurora%26return%3Dhttps%253A%252F%252Fanomartsy.xyz%252F%26source%3Dhomeworld)
+
+MISSION PREVIEW
+
+### Global Missions
+
+Shared missions and atomic Anom Coin rewards across connected AO surfaces.
+
+ledger-authority [ENTER ↗](https://www.google.com/url?sa=E&amp;q=https%3A%2F%2Fanomoly247.github.io%2Fanom-social-sanctuary%2Fmissions%3Fhouse%3D1%26mount%3Daurora%26return%3Dhttps%253A%252F%252Fanomartsy.xyz%252F%26source%3Dhomeworld)
+
+PLAY LIVE
+
+### Archive Games
+
+The canonical Archive storefront, mounts, and game vault.
+
+cross-domain [ENTER ↗](https://www.google.com/url?sa=E&amp;q=https%3A%2F%2Fanomarsty.lol%2Fgames%2F%3Fhouse%3D1%26mount%3Daurora%26return%3Dhttps%253A%252F%252Fanomartsy.xyz%252F%26source%3Dhomeworld)
+
+WORLD SOURCE
+
+### Off-Grid
+
+A reflective choice-driven world for grounded play.
+
+external-source [VIEW SOURCE ↗](https://www.google.com/url?sa=E&amp;q=https%3A%2F%2Fgithub.com%2FAnomoly247%2Fao-off-grid)
+
+WORLD SOURCE
+
+### Library World
+
+Moonberry Farm, Color Corner, and the black modern library.
+
+external-source [VIEW SOURCE ↗](https://www.google.com/url?sa=E&amp;q=https%3A%2F%2Fgithub.com%2FAnomoly247%2Fanom-artsy-xyz-library-world%3Fhouse%3D1%26mount%3Daurora%26return%3Dhttps%253A%252F%252Fanomartsy.xyz%252F%26source%3Dhomeworld)
+
+CREATE SOURCE
+
+### AO Meme Library
+
+The structured community media vault.
+
+external-source [VIEW SOURCE ↗](https://www.google.com/url?sa=E&amp;q=https%3A%2F%2Fgithub.com%2FAnomoly247%2Fao-meme-library)
+
+CREATE PENDING
+
+### Anom Originals
+
+Creator services and the Originals application.
+
+separate-app [ENTER ↗](https://www.google.com/url?sa=E&amp;q=https%3A%2F%2Fanomoriginals.lol%2F%3Fhouse%3D1%26mount%3Daurora%26return%3Dhttps%253A%252F%252Fanomartsy.xyz%252F%26source%3Dhomeworld)
