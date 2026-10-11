@@ -706,3 +706,20 @@ If implementation resumes from this export, extract in this order:
 7. visual tokens last, remapped to current AO design tokens.
 
 This keeps the strongest parts of the production export while avoiding a second economy, a second age model, and a second deployment architecture.
+
+
+## New master attachments review — 2026-10-10
+
+The newly supplied master HTML artifacts, mount packages, source brief, help hub, index, KDP grid, and vertical video were preserved in the private archive documented in `NEW-MASTER-ATTACHMENTS-MANIFEST.md`. The detailed comparison is recorded in `NEW-MASTER-ATTACHMENTS-2026-10-10.md`.
+
+The strongest new confirmation is that **Off-Grid / Moonberry Farm belongs inside the Sanctuary**, with House 1 as a calm, child-safe reflection space. The attached `offgrid.html` is a Google Docs shell rather than a reliable content source, so the explicit Moonberry Farm specification supplied by the user remains authoritative: gratitude grows the harvest; mounts help with care; Growth Notes remain private; Glow is personal nourishment rather than a public behavior score.
+
+The master artifacts also reinforce the following implementation direction:
+
+- AO Alive should feel like an active world with earned identity, mounts, movement, and contribution—not a dashboard or infinite feed.
+- The Master Index’s live/pending/needs-link/urgent pattern is appropriate for owner tooling only when statuses are derived from real deployment or registry data.
+- The Help Hub contributes strong accessibility and support-terminal patterns, but its hot-pink/violet palette should be translated into the current black/gold/cyan Sanctuary system.
+- The new vertical `Hide_and_Seek_in_the_Neon_Grid.mp4` is a production-relevant pending media asset; it should be hosted directly only after ownership, age tier, metadata, and publication state are confirmed.
+- Generated HTML exports should inform registries and content models, not be pasted wholesale into the managed React runtime.
+
+The next safe implementation slice is a canonical Moonberry Farm route and private Growth Note flow, followed by a controlled premiere-asset registry for the supplied character videos.
