@@ -151,4 +151,13 @@ export const AO_SOURCE_REGISTRY: readonly AOSourceRegistryEntry[] = [
     ageTier: "OWNER ONLY",
     ownerNote: "Primary product specification; cash conversion, spendable economy, and automated enforcement remain gated for separate approval.",
   },
+  {
+    id: "master-build-specification-pdf",
+    title: "AO Universe Master Build Specification PDF",
+    provenance: "User-provided five-page PDF; SHA-256 retained in the private reference archive",
+    destination: "High-fidelity source for design guardrails, timing, divisions, mounts, and Sentinel review",
+    migrationStatus: "mapped",
+    ageTier: "OWNER ONLY",
+    ownerNote: "Confidential reference; identity-passport, payment, financial-target, and autonomous-enforcement sections remain gated.",
+  },
 ] as const;
