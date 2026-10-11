@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { BookOpen, Filter, Gamepad2, Globe2, Heart, Music2, Search, ShoppingBag, Star, Trophy, Users, X, Zap } from "lucide-react";
+import { BookOpen, Filter, Gamepad2, Globe2, Heart, Leaf, Music2, Search, ShoppingBag, Star, Trophy, Users, X, Zap } from "lucide-react";
 import { useLocation } from "wouter";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -13,6 +13,7 @@ const worlds = [
   { id: "sanctuary", label: "Sanctuary", eyebrow: "SAFE HOME WORLD", tier: "ALL AGES", category: "governance", path: "/", icon: Heart, description: "The calm center: lounges, missions, signals, and the shared safe call.", cta: "Return to Sanctuary", tone: "gold" },
   { id: "creator", label: "Creator Orbit", eyebrow: "MAKE TOGETHER", tier: "GUARDIAN GUIDED", category: "creative", path: "/collaboration", icon: Users, description: "Build, collaborate, and turn creative work into a kind action.", cta: "Make together", tone: "cyan" },
   { id: "play", label: "Play Worlds", eyebrow: "ARCADE SIGNAL", tier: "KIDS + GUARDIANS", category: "play", path: "/games", icon: Gamepad2, description: "Retro-inspired games, living mounts, and story pockets like Baba Yaga’s Hut.", cta: "You are here", tone: "cyan" },
+  { id: "moonberry-farm", label: "Moonberry Farm", eyebrow: "OFF-GRID SANCTUARY", tier: "KIDS + GUARDIANS", category: "education", path: "/moonberry-farm", icon: Leaf, description: "Plant, care, harvest, and keep a private Growth Note without a public score.", cta: "Tend the farm", tone: "gold" },
   { id: "library", label: "Library World", eyebrow: "HIDDEN LESSONS", tier: "AGE-AWARE", category: "education", path: "/library", icon: BookOpen, description: "Videos, research trails, and curiosity quests that connect online life to real life.", cta: "Open Library", tone: "gold" },
   { id: "archive", label: "Archive", eyebrow: "MOUNTS + BADGES", tier: "ALL AGES", category: "rewards", path: "/merch", icon: ShoppingBag, description: "Keep earned glow, mounts, achievements, and the objects that remember your journey.", cta: "Visit Archive", tone: "gold" },
   { id: "anoms-corner", label: "Anom’s Corner", eyebrow: "THE CREATOR’S SIGNAL", tier: "COMMUNITY", category: "education", path: "/anoms-corner", icon: Globe2, description: "A living window for stories, social posts, videos, and the next strange idea.", cta: "Enter the Corner", tone: "cyan" },

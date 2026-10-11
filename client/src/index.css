@@ -1989,3 +1989,33 @@ html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) {
   .ao-ambient-fallback { transition: none; }
 }
+
+
+/* Moonberry Farm — calm, child-safe world surface */
+.moonberry-orbit {
+  position: relative;
+  min-height: 260px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 2rem;
+  background: radial-gradient(circle at center, rgba(0,234,255,.12), transparent 36%), radial-gradient(circle at 65% 35%, rgba(216,174,85,.15), transparent 45%), #05080f;
+  border: 1px solid rgba(0,234,255,.22);
+}
+.moonberry-orbit__ring { position: absolute; width: 190px; height: 92px; border: 1px solid rgba(216,174,85,.58); border-radius: 50%; transform: rotate(-18deg); box-shadow: 0 0 26px rgba(216,174,85,.16); }
+.moonberry-orbit__seed { display: grid; place-items: center; width: 92px; height: 92px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.35), rgba(216,174,85,.2) 32%, rgba(0,234,255,.08) 70%); border: 1px solid rgba(216,174,85,.65); box-shadow: 0 0 40px rgba(0,234,255,.2), inset 0 0 30px rgba(216,174,85,.15); }
+.moonberry-orbit__spark { position: absolute; color: #00eaff; font-size: 1.5rem; }
+.moonberry-orbit__spark--one { top: 25%; right: 22%; color: #d8ae55; }
+.moonberry-orbit__spark--two { bottom: 22%; left: 25%; }
+@media (prefers-reduced-motion: no-preference) {
+  .moonberry-orbit__ring { animation: moonberry-orbit 9s ease-in-out infinite alternate; }
+  .moonberry-orbit__seed { animation: moonberry-breathe 3.8s ease-in-out infinite; }
+}
+@keyframes moonberry-orbit { from { transform: rotate(-18deg) scale(.96); } to { transform: rotate(18deg) scale(1.04); } }
+@keyframes moonberry-breathe { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+/* Owner registry tables remain readable on narrow screens. */
+@media (max-width: 720px) {
+  .ao-world-hero { border-radius: 1.5rem; }
+  .moonberry-orbit { min-height: 210px; }
+}
