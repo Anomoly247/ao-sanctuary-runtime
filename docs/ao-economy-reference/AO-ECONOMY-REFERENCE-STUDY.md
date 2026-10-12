@@ -743,3 +743,12 @@ The supplied **AO Living Standard v2** and **Games Hub Live** artifacts were arc
 Both artifacts contain presentation values that conflict with the current AO decision, including hot magenta, purple, fluorescent green, and other competing accents. Those values remain reference-only. The implementation boundary is to adopt interaction grammar and information hierarchy while retaining the current Void/cyan/badge-gold palette, five-tier safety model, separate deployments, AO bridge, and server-authoritative GP/AC ledger.
 
 Detailed adoption decisions are recorded in `HTML-REFERENCE-REVIEW-2026-10-12.md`; source copies and SHA-256 checksums are under `assets/`.
+
+
+## Library + Moonberry references — 2026-10-12
+
+The supplied Library World and Moonberry Farm artifacts were archived with checksums and reviewed against the current runtime. The Library material provides a useful controlled registry for Pixel & Dot, Clifford Patrol, and Tater Shelf Heist, plus stable canonical character assets and bounded Color Corner configuration. The managed Library route currently provides the safer source-aware portal; the supplied registry is a candidate for the next implementation slice, not yet live production content.
+
+The Moonberry variants reinforce the existing House 1 / Off-Grid direction: gratitude, patience, watering, harvest, mount care, sleeping/resting rhythm, and private Growth Notes. The current managed Moonberry route already implements the strongest safe loop. Legacy magenta/purple/fluorescent tokens, market-price language, public-profile assumptions, and the prototype claim `10 AC = $1` are explicitly rejected. AC remains non-cash and server-authoritative, and supplied media remains governed by provenance and publication state.
+
+Detailed decisions are recorded in `LIBRARY-MOONBERRY-REFERENCE-REVIEW-2026-10-12.md`; source files and checksums are under `assets/2026-10-12-library-moonberry/`.
