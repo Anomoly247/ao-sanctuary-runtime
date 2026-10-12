@@ -1,6 +1,7 @@
 import { drizzle } from "drizzle-orm/mysql2";
+import { and, desc, eq } from "drizzle-orm";
 import mysql from "mysql2/promise";
-import { InsertUser, users, userProfiles, decorationPackages, coinTransactions, achievements, userAchievements, lounges, loungeMembers, loungeMessages, kidsProgress, collaborationProjects, collaborationMembers, collaborationTasks, collaborationUpdates, platformSettings, InsertPlatformSettings, auditLog, vipTiers, userVipSubscriptions, vipBenefitsLog } from "../drizzle/schema";
+import { InsertUser, users, userProfiles, decorationPackages, coinTransactions, achievements, userAchievements, lounges, loungeMembers, loungeMessages, kidsProgress, collaborationProjects, collaborationMembers, collaborationTasks, collaborationUpdates, platformSettings, InsertPlatformSettings, auditLog, vipTiers, userVipSubscriptions, vipBenefitsLog, aoWalletBalances, aoLedgerEntries } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -740,4 +741,60 @@ export async function getAllMerchRequests() {
     console.error("[Database] Failed to get all merch requests:", error);
     throw error;
   }
+}
+
+
+function normalizeLedgerAmount(value: string): string {
+  if (!/^\d+(\.\d{1,2})?$/.test(value)) throw new Error("Ledger amount must be a non-negative decimal with at most two decimals");
+  return Number(value).toFixed(2);
+}
+
+export async function getAOWallet(userId: number) {
+  const db = await getDb();
+  if (!db) return { glowPoints: "0.00", anomCoins: "0.00" };
+  const rows = await db.select().from(aoWalletBalances).where(eq(aoWalletBalances.userId, userId)).limit(1);
+  return rows[0] ?? { glowPoints: "0.00", anomCoins: "0.00" };
+}
+
+export async function getAOLedgerHistory(userId: number, limit = 50) {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(aoLedgerEntries).where(eq(aoLedgerEntries.userId, userId)).orderBy(desc(aoLedgerEntries.createdAt)).limit(Math.min(limit, 100));
+}
+
+/**
+ * Record one non-cash GP/AC mutation. A user+idempotencyKey can settle only once.
+ * The wallet row is locked inside the transaction before the balance is changed.
+ */
+export async function recordAOLedgerEvent(input: {
+  userId: number;
+  asset: "GP" | "AC";
+  direction: "earn" | "spend" | "adjustment";
+  amount: string;
+  eventType: string;
+  idempotencyKey: string;
+  source: string;
+  metadata?: Record<string, unknown>;
+}) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is not available");
+  const amount = normalizeLedgerAmount(input.amount);
+  if (!input.idempotencyKey.trim() || !input.source.trim()) throw new Error("Ledger source and idempotency key are required");
+  return db.transaction(async (tx) => {
+    const existing = await tx.select().from(aoLedgerEntries).where(and(eq(aoLedgerEntries.userId, input.userId), eq(aoLedgerEntries.idempotencyKey, input.idempotencyKey))).limit(1);
+    if (existing[0]) return { idempotent: true, entry: existing[0], wallet: await getAOWallet(input.userId) };
+    await tx.insert(aoWalletBalances).values({ userId: input.userId }).onDuplicateKeyUpdate({ set: { userId: input.userId } });
+    const locked = await tx.select().from(aoWalletBalances).where(eq(aoWalletBalances.userId, input.userId)).limit(1);
+    const wallet = locked[0];
+    if (!wallet) throw new Error("Wallet could not be initialized");
+    const current = Number(input.asset === "GP" ? wallet.glowPoints : wallet.anomCoins);
+    const delta = Number(amount) * (input.direction === "spend" ? -1 : 1);
+    const next = current + delta;
+    if (next < 0) throw new Error(`Insufficient ${input.asset} balance`);
+    const balanceAfter = next.toFixed(2);
+    if (input.asset === "GP") await tx.update(aoWalletBalances).set({ glowPoints: balanceAfter }).where(eq(aoWalletBalances.userId, input.userId));
+    else await tx.update(aoWalletBalances).set({ anomCoins: balanceAfter }).where(eq(aoWalletBalances.userId, input.userId));
+    const [entry] = await tx.insert(aoLedgerEntries).values({ userId: input.userId, asset: input.asset, direction: input.direction, amount, balanceAfter, eventType: input.eventType, idempotencyKey: input.idempotencyKey, source: input.source, metadata: input.metadata }).$returningId();
+    return { idempotent: false, entry: { ...input, amount, balanceAfter, id: entry?.id }, wallet: { ...wallet, ...(input.asset === "GP" ? { glowPoints: balanceAfter } : { anomCoins: balanceAfter }) } };
+  });
 }

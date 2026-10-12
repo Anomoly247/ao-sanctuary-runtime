@@ -384,6 +384,37 @@ export const appRouter = router({
   music: musicRouter,
   sharing: sharingRouter,
   membership: membershipRouter,
+  ao: router({
+    destinations: publicProcedure.query(async () => {
+      const { AO_DESTINATIONS } = await import("../shared/aoDestinationRegistry");
+      return AO_DESTINATIONS.filter((destination) => !destination.ownerOnly);
+    }),
+    wallet: protectedProcedure.query(async ({ ctx }) => {
+      const { getAOWallet } = await import("./db");
+      return getAOWallet(ctx.user.id);
+    }),
+    ledger: protectedProcedure
+      .input(z.object({ limit: z.number().int().min(1).max(100).default(50) }))
+      .query(async ({ ctx, input }) => {
+        const { getAOLedgerHistory } = await import("./db");
+        return getAOLedgerHistory(ctx.user.id, input.limit);
+      }),
+    record: protectedProcedure
+      .input(z.object({
+        asset: z.enum(["GP", "AC"]),
+        direction: z.enum(["earn", "spend", "adjustment"]),
+        amount: z.string().regex(/^\d+(\.\d{1,2})?$/),
+        eventType: z.string().min(1).max(80),
+        idempotencyKey: z.string().min(1).max(160),
+        source: z.string().min(1).max(120),
+        metadata: z.record(z.string(), z.unknown()).optional(),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        const { recordAOLedgerEvent } = await import("./db");
+        return recordAOLedgerEvent({ ...input, userId: ctx.user.id });
+      }),
+  }),
+
   ownerSettings: router({
     getSettings: publicProcedure.query(async () => {
       const { getPlatformSettings } = await import("./db");

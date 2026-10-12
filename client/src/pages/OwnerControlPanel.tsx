@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useLocation } from 'wouter';
 import { useState, useEffect } from 'react';
-import { Settings, Users, BarChart3, Package, Zap, Lock, ArrowLeft, FileCheck2, Plus, Trash2, Edit2 } from 'lucide-react';
+import { Settings, Users, BarChart3, Package, Zap, Lock, ArrowLeft, FileCheck2, Presentation, Plus, Trash2, Edit2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function OwnerControlPanel() {
@@ -108,6 +108,10 @@ export default function OwnerControlPanel() {
           <p className="text-gray-400">Manage your Anom Artsy platform • Real-time stats</p>
         </div>
         <div className="flex flex-wrap items-center justify-end gap-2">
+        <Button variant="outline" onClick={() => navigate('/owner/pitch-reporting')} className="text-[#00eaff] border-[#00eaff] hover:bg-[#00eaff]/10 flex items-center gap-2">
+          <Presentation className="w-4 h-4" />
+          Pitch Reporting
+        </Button>
         <Button variant="outline" onClick={() => navigate('/owner/source-registry')} className="text-[#d8ae55] border-[#d8ae55] hover:bg-[#d8ae55]/10 flex items-center gap-2">
           <FileCheck2 className="w-4 h-4" />
           Source Registry

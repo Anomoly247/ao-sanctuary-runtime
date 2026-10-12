@@ -607,3 +607,37 @@ export const tierPurchases = mysqlTable("tier_purchases", {
 
 export type TierPurchase = typeof tierPurchases.$inferSelect;
 export type InsertTierPurchase = typeof tierPurchases.$inferInsert;
+
+/**
+ * AO Wallet Balances — server-authoritative non-cash economy snapshot.
+ * Guest balances remain local-only; authenticated balances are written here.
+ */
+export const aoWalletBalances = mysqlTable("ao_wallet_balances", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("user_id").notNull().unique(),
+  glowPoints: decimal("glow_points", { precision: 14, scale: 2 }).default("0.00").notNull(),
+  anomCoins: decimal("anom_coins", { precision: 14, scale: 2 }).default("0.00").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().onUpdateNow().notNull(),
+});
+export type AOWalletBalance = typeof aoWalletBalances.$inferSelect;
+export type InsertAOWalletBalance = typeof aoWalletBalances.$inferInsert;
+
+/** Append-only, idempotent AO GP/AC ledger. */
+export const aoLedgerEntries = mysqlTable("ao_ledger_entries", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("user_id").notNull(),
+  asset: mysqlEnum("asset", ["GP", "AC"]).notNull(),
+  direction: mysqlEnum("direction", ["earn", "spend", "adjustment"]).notNull(),
+  amount: decimal("amount", { precision: 14, scale: 2 }).notNull(),
+  balanceAfter: decimal("balance_after", { precision: 14, scale: 2 }).notNull(),
+  eventType: varchar("event_type", { length: 80 }).notNull(),
+  idempotencyKey: varchar("idempotency_key", { length: 160 }).notNull(),
+  source: varchar("source", { length: 120 }).notNull(),
+  metadata: json("metadata"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, (table) => ({
+  userIdIdempotency: uniqueIndex("ao_ledger_user_id_idempotency").on(table.userId, table.idempotencyKey),
+}));
+export type AOLedgerEntry = typeof aoLedgerEntries.$inferSelect;
+export type InsertAOLedgerEntry = typeof aoLedgerEntries.$inferInsert;

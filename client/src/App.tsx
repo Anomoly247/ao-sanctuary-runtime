@@ -40,6 +40,8 @@ import DotProfile from "./pages/DotProfile";
 import AdminHub from "./pages/AdminHub";
 import MoonberryFarm from "./pages/MoonberryFarm";
 import OwnerSourceRegistry from "./pages/OwnerSourceRegistry";
+import DivisionMap from "./pages/DivisionMap";
+import OwnerPitchReporting from "./pages/OwnerPitchReporting";
 
 const AppRoutes = () => {
   // make sure to consider if you need authentication for certain routes
@@ -78,6 +80,8 @@ const AppRoutes = () => {
       <Route path="/music-library" component={MusicLibrary} />
       <Route path="/owner" component={OwnerControlPanel} />
       <Route path="/owner/source-registry" component={OwnerSourceRegistry} />
+      <Route path="/divisions" component={DivisionMap} />
+      <Route path="/owner/pitch-reporting" component={OwnerPitchReporting} />
       <Route path="/404" component={NotFound} />
       {/* Final fallback route */}
         <Route component={NotFound} />
