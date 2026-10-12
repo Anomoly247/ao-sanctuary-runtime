@@ -1,9 +1,14 @@
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, BookOpen, Compass, Search, Sparkles, Users, Video } from "lucide-react";
+import { ArrowLeft, BookOpen, Compass, Search, Sparkles, Users, Video, Coins, ShieldCheck } from "lucide-react";
 import { useLocation } from "wouter";
+import { useState } from "react";
 import { toast } from "sonner";
 import { AO_LIBRARY_WORLD } from "../../../shared/aoWorldContract";
+import { LIBRARY_WORLD_GAMES } from "../../../shared/aoContentRegistry";
 import { ExternalContentSpots } from "@/components/ExternalContentSpots";
+import { useAOBridge } from "@/contexts/AOBridgeContext";
+import { useAuth } from "@/_core/hooks/useAuth";
+import { trpc } from "@/lib/trpc";
 
 const lessonTrails = [
   {
@@ -31,6 +36,32 @@ const lessonTrails = [
 
 export default function LibraryWorld() {
   const [, navigate] = useLocation();
+  const bridge = useAOBridge();
+  const { isAuthenticated } = useAuth();
+  const [completed, setCompleted] = useState<string[]>([]);
+  const [pendingGameId, setPendingGameId] = useState<string | null>(null);
+  const completeGame = trpc.ao.completeLibraryGame.useMutation({
+    onSuccess: (result) => {
+      toast.success(result.idempotent ? "That Library completion was already recorded." : `You earned ${result.entry.amount} AC.`);
+      setPendingGameId(null);
+    },
+    onError: (error) => {
+      if (pendingGameId) setCompleted((current) => current.filter((id) => id !== pendingGameId));
+      setPendingGameId(null);
+      toast.error(error.message || "The Library could not record that completion.");
+    },
+  });
+
+  const claimCompletion = (gameId: (typeof LIBRARY_WORLD_GAMES)[number]["id"]) => {
+    if (!isAuthenticated) {
+      toast.info("Explore as a guest. Sign in only when you want to save an AC completion.");
+      return;
+    }
+    const eventId = window.crypto?.randomUUID?.() ?? `${Date.now()}-${gameId}`;
+    setPendingGameId(gameId);
+    setCompleted((current) => current.includes(gameId) ? current : [...current, gameId]);
+    completeGame.mutate({ gameId, score: 100, eventId, house: bridge.house, mount: bridge.mount });
+  };
 
   return (
     <div className="ao-library-page ao-world-page min-h-screen bg-[#0A0A10] text-white">
@@ -100,6 +131,36 @@ export default function LibraryWorld() {
               );
             })}
           </div>
+        </section>
+
+        <section className="ao-library-games" aria-labelledby="library-games-title">
+          <div className="ao-section-heading">
+            <div>
+              <p className="ao-world-kicker">CONTROLLED GAME REGISTRY</p>
+              <h2 id="library-games-title">Learn by entering a story.</h2>
+            </div>
+            <p><ShieldCheck className="mr-2 inline-block h-4 w-4 text-[#00eaff]" />Age tier, characters, and reward rules travel with every completion.</p>
+          </div>
+          <div className="ao-library-game-grid">
+            {LIBRARY_WORLD_GAMES.map((game) => {
+              const wasCompleted = completed.includes(game.id);
+              return (
+                <article key={game.id} className="ao-library-game-card">
+                  <img src={game.artwork} alt={`${game.characters.join(" and ")} Library artwork`} loading="lazy" />
+                  <div className="ao-library-game-card-body">
+                    <p className="ao-world-kicker">{game.ageTier}</p>
+                    <h3>{game.label}</h3>
+                    <p>{game.description}</p>
+                    <div className="ao-library-game-meta"><span>{game.characters.join(" · ")}</span><span><Coins className="inline h-4 w-4" /> {game.rewardAmount} AC</span></div>
+                    <button type="button" className="btn-outline mt-4 w-full" onClick={() => claimCompletion(game.id)} disabled={completeGame.isPending}>
+                      {wasCompleted ? "Completion recorded" : isAuthenticated ? "Record completion" : "Explore as guest"}
+                    </button>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+          <p className="mt-4 text-sm text-white/55">AC is a non-cash universe reward. Guest play stays local; authenticated completions are recorded once by the server ledger.</p>
         </section>
 
         <ExternalContentSpots placement="library" />

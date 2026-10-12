@@ -18,6 +18,48 @@ export const MOONBERRY_FARM = {
   privacyNote: "Growth Notes stay on this device in guest mode and are not public posts.",
 } as const;
 
+export const LIBRARY_WORLD_ASSETS = {
+  pixel: "/manus-storage/library-pixel_8b3a5225.png",
+  dot: "/manus-storage/library-dot_94e0e0f1.png",
+  clifford: "/manus-storage/library-clifford-canonical_fcb00d06.png",
+  tater: "/manus-storage/library-tater-canonical_d2544178.png",
+} as const;
+
+export const LIBRARY_WORLD_GAMES = [
+  {
+    id: "library-pixel-dot",
+    label: "Pixel & Dot",
+    description: "Follow a paired clue trail through the Library’s story shelves.",
+    characters: ["Pixel", "Dot"],
+    ageTier: "KIDS + GUARDIANS" as const,
+    rewardAsset: "AC" as const,
+    rewardAmount: "15.00",
+    artwork: LIBRARY_WORLD_ASSETS.pixel,
+  },
+  {
+    id: "library-clifford-patrol",
+    label: "Clifford Patrol",
+    description: "Practice noticing safe routes, helpful signals, and trusted support.",
+    characters: ["Clifford"],
+    ageTier: "GUARDIAN GUIDED" as const,
+    rewardAsset: "AC" as const,
+    rewardAmount: "20.00",
+    artwork: LIBRARY_WORLD_ASSETS.clifford,
+  },
+  {
+    id: "library-tater-shelf-heist",
+    label: "Tater Shelf Heist",
+    description: "Solve a gentle shelf puzzle where curiosity beats rushing.",
+    characters: ["Tater"],
+    ageTier: "AGE-AWARE" as const,
+    rewardAsset: "AC" as const,
+    rewardAmount: "25.00",
+    artwork: LIBRARY_WORLD_ASSETS.tater,
+  },
+] as const;
+
+export type LibraryWorldGameId = (typeof LIBRARY_WORLD_GAMES)[number]["id"];
+
 export type AOMediaRegistryEntry = {
   id: string;
   title: string;

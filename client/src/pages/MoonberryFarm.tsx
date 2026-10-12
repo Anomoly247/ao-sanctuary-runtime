@@ -1,9 +1,10 @@
 import { useMemo, useState } from "react";
-import { ArrowLeft, Check, Droplets, Leaf, LockKeyhole, Sprout, SunMedium } from "lucide-react";
+import { ArrowLeft, Check, Droplets, Leaf, LockKeyhole, Sprout, SunMedium, ShieldCheck, Sparkles } from "lucide-react";
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { MOONBERRY_FARM } from "../../../shared/aoContentRegistry";
+import { useAOBridge } from "@/contexts/AOBridgeContext";
 
 const STORAGE_KEY = "ao_moonberry_growth_note";
 
@@ -11,6 +12,7 @@ type FarmStep = (typeof MOONBERRY_FARM.steps)[number]["id"];
 
 export default function MoonberryFarm() {
   const [, navigate] = useLocation();
+  const bridge = useAOBridge();
   const [step, setStep] = useState<FarmStep>("plant");
   const [note, setNote] = useState(() => typeof window === "undefined" ? "" : window.localStorage.getItem(STORAGE_KEY) ?? "");
   const [saved, setSaved] = useState(false);
@@ -57,6 +59,29 @@ export default function MoonberryFarm() {
               <span className="moonberry-orbit__spark moonberry-orbit__spark--two" aria-hidden="true">·</span>
             </div>
           </div>
+        </section>
+
+        <section className="mt-6 grid gap-4 md:grid-cols-2" aria-label="Moonberry Farm guardian and mount context">
+          <Card className="border-[#00eaff]/30 bg-[#08080f]/75 p-5">
+            <div className="flex items-start gap-3">
+              <ShieldCheck className="mt-1 h-5 w-5 shrink-0 text-[#00eaff]" aria-hidden="true" />
+              <div>
+                <p className="text-xs uppercase tracking-[0.2em] text-[#00eaff]">Guardian capability summary</p>
+                <h2 className="mt-2 text-xl font-semibold text-white">{MOONBERRY_FARM.ageTier}</h2>
+                <p className="mt-2 text-sm leading-6 text-white/65">This world presents a calm, private activity with no public score, leaderboard, or open social posting. A guardian can review the age tier before a child enters.</p>
+              </div>
+            </div>
+          </Card>
+          <Card className="border-[#d8ae55]/35 bg-[#08080f]/75 p-5">
+            <div className="flex items-start gap-3">
+              <Sparkles className="mt-1 h-5 w-5 shrink-0 text-[#d8ae55]" aria-hidden="true" />
+              <div>
+                <p className="text-xs uppercase tracking-[0.2em] text-[#d8ae55]">Stable travel identity</p>
+                <h2 className="mt-2 text-xl font-semibold text-white">{bridge.mount}</h2>
+                <p className="mt-2 text-sm leading-6 text-white/65">House {bridge.house}: {bridge.houseName}. Your selected mount travels with the world handoff; this panel does not expose private notes or create a public profile signal.</p>
+              </div>
+            </div>
+          </Card>
         </section>
 
         <section className="mt-8" aria-labelledby="farm-progress-title">

@@ -413,6 +413,35 @@ export const appRouter = router({
         const { recordAOLedgerEvent } = await import("./db");
         return recordAOLedgerEvent({ ...input, userId: ctx.user.id });
       }),
+    completeLibraryGame: protectedProcedure
+      .input(z.object({
+        gameId: z.enum(["library-pixel-dot", "library-clifford-patrol", "library-tater-shelf-heist"]),
+        score: z.number().int().min(0).max(1000),
+        eventId: z.string().min(1).max(120),
+        house: z.string().min(1).max(32).optional(),
+        mount: z.string().min(1).max(64).optional(),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        const { LIBRARY_WORLD_GAMES } = await import("../shared/aoContentRegistry");
+        const { recordAOLedgerEvent } = await import("./db");
+        const game = LIBRARY_WORLD_GAMES.find((item) => item.id === input.gameId);
+        if (!game) throw new TRPCError({ code: "BAD_REQUEST", message: "Unknown Library game" });
+        return recordAOLedgerEvent({
+          userId: ctx.user.id,
+          asset: "AC",
+          direction: "earn",
+          amount: game.rewardAmount,
+          eventType: "library_game_completion",
+          idempotencyKey: `library:${input.gameId}:${input.eventId}`,
+          source: "library-world",
+          metadata: {
+            gameId: input.gameId,
+            score: input.score,
+            house: input.house ?? null,
+            mount: input.mount ?? null,
+          },
+        });
+      }),
   }),
 
   ownerSettings: router({
