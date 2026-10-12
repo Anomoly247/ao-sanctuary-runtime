@@ -734,3 +734,12 @@ The video’s strategic slogan is **“Everything Connected. Everything Designed
 The video includes illustrative revenue, fundraising, ARR, membership, merchandise, subscriber, hiring, international expansion, and licensing targets. These remain private planning claims, not verified financial facts or live product metrics. They must never be rendered as user stats, balances, analytics, or investor assurances without separate verification and approval.
 
 The blueprint strengthens the near-term sequence: finish the AO registry; make the non-cash GP/AC ledger authoritative and idempotent; add reversible cosmetic Mount Vault unlocks; connect Moonberry Farm Growth Notes to private, age-aware progression; and preserve controlled media/IP records for child-facing characters and worlds. Payment infrastructure, real-money conversion, identity verification, automated Sentinel enforcement, licensing marketplaces, and international expansion remain separately gated.
+
+
+## New HTML references — 2026-10-12
+
+The supplied **AO Living Standard v2** and **Games Hub Live** artifacts were archived with checksums and reviewed against the current runtime. They reinforce the living-world composition, cyan/gold identity system, age-aware labels, and compact world-entry cards already present in Sanctuary. The Games Hub reference especially supports the existing searchable, category-filtered world directory.
+
+Both artifacts contain presentation values that conflict with the current AO decision, including hot magenta, purple, fluorescent green, and other competing accents. Those values remain reference-only. The implementation boundary is to adopt interaction grammar and information hierarchy while retaining the current Void/cyan/badge-gold palette, five-tier safety model, separate deployments, AO bridge, and server-authoritative GP/AC ledger.
+
+Detailed adoption decisions are recorded in `HTML-REFERENCE-REVIEW-2026-10-12.md`; source copies and SHA-256 checksums are under `assets/`.
