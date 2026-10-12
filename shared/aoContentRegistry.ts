@@ -160,4 +160,13 @@ export const AO_SOURCE_REGISTRY: readonly AOSourceRegistryEntry[] = [
     ageTier: "OWNER ONLY",
     ownerNote: "Confidential reference; identity-passport, payment, financial-target, and autonomous-enforcement sections remain gated.",
   },
+  {
+    id: "ao-5m-blueprint-video",
+    title: "AO Universe $5M Blueprint video",
+    provenance: "User-provided strategic video; companion analysis and SHA-256 manifest retained in the private reference archive",
+    destination: "Confidential pitch, flywheel, division, growth-planning, and IP-protection reference",
+    migrationStatus: "review",
+    ageTier: "OWNER ONLY",
+    ownerNote: "Financial, fundraising, subscriber, licensing, and expansion figures are illustrative planning claims, never live product metrics.",
+  },
 ] as const;
