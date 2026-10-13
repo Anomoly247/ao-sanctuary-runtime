@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { AO_DESTINATIONS, getVisibleAODestinations } from "../shared/aoDestinationRegistry";
+import { AO_DESTINATIONS, getVisibleAODestinations, validateAODestinationRegistry } from "../shared/aoDestinationRegistry";
 import { AO_PITCH_GUARDRAILS, AO_PITCH_PHASES } from "../shared/aoPitchPlan";
 import { AO_ECONOMY_CONTRACT } from "../shared/aoWorldContract";
-import { LIBRARY_WORLD_ASSETS, LIBRARY_WORLD_GAMES } from "../shared/aoContentRegistry";
-import { AO_TROLL_CRUSH_ROUTER, AO_WORLD_SCHEMA_REGISTRY } from "../shared/aoWorldKinds";
+import { AO_SOURCE_REGISTRY, AO_STORY_WORLD_CONTENT, LIBRARY_WORLD_ASSETS, LIBRARY_WORLD_GAMES } from "../shared/aoContentRegistry";
+import { AO_TROLL_CRUSH_COMPLETION_CONTRACT, AO_TROLL_CRUSH_ROUTER, AO_WORLD_SCHEMA_REGISTRY } from "../shared/aoWorldKinds";
 
 describe("AO economy and destination contracts", () => {
   it("keeps the destination map canonical and non-empty", () => {
@@ -38,5 +38,21 @@ describe("AO economy and destination contracts", () => {
     expect(AO_WORLD_SCHEMA_REGISTRY.every((schema) => schema.provenanceId.length > 0)).toBe(true);
     expect(AO_TROLL_CRUSH_ROUTER.route).toBe("/games/troll-crush");
     expect(AO_TROLL_CRUSH_ROUTER.rewardPolicy).toContain("No reward mutation");
+    expect(AO_TROLL_CRUSH_COMPLETION_CONTRACT.enabled).toBe(false);
+    expect(AO_TROLL_CRUSH_COMPLETION_CONTRACT.status).toBe("awaiting-owner-approval");
+  });
+
+  it("keeps every destination tied to provenance and its matching world schema", () => {
+    expect(validateAODestinationRegistry()).toEqual([]);
+    expect(AO_DESTINATIONS.every((destination) => destination.worldKind && destination.provenanceId)).toBe(true);
+  });
+
+  it("keeps StoryWorld characters, thoughts, and entries typed and provenance-backed", () => {
+    const characterIds = new Set(AO_STORY_WORLD_CONTENT.characters.map((character) => character.id));
+    const sourceIds = new Set(AO_SOURCE_REGISTRY.map((source) => source.id));
+    expect(AO_STORY_WORLD_CONTENT.characters).toHaveLength(4);
+    expect(AO_STORY_WORLD_CONTENT.thoughts.every((thought) => characterIds.has(thought.characterId))).toBe(true);
+    expect(AO_STORY_WORLD_CONTENT.entries.every((entry) => sourceIds.has(entry.provenanceId))).toBe(true);
+    expect(AO_STORY_WORLD_CONTENT.entries.some((entry) => entry.premiere)).toBe(true);
   });
 });

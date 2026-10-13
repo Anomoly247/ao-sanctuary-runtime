@@ -1,79 +1,19 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Play, Share2, Heart, Star, Zap } from "lucide-react";
 import { toast } from "sonner";
 import { trpc } from "@/lib/trpc";
 import { ExternalContentSpots } from "@/components/ExternalContentSpots";
+import { AO_STORY_WORLD_CONTENT, type AOStoryEntry } from "../../../shared/aoContentRegistry";
 
-interface Episode {
-  id: string;
-  character: string;
-  title: string;
-  videoId?: string;
-  storageUrl?: string;
-  premiere?: boolean;
-  channelUrl?: string;
-  accent: "gold" | "cyan";
-  duration: string;
-  description: string;
-  featured?: boolean;
-}
-
-const episodes: Episode[] = [
-  {
-    id: "premiere-room",
-    character: "AO Universe",
-    title: "AO Premiere Room | Anom Originals",
-    premiere: true,
-    channelUrl: "https://www.youtube.com/@anomoriginals",
-    accent: "gold",
-    duration: "New premieres",
-    description: "A dedicated doorway for new premieres, creator thoughts, character signals, and the next story moving through Anom’s Corner.",
-    featured: true,
-  },
-  {
-    id: "pixel-dot-adventure",
-    character: "Pixel & Dot",
-    title: "Pixel & Dot's New Adventure | Anom's Corner",
-    videoId: "0pBrQUqU0ig",
-    accent: "cyan",
-    duration: "1:50",
-    description: "Join Pixel and Dot on their first adventure in Anom's Corner! Discover their signal-lit world and the mysteries that await.",
-  },
-  {
-    id: "tater-premiere",
-    character: "Tater",
-    title: "Tater // Character Premiere Slot",
-    channelUrl: "https://www.youtube.com/@anomoriginals",
-    accent: "gold",
-    duration: "Channel premiere",
-    description: "A dedicated home for Tater’s cooking, curiosity, and warm-hearted field notes. The slot opens the channel until a verified episode URL is published.",
-  },
-  {
-    id: "clifford-premiere",
-    character: "Clifford",
-    title: "Clifford // Character Premiere Slot",
-    channelUrl: "https://www.youtube.com/@anomoriginals",
-    accent: "cyan",
-    duration: "Channel premiere",
-    description: "A dedicated home for Clifford’s comedy, protection signals, and thoughts from the wild edge. The slot opens the channel until a verified episode URL is published.",
-  },
-];
+const episodes = AO_STORY_WORLD_CONTENT.entries;
 
 export default function AnomsCorner() {
-  const [selectedEpisode, setSelectedEpisode] = useState<Episode>(episodes[0]);
+  const [selectedEpisode, setSelectedEpisode] = useState<AOStoryEntry>(episodes[0]);
   const [liked, setLiked] = useState(false);
-  const [mediaError, setMediaError] = useState(false);
-
-  useEffect(() => {
-    setMediaError(false);
-  }, [selectedEpisode.id]);
-
   const handleShare = () => {
-    const url = selectedEpisode.channelUrl ?? (selectedEpisode.storageUrl 
-      ? `${window.location.origin}${selectedEpisode.storageUrl}`
-      : `https://www.youtube.com/watch?v=${selectedEpisode.videoId}`);
+    const url = selectedEpisode.channelUrl ?? `https://www.youtube.com/watch?v=${selectedEpisode.videoId}`;
     navigator.clipboard.writeText(url);
     toast.success("Episode link copied to clipboard!");
   };
@@ -154,16 +94,6 @@ export default function AnomsCorner() {
                         Visit the Anom Originals YouTube channel <Share2 className="h-4 w-4" />
                       </a>
                     </div>
-                  ) : selectedEpisode.storageUrl && !mediaError ? (
-                    <video
-                      className="w-full h-auto"
-                      controls
-                      style={{ maxHeight: "600px" }}
-                      onError={() => setMediaError(true)}
-                    >
-                      <source src={selectedEpisode.storageUrl} type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
                   ) : selectedEpisode.videoId ? (
                     <div className="relative w-full bg-black rounded-lg overflow-hidden" style={{ paddingBottom: "56.25%" }}>
                       <iframe

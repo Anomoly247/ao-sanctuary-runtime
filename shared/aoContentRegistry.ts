@@ -60,6 +60,62 @@ export const LIBRARY_WORLD_GAMES = [
 
 export type LibraryWorldGameId = (typeof LIBRARY_WORLD_GAMES)[number]["id"];
 
+export type AOStoryAccent = "gold" | "cyan";
+
+export type AOStoryCharacter = {
+  id: string;
+  name: string;
+  role: string;
+  ageTier: AOAgeTier;
+  provenanceId: string;
+};
+
+export type AOStoryThought = {
+  id: string;
+  characterId: string;
+  title: string;
+  text: string;
+  publicationStatus: AOPublicationStatus;
+  ageTier: AOAgeTier;
+};
+
+export type AOStoryEntry = {
+  id: string;
+  character: string;
+  title: string;
+  description: string;
+  duration: string;
+  accent: AOStoryAccent;
+  videoId?: string;
+  channelUrl?: string;
+  premiere?: boolean;
+  featured?: boolean;
+  publicationStatus: AOPublicationStatus;
+  ageTier: AOAgeTier;
+  provenanceId: string;
+};
+
+export const AO_STORY_WORLD_CONTENT = {
+  characters: [
+    { id: "pixel", name: "Pixel", role: "The Creator", ageTier: "KIDS + GUARDIANS", provenanceId: "master-anom-hub-react-artifact" },
+    { id: "dot", name: "Dot", role: "The Explorer", ageTier: "KIDS + GUARDIANS", provenanceId: "master-anom-hub-react-artifact" },
+    { id: "tater", name: "Tater", role: "The Scout", ageTier: "KIDS + GUARDIANS", provenanceId: "ao-originals-channel" },
+    { id: "clifford", name: "Clifford", role: "The Protector", ageTier: "KIDS + GUARDIANS", provenanceId: "ao-originals-channel" },
+  ] satisfies readonly AOStoryCharacter[],
+  thoughts: [
+    { id: "pixel-first-signal", characterId: "pixel", title: "Pixel’s first signal", text: "A small idea can become a whole world when we care for it.", publicationStatus: "review", ageTier: "KIDS + GUARDIANS" },
+    { id: "dot-notice-more", characterId: "dot", title: "Dot notices more", text: "Look twice. The quiet detail may be the beginning of the next path.", publicationStatus: "review", ageTier: "KIDS + GUARDIANS" },
+    { id: "tater-warm-note", characterId: "tater", title: "Tater’s warm note", text: "A good journey has room for a snack, a pause, and a friend.", publicationStatus: "review", ageTier: "KIDS + GUARDIANS" },
+    { id: "clifford-safe-route", characterId: "clifford", title: "Clifford checks the route", text: "Trusted grown-ups and clear boundaries help every adventure feel safer.", publicationStatus: "review", ageTier: "KIDS + GUARDIANS" },
+  ] satisfies readonly AOStoryThought[],
+  entries: [
+    { id: "premiere-room", character: "AO Universe", title: "AO Premiere Room | Anom Originals", premiere: true, channelUrl: "https://www.youtube.com/@anomoriginals", accent: "gold", duration: "New premieres", description: "A dedicated doorway for new premieres, creator thoughts, character signals, and the next story moving through Anom’s Corner.", featured: true, publicationStatus: "published", ageTier: "AGE-AWARE", provenanceId: "anom-originals-channel" },
+    { id: "pixel-dot-adventure", character: "Pixel & Dot", title: "Pixel & Dot's New Adventure | Anom's Corner", videoId: "0pBrQUqU0ig", accent: "cyan", duration: "1:50", description: "Join Pixel and Dot on their first adventure in Anom's Corner! Discover their signal-lit world and the mysteries that await.", publicationStatus: "review", ageTier: "KIDS + GUARDIANS", provenanceId: "master-anom-hub-react-artifact" },
+    { id: "tater-premiere", character: "Tater", title: "Tater // Character Premiere Slot", channelUrl: "https://www.youtube.com/@anomoriginals", accent: "gold", duration: "Channel premiere", description: "A dedicated home for Tater’s cooking, curiosity, and warm-hearted field notes. The slot opens the channel until a verified episode URL is published.", publicationStatus: "review", ageTier: "KIDS + GUARDIANS", provenanceId: "anom-originals-channel" },
+    { id: "clifford-premiere", character: "Clifford", title: "Clifford // Character Premiere Slot", channelUrl: "https://www.youtube.com/@anomoriginals", accent: "cyan", duration: "Channel premiere", description: "A dedicated home for Clifford’s comedy, protection signals, and thoughts from the wild edge. The slot opens the channel until a verified episode URL is published.", publicationStatus: "review", ageTier: "KIDS + GUARDIANS", provenanceId: "anom-originals-channel" },
+  ] satisfies readonly AOStoryEntry[],
+} as const;
+
 export type AOMediaRegistryEntry = {
   id: string;
   title: string;
@@ -121,6 +177,33 @@ export type AOSourceRegistryEntry = {
 };
 
 export const AO_SOURCE_REGISTRY: readonly AOSourceRegistryEntry[] = [
+  {
+    id: "library-world-safe-launch",
+    title: "Library World Safe Launch",
+    provenance: "User-provided Library World safe-launch artifact",
+    destination: "/library",
+    migrationStatus: "mapped",
+    ageTier: "AGE-AWARE",
+    ownerNote: "Controlled Library game schema and authenticated completion boundary.",
+  },
+  {
+    id: "anom-originals-channel",
+    title: "Anom Originals YouTube Channel",
+    provenance: "Controlled external channel destination",
+    destination: "/anoms-corner",
+    migrationStatus: "mapped",
+    ageTier: "AGE-AWARE",
+    ownerNote: "Channel door for premieres and character entries; individual episodes remain review-gated.",
+  },
+  {
+    id: "troll-crush-final",
+    title: "Troll Crush Final Game Reference",
+    provenance: "User-provided Troll Crush PDF and related game references",
+    destination: "/games/troll-crush",
+    migrationStatus: "review",
+    ageTier: "KIDS + GUARDIANS",
+    ownerNote: "Router and future session reference; no reward mutation is enabled until completion-contract approval.",
+  },
   {
     id: "source-brief",
     title: "AO Universe Source Brief",

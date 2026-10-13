@@ -179,6 +179,25 @@ export const AO_TROLL_CRUSH_ROUTER = {
   rewardPolicy: "No reward mutation in this router slice.",
 } as const;
 
+export const AO_TROLL_CRUSH_COMPLETION_CONTRACT = {
+  id: "troll-crush-completion-v1",
+  status: "awaiting-owner-approval",
+  enabled: false,
+  ageTier: "KIDS + GUARDIANS" as const,
+  guardianMode: "guided" as const,
+  completionEvent: "troll-crush-session-complete",
+  idempotencyKey: "userId:sessionId:completionEvent",
+  rewardAsset: "none" as const,
+  rewardAmount: "0.00",
+  serverRequirements: [
+    "server validates the session and completion event",
+    "server owns any future GP or AC reward amount",
+    "completion is idempotent per user and session",
+    "guardian capability is checked before publication",
+    "no cash conversion or public leaderboard is enabled",
+  ],
+} as const;
+
 export function getWorldSchema(kind: AOWorldKind) {
   return AO_WORLD_SCHEMA_REGISTRY.find((schema) => schema.kind === kind);
 }
