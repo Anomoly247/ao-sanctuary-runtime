@@ -1,7 +1,7 @@
 import { drizzle } from "drizzle-orm/mysql2";
 import { and, desc, eq } from "drizzle-orm";
 import mysql from "mysql2/promise";
-import { InsertUser, users, userProfiles, decorationPackages, coinTransactions, achievements, userAchievements, lounges, loungeMembers, loungeMessages, kidsProgress, collaborationProjects, collaborationMembers, collaborationTasks, collaborationUpdates, platformSettings, InsertPlatformSettings, auditLog, vipTiers, userVipSubscriptions, vipBenefitsLog, aoWalletBalances, aoLedgerEntries } from "../drizzle/schema";
+import { InsertUser, users, userProfiles, decorationPackages, coinTransactions, achievements, userAchievements, lounges, loungeMembers, loungeMessages, kidsProgress, collaborationProjects, collaborationMembers, collaborationTasks, collaborationUpdates, platformSettings, InsertPlatformSettings, auditLog, vipTiers, userVipSubscriptions, vipBenefitsLog, aoWalletBalances, aoLedgerEntries, aoTrollCrushSessions } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -796,5 +796,28 @@ export async function recordAOLedgerEvent(input: {
     else await tx.update(aoWalletBalances).set({ anomCoins: balanceAfter }).where(eq(aoWalletBalances.userId, input.userId));
     const [entry] = await tx.insert(aoLedgerEntries).values({ userId: input.userId, asset: input.asset, direction: input.direction, amount, balanceAfter, eventType: input.eventType, idempotencyKey: input.idempotencyKey, source: input.source, metadata: input.metadata }).$returningId();
     return { idempotent: false, entry: { ...input, amount, balanceAfter, id: entry?.id }, wallet: { ...wallet, ...(input.asset === "GP" ? { glowPoints: balanceAfter } : { anomCoins: balanceAfter }) } };
+  });
+}
+
+export async function startTrollCrushSession(userId: number, sessionId: string, expiresAt: Date, completionEvent: string) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is not available");
+  await db.insert(aoTrollCrushSessions).values({ userId, sessionId, expiresAt, guardianConfirmed: true, completionEvent });
+  return db.select().from(aoTrollCrushSessions).where(and(eq(aoTrollCrushSessions.userId, userId), eq(aoTrollCrushSessions.sessionId, sessionId))).limit(1);
+}
+
+export async function completeTrollCrushSession(input: { userId: number; sessionId: string; completionEvent: string; completedRounds: number; score: number }) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is not available");
+  return db.transaction(async (tx) => {
+    const rows = await tx.select().from(aoTrollCrushSessions).where(and(eq(aoTrollCrushSessions.userId, input.userId), eq(aoTrollCrushSessions.sessionId, input.sessionId))).limit(1);
+    const session = rows[0];
+    if (!session) throw new Error("Troll Crush session was not found");
+    if (session.completionEvent !== input.completionEvent) throw new Error("Completion event does not match the issued session");
+    if (!session.guardianConfirmed) throw new Error("Guardian confirmation is required");
+    if (session.expiresAt.getTime() < Date.now()) throw new Error("Troll Crush session expired");
+    if (session.completedAt) return { idempotent: true, session };
+    await tx.update(aoTrollCrushSessions).set({ completedAt: new Date(), score: input.score, completedRounds: input.completedRounds }).where(and(eq(aoTrollCrushSessions.userId, input.userId), eq(aoTrollCrushSessions.sessionId, input.sessionId)));
+    return { idempotent: false, session: { ...session, completedAt: new Date(), score: input.score, completedRounds: input.completedRounds } };
   });
 }

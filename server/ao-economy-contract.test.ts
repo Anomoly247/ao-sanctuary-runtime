@@ -37,9 +37,10 @@ describe("AO economy and destination contracts", () => {
     expect(AO_WORLD_SCHEMA_REGISTRY.map((schema) => schema.kind)).toEqual(["farm", "library", "hub", "story", "help"]);
     expect(AO_WORLD_SCHEMA_REGISTRY.every((schema) => schema.provenanceId.length > 0)).toBe(true);
     expect(AO_TROLL_CRUSH_ROUTER.route).toBe("/games/troll-crush");
-    expect(AO_TROLL_CRUSH_ROUTER.rewardPolicy).toContain("No reward mutation");
-    expect(AO_TROLL_CRUSH_COMPLETION_CONTRACT.enabled).toBe(false);
-    expect(AO_TROLL_CRUSH_COMPLETION_CONTRACT.status).toBe("awaiting-owner-approval");
+    expect(AO_TROLL_CRUSH_ROUTER.rewardPolicy).toContain("no wallet reward");
+    expect(AO_TROLL_CRUSH_COMPLETION_CONTRACT.enabled).toBe(true);
+    expect(AO_TROLL_CRUSH_COMPLETION_CONTRACT.status).toBe("approved");
+    expect(AO_TROLL_CRUSH_COMPLETION_CONTRACT.rewardAsset).toBe("none");
   });
 
   it("keeps every destination tied to provenance and its matching world schema", () => {

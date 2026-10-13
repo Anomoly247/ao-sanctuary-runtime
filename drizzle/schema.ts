@@ -641,3 +641,20 @@ export const aoLedgerEntries = mysqlTable("ao_ledger_entries", {
 }));
 export type AOLedgerEntry = typeof aoLedgerEntries.$inferSelect;
 export type InsertAOLedgerEntry = typeof aoLedgerEntries.$inferInsert;
+
+/** Server-issued Troll Crush sessions. Completion is one-time and reward-free in v1. */
+export const aoTrollCrushSessions = mysqlTable("ao_troll_crush_sessions", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("user_id").notNull(),
+  sessionId: varchar("session_id", { length: 120 }).notNull().unique(),
+  startedAt: timestamp("started_at").defaultNow().notNull(),
+  expiresAt: timestamp("expires_at").notNull(),
+  completedAt: timestamp("completed_at"),
+  guardianConfirmed: boolean("guardian_confirmed").default(false).notNull(),
+  completionEvent: varchar("completion_event", { length: 80 }).notNull(),
+  score: int("score"),
+  completedRounds: int("completed_rounds"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+export type AOTrollCrushSession = typeof aoTrollCrushSessions.$inferSelect;
+export type InsertAOTrollCrushSession = typeof aoTrollCrushSessions.$inferInsert;

@@ -2036,3 +2036,11 @@ html { scroll-behavior: smooth; }
 .ao-library-game-meta svg { vertical-align: -2px; }
 @media (max-width: 900px) { .ao-library-game-grid { grid-template-columns: 1fr; } .ao-library-game-card-body > p:not(.ao-world-kicker) { min-height: auto; } }
 @media (prefers-reduced-motion: reduce) { .ao-library-game-card { transition: none; } .ao-library-game-card:hover { transform: none; } }
+
+/* StoryWorld thought cards and owner publication controls */
+.ao-thought-section { margin-top: 4rem; padding: 1.5rem; border: 1px solid rgba(0,234,255,.22); border-radius: 1.5rem; background: linear-gradient(145deg, rgba(20,20,35,.86), rgba(8,8,15,.72)); }
+.ao-premiere-schedule { margin-top: 1.5rem; padding: 1.5rem; border: 1px solid rgba(216,174,85,.4); border-radius: 1.5rem; background: linear-gradient(145deg, rgba(30,25,14,.78), rgba(8,8,15,.86)); }
+.ao-thought-section button, .ao-premiere-schedule select, .ao-premiere-schedule input { transition: border-color 180ms cubic-bezier(.23,1,.32,1), background-color 180ms ease, box-shadow 180ms ease; }
+.ao-thought-section button:focus-visible, .ao-premiere-schedule select:focus-visible, .ao-premiere-schedule input:focus-visible { outline: 2px solid #00eaff; outline-offset: 3px; box-shadow: 0 0 0 4px rgba(0,234,255,.14); }
+@media (max-width: 640px) { .ao-thought-section, .ao-premiere-schedule { padding: 1rem; border-radius: 1.1rem; } }
+@media (prefers-reduced-motion: reduce) { .ao-thought-section button, .ao-premiere-schedule select, .ao-premiere-schedule input { transition: none; } }

@@ -442,6 +442,37 @@ export const appRouter = router({
           },
         });
       }),
+    startTrollCrushSession: protectedProcedure
+      .input(z.object({ guardianConfirmed: z.literal(true) }))
+      .mutation(async ({ ctx, input }) => {
+        const { AO_TROLL_CRUSH_COMPLETION_CONTRACT } = await import("../shared/aoWorldKinds");
+        const { startTrollCrushSession } = await import("./db");
+        if (!AO_TROLL_CRUSH_COMPLETION_CONTRACT.enabled || AO_TROLL_CRUSH_COMPLETION_CONTRACT.status !== "approved") throw new TRPCError({ code: "PRECONDITION_FAILED", message: "Troll Crush completion contract is not enabled" });
+        if (!input.guardianConfirmed) throw new TRPCError({ code: "FORBIDDEN", message: "Guardian confirmation is required" });
+        const sessionId = `troll-${ctx.user.id}-${crypto.randomUUID()}`;
+        const expiresAt = new Date(Date.now() + 30 * 60 * 1000);
+        const [session] = await startTrollCrushSession(ctx.user.id, sessionId, expiresAt, AO_TROLL_CRUSH_COMPLETION_CONTRACT.completionEvent);
+        return { sessionId, expiresAt: session?.expiresAt ?? expiresAt };
+      }),
+    completeTrollCrushSession: protectedProcedure
+      .input(z.object({
+        sessionId: z.string().regex(/^troll-\d+-[0-9a-f-]{36}$/),
+        completionEvent: z.literal("troll-crush-session-complete"),
+        completedRounds: z.literal(3),
+        score: z.number().int().min(0).max(300),
+        guardianConfirmed: z.literal(true),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        const { AO_TROLL_CRUSH_COMPLETION_CONTRACT } = await import("../shared/aoWorldKinds");
+        const { completeTrollCrushSession } = await import("./db");
+        if (!AO_TROLL_CRUSH_COMPLETION_CONTRACT.enabled || AO_TROLL_CRUSH_COMPLETION_CONTRACT.status !== "approved") throw new TRPCError({ code: "PRECONDITION_FAILED", message: "Troll Crush completion contract is not enabled" });
+        if (input.completionEvent !== AO_TROLL_CRUSH_COMPLETION_CONTRACT.completionEvent) throw new TRPCError({ code: "BAD_REQUEST", message: "Invalid completion event" });
+        try {
+          return await completeTrollCrushSession({ userId: ctx.user.id, sessionId: input.sessionId, completionEvent: input.completionEvent, completedRounds: input.completedRounds, score: input.score });
+        } catch (error) {
+          throw new TRPCError({ code: "BAD_REQUEST", message: error instanceof Error ? error.message : "Troll Crush completion failed" });
+        }
+      }),
   }),
 
   ownerSettings: router({

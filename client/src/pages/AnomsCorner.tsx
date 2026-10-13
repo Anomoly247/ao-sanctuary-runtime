@@ -4,14 +4,22 @@ import { Button } from "@/components/ui/button";
 import { Play, Share2, Heart, Star, Zap } from "lucide-react";
 import { toast } from "sonner";
 import { trpc } from "@/lib/trpc";
+import { useAuth } from "@/_core/hooks/useAuth";
 import { ExternalContentSpots } from "@/components/ExternalContentSpots";
 import { AO_STORY_WORLD_CONTENT, type AOStoryEntry } from "../../../shared/aoContentRegistry";
 
 const episodes = AO_STORY_WORLD_CONTENT.entries;
+const thoughts = AO_STORY_WORLD_CONTENT.thoughts;
 
 export default function AnomsCorner() {
+  const { user } = useAuth();
   const [selectedEpisode, setSelectedEpisode] = useState<AOStoryEntry>(episodes[0]);
+  const [selectedThoughtId, setSelectedThoughtId] = useState(thoughts[0]?.id ?? "");
+  const [premiereAt, setPremiereAt] = useState("");
+  const [scheduledPremiere, setScheduledPremiere] = useState<string | null>(null);
   const [liked, setLiked] = useState(false);
+  const selectedThought = thoughts.find((thought) => thought.id === selectedThoughtId) ?? thoughts[0];
+  const isOwner = user?.role === "admin";
   const handleShare = () => {
     const url = selectedEpisode.channelUrl ?? `https://www.youtube.com/watch?v=${selectedEpisode.videoId}`;
     navigator.clipboard.writeText(url);
@@ -200,6 +208,23 @@ export default function AnomsCorner() {
       </div>
 
       <div className="container mx-auto px-4 pb-16">
+        <section className="ao-thought-section" aria-labelledby="character-thoughts-heading">
+          <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
+            <div><p className="ao-world-kicker">STORYWORLD // PRIVATE VOICES</p><h2 id="character-thoughts-heading" className="text-3xl font-bold text-white">Character thoughts</h2><p className="mt-2 max-w-2xl text-sm text-[#cccccc]">Short signals from the characters. Review status stays visible so a draft is never mistaken for a published claim.</p></div>
+            <span className="rounded-full border border-[#d8ae55]/40 px-3 py-1 text-xs uppercase tracking-[0.16em] text-[#d8ae55]">{selectedThought?.publicationStatus ?? "review"}</span>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-2" role="tablist" aria-label="Character thought cards">{thoughts.map((thought) => <button key={thought.id} type="button" role="tab" aria-selected={selectedThoughtId === thought.id} onClick={() => setSelectedThoughtId(thought.id)} className={`rounded-xl border p-4 text-left transition-colors ${selectedThoughtId === thought.id ? "border-[#00eaff] bg-[#00eaff]/10" : "border-[#d8ae55]/25 bg-[#141423]/60 hover:border-[#00eaff]/70"}`}><span className="text-xs uppercase tracking-[0.16em] text-[#00eaff]">{thought.characterId}</span><span className="mt-2 block font-semibold text-white">{thought.title}</span><span className="mt-1 block text-xs text-[#cccccc]">{thought.publicationStatus} · {thought.ageTier}</span></button>)}</div>
+            {selectedThought && <article className="rounded-2xl border border-[#d8ae55]/40 bg-[#141423]/70 p-6" role="tabpanel"><p className="text-xs uppercase tracking-[0.18em] text-[#d8ae55]">{selectedThought.title}</p><blockquote className="mt-4 text-xl leading-8 text-white">“{selectedThought.text}”</blockquote><p className="mt-5 text-sm text-[#cccccc]">This thought is private editorial content until its publication status changes in the controlled registry.</p></article>}
+          </div>
+        </section>
+
+        {isOwner && <section className="ao-premiere-schedule" aria-labelledby="premiere-schedule-heading">
+          <div><p className="ao-world-kicker">OWNER CONTROL // PUBLICATION GATE</p><h2 id="premiere-schedule-heading" className="text-2xl font-bold text-white">Premiere scheduling</h2><p className="mt-2 text-sm text-[#cccccc]">Prepare a schedule draft without publishing or changing the controlled media registry.</p></div>
+          <div className="mt-5 grid gap-3 md:grid-cols-[1fr_auto_auto] md:items-end"><label className="text-sm text-white/80">Premiere door<select value={selectedEpisode.id} onChange={(event) => setSelectedEpisode(episodes.find((episode) => episode.id === event.target.value) ?? episodes[0])} className="mt-2 min-h-11 w-full rounded-lg border border-[#00eaff]/45 bg-[#08080f] px-3 text-white">{episodes.filter((episode) => episode.premiere || episode.channelUrl).map((episode) => <option key={episode.id} value={episode.id}>{episode.character} · {episode.title}</option>)}</select></label><label className="text-sm text-white/80">Draft date/time<input type="datetime-local" value={premiereAt} onChange={(event) => setPremiereAt(event.target.value)} className="mt-2 min-h-11 rounded-lg border border-[#00eaff]/45 bg-[#08080f] px-3 text-white" /></label><Button type="button" disabled={!premiereAt} onClick={() => { setScheduledPremiere(premiereAt); toast.success("Premiere schedule draft saved for owner review."); }} className="min-h-11 rounded-full border border-[#d8ae55] bg-transparent text-[#d8ae55] hover:bg-[#d8ae55]/10">Save schedule draft</Button></div>
+          {scheduledPremiere && <p className="mt-4 text-sm text-[#00eaff]" role="status">Draft: {selectedEpisode.title} · {new Date(scheduledPremiere).toLocaleString()}</p>}
+        </section>}
+
         <ExternalContentSpots placement="anoms-corner" />
       </div>
     </div>
