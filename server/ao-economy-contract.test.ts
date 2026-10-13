@@ -3,11 +3,12 @@ import { AO_DESTINATIONS, getVisibleAODestinations } from "../shared/aoDestinati
 import { AO_PITCH_GUARDRAILS, AO_PITCH_PHASES } from "../shared/aoPitchPlan";
 import { AO_ECONOMY_CONTRACT } from "../shared/aoWorldContract";
 import { LIBRARY_WORLD_ASSETS, LIBRARY_WORLD_GAMES } from "../shared/aoContentRegistry";
+import { AO_TROLL_CRUSH_ROUTER, AO_WORLD_SCHEMA_REGISTRY } from "../shared/aoWorldKinds";
 
 describe("AO economy and destination contracts", () => {
   it("keeps the destination map canonical and non-empty", () => {
-    expect(AO_DESTINATIONS).toHaveLength(12);
-    expect(new Set(AO_DESTINATIONS.map((item) => item.id)).size).toBe(12);
+    expect(AO_DESTINATIONS).toHaveLength(13);
+    expect(new Set(AO_DESTINATIONS.map((item) => item.id)).size).toBe(13);
     expect(getVisibleAODestinations(true).every((item) => !item.ownerOnly)).toBe(true);
   });
 
@@ -30,5 +31,12 @@ describe("AO economy and destination contracts", () => {
     expect(LIBRARY_WORLD_GAMES.every((game) => game.rewardAsset === "AC")).toBe(true);
     expect(LIBRARY_WORLD_GAMES.every((game) => /^\d+\.\d{2}$/.test(game.rewardAmount))).toBe(true);
     expect(Object.values(LIBRARY_WORLD_ASSETS).every((asset) => asset.startsWith("/manus-storage/"))).toBe(true);
+  });
+
+  it("keeps specialized world schemas explicit and Troll Crush reward-free", () => {
+    expect(AO_WORLD_SCHEMA_REGISTRY.map((schema) => schema.kind)).toEqual(["farm", "library", "hub", "story", "help"]);
+    expect(AO_WORLD_SCHEMA_REGISTRY.every((schema) => schema.provenanceId.length > 0)).toBe(true);
+    expect(AO_TROLL_CRUSH_ROUTER.route).toBe("/games/troll-crush");
+    expect(AO_TROLL_CRUSH_ROUTER.rewardPolicy).toContain("No reward mutation");
   });
 });

@@ -116,6 +116,10 @@ export default function OwnerControlPanel() {
           <FileCheck2 className="w-4 h-4" />
           Source Registry
         </Button>
+        <Button variant="outline" onClick={() => navigate('/owner/schema-inspector')} className="text-[#00eaff] border-[#00eaff] hover:bg-[#00eaff]/10 flex items-center gap-2">
+          <FileCheck2 className="w-4 h-4" />
+          Schema Inspector
+        </Button>
         <Button variant="outline" onClick={() => navigate('/')} className="text-[#00eaff] border-[#00eaff] hover:bg-[#00eaff]/10 flex items-center gap-2">
           <ArrowLeft className="w-4 h-4" />
           Back to Home

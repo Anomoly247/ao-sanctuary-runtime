@@ -42,6 +42,8 @@ import MoonberryFarm from "./pages/MoonberryFarm";
 import OwnerSourceRegistry from "./pages/OwnerSourceRegistry";
 import DivisionMap from "./pages/DivisionMap";
 import OwnerPitchReporting from "./pages/OwnerPitchReporting";
+import TrollCrushRouter from "./pages/TrollCrushRouter";
+import OwnerSchemaInspector from "./pages/OwnerSchemaInspector";
 
 const AppRoutes = () => {
   // make sure to consider if you need authentication for certain routes
@@ -62,6 +64,7 @@ const AppRoutes = () => {
       <Route path={"/characters/dot"} component={DotProfile} />
       <Route path={"/feed"} component={SocialFeed} />
       <Route path={"/games"} component={Games} />
+      <Route path={"/games/troll-crush"} component={TrollCrushRouter} />
       <Route path={"/moonberry-farm"} component={MoonberryFarm} />
       <Route path={"/games/baba-yaga"} component={BabaYagaGame} />
       <Route path={"/merch"} component={Merch} />
@@ -82,6 +85,7 @@ const AppRoutes = () => {
       <Route path="/owner/source-registry" component={OwnerSourceRegistry} />
       <Route path="/divisions" component={DivisionMap} />
       <Route path="/owner/pitch-reporting" component={OwnerPitchReporting} />
+      <Route path="/owner/schema-inspector" component={OwnerSchemaInspector} />
       <Route path="/404" component={NotFound} />
       {/* Final fallback route */}
         <Route component={NotFound} />
