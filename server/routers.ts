@@ -471,8 +471,50 @@ export const appRouter = router({
           return await completeTrollCrushSession({ userId: ctx.user.id, sessionId: input.sessionId, completionEvent: input.completionEvent, completedRounds: input.completedRounds, score: input.score });
         } catch (error) {
           throw new TRPCError({ code: "BAD_REQUEST", message: error instanceof Error ? error.message : "Troll Crush completion failed" });
+          }
+        }),
+    identity: router({
+      get: protectedProcedure.query(({ ctx }) => import("./db").then(({ getAOIdentityProfile }) => getAOIdentityProfile(ctx.user.id))),
+      update: protectedProcedure.input(z.object({
+        house: z.string().max(32).nullable().optional(),
+        mount: z.string().max(64).nullable().optional(),
+        mountColor: z.string().max(32).nullable().optional(),
+        guardianTier: z.enum(["child", "teen", "adult", "guardian"]).optional(),
+        guardianConfirmed: z.boolean().optional(),
+      })).mutation(({ ctx, input }) => import("./db").then(({ upsertAOIdentityProfile }) => upsertAOIdentityProfile({ ...input, userId: ctx.user.id }))),
+    }),
+    inventory: router({
+      list: protectedProcedure.query(({ ctx }) => import("./db").then(({ getAOInventory }) => getAOInventory(ctx.user.id))),
+      purchase: protectedProcedure.input(z.object({ packageId: z.number().int().positive(), assetId: z.string().min(1).max(120), idempotencyKey: z.string().min(1).max(160) })).mutation(async ({ ctx, input }) => {
+        try {
+          const { purchaseAOInventoryItem } = await import("./db");
+          return await purchaseAOInventoryItem({ ...input, userId: ctx.user.id });
+        } catch (error) {
+          throw new TRPCError({ code: "BAD_REQUEST", message: error instanceof Error ? error.message : "Inventory purchase failed" });
         }
       }),
+    }),
+    setupV5: router({
+      assetValidation: publicProcedure.query(async () => {
+        const { AO_SETUP_V5_ASSETS, validateAOSetupV5AssetRegistry } = await import("../shared/aoSetupV5");
+        return { valid: validateAOSetupV5AssetRegistry().length === 0, errors: validateAOSetupV5AssetRegistry(), assets: AO_SETUP_V5_ASSETS };
+      }),
+      sentinelCases: protectedProcedure.input(z.object({ limit: z.number().int().min(1).max(100).default(50) })).query(async ({ ctx, input }) => {
+        if (ctx.user.role !== "admin") throw new TRPCError({ code: "FORBIDDEN", message: "Admin access required" });
+        const { getAOSentinelCases } = await import("./db");
+        return getAOSentinelCases(input.limit);
+      }),
+      createSentinelCase: protectedProcedure.input(z.object({ caseKey: z.string().min(1).max(160), subjectType: z.enum(["asset", "profile", "media"]), subjectId: z.string().min(1).max(160), severity: z.enum(["low", "medium", "high"]), reason: z.string().min(1), evidence: z.record(z.string(), z.unknown()).optional() })).mutation(async ({ ctx, input }) => {
+        if (ctx.user.role !== "admin") throw new TRPCError({ code: "FORBIDDEN", message: "Admin access required" });
+        const { createAOSentinelCase } = await import("./db");
+        return createAOSentinelCase({ ...input, createdBy: ctx.user.id });
+      }),
+      reviewSentinelCase: protectedProcedure.input(z.object({ caseKey: z.string().min(1).max(160), status: z.enum(["under_review", "resolved", "dismissed"]), note: z.string().max(1000).optional() })).mutation(async ({ ctx, input }) => {
+        if (ctx.user.role !== "admin") throw new TRPCError({ code: "FORBIDDEN", message: "Admin access required" });
+        const { reviewAOSentinelCase } = await import("./db");
+        return reviewAOSentinelCase({ ...input, reviewedBy: ctx.user.id });
+      }),
+    }),
   }),
 
   ownerSettings: router({

@@ -658,3 +658,51 @@ export const aoTrollCrushSessions = mysqlTable("ao_troll_crush_sessions", {
 });
 export type AOTrollCrushSession = typeof aoTrollCrushSessions.$inferSelect;
 export type InsertAOTrollCrushSession = typeof aoTrollCrushSessions.$inferInsert;
+
+/** AO v5 identity context used by cross-world handoffs; no separate auth identity is created. */
+export const aoIdentityProfiles = mysqlTable("ao_identity_profiles", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("user_id").notNull().unique(),
+  house: varchar("house", { length: 32 }),
+  mount: varchar("mount", { length: 64 }),
+  mountColor: varchar("mount_color", { length: 32 }),
+  guardianTier: mysqlEnum("guardian_tier", ["child", "teen", "adult", "guardian"]).default("adult").notNull(),
+  guardianConfirmed: boolean("guardian_confirmed").default(false).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().onUpdateNow().notNull(),
+});
+export type AOIdentityProfileRow = typeof aoIdentityProfiles.$inferSelect;
+export type InsertAOIdentityProfile = typeof aoIdentityProfiles.$inferInsert;
+
+/** Non-cash ownership records for existing decoration package catalog entries. */
+export const aoInventoryItems = mysqlTable("ao_inventory_items", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("user_id").notNull(),
+  packageId: int("package_id").notNull(),
+  assetId: varchar("asset_id", { length: 120 }).notNull(),
+  acquisition: mysqlEnum("acquisition", ["grant", "ac_purchase"]).default("grant").notNull(),
+  idempotencyKey: varchar("idempotency_key", { length: 160 }).notNull(),
+  isActive: boolean("is_active").default(false).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, (table) => ({ userIdIdempotency: uniqueIndex("ao_inventory_user_id_idempotency").on(table.userId, table.idempotencyKey) }));
+export type AOInventoryItem = typeof aoInventoryItems.$inferSelect;
+export type InsertAOInventoryItem = typeof aoInventoryItems.$inferInsert;
+
+/** Human-reviewable Sentinel cases; no autonomous removal or enforcement is represented here. */
+export const aoSentinelCases = mysqlTable("ao_sentinel_cases", {
+  id: int("id").autoincrement().primaryKey(),
+  caseKey: varchar("case_key", { length: 160 }).notNull().unique(),
+  subjectType: mysqlEnum("subject_type", ["asset", "profile", "media"]).notNull(),
+  subjectId: varchar("subject_id", { length: 160 }).notNull(),
+  severity: mysqlEnum("severity", ["low", "medium", "high"]).default("low").notNull(),
+  status: mysqlEnum("status", ["open", "under_review", "resolved", "dismissed"]).default("open").notNull(),
+  reason: text("reason").notNull(),
+  evidence: json("evidence"),
+  createdBy: int("created_by").notNull(),
+  reviewedBy: int("reviewed_by"),
+  reviewedAt: timestamp("reviewed_at"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().onUpdateNow().notNull(),
+});
+export type AOSentinelCase = typeof aoSentinelCases.$inferSelect;
+export type InsertAOSentinelCase = typeof aoSentinelCases.$inferInsert;

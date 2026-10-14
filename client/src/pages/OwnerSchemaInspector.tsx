@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { Card } from "@/components/ui/card";
 import { AO_WORLD_SCHEMA_REGISTRY } from "../../../shared/aoWorldKinds";
+import { AO_SETUP_V5_ASSETS, AO_SETUP_V5_SENTINEL_POLICY } from "../../../shared/aoSetupV5";
 
 const statusLabel: Record<string, string> = { active: "Live", "in-build": "In build", planned: "Planned", review: "Review" };
 
@@ -15,5 +16,19 @@ export default function OwnerSchemaInspector() {
 
   return <main className="min-h-screen px-4 py-8 sm:px-8"><div className="mx-auto max-w-7xl"><Link href="/owner" className="inline-flex min-h-11 items-center gap-2 text-sm text-[#00eaff] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#00eaff]"><ArrowLeft className="h-4 w-4" aria-hidden="true" /> Owner Control Panel</Link><header className="mb-8 mt-8"><p className="text-xs uppercase tracking-[0.24em] text-[#00eaff]">Private architecture / schema inspector</p><h1 className="mt-3 text-4xl font-semibold text-[#d8ae55] sm:text-5xl">World contracts</h1><p className="mt-3 max-w-3xl text-white/65">A truthful owner-only view of the different world schemas. This inspector reports product metadata; it does not claim live participation, revenue, or automated moderation.</p></header>
     <section className="grid gap-5 lg:grid-cols-2" aria-label="AO world schema definitions">{AO_WORLD_SCHEMA_REGISTRY.map((schema) => <Card key={schema.kind} className="border-[#00eaff]/25 bg-[#08080f]/80 p-6"><div className="flex flex-wrap items-start justify-between gap-3"><div><p className="text-xs uppercase tracking-[0.18em] text-[#00eaff]">{schema.kind} · {schema.route}</p><h2 className="mt-2 text-2xl font-semibold text-white">{schema.label}</h2></div><span className="rounded-full border border-[#d8ae55]/50 px-3 py-1 text-xs uppercase tracking-[0.12em] text-[#d8ae55]">{statusLabel[schema.status]}</span></div><p className="mt-4 text-sm leading-6 text-white/65">{schema.description}</p><dl className="mt-5 grid gap-4 sm:grid-cols-2"><div><dt className="text-xs uppercase tracking-[0.14em] text-white/40">Age tier</dt><dd className="mt-1 text-sm text-[#00eaff]">{schema.ageTier}</dd></div><div><dt className="text-xs uppercase tracking-[0.14em] text-white/40">Guardian mode</dt><dd className="mt-1 text-sm text-white/75">{schema.guardianMode}</dd></div><div><dt className="text-xs uppercase tracking-[0.14em] text-white/40">Publication</dt><dd className="mt-1 text-sm text-white/75">{schema.publicationStatus}</dd></div><div><dt className="text-xs uppercase tracking-[0.14em] text-white/40">Ledger policy</dt><dd className="mt-1 text-sm text-[#d8ae55]">{schema.ledgerPolicy}</dd></div></dl><div className="mt-5 rounded-xl border border-white/10 bg-[#141423]/70 p-4"><p className="flex items-center gap-2 text-xs uppercase tracking-[0.14em] text-[#d8ae55]"><Database className="h-4 w-4" aria-hidden="true" /> Ledger boundary</p><p className="mt-2 text-sm leading-6 text-white/65">{schema.ledgerNote}</p></div><div className="mt-5 border-t border-white/10 pt-4"><p className="flex items-center gap-2 text-xs uppercase tracking-[0.14em] text-[#00eaff]"><FileKey2 className="h-4 w-4" aria-hidden="true" /> Provenance</p><p className="mt-2 break-words text-sm text-white/65">{schema.provenanceId}</p><p className="mt-4 flex items-center gap-2 text-xs text-white/45"><ShieldCheck className="h-4 w-4 text-[#00eaff]" aria-hidden="true" /> Fields: {schema.fields.join(" · ")}</p></div></Card>)}</section>
+    <section className="mt-8 grid gap-5 lg:grid-cols-[1.3fr_0.7fr]" aria-label="AO setup v5 contracts">
+      <Card className="border-[#00eaff]/25 bg-[#08080f]/80 p-6">
+        <p className="text-xs uppercase tracking-[0.18em] text-[#00eaff]">Setup v5 / canonical art gate</p>
+        <h2 className="mt-2 text-2xl font-semibold text-white">Asset provenance adapter</h2>
+        <p className="mt-3 text-sm leading-6 text-white/65">Homeworld and Anom Originals assets must carry a matching worldKind, age tier, ownership, publication state, and source record before they can enter the managed catalog.</p>
+        <div className="mt-5 grid gap-3 sm:grid-cols-2">{AO_SETUP_V5_ASSETS.map((asset) => <div key={asset.id} className="rounded-xl border border-white/10 bg-[#141423]/70 p-4"><p className="font-medium text-white">{asset.label}</p><p className="mt-1 text-xs text-[#00eaff]">{asset.worldKind} · {asset.ageTier}</p><p className="mt-2 break-words text-xs text-white/50">{asset.provenanceId}</p></div>)}</div>
+      </Card>
+      <Card className="border-[#d8ae55]/30 bg-[#08080f]/80 p-6">
+        <p className="text-xs uppercase tracking-[0.18em] text-[#d8ae55]">Sentinel / human review</p>
+        <h2 className="mt-2 text-2xl font-semibold text-white">Reviewable, not autonomous</h2>
+        <p className="mt-3 text-sm leading-6 text-white/65">{AO_SETUP_V5_SENTINEL_POLICY.note}</p>
+        <dl className="mt-5 space-y-3 text-sm"><div><dt className="text-white/40">Audit action</dt><dd className="text-[#d8ae55]">{AO_SETUP_V5_SENTINEL_POLICY.auditAction}</dd></div><div><dt className="text-white/40">Allowed statuses</dt><dd className="text-white/75">{AO_SETUP_V5_SENTINEL_POLICY.allowedStatuses.join(" · ")}</dd></div></dl>
+      </Card>
+    </section>
   </div></main>;
 }

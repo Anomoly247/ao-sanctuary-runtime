@@ -4,6 +4,7 @@ import { AO_PITCH_GUARDRAILS, AO_PITCH_PHASES } from "../shared/aoPitchPlan";
 import { AO_ECONOMY_CONTRACT } from "../shared/aoWorldContract";
 import { AO_SOURCE_REGISTRY, AO_STORY_WORLD_CONTENT, LIBRARY_WORLD_ASSETS, LIBRARY_WORLD_GAMES } from "../shared/aoContentRegistry";
 import { AO_TROLL_CRUSH_COMPLETION_CONTRACT, AO_TROLL_CRUSH_ROUTER, AO_WORLD_SCHEMA_REGISTRY } from "../shared/aoWorldKinds";
+import { AO_SETUP_V5_ASSETS, AO_SETUP_V5_SENTINEL_POLICY, validateAOSetupV5AssetRegistry } from "../shared/aoSetupV5";
 
 describe("AO economy and destination contracts", () => {
   it("keeps the destination map canonical and non-empty", () => {
@@ -55,5 +56,13 @@ describe("AO economy and destination contracts", () => {
     expect(AO_STORY_WORLD_CONTENT.thoughts.every((thought) => characterIds.has(thought.characterId))).toBe(true);
     expect(AO_STORY_WORLD_CONTENT.entries.every((entry) => sourceIds.has(entry.provenanceId))).toBe(true);
     expect(AO_STORY_WORLD_CONTENT.entries.some((entry) => entry.premiere)).toBe(true);
+  });
+
+  it("keeps the setup v5 adapter canonical, reviewable, and non-cash", () => {
+    expect(AO_SETUP_V5_ASSETS.length).toBeGreaterThanOrEqual(6);
+    expect(validateAOSetupV5AssetRegistry()).toEqual([]);
+    expect(AO_SETUP_V5_SENTINEL_POLICY.autonomousEnforcement).toBe(false);
+    expect(AO_SETUP_V5_SENTINEL_POLICY.requiresHumanReview).toBe(true);
+    expect(AO_SETUP_V5_SENTINEL_POLICY.allowedStatuses).toContain("under_review");
   });
 });

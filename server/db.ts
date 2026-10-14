@@ -1,7 +1,7 @@
 import { drizzle } from "drizzle-orm/mysql2";
 import { and, desc, eq } from "drizzle-orm";
 import mysql from "mysql2/promise";
-import { InsertUser, users, userProfiles, decorationPackages, coinTransactions, achievements, userAchievements, lounges, loungeMembers, loungeMessages, kidsProgress, collaborationProjects, collaborationMembers, collaborationTasks, collaborationUpdates, platformSettings, InsertPlatformSettings, auditLog, vipTiers, userVipSubscriptions, vipBenefitsLog, aoWalletBalances, aoLedgerEntries, aoTrollCrushSessions } from "../drizzle/schema";
+import { InsertUser, users, userProfiles, decorationPackages, coinTransactions, achievements, userAchievements, lounges, loungeMembers, loungeMessages, kidsProgress, collaborationProjects, collaborationMembers, collaborationTasks, collaborationUpdates, platformSettings, InsertPlatformSettings, auditLog, vipTiers, userVipSubscriptions, vipBenefitsLog, aoWalletBalances, aoLedgerEntries, aoTrollCrushSessions, aoIdentityProfiles, aoInventoryItems, aoSentinelCases } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -820,4 +820,73 @@ export async function completeTrollCrushSession(input: { userId: number; session
     await tx.update(aoTrollCrushSessions).set({ completedAt: new Date(), score: input.score, completedRounds: input.completedRounds }).where(and(eq(aoTrollCrushSessions.userId, input.userId), eq(aoTrollCrushSessions.sessionId, input.sessionId)));
     return { idempotent: false, session: { ...session, completedAt: new Date(), score: input.score, completedRounds: input.completedRounds } };
   });
+}
+
+export async function getAOIdentityProfile(userId: number) {
+  const db = await getDb();
+  if (!db) return null;
+  const rows = await db.select().from(aoIdentityProfiles).where(eq(aoIdentityProfiles.userId, userId)).limit(1);
+  return rows[0] ?? null;
+}
+
+export async function upsertAOIdentityProfile(input: { userId: number; house?: string | null; mount?: string | null; mountColor?: string | null; guardianTier?: "child" | "teen" | "adult" | "guardian"; guardianConfirmed?: boolean }) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is not available");
+  await db.insert(aoIdentityProfiles).values({ userId: input.userId, house: input.house ?? null, mount: input.mount ?? null, mountColor: input.mountColor ?? null, guardianTier: input.guardianTier ?? "adult", guardianConfirmed: input.guardianConfirmed ?? false }).onDuplicateKeyUpdate({ set: { house: input.house ?? null, mount: input.mount ?? null, mountColor: input.mountColor ?? null, guardianTier: input.guardianTier ?? "adult", guardianConfirmed: input.guardianConfirmed ?? false } });
+  return getAOIdentityProfile(input.userId);
+}
+
+export async function getAOInventory(userId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(aoInventoryItems).where(eq(aoInventoryItems.userId, userId)).orderBy(desc(aoInventoryItems.createdAt));
+}
+
+export async function purchaseAOInventoryItem(input: { userId: number; packageId: number; assetId: string; idempotencyKey: string }) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is not available");
+  if (!input.idempotencyKey.trim()) throw new Error("Inventory idempotency key is required");
+  return db.transaction(async (tx) => {
+    const existing = await tx.select().from(aoInventoryItems).where(and(eq(aoInventoryItems.userId, input.userId), eq(aoInventoryItems.idempotencyKey, input.idempotencyKey))).limit(1);
+    if (existing[0]) return { idempotent: true, item: existing[0], wallet: await getAOWallet(input.userId) };
+    const packages = await tx.select().from(decorationPackages).where(eq(decorationPackages.id, input.packageId)).limit(1);
+    const packageRow = packages[0];
+    if (!packageRow) throw new Error("Decoration package was not found");
+    const amount = normalizeLedgerAmount(String(packageRow.costAnom ?? "0"));
+    await tx.insert(aoWalletBalances).values({ userId: input.userId }).onDuplicateKeyUpdate({ set: { userId: input.userId } });
+    const walletRows = await tx.select().from(aoWalletBalances).where(eq(aoWalletBalances.userId, input.userId)).limit(1);
+    const wallet = walletRows[0];
+    if (!wallet) throw new Error("Wallet could not be initialized");
+    const next = Number(wallet.anomCoins) - Number(amount);
+    if (next < 0) throw new Error("Insufficient AC balance");
+    const balanceAfter = next.toFixed(2);
+    await tx.update(aoWalletBalances).set({ anomCoins: balanceAfter }).where(eq(aoWalletBalances.userId, input.userId));
+    await tx.insert(aoLedgerEntries).values({ userId: input.userId, asset: "AC", direction: "spend", amount, balanceAfter, eventType: "ao_inventory_purchase", idempotencyKey: input.idempotencyKey, source: "ao-marketplace", metadata: { packageId: input.packageId, assetId: input.assetId } });
+    const [inserted] = await tx.insert(aoInventoryItems).values({ userId: input.userId, packageId: input.packageId, assetId: input.assetId, acquisition: "ac_purchase", idempotencyKey: input.idempotencyKey, isActive: false }).$returningId();
+    return { idempotent: false, item: { id: inserted?.id, userId: input.userId, packageId: input.packageId, assetId: input.assetId }, wallet: { ...wallet, anomCoins: balanceAfter } };
+  });
+}
+
+export async function createAOSentinelCase(input: { caseKey: string; subjectType: "asset" | "profile" | "media"; subjectId: string; severity: "low" | "medium" | "high"; reason: string; evidence?: Record<string, unknown>; createdBy: number }) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is not available");
+  await db.insert(aoSentinelCases).values({ ...input, evidence: input.evidence ?? null });
+  await logAuditAction(input.createdBy, "sentinel_case_created", JSON.stringify({ caseKey: input.caseKey, subjectType: input.subjectType, subjectId: input.subjectId, severity: input.severity }));
+  const rows = await db.select().from(aoSentinelCases).where(eq(aoSentinelCases.caseKey, input.caseKey)).limit(1);
+  return rows[0] ?? null;
+}
+
+export async function getAOSentinelCases(limit = 100) {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(aoSentinelCases).orderBy(desc(aoSentinelCases.createdAt)).limit(Math.min(limit, 100));
+}
+
+export async function reviewAOSentinelCase(input: { caseKey: string; status: "under_review" | "resolved" | "dismissed"; reviewedBy: number; note?: string }) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is not available");
+  await db.update(aoSentinelCases).set({ status: input.status, reviewedBy: input.reviewedBy, reviewedAt: new Date(), updatedAt: new Date() }).where(eq(aoSentinelCases.caseKey, input.caseKey));
+  await logAuditAction(input.reviewedBy, "sentinel_case_review", JSON.stringify({ caseKey: input.caseKey, status: input.status, note: input.note ?? null, autonomousEnforcement: false }));
+  const rows = await db.select().from(aoSentinelCases).where(eq(aoSentinelCases.caseKey, input.caseKey)).limit(1);
+  return rows[0] ?? null;
 }
