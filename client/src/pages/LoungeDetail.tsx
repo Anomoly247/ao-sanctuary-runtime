@@ -221,10 +221,10 @@ export default function LoungeDetail({ params }: LoungeDetailProps) {
               Members ({members.length})
             </h3>
             <div className="space-y-2 max-h-48 overflow-y-auto">
-              {members.map((member, idx) => (
-                <div key={idx} className="text-sm text-gray-300 p-2 bg-[#0A0A10] rounded">
-                  {member.user?.name || 'Member'}
-                  {member.member?.role === 'owner' && <span className="text-[#d8ae55] ml-2 text-xs">(Owner)</span>}
+              {members.map((member) => (
+                <div key={member.id} className="text-sm text-gray-300 p-2 bg-[#0A0A10] rounded">
+                  Member {member.userId}
+                  {member.role === 'owner' && <span className="text-[#d8ae55] ml-2 text-xs">(Owner)</span>}
                 </div>
               ))}
             </div>

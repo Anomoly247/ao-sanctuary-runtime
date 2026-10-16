@@ -67,6 +67,7 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
   const [enabled, setEnabled] = useState(readEnabled);
   const [volume, setVolumeState] = useState(readVolume);
   const [soundscape, setSoundscapeState] = useState<Soundscape>(readSoundscape);
+  const [isExpanded, setIsExpanded] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [audioError, setAudioError] = useState<string | null>(null);
   const [equalizerBars, setEqualizerBars] = useState<number[]>(() => Array.from({ length: 12 }, () => 0.16));
@@ -192,24 +193,32 @@ export function AmbientAudioProvider({ children }: { children: ReactNode }) {
   return (
     <AmbientAudioContext.Provider value={value}>
       {children}
-      <div className="ao-ambient-control" aria-label="Ambient Sanctuary sound controls">
-        {!isActive && <span className="ao-ambient-hint" role="status">{audioError ?? (volume === 0 ? "Raise volume to hear Sanctuary" : "Press Ambient on to hear the soundtrack")}</span>}
-        <div className="ao-audio-equalizer" role="img" aria-label={isActive ? "Ambient soundtrack equalizer responding to playback" : "Ambient soundtrack equalizer idle"} data-active={isActive}>
-          {equalizerBars.map((height, index) => <span key={index} style={{ "--ao-eq-height": `${height * 100}%` } as CSSProperties} aria-hidden="true" />)}
+      <div className={`ao-ambient-control ${isExpanded ? "is-expanded" : "is-collapsed"}`} aria-label="Ambient Sanctuary sound controls">
+        <div className="ao-ambient-header">
+          <span className="ao-ambient-title">AO SOUNDTRACK</span>
+          <div className="ao-audio-equalizer" role="img" aria-label={isActive ? "Ambient soundtrack equalizer responding to playback" : "Ambient soundtrack equalizer idle"} data-active={isActive}>
+            {equalizerBars.map((height, index) => <span key={index} style={{ "--ao-eq-height": `${height * 100}%` } as CSSProperties} aria-hidden="true" />)}
+          </div>
+          <button type="button" className="ao-ambient-disclosure" onClick={() => setIsExpanded((current) => !current)} aria-expanded={isExpanded} aria-controls="ao-ambient-settings">
+            {isExpanded ? "Minimize" : "Ambient"}
+          </button>
         </div>
-        <button type="button" className="ao-ambient-toggle" onClick={toggleEnabled} aria-pressed={enabled}>
-          {enabled ? "Ambient on" : "Ambient off"}
-        </button>
-        <label className="ao-ambient-soundscape">
-          <span>Sound</span>
-          <select value={soundscape} onChange={(event) => setSoundscape(event.target.value as Soundscape)} aria-label="Ambient soundscape">
-            {SOUNDSCAPES.map((option) => <option value={option.value} key={option.value}>{option.label}</option>)}
-          </select>
-        </label>
-        <label className="ao-ambient-volume">
-          <span>Volume</span>
-          <input type="range" min="0" max="1" step="0.01" value={volume} onChange={(event) => setVolume(Number(event.target.value))} aria-label="Ambient volume" />
-        </label>
+        {isExpanded && <div id="ao-ambient-settings" className="ao-ambient-settings">
+          {!isActive && <span className="ao-ambient-hint" role="status">{audioError ?? (volume === 0 ? "Raise volume to hear Sanctuary" : "Press Ambient on to hear the soundtrack")}</span>}
+          <button type="button" className="ao-ambient-toggle" onClick={toggleEnabled} aria-pressed={enabled}>
+            {enabled ? "Ambient on" : "Ambient off"}
+          </button>
+          <label className="ao-ambient-soundscape">
+            <span>Sound</span>
+            <select value={soundscape} onChange={(event) => setSoundscape(event.target.value as Soundscape)} aria-label="Ambient soundscape">
+              {SOUNDSCAPES.map((option) => <option value={option.value} key={option.value}>{option.label}</option>)}
+            </select>
+          </label>
+          <label className="ao-ambient-volume">
+            <span>Volume</span>
+            <input type="range" min="0" max="1" step="0.01" value={volume} onChange={(event) => setVolume(Number(event.target.value))} aria-label="Ambient volume" />
+          </label>
+        </div>}
       </div>
     </AmbientAudioContext.Provider>
   );

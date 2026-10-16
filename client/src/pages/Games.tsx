@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { BookOpen, Gamepad2, Globe2, Heart, Music2, ShoppingBag, Star, Trophy, Users, X, Zap } from "lucide-react";
+import { BookOpen, Gamepad2, Globe2, Heart, Home, Music2, ShoppingBag, Star, Trophy, Users, X, Zap } from "lucide-react";
 import { useLocation } from "wouter";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -11,10 +11,11 @@ import { useAOBridge } from "@/contexts/AOBridgeContext";
 
 const worlds = [
   { id: "sanctuary", label: "Sanctuary", eyebrow: "SAFE HOME WORLD", tier: "ALL AGES", path: "/", icon: Heart, description: "The calm center: lounges, missions, signals, and the shared safe call.", cta: "Return to Sanctuary", tone: "gold" },
+  { id: "house-select", label: "House Select", eyebrow: "IDENTITY GATEWAY", tier: "START HERE", path: "/house-select", icon: Home, description: "Choose the living house that carries your story, then arrive with its mount and rhythm already remembered.", cta: "Choose a house", tone: "gold" },
   { id: "creator", label: "Creator Orbit", eyebrow: "MAKE TOGETHER", tier: "GUARDIAN GUIDED", path: "/collaboration", icon: Users, description: "Build, collaborate, and turn creative work into a kind action.", cta: "Make together", tone: "cyan" },
   { id: "play", label: "Play Worlds", eyebrow: "ARCADE SIGNAL", tier: "KIDS + GUARDIANS", path: "/games", icon: Gamepad2, description: "Retro-inspired games, living mounts, and story pockets like Baba Yaga’s Hut.", cta: "You are here", tone: "cyan" },
   { id: "library", label: "Library World", eyebrow: "HIDDEN LESSONS", tier: "AGE-AWARE", path: "/library", icon: BookOpen, description: "Videos, research trails, and curiosity quests that connect online life to real life.", cta: "Open Library", tone: "gold" },
-  { id: "archive", label: "Archive", eyebrow: "MOUNTS + BADGES", tier: "ALL AGES", path: "/merch", icon: ShoppingBag, description: "Keep earned glow, mounts, achievements, and the objects that remember your journey.", cta: "Visit Archive", tone: "gold" },
+  { id: "archive", label: "Coin Vault", eyebrow: "MOUNTS + BADGES", tier: "ALL AGES", path: "/coin-vault", icon: ShoppingBag, description: "Keep earned glow, mounts, achievements, and the objects that remember your journey.", cta: "Open the Vault", tone: "gold" },
   { id: "anoms-corner", label: "Anom’s Corner", eyebrow: "THE CREATOR’S SIGNAL", tier: "COMMUNITY", path: "/anoms-corner", icon: Globe2, description: "A living window for stories, social posts, videos, and the next strange idea.", cta: "Enter the Corner", tone: "cyan" },
   { id: "missions", label: "Mission Hub", eyebrow: "PLAY WITH PURPOSE", tier: "ALL AGES", path: "/mission-hub", icon: Trophy, description: "Small connected actions that turn kindness, learning, and collaboration into progress.", cta: "Choose a mission", tone: "gold" },
   { id: "music", label: "Sound Garden", eyebrow: "AMBIENT SIGNAL", tier: "ALL AGES", path: "/music-library", icon: Music2, description: "Instrumentals and quiet soundscapes for moving through the universe at your own pace.", cta: "Listen inward", tone: "cyan" },
@@ -409,7 +410,8 @@ export default function Games() {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-6 py-12">
-        <section className="ao-play-world-hero mb-10" style={{ backgroundImage: `linear-gradient(90deg, rgba(8,8,15,0.96), rgba(8,8,15,0.6)), url(${aoArtUrl('/backgrounds/05_moonlit_forest_spirit.jpg')})` }}>
+        <section className="ao-play-world-hero mb-10">
+          <div className="ao-play-world-hero-backdrop" aria-hidden="true" style={{ backgroundImage: `url(${aoArtUrl('/backgrounds/05_moonlit_forest_spirit.jpg')})` }} />
           <div className="ao-play-world-copy">
             <p className="ao-world-kicker">AO UNIVERSE // ONE CONSTELLATION, MANY DOORS</p>
             <h2>Every world is part of the journey.</h2>
@@ -450,7 +452,7 @@ export default function Games() {
                     <p>{world.description}</p>
                     <small>{world.tier}</small>
                   </div>
-                  <Button className="btn-secondary" onClick={() => !isCurrent && navigate(world.path)} disabled={isCurrent}>
+                  <Button className="btn-secondary" onClick={() => { if (isCurrent) return; navigate(world.path); }} disabled={isCurrent}>
                     {world.cta}
                   </Button>
                 </Card>

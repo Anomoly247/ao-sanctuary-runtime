@@ -38,6 +38,8 @@ import AnomsCorner from "./pages/AnomsCorner";
 import PixelProfile from "./pages/PixelProfile";
 import DotProfile from "./pages/DotProfile";
 import AdminHub from "./pages/AdminHub";
+import HouseSelect from "./pages/HouseSelect";
+import CoinVault from "./pages/CoinVault";
 
 const AppRoutes = () => {
   // make sure to consider if you need authentication for certain routes
@@ -58,6 +60,8 @@ const AppRoutes = () => {
       <Route path={"/characters/dot"} component={DotProfile} />
       <Route path={"/feed"} component={SocialFeed} />
       <Route path={"/games"} component={Games} />
+      <Route path={"/house-select"} component={HouseSelect} />
+      <Route path={"/coin-vault"} component={CoinVault} />
       <Route path={"/games/baba-yaga"} component={BabaYagaGame} />
       <Route path={"/merch"} component={Merch} />
       <Route path="/admin" component={Admin} />

@@ -300,12 +300,16 @@ export async function createLounge(userId: number, name: string, description: st
       ownerId: userId,
       name,
       description,
-      loungeType,
+      type: loungeType as "family" | "friends" | "coworkers",
       neonTheme: "magenta",
-      memberCount: 1,
     });
 
-    return result;
+    const created = await db
+      .select()
+      .from(lounges)
+      .where(eq(lounges.id, Number(result[0].insertId)))
+      .limit(1);
+    return created[0];
   } catch (error) {
     console.error("[Database] Failed to create lounge:", error);
     throw error;
@@ -709,9 +713,29 @@ export async function updateMerchRequestStatus(requestId: number, status: string
   }
 }
 
-export async function getAdminAnalytics() {
+export async function getAdminAnalytics(): Promise<{
+  totalUsers: number;
+  activeUsers: number;
+  totalCoins: string;
+  totalTransactions: number;
+  totalAchievements: number;
+  totalLounges: number;
+  totalMerchRequests: number;
+  pendingMerchRequests: number;
+}> {
   const db = await getDb();
-  if (!db) return {};
+  if (!db) {
+    return {
+      totalUsers: 0,
+      activeUsers: 0,
+      totalCoins: "0",
+      totalTransactions: 0,
+      totalAchievements: 0,
+      totalLounges: 0,
+      totalMerchRequests: 0,
+      pendingMerchRequests: 0,
+    };
+  }
 
   try {
     // Return mock analytics for now
@@ -721,6 +745,9 @@ export async function getAdminAnalytics() {
       totalCoins: "0",
       totalTransactions: 0,
       totalAchievements: 0,
+      totalLounges: 0,
+      totalMerchRequests: 0,
+      pendingMerchRequests: 0,
     };
   } catch (error) {
     console.error("[Database] Failed to get admin analytics:", error);
