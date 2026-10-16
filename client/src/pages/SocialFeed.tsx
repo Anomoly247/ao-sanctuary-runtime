@@ -25,7 +25,7 @@ interface Reel {
   description: string;
   thumbnail: string;
   duration: string;
-  views: number;
+  channelUrl: string;
 }
 
 export default function SocialFeed() {
@@ -94,7 +94,7 @@ export default function SocialFeed() {
       description: "Join Tater and Clifford on their first adventure in the Anom Universe!",
       thumbnail: "🎬",
       duration: "3:45",
-      views: 12543,
+      channelUrl: "https://www.youtube.com/@anomoriginals",
     },
     {
       id: "reel-2",
@@ -103,7 +103,7 @@ export default function SocialFeed() {
       description: "Laugh along with Clifford's hilarious takes on digital life!",
       thumbnail: "😂",
       duration: "2:30",
-      views: 8234,
+      channelUrl: "https://www.youtube.com/@anomoriginals",
     },
     {
       id: "reel-3",
@@ -112,7 +112,7 @@ export default function SocialFeed() {
       description: "Learn to cook digital dishes with Tater!",
       thumbnail: "🍳",
       duration: "4:15",
-      views: 5678,
+      channelUrl: "https://www.youtube.com/@anomoriginals",
     },
     {
       id: "reel-4",
@@ -121,7 +121,7 @@ export default function SocialFeed() {
       description: "A heartwarming episode about friendship and loyalty.",
       thumbnail: "💜",
       duration: "5:20",
-      views: 15234,
+      channelUrl: "https://www.youtube.com/@anomoriginals",
     },
   ];
 
@@ -172,7 +172,10 @@ export default function SocialFeed() {
   };
 
   const handlePlayReel = (reelId: string) => {
-    toast.success("Playing reel! 🎥");
+    const reel = reels.find((item) => item.id === reelId);
+    if (!reel) return;
+    window.open(reel.channelUrl, "_blank", "noopener,noreferrer");
+    toast.success("Opening the Anom Originals channel. Add an episode URL to make this card play a specific reel.");
   };
 
   if (loading) {
@@ -215,10 +218,11 @@ export default function SocialFeed() {
       <main className="max-w-4xl mx-auto px-6 py-8">
         {/* Reels Section */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold text-[#d8ae55] mb-6 flex items-center gap-2">
+          <h2 className="text-3xl font-bold text-[#d8ae55] mb-2 flex items-center gap-2">
             <Play className="w-6 h-6" />
             Featured Reels: Tater & Clifford Series
           </h2>
+          <p className="text-sm text-[#cccccc] mb-6">These are channel doorways until each premiere receives its own verified video URL.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             {reels.map((reel) => (
               <Card
@@ -246,7 +250,7 @@ export default function SocialFeed() {
                   <p className="text-sm text-[#cccccc] mb-2">{reel.creator}</p>
                   <p className="text-sm text-[#00eaff] line-clamp-2 mb-3">{reel.description}</p>
                   <div className="flex items-center justify-between text-xs text-[#cccccc]">
-                    <span>👁️ {reel.views.toLocaleString()} views</span>
+                    <span className="text-[#00eaff]">Watch on Anom Originals</span>
                     <Button
                       size="sm"
                       className="bg-transparent border border-[#00eaff] text-[#00eaff] hover:bg-[#00eaff]/10 font-bold"
@@ -256,7 +260,7 @@ export default function SocialFeed() {
                       }}
                     >
                       <Play className="w-3 h-3 mr-1" />
-                      Play
+                      Open channel
                     </Button>
                   </div>
                 </div>

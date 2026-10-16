@@ -1,7 +1,7 @@
 import { and, eq, sql } from "drizzle-orm";
 import { TRPCError } from "@trpc/server";
 import { getDb, getOrCreateUserProfile } from "./db";
-import { achievements, coinTransactions, globalMissions, missionContributions, userAchievements, userProfiles } from "../drizzle/schema";
+import { achievements, aoLedgerEntries, aoWalletBalances, coinTransactions, globalMissions, missionContributions, userAchievements, userProfiles } from "../drizzle/schema";
 
 export const MISSION_CATALOG = [
   {
@@ -82,13 +82,13 @@ export async function completeGlobalMission(input: {
       .limit(1);
 
     if (existing.length > 0) {
-      const profile = await tx.select().from(userProfiles).where(eq(userProfiles.userId, input.userId)).limit(1);
+      const wallet = await tx.select().from(aoWalletBalances).where(eq(aoWalletBalances.userId, input.userId)).limit(1);
       return {
         completed: true,
         duplicate: true,
         missionId: input.missionId,
         reward: existing[0].reward,
-        balance: profile[0]?.anomCoinBalance || "0.00",
+        balance: wallet[0]?.anomCoins || "0.00",
       };
     }
 
@@ -98,11 +98,12 @@ export async function completeGlobalMission(input: {
       throw new TRPCError({ code: "NOT_FOUND", message: "Mission is not active" });
     }
 
-    const profile = await tx.select().from(userProfiles).where(eq(userProfiles.userId, input.userId)).limit(1);
-    if (!profile[0]) throw new TRPCError({ code: "PRECONDITION_FAILED", message: "User profile is unavailable" });
-
     const reward = mission.reward;
-    const newBalance = money(cents(profile[0].anomCoinBalance || "0") + cents(reward));
+    await tx.insert(aoWalletBalances).values({ userId: input.userId }).onDuplicateKeyUpdate({ set: { userId: input.userId } });
+    const walletRows = await tx.select().from(aoWalletBalances).where(eq(aoWalletBalances.userId, input.userId)).limit(1);
+    const wallet = walletRows[0];
+    if (!wallet) throw new TRPCError({ code: "PRECONDITION_FAILED", message: "AO wallet is unavailable" });
+    const newBalance = money(cents(wallet.anomCoins || "0") + cents(reward));
 
     const contribution = await tx.insert(missionContributions).values({
       userId: input.userId,
@@ -114,9 +115,26 @@ export async function completeGlobalMission(input: {
       reward,
     });
 
+    await tx.update(aoWalletBalances)
+      .set({ anomCoins: newBalance })
+      .where(eq(aoWalletBalances.userId, input.userId));
+
+    // Keep the legacy profile field as a read-compatible mirror; the AO wallet is authoritative.
     await tx.update(userProfiles)
       .set({ anomCoinBalance: newBalance })
       .where(eq(userProfiles.userId, input.userId));
+
+    await tx.insert(aoLedgerEntries).values({
+      userId: input.userId,
+      asset: "AC",
+      direction: "earn",
+      amount: reward,
+      balanceAfter: newBalance,
+      eventType: `mission:${input.missionId}`,
+      idempotencyKey: `mission:${input.missionId}:${input.eventId}`,
+      source: input.source,
+      metadata: { house: input.house, mount: input.mount },
+    });
 
     await tx.insert(coinTransactions).values({
       userId: input.userId,

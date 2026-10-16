@@ -40,6 +40,12 @@ import DotProfile from "./pages/DotProfile";
 import AdminHub from "./pages/AdminHub";
 import HouseSelect from "./pages/HouseSelect";
 import CoinVault from "./pages/CoinVault";
+import MoonberryFarm from "./pages/MoonberryFarm";
+import OwnerSourceRegistry from "./pages/OwnerSourceRegistry";
+import DivisionMap from "./pages/DivisionMap";
+import OwnerPitchReporting from "./pages/OwnerPitchReporting";
+import TrollCrushRouter from "./pages/TrollCrushRouter";
+import OwnerSchemaInspector from "./pages/OwnerSchemaInspector"
 
 const AppRoutes = () => {
   // make sure to consider if you need authentication for certain routes
@@ -47,7 +53,6 @@ const AppRoutes = () => {
   return (
     <Router base={base}>
       <Switch>
-      <Route path={"/"} component={Home} />
       <Route path={"/"} component={Home} />
       <Route path={"/profile"} component={Profile} />
       <Route path={"/wallet"} component={Wallet} />
@@ -62,6 +67,8 @@ const AppRoutes = () => {
       <Route path={"/games"} component={Games} />
       <Route path={"/house-select"} component={HouseSelect} />
       <Route path={"/coin-vault"} component={CoinVault} />
+      <Route path={"/games/troll-crush"} component={TrollCrushRouter} />
+      <Route path={"/moonberry-farm"} component={MoonberryFarm} />
       <Route path={"/games/baba-yaga"} component={BabaYagaGame} />
       <Route path={"/merch"} component={Merch} />
       <Route path="/admin" component={Admin} />
@@ -78,6 +85,10 @@ const AppRoutes = () => {
       <Route path="/library" component={LibraryWorld} />
       <Route path="/music-library" component={MusicLibrary} />
       <Route path="/owner" component={OwnerControlPanel} />
+      <Route path="/owner/source-registry" component={OwnerSourceRegistry} />
+      <Route path="/divisions" component={DivisionMap} />
+      <Route path="/owner/pitch-reporting" component={OwnerPitchReporting} />
+      <Route path="/owner/schema-inspector" component={OwnerSchemaInspector} />
       <Route path="/404" component={NotFound} />
       {/* Final fallback route */}
         <Route component={NotFound} />

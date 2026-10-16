@@ -384,6 +384,139 @@ export const appRouter = router({
   music: musicRouter,
   sharing: sharingRouter,
   membership: membershipRouter,
+  ao: router({
+    destinations: publicProcedure.query(async () => {
+      const { AO_DESTINATIONS } = await import("../shared/aoDestinationRegistry");
+      return AO_DESTINATIONS.filter((destination) => !destination.ownerOnly);
+    }),
+    wallet: protectedProcedure.query(async ({ ctx }) => {
+      const { getAOWallet } = await import("./db");
+      return getAOWallet(ctx.user.id);
+    }),
+    ledger: protectedProcedure
+      .input(z.object({ limit: z.number().int().min(1).max(100).default(50) }))
+      .query(async ({ ctx, input }) => {
+        const { getAOLedgerHistory } = await import("./db");
+        return getAOLedgerHistory(ctx.user.id, input.limit);
+      }),
+    record: protectedProcedure
+      .input(z.object({
+        asset: z.enum(["GP", "AC"]),
+        direction: z.enum(["earn", "spend", "adjustment"]),
+        amount: z.string().regex(/^\d+(\.\d{1,2})?$/),
+        eventType: z.string().min(1).max(80),
+        idempotencyKey: z.string().min(1).max(160),
+        source: z.string().min(1).max(120),
+        metadata: z.record(z.string(), z.unknown()).optional(),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        const { recordAOLedgerEvent } = await import("./db");
+        return recordAOLedgerEvent({ ...input, userId: ctx.user.id });
+      }),
+    completeLibraryGame: protectedProcedure
+      .input(z.object({
+        gameId: z.enum(["library-pixel-dot", "library-clifford-patrol", "library-tater-shelf-heist"]),
+        score: z.number().int().min(0).max(1000),
+        eventId: z.string().min(1).max(120),
+        house: z.string().min(1).max(32).optional(),
+        mount: z.string().min(1).max(64).optional(),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        const { LIBRARY_WORLD_GAMES } = await import("../shared/aoContentRegistry");
+        const { recordAOLedgerEvent } = await import("./db");
+        const game = LIBRARY_WORLD_GAMES.find((item) => item.id === input.gameId);
+        if (!game) throw new TRPCError({ code: "BAD_REQUEST", message: "Unknown Library game" });
+        return recordAOLedgerEvent({
+          userId: ctx.user.id,
+          asset: "AC",
+          direction: "earn",
+          amount: game.rewardAmount,
+          eventType: "library_game_completion",
+          idempotencyKey: `library:${input.gameId}:${input.eventId}`,
+          source: "library-world",
+          metadata: {
+            gameId: input.gameId,
+            score: input.score,
+            house: input.house ?? null,
+            mount: input.mount ?? null,
+          },
+        });
+      }),
+    startTrollCrushSession: protectedProcedure
+      .input(z.object({ guardianConfirmed: z.literal(true) }))
+      .mutation(async ({ ctx, input }) => {
+        const { AO_TROLL_CRUSH_COMPLETION_CONTRACT } = await import("../shared/aoWorldKinds");
+        const { startTrollCrushSession } = await import("./db");
+        if (!AO_TROLL_CRUSH_COMPLETION_CONTRACT.enabled || AO_TROLL_CRUSH_COMPLETION_CONTRACT.status !== "approved") throw new TRPCError({ code: "PRECONDITION_FAILED", message: "Troll Crush completion contract is not enabled" });
+        if (!input.guardianConfirmed) throw new TRPCError({ code: "FORBIDDEN", message: "Guardian confirmation is required" });
+        const sessionId = `troll-${ctx.user.id}-${crypto.randomUUID()}`;
+        const expiresAt = new Date(Date.now() + 30 * 60 * 1000);
+        const [session] = await startTrollCrushSession(ctx.user.id, sessionId, expiresAt, AO_TROLL_CRUSH_COMPLETION_CONTRACT.completionEvent);
+        return { sessionId, expiresAt: session?.expiresAt ?? expiresAt };
+      }),
+    completeTrollCrushSession: protectedProcedure
+      .input(z.object({
+        sessionId: z.string().regex(/^troll-\d+-[0-9a-f-]{36}$/),
+        completionEvent: z.literal("troll-crush-session-complete"),
+        completedRounds: z.literal(3),
+        score: z.number().int().min(0).max(300),
+        guardianConfirmed: z.literal(true),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        const { AO_TROLL_CRUSH_COMPLETION_CONTRACT } = await import("../shared/aoWorldKinds");
+        const { completeTrollCrushSession } = await import("./db");
+        if (!AO_TROLL_CRUSH_COMPLETION_CONTRACT.enabled || AO_TROLL_CRUSH_COMPLETION_CONTRACT.status !== "approved") throw new TRPCError({ code: "PRECONDITION_FAILED", message: "Troll Crush completion contract is not enabled" });
+        if (input.completionEvent !== AO_TROLL_CRUSH_COMPLETION_CONTRACT.completionEvent) throw new TRPCError({ code: "BAD_REQUEST", message: "Invalid completion event" });
+        try {
+          return await completeTrollCrushSession({ userId: ctx.user.id, sessionId: input.sessionId, completionEvent: input.completionEvent, completedRounds: input.completedRounds, score: input.score });
+        } catch (error) {
+          throw new TRPCError({ code: "BAD_REQUEST", message: error instanceof Error ? error.message : "Troll Crush completion failed" });
+          }
+        }),
+    identity: router({
+      get: protectedProcedure.query(({ ctx }) => import("./db").then(({ getAOIdentityProfile }) => getAOIdentityProfile(ctx.user.id))),
+      update: protectedProcedure.input(z.object({
+        house: z.string().max(32).nullable().optional(),
+        mount: z.string().max(64).nullable().optional(),
+        mountColor: z.string().max(32).nullable().optional(),
+        guardianTier: z.enum(["child", "teen", "adult", "guardian"]).optional(),
+        guardianConfirmed: z.boolean().optional(),
+      })).mutation(({ ctx, input }) => import("./db").then(({ upsertAOIdentityProfile }) => upsertAOIdentityProfile({ ...input, userId: ctx.user.id }))),
+    }),
+    inventory: router({
+      list: protectedProcedure.query(({ ctx }) => import("./db").then(({ getAOInventory }) => getAOInventory(ctx.user.id))),
+      purchase: protectedProcedure.input(z.object({ packageId: z.number().int().positive(), assetId: z.string().min(1).max(120), idempotencyKey: z.string().min(1).max(160) })).mutation(async ({ ctx, input }) => {
+        try {
+          const { purchaseAOInventoryItem } = await import("./db");
+          return await purchaseAOInventoryItem({ ...input, userId: ctx.user.id });
+        } catch (error) {
+          throw new TRPCError({ code: "BAD_REQUEST", message: error instanceof Error ? error.message : "Inventory purchase failed" });
+        }
+      }),
+    }),
+    setupV5: router({
+      assetValidation: publicProcedure.query(async () => {
+        const { AO_SETUP_V5_ASSETS, validateAOSetupV5AssetRegistry } = await import("../shared/aoSetupV5");
+        return { valid: validateAOSetupV5AssetRegistry().length === 0, errors: validateAOSetupV5AssetRegistry(), assets: AO_SETUP_V5_ASSETS };
+      }),
+      sentinelCases: protectedProcedure.input(z.object({ limit: z.number().int().min(1).max(100).default(50) })).query(async ({ ctx, input }) => {
+        if (ctx.user.role !== "admin") throw new TRPCError({ code: "FORBIDDEN", message: "Admin access required" });
+        const { getAOSentinelCases } = await import("./db");
+        return getAOSentinelCases(input.limit);
+      }),
+      createSentinelCase: protectedProcedure.input(z.object({ caseKey: z.string().min(1).max(160), subjectType: z.enum(["asset", "profile", "media"]), subjectId: z.string().min(1).max(160), severity: z.enum(["low", "medium", "high"]), reason: z.string().min(1), evidence: z.record(z.string(), z.unknown()).optional() })).mutation(async ({ ctx, input }) => {
+        if (ctx.user.role !== "admin") throw new TRPCError({ code: "FORBIDDEN", message: "Admin access required" });
+        const { createAOSentinelCase } = await import("./db");
+        return createAOSentinelCase({ ...input, createdBy: ctx.user.id });
+      }),
+      reviewSentinelCase: protectedProcedure.input(z.object({ caseKey: z.string().min(1).max(160), status: z.enum(["under_review", "resolved", "dismissed"]), note: z.string().max(1000).optional() })).mutation(async ({ ctx, input }) => {
+        if (ctx.user.role !== "admin") throw new TRPCError({ code: "FORBIDDEN", message: "Admin access required" });
+        const { reviewAOSentinelCase } = await import("./db");
+        return reviewAOSentinelCase({ ...input, reviewedBy: ctx.user.id });
+      }),
+    }),
+  }),
+
   ownerSettings: router({
     getSettings: publicProcedure.query(async () => {
       const { getPlatformSettings } = await import("./db");

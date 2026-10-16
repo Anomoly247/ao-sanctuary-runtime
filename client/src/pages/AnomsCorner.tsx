@@ -4,44 +4,24 @@ import { Button } from "@/components/ui/button";
 import { Play, Share2, Heart, Star, Zap } from "lucide-react";
 import { toast } from "sonner";
 import { trpc } from "@/lib/trpc";
+import { useAuth } from "@/_core/hooks/useAuth";
 import { ExternalContentSpots } from "@/components/ExternalContentSpots";
+import { AO_STORY_WORLD_CONTENT, type AOStoryEntry } from "../../../shared/aoContentRegistry";
 
-interface Episode {
-  id: string;
-  title: string;
-  videoId?: string;
-  storageUrl?: string;
-  duration: string;
-  description: string;
-  featured?: boolean;
-}
-
-const episodes: Episode[] = [
-  {
-    id: "1",
-    title: "Pixel & Dot's Full Story | Anom's Corner",
-    storageUrl: "/manus-storage/v8_pixel_dot_full_story_final_45228357.mp4",
-    duration: "Full Story",
-    description: "The complete Pixel & Dot story. Join these two characters on their epic journey through a signal-lit universe filled with mystery, wonder, and unforgettable moments. This is the definitive Anom's Corner experience.",
-    featured: true,
-  },
-  {
-    id: "2",
-    title: "Pixel & Dot's New Adventure | Anom's Corner",
-    videoId: "0pBrQUqU0ig",
-    duration: "1:50",
-    description: "Join Pixel and Dot on their first adventure in Anom's Corner! Discover their signal-lit world and the mysteries that await.",
-  },
-];
+const episodes = AO_STORY_WORLD_CONTENT.entries;
+const thoughts = AO_STORY_WORLD_CONTENT.thoughts;
 
 export default function AnomsCorner() {
-  const [selectedEpisode, setSelectedEpisode] = useState<Episode>(episodes[0]);
+  const { user } = useAuth();
+  const [selectedEpisode, setSelectedEpisode] = useState<AOStoryEntry>(episodes[0]);
+  const [selectedThoughtId, setSelectedThoughtId] = useState(thoughts[0]?.id ?? "");
+  const [premiereAt, setPremiereAt] = useState("");
+  const [scheduledPremiere, setScheduledPremiere] = useState<string | null>(null);
   const [liked, setLiked] = useState(false);
-
+  const selectedThought = thoughts.find((thought) => thought.id === selectedThoughtId) ?? thoughts[0];
+  const isOwner = user?.role === "admin";
   const handleShare = () => {
-    const url = selectedEpisode.storageUrl 
-      ? `${window.location.origin}${selectedEpisode.storageUrl}`
-      : `https://www.youtube.com/watch?v=${selectedEpisode.videoId}`;
+    const url = selectedEpisode.channelUrl ?? `https://www.youtube.com/watch?v=${selectedEpisode.videoId}`;
     navigator.clipboard.writeText(url);
     toast.success("Episode link copied to clipboard!");
   };
@@ -69,44 +49,34 @@ export default function AnomsCorner() {
               <span className="text-white"> Corner</span>
             </h1>
             <p className="text-xl text-[#cccccc] mb-6">
-              Digital Storybooks featuring <span style={{ color: "#d8ae55" }}>Pixel</span> & <span style={{ color: "#00eaff" }}>Dot</span>
+              Character stories, creator thoughts, and premieres from across the AO Universe
             </p>
             <p className="text-[#cccccc] max-w-2xl mx-auto">
-              Step into a living universe where two characters navigate surreal landscapes, uncover mysteries, and create unforgettable moments.
+              Step into a living universe where every character gets a voice, a signal, and a place to return to.
             </p>
           </div>
 
           {/* Character Badges */}
-          <div className="flex justify-center gap-6 mb-12">
-            <div className="text-center">
+          <div className="ao-character-signal-grid mb-12" aria-label="Anom’s Corner character signals">
+            {[
+              { label: "Pixel", detail: "The Creator", color: "#d8ae55" },
+              { label: "Dot", detail: "The Explorer", color: "#00eaff" },
+              { label: "Tater", detail: "The Scout", color: "#d8ae55" },
+              { label: "Clifford", detail: "The Protector", color: "#00eaff" },
+            ].map((character) => <div className="text-center" key={character.label}>
               <div
                 className="w-20 h-20 rounded-full mx-auto mb-3 flex items-center justify-center font-bold text-2xl border-2"
                 style={{
-                  borderColor: "#d8ae55",
-                  background: "linear-gradient(135deg, #d8ae5520 0%, #d8ae5510 100%)",
-                  color: "#d8ae55",
+                  borderColor: character.color,
+                  background: `linear-gradient(135deg, ${character.color}20 0%, ${character.color}10 100%)`,
+                  color: character.color,
                 }}
               >
-                P
+                {character.label[0]}
               </div>
-              <p className="font-bold text-white">Pixel</p>
-              <p className="text-sm text-[#cccccc]">The Creator</p>
-            </div>
-
-            <div className="text-center">
-              <div
-                className="w-20 h-20 rounded-full mx-auto mb-3 flex items-center justify-center font-bold text-2xl border-2"
-                style={{
-                  borderColor: "#00eaff",
-                  background: "linear-gradient(135deg, #00eaff20 0%, #00eaff10 100%)",
-                  color: "#00eaff",
-                }}
-              >
-                D
-              </div>
-              <p className="font-bold text-white">Dot</p>
-              <p className="text-sm text-[#cccccc]">The Explorer</p>
-            </div>
+              <p className="font-bold text-white">{character.label}</p>
+              <p className="text-sm text-[#cccccc]">{character.detail}</p>
+            </div>)}
           </div>
         </div>
       </div>
@@ -120,16 +90,19 @@ export default function AnomsCorner() {
               {/* Featured Video Player */}
               <div className="mb-6">
                 <div className="relative w-full bg-black rounded-lg overflow-hidden border border-[#08080f]">
-                  {selectedEpisode.storageUrl ? (
-                    <video
-                      className="w-full h-auto"
-                      controls
-                      style={{ maxHeight: "600px" }}
-                    >
-                      <source src={selectedEpisode.storageUrl} type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                  ) : (
+                  {selectedEpisode.premiere ? (
+                    <div className="ao-premiere-room flex min-h-72 flex-col items-center justify-center gap-4 p-8 text-center" role="region" aria-label="AO Premiere Room">
+                      <div className="ao-premiere-room-orbit" aria-hidden="true"><Play className="h-8 w-8" /></div>
+                      <div>
+                        <p className="ao-world-kicker">ANOM ORIGINALS // PREMIERE DOOR</p>
+                        <h3 className="mt-2 text-2xl font-bold text-white">The next signal starts here.</h3>
+                        <p className="mx-auto mt-2 max-w-md text-sm text-[#cccccc]">Premieres, character thoughts, and new worlds will land in this room as the AO universe grows.</p>
+                      </div>
+                      <a className="btn-primary inline-flex items-center gap-2 rounded-full px-5 py-3" href={selectedEpisode.channelUrl} target="_blank" rel="noreferrer">
+                        Visit the Anom Originals YouTube channel <Share2 className="h-4 w-4" />
+                      </a>
+                    </div>
+                  ) : selectedEpisode.videoId ? (
                     <div className="relative w-full bg-black rounded-lg overflow-hidden" style={{ paddingBottom: "56.25%" }}>
                       <iframe
                         className="absolute inset-0 w-full h-full"
@@ -138,6 +111,19 @@ export default function AnomsCorner() {
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                       />
+                    </div>
+                  ) : selectedEpisode.channelUrl ? (
+                    <div className={`ao-character-door ao-character-door-${selectedEpisode.accent} flex min-h-72 flex-col items-center justify-center gap-4 p-8 text-center`} role="region" aria-label={`${selectedEpisode.character} character premiere slot`}>
+                      <p className="ao-world-kicker">{selectedEpisode.character.toUpperCase()} // CHARACTER SIGNAL</p>
+                      <h3 className="text-2xl font-bold text-white">This character has a room here.</h3>
+                      <p className="max-w-md text-sm text-[#cccccc]">The verified episode link will appear when the premiere is published. Until then, visit the channel for the latest real release.</p>
+                      <a className="btn-secondary inline-flex items-center gap-2 rounded-full px-5 py-3" href={selectedEpisode.channelUrl} target="_blank" rel="noreferrer">
+                        Open Anom Originals channel <Share2 className="h-4 w-4" />
+                      </a>
+                    </div>
+                  ) : (
+                    <div className="flex min-h-56 items-center justify-center p-8 text-center text-[#cccccc]" role="status">
+                      This story video is temporarily unavailable. Please check back soon.
                     </div>
                   )}
                 </div>
@@ -189,6 +175,7 @@ export default function AnomsCorner() {
                         : "border-[#08080f] bg-[#0A0A10] hover:border-[#00eaff]"
                     }`}
                   >
+                    <p className="text-[0.68rem] uppercase tracking-[0.18em] text-[#d8ae55]">{episode.character}</p>
                     <p className="font-semibold text-white text-sm mb-1">{episode.title}</p>
                     <p className="text-xs text-[#cccccc]">{episode.duration}</p>
                   </button>
@@ -221,6 +208,23 @@ export default function AnomsCorner() {
       </div>
 
       <div className="container mx-auto px-4 pb-16">
+        <section className="ao-thought-section" aria-labelledby="character-thoughts-heading">
+          <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
+            <div><p className="ao-world-kicker">STORYWORLD // PRIVATE VOICES</p><h2 id="character-thoughts-heading" className="text-3xl font-bold text-white">Character thoughts</h2><p className="mt-2 max-w-2xl text-sm text-[#cccccc]">Short signals from the characters. Review status stays visible so a draft is never mistaken for a published claim.</p></div>
+            <span className="rounded-full border border-[#d8ae55]/40 px-3 py-1 text-xs uppercase tracking-[0.16em] text-[#d8ae55]">{selectedThought?.publicationStatus ?? "review"}</span>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-2" role="tablist" aria-label="Character thought cards">{thoughts.map((thought) => <button key={thought.id} type="button" role="tab" aria-selected={selectedThoughtId === thought.id} onClick={() => setSelectedThoughtId(thought.id)} className={`rounded-xl border p-4 text-left transition-colors ${selectedThoughtId === thought.id ? "border-[#00eaff] bg-[#00eaff]/10" : "border-[#d8ae55]/25 bg-[#141423]/60 hover:border-[#00eaff]/70"}`}><span className="text-xs uppercase tracking-[0.16em] text-[#00eaff]">{thought.characterId}</span><span className="mt-2 block font-semibold text-white">{thought.title}</span><span className="mt-1 block text-xs text-[#cccccc]">{thought.publicationStatus} · {thought.ageTier}</span></button>)}</div>
+            {selectedThought && <article className="rounded-2xl border border-[#d8ae55]/40 bg-[#141423]/70 p-6" role="tabpanel"><p className="text-xs uppercase tracking-[0.18em] text-[#d8ae55]">{selectedThought.title}</p><blockquote className="mt-4 text-xl leading-8 text-white">“{selectedThought.text}”</blockquote><p className="mt-5 text-sm text-[#cccccc]">This thought is private editorial content until its publication status changes in the controlled registry.</p></article>}
+          </div>
+        </section>
+
+        {isOwner && <section className="ao-premiere-schedule" aria-labelledby="premiere-schedule-heading">
+          <div><p className="ao-world-kicker">OWNER CONTROL // PUBLICATION GATE</p><h2 id="premiere-schedule-heading" className="text-2xl font-bold text-white">Premiere scheduling</h2><p className="mt-2 text-sm text-[#cccccc]">Prepare a schedule draft without publishing or changing the controlled media registry.</p></div>
+          <div className="mt-5 grid gap-3 md:grid-cols-[1fr_auto_auto] md:items-end"><label className="text-sm text-white/80">Premiere door<select value={selectedEpisode.id} onChange={(event) => setSelectedEpisode(episodes.find((episode) => episode.id === event.target.value) ?? episodes[0])} className="mt-2 min-h-11 w-full rounded-lg border border-[#00eaff]/45 bg-[#08080f] px-3 text-white">{episodes.filter((episode) => episode.premiere || episode.channelUrl).map((episode) => <option key={episode.id} value={episode.id}>{episode.character} · {episode.title}</option>)}</select></label><label className="text-sm text-white/80">Draft date/time<input type="datetime-local" value={premiereAt} onChange={(event) => setPremiereAt(event.target.value)} className="mt-2 min-h-11 rounded-lg border border-[#00eaff]/45 bg-[#08080f] px-3 text-white" /></label><Button type="button" disabled={!premiereAt} onClick={() => { setScheduledPremiere(premiereAt); toast.success("Premiere schedule draft saved for owner review."); }} className="min-h-11 rounded-full border border-[#d8ae55] bg-transparent text-[#d8ae55] hover:bg-[#d8ae55]/10">Save schedule draft</Button></div>
+          {scheduledPremiere && <p className="mt-4 text-sm text-[#00eaff]" role="status">Draft: {selectedEpisode.title} · {new Date(scheduledPremiere).toLocaleString()}</p>}
+        </section>}
+
         <ExternalContentSpots placement="anoms-corner" />
       </div>
     </div>

@@ -706,3 +706,49 @@ If implementation resumes from this export, extract in this order:
 7. visual tokens last, remapped to current AO design tokens.
 
 This keeps the strongest parts of the production export while avoiding a second economy, a second age model, and a second deployment architecture.
+
+
+## New master attachments review — 2026-10-10
+
+The newly supplied master HTML artifacts, mount packages, source brief, help hub, index, KDP grid, and vertical video were preserved in the private archive documented in `NEW-MASTER-ATTACHMENTS-MANIFEST.md`. The detailed comparison is recorded in `NEW-MASTER-ATTACHMENTS-2026-10-10.md`.
+
+The strongest new confirmation is that **Off-Grid / Moonberry Farm belongs inside the Sanctuary**, with House 1 as a calm, child-safe reflection space. The attached `offgrid.html` is a Google Docs shell rather than a reliable content source, so the explicit Moonberry Farm specification supplied by the user remains authoritative: gratitude grows the harvest; mounts help with care; Growth Notes remain private; Glow is personal nourishment rather than a public behavior score.
+
+The master artifacts also reinforce the following implementation direction:
+
+- AO Alive should feel like an active world with earned identity, mounts, movement, and contribution—not a dashboard or infinite feed.
+- The Master Index’s live/pending/needs-link/urgent pattern is appropriate for owner tooling only when statuses are derived from real deployment or registry data.
+- The Help Hub contributes strong accessibility and support-terminal patterns, but its hot-pink/violet palette should be translated into the current black/gold/cyan Sanctuary system.
+- The new vertical `Hide_and_Seek_in_the_Neon_Grid.mp4` is a production-relevant pending media asset; it should be hosted directly only after ownership, age tier, metadata, and publication state are confirmed.
+- Generated HTML exports should inform registries and content models, not be pasted wholesale into the managed React runtime.
+
+The next safe implementation slice is a canonical Moonberry Farm route and private Growth Note flow, followed by a controlled premiere-asset registry for the supplied character videos.
+
+
+## AO Universe $5M Blueprint: strategic reconciliation
+
+The supplied `AO_Universe_s__5M_Blueprint.mp4` frames AO as a community-first, vertically integrated creative-technology ecosystem. Its business thesis is that fragmented creator workflows leak value across hosting, design, community, content, merchandise, and payments; an AO flywheel connects those capabilities while keeping the experience safe, moderated, creative, and kind.
+
+The video’s strategic slogan is **“Everything Connected. Everything Designed. Everything AO.”** This supports the product principle already adopted here: **protect the Glow, not the grind**. The implementation consequence is a canonical division/destination registry, controlled IP provenance, guardian-aware participation, and a ledger-backed contribution loop—not a larger storefront or an infinite social feed.
+
+The video includes illustrative revenue, fundraising, ARR, membership, merchandise, subscriber, hiring, international expansion, and licensing targets. These remain private planning claims, not verified financial facts or live product metrics. They must never be rendered as user stats, balances, analytics, or investor assurances without separate verification and approval.
+
+The blueprint strengthens the near-term sequence: finish the AO registry; make the non-cash GP/AC ledger authoritative and idempotent; add reversible cosmetic Mount Vault unlocks; connect Moonberry Farm Growth Notes to private, age-aware progression; and preserve controlled media/IP records for child-facing characters and worlds. Payment infrastructure, real-money conversion, identity verification, automated Sentinel enforcement, licensing marketplaces, and international expansion remain separately gated.
+
+
+## New HTML references — 2026-10-12
+
+The supplied **AO Living Standard v2** and **Games Hub Live** artifacts were archived with checksums and reviewed against the current runtime. They reinforce the living-world composition, cyan/gold identity system, age-aware labels, and compact world-entry cards already present in Sanctuary. The Games Hub reference especially supports the existing searchable, category-filtered world directory.
+
+Both artifacts contain presentation values that conflict with the current AO decision, including hot magenta, purple, fluorescent green, and other competing accents. Those values remain reference-only. The implementation boundary is to adopt interaction grammar and information hierarchy while retaining the current Void/cyan/badge-gold palette, five-tier safety model, separate deployments, AO bridge, and server-authoritative GP/AC ledger.
+
+Detailed adoption decisions are recorded in `HTML-REFERENCE-REVIEW-2026-10-12.md`; source copies and SHA-256 checksums are under `assets/`.
+
+
+## Library + Moonberry references — 2026-10-12
+
+The supplied Library World and Moonberry Farm artifacts were archived with checksums and reviewed against the current runtime. The Library material provides a useful controlled registry for Pixel & Dot, Clifford Patrol, and Tater Shelf Heist, plus stable canonical character assets and bounded Color Corner configuration. The managed Library route currently provides the safer source-aware portal; the supplied registry is a candidate for the next implementation slice, not yet live production content.
+
+The Moonberry variants reinforce the existing House 1 / Off-Grid direction: gratitude, patience, watering, harvest, mount care, sleeping/resting rhythm, and private Growth Notes. The current managed Moonberry route already implements the strongest safe loop. Legacy magenta/purple/fluorescent tokens, market-price language, public-profile assumptions, and the prototype claim `10 AC = $1` are explicitly rejected. AC remains non-cash and server-authoritative, and supplied media remains governed by provenance and publication state.
+
+Detailed decisions are recorded in `LIBRARY-MOONBERRY-REFERENCE-REVIEW-2026-10-12.md`; source files and checksums are under `assets/2026-10-12-library-moonberry/`.
