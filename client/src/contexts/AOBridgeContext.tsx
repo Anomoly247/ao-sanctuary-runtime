@@ -13,6 +13,7 @@ export type AOBridgeContextValue = {
 
 type AOBridgeApi = AOBridgeContextValue & {
   decorateUrl: (rawUrl: string, options?: { houseAware?: boolean; returnUrl?: string; source?: string; mission?: string; eventId?: string; mountColor?: string }) => string;
+  setIdentity: (identity: { house?: string; mount?: string; mountColor?: string }) => void;
 };
 
 const STORAGE = {
@@ -100,6 +101,20 @@ export function AOBridgeProvider({ children }: { children: React.ReactNode }) {
 
   const api = useMemo<AOBridgeApi>(() => ({
     ...context,
+    setIdentity(identity) {
+      const next = {
+        ...context,
+        house: identity.house || context.house,
+        houseName: identity.house ? HOUSES[identity.house] || identity.house : context.houseName,
+        mount: identity.mount || context.mount,
+        mountColor: identity.mountColor || context.mountColor,
+      };
+      writeStorage(STORAGE.house, next.house);
+      writeStorage(STORAGE.houseName, next.houseName);
+      writeStorage(STORAGE.mount, next.mount);
+      writeStorage(STORAGE.mountColor, next.mountColor);
+      setContext(next);
+    },
     decorateUrl(rawUrl, options = {}) {
       if (options.houseAware === false) return rawUrl;
       try {

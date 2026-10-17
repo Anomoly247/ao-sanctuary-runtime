@@ -832,7 +832,9 @@ export async function getAOIdentityProfile(userId: number) {
 export async function upsertAOIdentityProfile(input: { userId: number; house?: string | null; mount?: string | null; mountColor?: string | null; guardianTier?: "child" | "teen" | "adult" | "guardian"; guardianConfirmed?: boolean }) {
   const db = await getDb();
   if (!db) throw new Error("Database is not available");
-  await db.insert(aoIdentityProfiles).values({ userId: input.userId, house: input.house ?? null, mount: input.mount ?? null, mountColor: input.mountColor ?? null, guardianTier: input.guardianTier ?? "adult", guardianConfirmed: input.guardianConfirmed ?? false }).onDuplicateKeyUpdate({ set: { house: input.house ?? null, mount: input.mount ?? null, mountColor: input.mountColor ?? null, guardianTier: input.guardianTier ?? "adult", guardianConfirmed: input.guardianConfirmed ?? false } });
+  const current = await getAOIdentityProfile(input.userId);
+  const next = { house: input.house !== undefined ? input.house : current?.house ?? null, mount: input.mount !== undefined ? input.mount : current?.mount ?? null, mountColor: input.mountColor !== undefined ? input.mountColor : current?.mountColor ?? null, guardianTier: input.guardianTier ?? current?.guardianTier ?? "adult", guardianConfirmed: input.guardianConfirmed !== undefined ? input.guardianConfirmed : current?.guardianConfirmed ?? false };
+  await db.insert(aoIdentityProfiles).values({ userId: input.userId, ...next }).onDuplicateKeyUpdate({ set: next });
   return getAOIdentityProfile(input.userId);
 }
 

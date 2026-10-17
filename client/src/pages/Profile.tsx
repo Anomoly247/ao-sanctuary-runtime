@@ -219,6 +219,7 @@ export default function Profile() {
             <div className="ao-profile-portal-actions">
               <Button className="ao-world-action" onClick={() => navigate("/games")}><Map className="h-4 w-4" /> Play Worlds</Button>
               <Button className="ao-world-action" onClick={() => navigate("/mission-hub")}><Sparkles className="h-4 w-4" /> Mission Hub</Button>
+              <Button className="ao-world-action" onClick={() => navigate("/inventory")}><Star className="h-4 w-4" /> Inventory</Button>
               <Button className="ao-world-action" onClick={() => navigate("/games/baba-yaga")}><Mountain className="h-4 w-4" /> Visit a world</Button>
               <Button className="ao-world-action" onClick={copyProfileLink}>{copied ? <Check className="h-4 w-4" /> : <Share2 className="h-4 w-4" />} {copied ? "Copied" : "Share world"}</Button>
             </div>

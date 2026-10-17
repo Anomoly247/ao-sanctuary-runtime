@@ -44,6 +44,7 @@ import DivisionMap from "./pages/DivisionMap";
 import OwnerPitchReporting from "./pages/OwnerPitchReporting";
 import TrollCrushRouter from "./pages/TrollCrushRouter";
 import OwnerSchemaInspector from "./pages/OwnerSchemaInspector";
+import Inventory from "./pages/Inventory";
 
 const AppRoutes = () => {
   // make sure to consider if you need authentication for certain routes
@@ -54,6 +55,7 @@ const AppRoutes = () => {
       <Route path={"/"} component={Home} />
       <Route path={"/"} component={Home} />
       <Route path={"/profile"} component={Profile} />
+      <Route path={"/inventory"} component={Inventory} />
       <Route path={"/wallet"} component={Wallet} />
       <Route path={"/achievements"} component={Achievements} />
       <Route path={"/lounges"} component={Lounges} />
