@@ -38,6 +38,8 @@ import AnomsCorner from "./pages/AnomsCorner";
 import PixelProfile from "./pages/PixelProfile";
 import DotProfile from "./pages/DotProfile";
 import AdminHub from "./pages/AdminHub";
+import HouseSelect from "./pages/HouseSelect";
+import CoinVault from "./pages/CoinVault";
 import MoonberryFarm from "./pages/MoonberryFarm";
 import OwnerSourceRegistry from "./pages/OwnerSourceRegistry";
 import DivisionMap from "./pages/DivisionMap";
@@ -53,7 +55,6 @@ const AppRoutes = () => {
     <Router base={base}>
       <Switch>
       <Route path={"/"} component={Home} />
-      <Route path={"/"} component={Home} />
       <Route path={"/profile"} component={Profile} />
       <Route path={"/inventory"} component={Inventory} />
       <Route path={"/wallet"} component={Wallet} />
@@ -66,6 +67,8 @@ const AppRoutes = () => {
       <Route path={"/characters/dot"} component={DotProfile} />
       <Route path={"/feed"} component={SocialFeed} />
       <Route path={"/games"} component={Games} />
+      <Route path={"/house-select"} component={HouseSelect} />
+      <Route path={"/coin-vault"} component={CoinVault} />
       <Route path={"/games/troll-crush"} component={TrollCrushRouter} />
       <Route path={"/moonberry-farm"} component={MoonberryFarm} />
       <Route path={"/games/baba-yaga"} component={BabaYagaGame} />

@@ -12,8 +12,8 @@ export type AOBridgeContextValue = {
 };
 
 type AOBridgeApi = AOBridgeContextValue & {
+  setIdentity: (next: { house?: string; mount?: string; mountColor?: string }) => void;
   decorateUrl: (rawUrl: string, options?: { houseAware?: boolean; returnUrl?: string; source?: string; mission?: string; eventId?: string; mountColor?: string }) => string;
-  setIdentity: (identity: { house?: string; mount?: string; mountColor?: string }) => void;
 };
 
 const STORAGE = {
@@ -101,19 +101,16 @@ export function AOBridgeProvider({ children }: { children: React.ReactNode }) {
 
   const api = useMemo<AOBridgeApi>(() => ({
     ...context,
-    setIdentity(identity) {
-      const next = {
-        ...context,
-        house: identity.house || context.house,
-        houseName: identity.house ? HOUSES[identity.house] || identity.house : context.houseName,
-        mount: identity.mount || context.mount,
-        mountColor: identity.mountColor || context.mountColor,
-      };
-      writeStorage(STORAGE.house, next.house);
-      writeStorage(STORAGE.houseName, next.houseName);
-      writeStorage(STORAGE.mount, next.mount);
-      writeStorage(STORAGE.mountColor, next.mountColor);
-      setContext(next);
+    setIdentity(next) {
+      const house = next.house || context.house;
+      const mount = next.mount || context.mount;
+      const mountColor = next.mountColor || context.mountColor;
+      const houseName = HOUSES[house] || context.houseName;
+      writeStorage(STORAGE.house, house);
+      writeStorage(STORAGE.houseName, houseName);
+      writeStorage(STORAGE.mount, mount);
+      writeStorage(STORAGE.mountColor, mountColor);
+      setContext((current) => ({ ...current, house, houseName, mount, mountColor }));
     },
     decorateUrl(rawUrl, options = {}) {
       if (options.houseAware === false) return rawUrl;

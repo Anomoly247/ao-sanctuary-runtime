@@ -86,6 +86,7 @@ export async function completeGlobalMission(input: {
       return {
         completed: true,
         duplicate: true,
+        missionId: input.missionId,
         reward: existing[0].reward,
         balance: wallet[0]?.anomCoins || "0.00",
       };
@@ -153,7 +154,16 @@ export async function completeGlobalMission(input: {
         ? await tx.select().from(achievements).where(eq(achievements.id, mission.achievementId)).limit(1)
         : await tx.select().from(achievements).where(sql`${achievements.name} = ${badgeName!}`).limit(1);
       const achievementId = badge[0]?.id || mission.achievementId;
-      if (!achievementId) return { completed: true, duplicate: false, reward, balance: newBalance, badgeAwarded: null };
+      if (!achievementId) {
+        return {
+          completed: true,
+          duplicate: false,
+          missionId: input.missionId,
+          reward,
+          balance: newBalance,
+          badgeAwarded: null,
+        };
+      }
       const alreadyUnlocked = await tx.select().from(userAchievements)
         .where(and(
           eq(userAchievements.userId, input.userId),
@@ -168,6 +178,6 @@ export async function completeGlobalMission(input: {
       badgeAwarded = badge[0] || null;
     }
 
-    return { completed: true, duplicate: false, reward, balance: newBalance, badgeAwarded };
+    return { completed: true, duplicate: false, missionId: input.missionId, reward, balance: newBalance, badgeAwarded };
   });
 }
