@@ -38,6 +38,41 @@ const schemaCounts = schemaFilters.reduce<Record<WorldSchemaFilter, number>>((co
   return counts;
 }, { all: worlds.length, gateway: 0, farm: 0, library: 0, hub: 0, story: 0, help: 0 });
 
+function GameSceneHeader({ title, subtitle, art, artAlt, signal, variant }: { title: string; subtitle: string; art: string; artAlt: string; signal: string; variant: string }) {
+  return (
+    <div className={`ao-game-scene-header ao-game-scene-header-${variant}`}>
+      <div className="ao-game-scene-art" aria-hidden="true">
+        <div className="ao-game-scene-ring" />
+        <img src={art} alt={artAlt} />
+      </div>
+      <div className="ao-game-scene-copy">
+        <span className="ao-game-scene-signal">{signal}</span>
+        <h2>{title}</h2>
+        <p>{subtitle}</p>
+      </div>
+    </div>
+  );
+}
+
+function GameCompletion({ title, score, detail, art, artAlt, variant, onClaim, onReplay }: { title: string; score: number; detail: string; art: string; artAlt: string; variant: string; onClaim: () => void; onReplay: () => void }) {
+  return (
+    <div className={`ao-game-completion ao-game-completion-${variant}`} role="status" aria-live="polite">
+      <div className="ao-game-completion-art">
+        <div className="ao-game-completion-burst" aria-hidden="true" />
+        <img src={art} alt={artAlt} />
+      </div>
+      <span className="ao-game-scene-signal">SIGNAL COMPLETE</span>
+      <h2>{title}</h2>
+      <p className="ao-game-completion-score">{score} Points</p>
+      <p className="ao-game-completion-detail">{detail}</p>
+      <div className="flex gap-3">
+        <Button className="flex-1 btn-secondary" onClick={onClaim}>Claim Reward</Button>
+        <Button variant="outline" className="flex-1" onClick={onReplay}>Play Again</Button>
+      </div>
+    </div>
+  );
+}
+
 // Trivia Game Component
 function TriviaGame({ onClose, onComplete }: { onClose: () => void; onComplete: (score: number) => void }) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -87,32 +122,7 @@ function TriviaGame({ onClose, onComplete }: { onClose: () => void; onComplete: 
   if (gameOver) {
     return (
       <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-        <Card className="bg-[#000000] border border-[#00eaff] p-8 max-w-md text-center">
-          <h2 className="text-2xl font-bold text-[#d8ae55] mb-4">Game Over!</h2>
-          <p className="text-4xl font-bold text-[#00eaff] mb-6">{score} Points</p>
-          <div className="flex gap-4">
-            <Button
-              className="flex-1 btn-secondary"
-              onClick={() => {
-                onComplete(score);
-                onClose();
-              }}
-            >
-              Claim Reward
-            </Button>
-            <Button
-              variant="outline"
-              className="flex-1"
-              onClick={() => {
-                setCurrentQuestion(0);
-                setScore(0);
-                setGameOver(false);
-              }}
-            >
-              Play Again
-            </Button>
-          </div>
-        </Card>
+        <GameCompletion title="Question trail complete" score={score} detail="Your answers lit a path through the AO signal." art={aoArtUrl(AO_ART.characters.pixel)} artAlt="Pixel character celebrating the completed Trivia Challenge" variant="trivia" onClaim={() => { onComplete(score); onClose(); }} onReplay={() => { setCurrentQuestion(0); setScore(0); setGameOver(false); }} />
       </div>
     );
   }
@@ -121,11 +131,12 @@ function TriviaGame({ onClose, onComplete }: { onClose: () => void; onComplete: 
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
       <Card className="bg-[#000000] border border-[#00eaff] p-8 max-w-2xl w-full mx-4">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold text-[#d8ae55]">Trivia Challenge</h2>
           <Button variant="ghost" onClick={onClose} className="text-[#cccccc]">
             <X className="w-5 h-5" />
           </Button>
         </div>
+
+        <GameSceneHeader title="Trivia Challenge" subtitle="Follow the question trail and keep your signal bright." art={aoArtUrl(AO_ART.characters.pixel)} artAlt="Pixel character artwork" signal="QUESTION TRAIL" variant="trivia" />
 
         <div className="mb-6">
           <p className="text-[#cccccc] text-sm mb-2">
@@ -161,15 +172,15 @@ function TriviaGame({ onClose, onComplete }: { onClose: () => void; onComplete: 
 
 // Memory Game Component
 function MemoryGame({ onClose, onComplete }: { onClose: () => void; onComplete: (score: number) => void }) {
-  const [cards, setCards] = useState<{ id: number; emoji: string; flipped: boolean; matched: boolean }[]>([
-    { id: 1, emoji: "🌟", flipped: false, matched: false },
-    { id: 2, emoji: "🌟", flipped: false, matched: false },
-    { id: 3, emoji: "🎮", flipped: false, matched: false },
-    { id: 4, emoji: "🎮", flipped: false, matched: false },
-    { id: 5, emoji: "🚀", flipped: false, matched: false },
-    { id: 6, emoji: "🚀", flipped: false, matched: false },
-    { id: 7, emoji: "💎", flipped: false, matched: false },
-    { id: 8, emoji: "💎", flipped: false, matched: false },
+  const [cards, setCards] = useState<{ id: number; symbol: string; art: string; label: string; flipped: boolean; matched: boolean }[]>([
+    { id: 1, symbol: "pixel", art: aoArtUrl(AO_ART.characters.pixel), label: "Pixel", flipped: false, matched: false },
+    { id: 2, symbol: "pixel", art: aoArtUrl(AO_ART.characters.pixel), label: "Pixel", flipped: false, matched: false },
+    { id: 3, symbol: "tater", art: aoArtUrl(AO_ART.characters.tater), label: "Tater", flipped: false, matched: false },
+    { id: 4, symbol: "tater", art: aoArtUrl(AO_ART.characters.tater), label: "Tater", flipped: false, matched: false },
+    { id: 5, symbol: "clifford", art: aoArtUrl(AO_ART.characters.clifford), label: "Clifford", flipped: false, matched: false },
+    { id: 6, symbol: "clifford", art: aoArtUrl(AO_ART.characters.clifford), label: "Clifford", flipped: false, matched: false },
+    { id: 7, symbol: "collector", art: aoArtUrl(AO_ART.badges.collectorSet), label: "Collector", flipped: false, matched: false },
+    { id: 8, symbol: "collector", art: aoArtUrl(AO_ART.badges.collectorSet), label: "Collector", flipped: false, matched: false },
   ]);
   const [moves, setMoves] = useState(0);
   const [gameOver, setGameOver] = useState(false);
@@ -184,7 +195,7 @@ function MemoryGame({ onClose, onComplete }: { onClose: () => void; onComplete: 
     const flipped = newCards.filter((c) => c.flipped && !c.matched);
     if (flipped.length === 2) {
       setMoves(moves + 1);
-      if (flipped[0].emoji === flipped[1].emoji) {
+      if (flipped[0].symbol === flipped[1].symbol) {
         setTimeout(() => {
           const updated = [...newCards];
           updated[newCards.indexOf(flipped[0])].matched = true;
@@ -210,20 +221,7 @@ function MemoryGame({ onClose, onComplete }: { onClose: () => void; onComplete: 
   if (gameOver) {
     return (
       <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-        <Card className="bg-[#000000] border border-[#00eaff] p-8 max-w-md text-center">
-          <h2 className="text-2xl font-bold text-[#d8ae55] mb-4">You Won!</h2>
-          <p className="text-4xl font-bold text-[#00eaff] mb-2">{100 - moves * 5} Points</p>
-          <p className="text-[#cccccc] mb-6">Completed in {moves} moves</p>
-          <Button
-            className="w-full btn-secondary"
-            onClick={() => {
-              onComplete(100 - moves * 5);
-              onClose();
-            }}
-          >
-            Claim Reward
-          </Button>
-        </Card>
+        <GameCompletion title="Pattern vault opened" score={100 - moves * 5} detail={`Every symbol found in ${moves} moves.`} art={aoArtUrl(AO_ART.badges.collectorSet)} artAlt="AO collector emblem celebrating the completed Memory Game" variant="memory" onClaim={() => { onComplete(100 - moves * 5); onClose(); }} onReplay={() => { setCards(cards.map((card, index) => ({ ...card, flipped: false, matched: false, id: index + 1 }))); setMoves(0); setGameOver(false); }} />
       </div>
     );
   }
@@ -232,20 +230,23 @@ function MemoryGame({ onClose, onComplete }: { onClose: () => void; onComplete: 
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
       <Card className="bg-[#000000] border border-[#00eaff] p-8 max-w-md">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold text-[#d8ae55]">Memory Game</h2>
           <Button variant="ghost" onClick={onClose} className="text-[#cccccc]">
             <X className="w-5 h-5" />
           </Button>
         </div>
 
+        <GameSceneHeader title="Memory Game" subtitle="Find the matching AO symbols and remember who travels with you." art={aoArtUrl(AO_ART.badges.collectorSet)} artAlt="AO collector emblem artwork" signal="PATTERN VAULT" variant="memory" />
+
         <div className="grid grid-cols-4 gap-2 mb-6">
           {cards.map((card, idx) => (
             <button
-              key={idx}
+              key={card.id}
               onClick={() => handleCardClick(idx)}
-              className="w-16 h-16 bg-gradient-to-br from-[#d8ae55] to-[#d8ae55] rounded-lg flex items-center justify-center text-2xl hover:scale-110 transition-transform"
+              className={`ao-memory-card ${card.flipped || card.matched ? "is-revealed" : ""} ${card.matched ? "is-matched" : ""}`}
+              aria-label={card.flipped || card.matched ? `${card.label} symbol` : "Hidden AO symbol"}
+              aria-pressed={card.flipped || card.matched}
             >
-              {card.flipped || card.matched ? card.emoji : "?"}
+              {card.flipped || card.matched ? <img src={card.art} alt="" /> : <span className="ao-memory-card-back">AO</span>}
             </button>
           ))}
         </div>
@@ -260,12 +261,14 @@ function MemoryGame({ onClose, onComplete }: { onClose: () => void; onComplete: 
 function MoodMatcherGame({ onClose, onComplete }: { onClose: () => void; onComplete: (score: number) => void }) {
   const [score, setScore] = useState(0);
   const [round, setRound] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
+  const [finalScore, setFinalScore] = useState(0);
 
   const moods = [
-    { emoji: "😊", name: "Happy" },
-    { emoji: "😢", name: "Sad" },
-    { emoji: "😡", name: "Angry" },
-    { emoji: "😴", name: "Sleepy" },
+    { symbol: "sun", name: "Happy", art: aoArtUrl(AO_ART.badges.moodBuddies) },
+    { symbol: "quiet", name: "Sad", art: aoArtUrl(AO_ART.characters.tater) },
+    { symbol: "spark", name: "Angry", art: aoArtUrl(AO_ART.characters.clifford) },
+    { symbol: "moon", name: "Sleepy", art: aoArtUrl(AO_ART.mounts.aurora.art) },
   ];
 
   const rounds = [
@@ -283,22 +286,29 @@ function MoodMatcherGame({ onClose, onComplete }: { onClose: () => void; onCompl
     if (round + 1 < rounds.length) {
       setRound(round + 1);
     } else {
-      setTimeout(() => {
-        onComplete(score + (mood === rounds[round].correct ? 25 : 0));
-        onClose();
-      }, 500);
+      setFinalScore(score + (mood === rounds[round].correct ? 25 : 0));
+      setGameOver(true);
     }
   };
+
+  if (gameOver) {
+    return (
+      <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
+        <GameCompletion title="Feeling signal understood" score={finalScore} detail="You named the feeling and made room for it." art={aoArtUrl(AO_ART.badges.moodBuddies)} artAlt="Mood Buddies emblem celebrating the completed Mood Matcher" variant="mood" onClaim={() => { onComplete(finalScore); onClose(); }} onReplay={() => { setScore(0); setRound(0); setFinalScore(0); setGameOver(false); }} />
+      </div>
+    );
+  }
 
   return (
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
       <Card className="bg-[#000000] border border-[#00eaff] p-8 max-w-md">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold text-[#d8ae55]">Mood Matcher</h2>
           <Button variant="ghost" onClick={onClose} className="text-[#cccccc]">
             <X className="w-5 h-5" />
           </Button>
         </div>
+
+        <GameSceneHeader title="Mood Matcher" subtitle="Notice the feeling, name it gently, and let it move through." art={aoArtUrl(AO_ART.badges.moodBuddies)} artAlt="Mood Buddies emblem artwork" signal="FEELING SIGNAL" variant="mood" />
 
         <p className="text-[#00eaff] text-lg mb-6 text-center font-bold">{rounds[round].question}</p>
 
@@ -307,9 +317,10 @@ function MoodMatcherGame({ onClose, onComplete }: { onClose: () => void; onCompl
             <button
               key={mood.name}
               onClick={() => handleMoodClick(mood.name)}
-              className="p-4 bg-[#0A0A10] border border-[#08080f] rounded-lg hover:border-[#00eaff] transition-colors"
+              className="ao-mood-choice"
             >
-              <div className="text-4xl mb-2">{mood.emoji}</div>
+              <img src={mood.art} alt="" />
+              <span className="ao-mood-choice-symbol" aria-hidden="true">{mood.symbol}</span>
               <div className="text-sm text-[#cccccc]">{mood.name}</div>
             </button>
           ))}
