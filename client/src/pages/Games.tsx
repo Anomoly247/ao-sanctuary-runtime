@@ -7,20 +7,31 @@ import { toast } from "sonner";
 import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { AO_ART, aoArtUrl } from "../../../shared/aoArt";
+import { AO_WORLD_SCHEMA_REGISTRY, type AOWorldKind } from "../../../shared/aoWorldKinds";
 import { useAOBridge } from "@/contexts/AOBridgeContext";
 
+type WorldSchemaFilter = "all" | "gateway" | AOWorldKind;
+
 const worlds = [
-  { id: "sanctuary", label: "Sanctuary", eyebrow: "SAFE HOME WORLD", tier: "ALL AGES", category: "governance", path: "/", icon: Heart, description: "The calm center: lounges, missions, signals, and the shared safe call.", cta: "Return to Sanctuary", tone: "gold" },
-  { id: "house-select", label: "House Select", eyebrow: "IDENTITY GATEWAY", tier: "START HERE", category: "identity", path: "/house-select", icon: Home, description: "Choose the living house that carries your story, then arrive with its mount and rhythm already remembered.", cta: "Choose a house", tone: "gold" },
-  { id: "creator", label: "Creator Orbit", eyebrow: "MAKE TOGETHER", tier: "GUARDIAN GUIDED", category: "creative", path: "/collaboration", icon: Users, description: "Build, collaborate, and turn creative work into a kind action.", cta: "Make together", tone: "cyan" },
-  { id: "play", label: "Play Worlds", eyebrow: "ARCADE SIGNAL", tier: "KIDS + GUARDIANS", category: "play", path: "/games", icon: Gamepad2, description: "Retro-inspired games, living mounts, and story pockets like Baba Yaga’s Hut.", cta: "You are here", tone: "cyan" },
-  { id: "moonberry-farm", label: "Moonberry Farm", eyebrow: "OFF-GRID SANCTUARY", tier: "KIDS + GUARDIANS", category: "education", path: "/moonberry-farm", icon: Leaf, description: "Plant, care, harvest, and keep a private Growth Note without a public score.", cta: "Tend the farm", tone: "gold" },
-  { id: "library", label: "Library World", eyebrow: "HIDDEN LESSONS", tier: "AGE-AWARE", category: "education", path: "/library", icon: BookOpen, description: "Videos, research trails, and curiosity quests that connect online life to real life.", cta: "Open Library", tone: "gold" },
-  { id: "archive", label: "Coin Vault", eyebrow: "MOUNTS + BADGES", tier: "ALL AGES", category: "rewards", path: "/coin-vault", icon: ShoppingBag, description: "Keep earned glow, mounts, achievements, and the objects that remember your journey.", cta: "Open the Vault", tone: "gold" },
-  { id: "anoms-corner", label: "Anom’s Corner", eyebrow: "THE CREATOR’S SIGNAL", tier: "COMMUNITY", category: "education", path: "/anoms-corner", icon: Globe2, description: "A living window for stories, social posts, videos, and the next strange idea.", cta: "Enter the Corner", tone: "cyan" },
-  { id: "missions", label: "Mission Hub", eyebrow: "PLAY WITH PURPOSE", tier: "ALL AGES", category: "social", path: "/mission-hub", icon: Trophy, description: "Small connected actions that turn kindness, learning, and collaboration into progress.", cta: "Choose a mission", tone: "gold" },
-  { id: "music", label: "Sound Garden", eyebrow: "AMBIENT SIGNAL", tier: "ALL AGES", category: "audio", path: "/music-library", icon: Music2, description: "Instrumentals and quiet soundscapes for moving through the universe at your own pace.", cta: "Listen inward", tone: "cyan" },
+  { id: "sanctuary", label: "Sanctuary", eyebrow: "SAFE HOME WORLD", tier: "ALL AGES", category: "governance", schema: "gateway", path: "/", icon: Heart, description: "The calm center: lounges, missions, signals, and the shared safe call.", cta: "Return to Sanctuary", tone: "gold" },
+  { id: "house-select", label: "House Select", eyebrow: "IDENTITY GATEWAY", tier: "START HERE", category: "identity", schema: "gateway", path: "/house-select", icon: Home, description: "Choose the living house that carries your story, then arrive with its mount and rhythm already remembered.", cta: "Choose a house", tone: "gold" },
+  { id: "creator", label: "Creator Orbit", eyebrow: "MAKE TOGETHER", tier: "GUARDIAN GUIDED", category: "creative", schema: "gateway", path: "/collaboration", icon: Users, description: "Build, collaborate, and turn creative work into a kind action.", cta: "Make together", tone: "cyan" },
+  { id: "play", label: "Play Worlds", eyebrow: "ARCADE SIGNAL", tier: "KIDS + GUARDIANS", category: "play", schema: "gateway", path: "/games", icon: Gamepad2, description: "Retro-inspired games, living mounts, and story pockets like Baba Yaga’s Hut.", cta: "You are here", tone: "cyan" },
+  { id: "troll-crush", label: "Troll Crush", eyebrow: "ROUTER SCHEMA", tier: "KIDS + GUARDIANS", category: "play", schema: "hub", path: "/games/troll-crush", icon: Gamepad2, description: "Move from Universe to World to Community to Space through a guardian-guided arcade mission.", cta: "Open router", tone: "cyan" },
+  { id: "moonberry-farm", label: "Moonberry Farm", eyebrow: "OFF-GRID SANCTUARY", tier: "KIDS + GUARDIANS", category: "education", schema: "farm", path: "/moonberry-farm", icon: Leaf, description: "Plant, care, harvest, and keep a private Growth Note without a public score.", cta: "Tend the farm", tone: "gold" },
+  { id: "library", label: "Library World", eyebrow: "HIDDEN LESSONS", tier: "AGE-AWARE", category: "education", schema: "library", path: "/library", icon: BookOpen, description: "Videos, research trails, and curiosity quests that connect online life to real life.", cta: "Open Library", tone: "gold" },
+  { id: "archive", label: "Coin Vault", eyebrow: "MOUNTS + BADGES", tier: "ALL AGES", category: "rewards", schema: "gateway", path: "/coin-vault", icon: ShoppingBag, description: "Keep earned glow, mounts, achievements, and the objects that remember your journey.", cta: "Open the Vault", tone: "gold" },
+  { id: "anoms-corner", label: "Anom’s Corner", eyebrow: "THE CREATOR’S SIGNAL", tier: "COMMUNITY", category: "education", schema: "story", path: "/anoms-corner", icon: Globe2, description: "A living window for stories, social posts, videos, and the next strange idea.", cta: "Enter the Corner", tone: "cyan" },
+  { id: "missions", label: "Mission Hub", eyebrow: "PLAY WITH PURPOSE", tier: "ALL AGES", category: "social", schema: "gateway", path: "/mission-hub", icon: Trophy, description: "Small connected actions that turn kindness, learning, and collaboration into progress.", cta: "Choose a mission", tone: "gold" },
+  { id: "music", label: "Sound Garden", eyebrow: "AMBIENT SIGNAL", tier: "ALL AGES", category: "audio", schema: "gateway", path: "/music-library", icon: Music2, description: "Instrumentals and quiet soundscapes for moving through the universe at your own pace.", cta: "Listen inward", tone: "cyan" },
+  { id: "help", label: "Help Hub", eyebrow: "SAFETY TERMINAL", tier: "ALL AGES", category: "governance", schema: "help", path: "/help", icon: Heart, description: "Find privacy, safety, guardian, and technical guidance with documented escalation.", cta: "Open Help Hub", tone: "gold" },
 ] as const;
+
+const schemaFilters: ReadonlyArray<{ kind: WorldSchemaFilter; label: string }> = [
+  { kind: "all", label: "All worlds" },
+  { kind: "gateway", label: "Gateways" },
+  ...AO_WORLD_SCHEMA_REGISTRY.map((schema) => ({ kind: schema.kind, label: schema.kind === "hub" ? "Router" : schema.kind[0].toUpperCase() + schema.kind.slice(1) })),
+];
 
 // Trivia Game Component
 function TriviaGame({ onClose, onComplete }: { onClose: () => void; onComplete: (score: number) => void }) {
@@ -317,6 +328,7 @@ export default function Games() {
   });
   const [worldQuery, setWorldQuery] = useState("");
   const [worldCategory, setWorldCategory] = useState("all");
+  const [worldSchema, setWorldSchema] = useState<WorldSchemaFilter>("all");
 
   useEffect(() => {
     window.localStorage.setItem("ao_guest_anom_coins", String(anomCoins));
@@ -381,7 +393,8 @@ export default function Games() {
     const query = worldQuery.trim().toLowerCase();
     const matchesQuery = !query || [world.label, world.eyebrow, world.description, world.tier, world.category].some((value) => value.toLowerCase().includes(query));
     const matchesCategory = worldCategory === "all" || world.category === worldCategory;
-    return matchesQuery && matchesCategory;
+    const matchesSchema = worldSchema === "all" || world.schema === worldSchema;
+    return matchesQuery && matchesCategory && matchesSchema;
   });
 
   const handleGameComplete = (gameId: string, score: number) => {
@@ -457,8 +470,8 @@ export default function Games() {
             </label>
             <label className="ao-world-filter">
               <Filter className="h-4 w-4" aria-hidden="true" />
-              <span className="sr-only">Filter worlds by category</span>
-              <select value={worldCategory} onChange={(event) => setWorldCategory(event.target.value)} aria-label="Filter worlds by category">
+              <span className="sr-only">Filter worlds by pathway</span>
+              <select value={worldCategory} onChange={(event) => setWorldCategory(event.target.value)} aria-label="Filter worlds by pathway">
                 <option value="all">All pathways</option>
                 <option value="education">Education & stories</option>
                 <option value="governance">Governance & safety</option>
@@ -469,6 +482,16 @@ export default function Games() {
                 <option value="rewards">Rewards & archive</option>
               </select>
             </label>
+          </div>
+          <div className="ao-world-schema-filters" role="group" aria-label="Filter worlds by schema">
+            <span className="ao-world-schema-label">WORLD SCHEMA</span>
+            <div className="ao-world-schema-buttons">
+              {schemaFilters.map((filter) => (
+                <button key={filter.kind} type="button" className={`ao-world-schema-button ${worldSchema === filter.kind ? "is-active" : ""}`} aria-pressed={worldSchema === filter.kind} onClick={() => setWorldSchema(filter.kind)}>
+                  {filter.label}
+                </button>
+              ))}
+            </div>
           </div>
           <p className="ao-world-directory-status" role="status" aria-live="polite">
             {filteredWorlds.length ? `Showing ${filteredWorlds.length} world${filteredWorlds.length === 1 ? "" : "s"}.` : "No worlds match that signal. Try another search or pathway."}

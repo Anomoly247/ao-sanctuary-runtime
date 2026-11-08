@@ -6,7 +6,8 @@
   ],
   "dev_command": "pnpm run dev",
   "env_vars": {
-    "DATABASE_URL": "mysql://2Jke4D9a9so5ARD.451a01946912:A23O8qqGzUG754wIvAAm@gateway02.us-east-1.prod.aws.tidbcloud.com:4000/Hukq4ZPoHRWi5oG8L6Vv6c?ssl={\"rejectUnauthorized\":true}",
+    "DATABASE_URL": "mysql://2Jke4D9a9so5ARD.451a01946912:9v13TZTdS33NAqyLw9oU@gateway02.us-east-1.prod.aws.tidbcloud.com:4000/Hukq4ZPoHRWi5oG8L6Vv6c?ssl={\"rejectUnauthorized\":true}",
+    "DRIZZLE_DATABASE_URL": "mysql://2Jke4D9a9so5ARD.451a01946912:9v13TZTdS33NAqyLw9oU@gateway02.us-east-1.prod.aws.tidbcloud.com:4000/Hukq4ZPoHRWi5oG8L6Vv6c?ssl={\"rejectUnauthorized\":true}",
     "MANUS_WEBDEV_PROJECT_ID": "Hukq4ZPoHRWi5oG8L6Vv6c"
   },
   "experiments": [
@@ -14,8 +15,8 @@
   ],
   "git_remote": {
     "repo_url": "https://7f0548f6b28a1758d9bf7be630d36cb4.artifacts.cloudflare.net/git/prod/Hukq4ZPoHRWi5oG8L6Vv6c.git",
-    "expiration": "2026-10-01T05:38:08.004Z",
-    "token": "art_v2_x_b182d619fdcd62d2ae9fe7374f2db7d0b26269c6?expires=1790833088",
+    "expiration": "2026-11-09T18:04:15.833Z",
+    "token": "art_v2_x_336d433a6e7e5f1347b1c84fc699cb3a60604068?expires=1794247455",
     "backend": "GIT_BACKEND_ARTIFACTS"
   },
   "name": "ao-sanctuary-runtime",

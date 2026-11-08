@@ -1963,6 +1963,35 @@ html { scroll-behavior: smooth; }
 .ao-world-search input::placeholder { color: rgba(255, 255, 255, 0.48); }
 .ao-world-filter select { cursor: pointer; }
 .ao-world-filter option { background: #0a0a10; color: #f4efe4; }
+.ao-world-schema-filters {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin: 0 0 0.7rem;
+}
+.ao-world-schema-label {
+  color: rgba(216, 174, 85, 0.88);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
+}
+.ao-world-schema-buttons { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.ao-world-schema-button {
+  min-height: 36px;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid rgba(216, 174, 85, 0.28);
+  border-radius: 999px;
+  background: rgba(8, 8, 15, 0.58);
+  color: rgba(244, 239, 228, 0.72);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.68rem;
+  transition: background-color 180ms ease-out, border-color 180ms ease-out, color 180ms ease-out, transform 160ms ease-out;
+}
+.ao-world-schema-button:hover { border-color: rgba(0, 234, 255, 0.68); color: #f4efe4; transform: translateY(-1px); }
+.ao-world-schema-button:focus-visible { outline: 2px solid #00eaff; outline-offset: 3px; }
+.ao-world-schema-button.is-active { background: rgba(216, 174, 85, 0.14); border-color: #d8ae55; color: #f4efe4; box-shadow: 0 0 18px rgba(216, 174, 85, 0.1); }
 .ao-world-directory-status {
   color: rgba(255, 255, 255, 0.58);
   font-size: 0.72rem;
@@ -1988,6 +2017,7 @@ html { scroll-behavior: smooth; }
 @media (max-width: 680px) {
   .ao-world-directory-tools { display: grid; grid-template-columns: 1fr; }
   .ao-world-filter, .ao-world-search { max-width: none; width: 100%; }
+  .ao-world-schema-filters { align-items: flex-start; flex-direction: column; }
   .ao-ambient-theme { grid-column: 1 / -1; justify-content: space-between; }
 }
 
@@ -1995,7 +2025,8 @@ html { scroll-behavior: smooth; }
   html { scroll-behavior: auto; }
   .ao-world-nav-links button,
   .ao-world-search,
-  .ao-world-filter { transition: none; }
+  .ao-world-filter,
+  .ao-world-schema-button { transition: none; }
 }
 
 
