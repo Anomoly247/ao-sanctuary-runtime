@@ -2171,6 +2171,25 @@ html { scroll-behavior: smooth; }
 .ao-library-game-meta svg { vertical-align: -2px; }
 @media (max-width: 900px) { .ao-library-game-grid { grid-template-columns: 1fr; } .ao-library-game-card-body > p:not(.ao-world-kicker) { min-height: auto; } }
 @media (prefers-reduced-motion: reduce) { .ao-library-game-card { transition: none; } .ao-library-game-card:hover { transform: none; } }
+.ao-game-card { position: relative; overflow: visible; transition: transform .2s cubic-bezier(.23,1,.32,1), border-color .2s ease, box-shadow .2s ease; }
+.ao-game-card:hover { transform: translateY(-5px); box-shadow: 0 22px 52px rgba(0,0,0,.34), 0 0 24px rgba(0,234,255,.07); }
+.ao-game-card-visual { align-items: center; background: radial-gradient(circle at 50% 45%, rgba(0,234,255,.14), rgba(8,8,15,.05) 42%, transparent 70%); display: flex; height: 190px; justify-content: center; margin: -1rem -1rem 1.25rem; overflow: visible; position: relative; }
+.ao-game-card-visual::before { border: 1px solid rgba(0,234,255,.3); border-radius: 50%; content: ""; height: 148px; position: absolute; transform: rotate(-18deg); width: 218px; }
+.ao-game-card-visual::after { background: radial-gradient(circle, rgba(216,174,85,.9) 0 1px, transparent 1.8px) 12px 18px / 58px 48px, radial-gradient(circle, rgba(0,234,255,.72) 0 1px, transparent 1.8px) 32px 8px / 76px 66px; content: ""; inset: 0; opacity: .58; pointer-events: none; position: absolute; }
+.ao-game-card-visual img { filter: drop-shadow(0 14px 22px rgba(0,0,0,.52)) drop-shadow(0 0 18px rgba(0,234,255,.22)); height: 132px; object-fit: contain; position: relative; transform: translateY(0); transition: filter .2s ease, transform .2s ease; width: 170px; z-index: 1; }
+.ao-game-card:hover .ao-game-card-visual img { filter: drop-shadow(0 18px 24px rgba(0,0,0,.5)) drop-shadow(0 0 26px rgba(216,174,85,.3)); transform: translateY(-5px) scale(1.04); }
+.ao-game-card-orbit { animation: ao-game-card-orbit 12s linear infinite; border: 1px dashed rgba(216,174,85,.42); border-radius: 50%; height: 170px; position: absolute; transform: rotate(22deg); width: 170px; }
+.ao-game-card-orbit::after { background: #d8ae55; border-radius: 50%; box-shadow: 0 0 12px rgba(216,174,85,.7); content: ""; height: 6px; left: 16px; position: absolute; top: 18px; width: 6px; }
+.ao-game-card-icon { align-items: center; background: rgba(8,8,15,.88); border: 1px solid rgba(216,174,85,.58); border-radius: 50%; bottom: 22px; display: flex; font-size: 1.1rem; height: 34px; justify-content: center; position: absolute; right: calc(50% - 78px); width: 34px; z-index: 2; }
+.ao-game-card-signal { bottom: 14px; color: rgba(134,238,250,.8); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .58rem; letter-spacing: .16em; position: absolute; right: 1rem; z-index: 2; }
+.ao-game-card-visual-trivia { background: radial-gradient(circle at 50% 45%, rgba(216,174,85,.2), rgba(8,8,15,.05) 44%, transparent 72%); }
+.ao-game-card-visual-trivia::before { border-color: rgba(216,174,85,.42); }
+.ao-game-card-visual-memory { background: radial-gradient(circle at 50% 45%, rgba(0,234,255,.18), rgba(8,8,15,.05) 44%, transparent 72%); }
+.ao-game-card-visual-memory img { border-radius: 1rem; mix-blend-mode: screen; }
+.ao-game-card-visual-mood-matcher { background: radial-gradient(circle at 50% 45%, rgba(0,234,255,.13), rgba(216,174,85,.08) 44%, transparent 72%); }
+.ao-game-card-visual-mood-matcher img { border-radius: 50%; mix-blend-mode: screen; }
+@keyframes ao-game-card-orbit { from { transform: rotate(22deg); } to { transform: rotate(382deg); } }
+@media (prefers-reduced-motion: reduce) { .ao-game-card { transition: none; } .ao-game-card:hover { transform: none; } .ao-game-card-orbit { animation: none; } .ao-game-card:hover .ao-game-card-visual img { transform: none; } }
 
 /* StoryWorld thought cards and owner publication controls */
 .ao-thought-section { margin-top: 4rem; padding: 1.5rem; border: 1px solid rgba(0,234,255,.22); border-radius: 1.5rem; background: linear-gradient(145deg, rgba(20,20,35,.86), rgba(8,8,15,.72)); }

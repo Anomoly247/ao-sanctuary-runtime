@@ -370,6 +370,9 @@ export default function Games() {
       title: "Trivia Challenge",
       description: "Answer questions and test your knowledge!",
       icon: "🧠",
+      art: aoArtUrl(AO_ART.characters.pixel),
+      artAlt: "Pixel character artwork for the Trivia Challenge",
+      signal: "QUESTION TRAIL",
       difficulty: "Easy",
       reward: 50,
       component: TriviaGame,
@@ -379,6 +382,9 @@ export default function Games() {
       title: "Memory Game",
       description: "Match pairs of cards and test your memory!",
       icon: "🎮",
+      art: aoArtUrl(AO_ART.badges.collectorSet),
+      artAlt: "AO collector emblem artwork for the Memory Game",
+      signal: "PATTERN VAULT",
       difficulty: "Medium",
       reward: 75,
       component: MemoryGame,
@@ -388,6 +394,9 @@ export default function Games() {
       title: "Mood Matcher",
       description: "Match emotions to situations!",
       icon: "😊",
+      art: aoArtUrl(AO_ART.badges.moodBuddies),
+      artAlt: "Mood Buddies emblem artwork for the Mood Matcher",
+      signal: "FEELING SIGNAL",
       difficulty: "Easy",
       reward: 40,
       component: MoodMatcherGame,
@@ -589,12 +598,17 @@ export default function Games() {
             return (
               <Card
                 key={game.id}
-                className="bg-[#000000] border border-[#08080f] p-6 hover:border-[#00eaff] transition-colors"
+                className="ao-game-card bg-[#000000] border border-[#08080f] p-6 hover:border-[#00eaff] transition-colors"
                 style={{
                   boxShadow: "0 4px 12px rgba(0, 0, 0, 0.45)",
                 }}
               >
-                <div className="text-5xl mb-4 text-center">{game.icon}</div>
+                <div className={`ao-game-card-visual ao-game-card-visual-${game.id}`}>
+                  <div className="ao-game-card-orbit" aria-hidden="true" />
+                  <img src={game.art} alt={game.artAlt} loading="lazy" />
+                  <span className="ao-game-card-icon" aria-hidden="true">{game.icon}</span>
+                  <span className="ao-game-card-signal">{game.signal}</span>
+                </div>
                 <h3 className="text-lg font-bold text-[#00eaff] mb-2">{game.title}</h3>
                 <p className="text-sm text-[#cccccc] mb-4">{game.description}</p>
 
