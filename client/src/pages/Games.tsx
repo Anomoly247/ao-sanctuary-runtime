@@ -33,6 +33,11 @@ const schemaFilters: ReadonlyArray<{ kind: WorldSchemaFilter; label: string }> =
   ...AO_WORLD_SCHEMA_REGISTRY.map((schema) => ({ kind: schema.kind, label: schema.kind === "hub" ? "Router" : schema.kind[0].toUpperCase() + schema.kind.slice(1) })),
 ];
 
+const schemaCounts = schemaFilters.reduce<Record<WorldSchemaFilter, number>>((counts, filter) => {
+  counts[filter.kind] = filter.kind === "all" ? worlds.length : worlds.filter((world) => world.schema === filter.kind).length;
+  return counts;
+}, { all: worlds.length, gateway: 0, farm: 0, library: 0, hub: 0, story: 0, help: 0 });
+
 // Trivia Game Component
 function TriviaGame({ onClose, onComplete }: { onClose: () => void; onComplete: (score: number) => void }) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -397,6 +402,13 @@ export default function Games() {
     return matchesQuery && matchesCategory && matchesSchema;
   });
 
+  const hasActiveFilters = Boolean(worldQuery.trim()) || worldCategory !== "all" || worldSchema !== "all";
+  const clearWorldFilters = () => {
+    setWorldQuery("");
+    setWorldCategory("all");
+    setWorldSchema("all");
+  };
+
   const handleGameComplete = (gameId: string, score: number) => {
     setGameScores({ ...gameScores, [gameId]: score });
     setActiveGame(null);
@@ -482,13 +494,17 @@ export default function Games() {
                 <option value="rewards">Rewards & archive</option>
               </select>
             </label>
+            <button type="button" className="ao-world-clear-button" onClick={clearWorldFilters} disabled={!hasActiveFilters} aria-label="Clear world search, pathway, and schema filters">
+              Clear filters
+            </button>
           </div>
           <div className="ao-world-schema-filters" role="group" aria-label="Filter worlds by schema">
             <span className="ao-world-schema-label">WORLD SCHEMA</span>
             <div className="ao-world-schema-buttons">
               {schemaFilters.map((filter) => (
                 <button key={filter.kind} type="button" className={`ao-world-schema-button ${worldSchema === filter.kind ? "is-active" : ""}`} aria-pressed={worldSchema === filter.kind} onClick={() => setWorldSchema(filter.kind)}>
-                  {filter.label}
+                  <span>{filter.label}</span>
+                  <span className="ao-world-schema-count" aria-label={`${schemaCounts[filter.kind]} worlds`}>{schemaCounts[filter.kind]}</span>
                 </button>
               ))}
             </div>
@@ -501,7 +517,7 @@ export default function Games() {
               const Icon = world.icon;
               const isCurrent = world.path === "/games";
               return (
-                <Card key={world.id} className={`ao-world-door ao-world-door-${world.tone} ${isCurrent ? "is-current" : ""}`}>
+                <Card key={world.id} className={`ao-world-door ao-world-door-${world.tone} ao-world-door-schema-${world.schema} ${isCurrent ? "is-current" : ""}`}>
                   <div className="ao-world-door-orbit"><Icon className="h-5 w-5" /></div>
                   <div className="ao-world-door-copy">
                     <span className="ao-external-eyebrow">{world.eyebrow}</span>
