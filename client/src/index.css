@@ -2311,9 +2311,9 @@ html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { .ao-mount-card { animation: none; } .ao-inventory-hero-orbit, .ao-mount-card img { transition: none; } }
 
 /* AO Network directory: canonical cross-domain footer */
-.ao-app-shell { min-height: 100vh; position: relative; z-index: 2; }
-.ao-network-footer { background: linear-gradient(180deg, rgba(10,10,16,.18), rgba(10,10,16,.96) 24%); border-top: 1px solid rgba(216,174,85,.24); color: #fff; position: relative; }
-.ao-network-inner { display: grid; gap: 2rem; grid-template-columns: minmax(220px, .82fr) minmax(0, 1.8fr); margin: 0 auto; max-width: 1240px; padding: 3rem clamp(1rem, 4vw, 3rem) 2rem; }
+.ao-app-shell { display: flex; flex-direction: column; min-height: 100vh; position: relative; z-index: 2; }
+.ao-network-footer { background: linear-gradient(180deg, rgba(10,10,16,.18), rgba(10,10,16,.96) 24%); border-top: 1px solid rgba(216,174,85,.24); color: #fff; padding-bottom: clamp(4.8rem, 7vw, 6.5rem); position: relative; scroll-margin-bottom: 6rem; }
+.ao-network-inner { display: grid; gap: 2rem; grid-template-columns: minmax(220px, .82fr) minmax(0, 1.8fr); margin: 0 auto; max-width: 1240px; padding: 3rem clamp(1rem, 4vw, 3rem) 0; }
 .ao-network-intro { max-width: 360px; }
 .ao-network-kicker { color: #00eaff; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .65rem; letter-spacing: .18em; margin: 0 0 .65rem; text-transform: uppercase; }
 .ao-network-intro h2 { color: #d8ae55; font-family: Georgia, serif; font-size: clamp(1.55rem, 3vw, 2.3rem); font-weight: 400; line-height: 1.05; margin: 0 0 .75rem; }
@@ -2327,5 +2327,5 @@ html { scroll-behavior: smooth; }
 .ao-network-link-arrow { color: #00eaff; font-size: 1.05rem; grid-column: 2; grid-row: 1 / span 2; }
 .ao-network-note { color: rgba(255,255,255,.38); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .62rem; grid-column: 1 / -1; letter-spacing: .04em; margin: 0; }
 @media (max-width: 720px) { .ao-network-inner { grid-template-columns: 1fr; padding-top: 2.3rem; } .ao-network-intro { max-width: none; } }
-@media (max-width: 480px) { .ao-network-links { grid-template-columns: 1fr; } .ao-network-link { min-height: 60px; } }
+@media (max-width: 480px) { .ao-network-links { grid-template-columns: 1fr; } .ao-network-link { min-height: 64px; padding: .85rem .9rem; } .ao-network-note { line-height: 1.55; } }
 @media (prefers-reduced-motion: reduce) { .ao-network-link { transition: none; } .ao-network-link:hover { transform: none; } }

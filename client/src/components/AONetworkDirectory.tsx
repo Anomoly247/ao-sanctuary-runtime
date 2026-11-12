@@ -3,21 +3,25 @@ const AO_NETWORK_LINKS = [
     href: "https://anomoriginals.lol/",
     label: "Anom Originals",
     role: "Canonical AO universe",
+    domain: "anomoriginals.lol",
   },
   {
     href: "https://anomartsy.xyz/",
     label: "Anom Artsy",
     role: "Public art / Homeworld",
+    domain: "anomartsy.xyz",
   },
   {
     href: "https://anomarsty.lol/",
     label: "Anomarsty",
     role: "Glow + mount economy",
+    domain: "anomarsty.lol",
   },
   {
     href: "https://universe.anomoriginals.lol/",
     label: "AO Sanctuary",
     role: "Social sanctuary runtime",
+    domain: "universe.anomoriginals.lol",
   },
 ] as const;
 
@@ -40,6 +44,7 @@ export default function AONetworkDirectory() {
               target="_blank"
               rel="noopener noreferrer"
               className="ao-network-link"
+              aria-label={`${link.label}, ${link.role}, ${link.domain}; opens in a new tab`}
             >
               <span className="ao-network-link-label">{link.label}</span>
               <span className="ao-network-link-role">{link.role}</span>
@@ -47,7 +52,9 @@ export default function AONetworkDirectory() {
             </a>
           ))}
         </nav>
-        <p className="ao-network-note">Canonical links are shown exactly as maintained by Anom Originals.</p>
+        <p className="ao-network-note">
+          Canonical links are shown exactly as maintained by Anom Originals. Each door opens in a new tab.
+        </p>
       </div>
     </footer>
   );
