@@ -47,6 +47,7 @@ import OwnerPitchReporting from "./pages/OwnerPitchReporting";
 import TrollCrushRouter from "./pages/TrollCrushRouter";
 import OwnerSchemaInspector from "./pages/OwnerSchemaInspector";
 import Inventory from "./pages/Inventory";
+import AONetworkDirectory from "./components/AONetworkDirectory";
 
 const AppRoutes = () => {
   // make sure to consider if you need authentication for certain routes
@@ -117,7 +118,10 @@ function App() {
             <TooltipProvider>
               <Toaster />
               <ColorCustomizer />
-              <AppRoutes />
+              <div className="ao-app-shell">
+                <AppRoutes />
+                <AONetworkDirectory />
+              </div>
               <CosmicWeb />
               {isAuthenticated && <ChatWidget />}
             </TooltipProvider>
