@@ -26,6 +26,8 @@ const AO_NETWORK_LINKS = [
 ] as const;
 
 export default function AONetworkDirectory() {
+  const currentHostname = typeof window === "undefined" ? "" : window.location.hostname.toLowerCase();
+
   return (
     <footer className="ao-network-footer" aria-labelledby="ao-network-title">
       <div className="ao-network-inner">
@@ -38,18 +40,25 @@ export default function AONetworkDirectory() {
         </div>
         <nav className="ao-network-links" aria-label="AO Network properties">
           {AO_NETWORK_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ao-network-link"
-              aria-label={`${link.label}, ${link.role}, ${link.domain}; opens in a new tab`}
-            >
-              <span className="ao-network-link-label">{link.label}</span>
-              <span className="ao-network-link-role">{link.role}</span>
-              <span className="ao-network-link-arrow" aria-hidden="true">↗</span>
-            </a>
+            (() => {
+              const isActive = currentHostname === link.domain;
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`ao-network-link${isActive ? " is-active" : ""}`}
+                  aria-current={isActive ? "page" : undefined}
+                  aria-label={`${link.label}, ${link.role}, ${link.domain}; ${isActive ? "current property; " : ""}opens in a new tab`}
+                >
+                  <span className="ao-network-link-label">{link.label}</span>
+                  <span className="ao-network-link-role">{link.role}</span>
+                  <span className="ao-network-link-state" aria-hidden="true">{isActive ? "CURRENT PROPERTY" : "OPEN DOOR"}</span>
+                  <span className="ao-network-link-arrow" aria-hidden="true">↗</span>
+                </a>
+              );
+            })()
           ))}
         </nav>
         <p className="ao-network-note">
